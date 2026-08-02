@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جزوه ژنتیک | بخش ۹ — ابزارهای مولکولی، غربالگری پیش از تولد و جمعیت‌شناسی ژنتیک</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#FBF9F3; --ink:#1E2321; --ink-soft:#4B534E;
+--teal:#1B4B43; --teal-soft:#E7EFEC;
+--gold:#C98A2C; --gold-soft:#FBF0DC;
+--rose:#AE4238; --rose-soft:#F7E8E5;
+--line:#DDD6C6; --card:#FFFFFF;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Vazirmatn',sans-serif;line-height:1.9;font-size:17px;}
+.wrap{width:100%;padding:0 clamp(16px,4vw,56px);}
+.hero{background:linear-gradient(180deg,var(--teal) 0%,#123830 100%);color:#F3F0E6;padding:52px 0 36px;}
+.dna-rule{height:10px;width:100%;background-image:repeating-linear-gradient(90deg,var(--gold) 0 10px, transparent 10px 22px);opacity:.85;}
+.hero h1{font-size:2.1rem;font-weight:800;margin:0 0 8px;}
+.hero p.sub{color:#CFE3DC;font-weight:400;font-size:1.05rem;margin:0;}
+.hero .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
+.tag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);padding:5px 14px;border-radius:999px;font-size:.85rem;}
+section{padding:40px 0;}
+h2.stage{font-size:1.5rem;font-weight:800;color:var(--teal);display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+h2.stage .num{background:var(--teal);color:#fff;width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.stage-desc{color:var(--ink-soft);font-size:.95rem;margin:0 0 26px;padding-right:46px;}
+.hy{display:inline-flex;align-items:center;gap:6px;background:var(--gold-soft);color:#7A5314;border:1px solid #E9C989;padding:3px 12px;border-radius:999px;font-size:.82rem;font-weight:600;margin-bottom:10px;}
+.stars{color:var(--gold);letter-spacing:1px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px clamp(18px,3vw,40px);margin:20px 0;box-shadow:0 1px 2px rgba(0,0,0,.03);}
+.card h3{margin-top:0;font-size:1.2rem;color:var(--ink);border-bottom:2px solid var(--teal-soft);padding-bottom:10px;}
+.pulse{background:var(--teal);color:#fff;border-radius:10px;padding:16px 20px;margin:16px 0;font-size:.98rem;}
+.pulse b{display:block;margin-bottom:4px;color:var(--gold-soft);}
+.why{border-right:3px solid var(--gold);background:var(--gold-soft);padding:10px 16px;margin:14px 0;border-radius:0 8px 8px 0;font-size:.95rem;}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:18px 0;}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin:16px 0;}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:16px 0;}
+.mt{border-radius:12px;padding:18px 20px;font-size:.93rem;border:1px solid var(--line);}
+.mt h4{margin:0 0 10px;font-size:1.02rem;display:flex;align-items:center;gap:8px;}
+.mt.miss{background:var(--gold-soft);border-color:#E9C989;}
+.mt.non{background:var(--rose-soft);border-color:#E3C3BE;}
+.mt.splice{background:#EDE6F5;border-color:#CBB8E0;}
+.mt.indel{background:var(--teal-soft);border-color:#C7D9D2;}
+.case{background:#F4F6F4;border:1px dashed #9EB3AA;border-radius:10px;padding:16px 20px;margin:16px 0;font-size:.95rem;}
+.case b.tag-case{color:var(--teal);}
+.q{background:var(--card);border:1.5px solid var(--line);border-radius:12px;margin:18px 0;overflow:hidden;}
+.q .qhead{padding:16px 20px;font-weight:700;background:#F4F1E7;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.q .qhead .src{font-size:.75rem;font-weight:400;color:var(--ink-soft);white-space:nowrap;}
+.q ul.opts{list-style:none;padding:0;margin:14px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px;}
+.q ul.opts li{padding:8px 12px;border-radius:6px;background:#FAFAF8;font-size:.94rem;}
+.q .ans{display:none;padding:0 20px 18px;font-size:.92rem;}
+.q.open .ans{display:block;}
+.q .ans .correct{color:var(--teal);font-weight:700;}
+.q .distract{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px;}
+.toggle-hint{font-size:.78rem;color:var(--ink-soft);padding:10px 20px 0;}
+.check{background:var(--teal-soft);border:1px solid #C7D9D2;border-radius:10px;padding:16px 20px;margin:16px 0;}
+.check b{color:var(--teal);}
+.errspot{background:#FDF3E8;border:1px solid #EED2A6;border-radius:10px;padding:16px 20px;font-size:.94rem;margin:16px 0;}
+.flag{background:var(--rose-soft);border:1px solid #E3C3BE;border-radius:10px;padding:16px 20px;font-size:.94rem;margin:16px 0;}
+.flag b{color:var(--rose);}
+details.reveal summary{cursor:pointer;color:var(--rose);font-weight:600;}
+.divider{height:8px;width:100%;margin:34px 0;background-image:repeating-linear-gradient(90deg,var(--line) 0 8px, transparent 8px 18px);}
+.cheat{background:var(--teal);color:#F3F0E6;border-radius:16px;padding:32px clamp(18px,3vw,44px);margin:40px 0;}
+.cheat h2{margin-top:0;color:#fff;}
+.cheat .grid2{margin:0;}
+.cheat .col{background:rgba(255,255,255,.06);border-radius:10px;padding:16px 18px;}
+.cheat ul{padding-right:20px;margin:0;}
+.cheat li{margin-bottom:8px;}
+footer{padding:30px 0 60px;color:var(--ink-soft);font-size:.85rem;text-align:center;}
+strong.k{color:var(--teal);}
+table.wide{width:100%;border-collapse:collapse;font-size:.94rem;}
+table.wide td,table.wide th{padding:10px;border-bottom:1px solid var(--line);text-align:right;}
+table.wide tr:nth-child(even){background:#F6F4EC;}
+code,.kt{background:#EFEAD9;padding:2px 8px;border-radius:5px;font-family:monospace;font-size:.9rem;direction:ltr;display:inline-block;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<div class="wrap">
+<h1>جزوه تعمیقی ژنتیک — بخش ۹</h1>
+<p class="sub">ابزارهای مهندسی ژنتیک و ژن‌درمانی (PCR، وکتورها)، تشخیص و غربالگری پیش از تولد، و جمعیت‌شناسی ژنتیک (Hardy-Weinberg)</p>
+<div class="tags">
+<span class="tag">جلسات ۶، ۹ و ۱۰ پاسدار + بانک سوال</span>
+<span class="tag">پوشش نمونه سوالات مرتبط</span>
+<span class="tag">قدم نهم — همان‌طور که در پایان بخش ۸ فلگ شد</span>
+</div>
+</div>
+</div>
+<div class="dna-rule"></div>
+
+<div class="wrap">
+
+<section>
+<h2 class="stage"><span class="num">۰</span> قبل از شروع</h2>
+<p class="stage-desc">این بخش سه تیکه‌ی به‌ظاهر بی‌ربط رو کنار هم می‌ذاره — ولی هر سه یه خط مشترک دارن: <b>ابزارهایی که پزشک/آزمایشگاه واقعاً باهاشون کار می‌کنه</b>: چطور یه قطعه DNA رو تکثیر/منتقل کنیم (PCR و وکتورها)، چطور قبل از تولد بفهمیم جنین مبتلاست یا نه (غربالگری)، و چطور فراوانی یه آلل رو در کل یه جمعیت حساب کنیم (Hardy-Weinberg). منبع اصلی این بخش، جلسات ۶، ۹ و ۱۰ پاسدار است.</p>
+<div class="hy">🎯 High-yield: <span class="stars">★★★★☆</span></div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۱</span> نقاط مشترک — خوشه‌ی اول: ابزارهای مهندسی ژنتیک و ژن‌درمانی</h2>
+<p class="stage-desc">قبل از هر چیز باید سه ابزار پایه رو از هم تفکیک کنی: PCR (تکثیر آزمایشگاهی)، وکتور (حامل انتقال ژن به سلول)، و روش تحویل در ژن‌درمانی (In Vivo در برابر Ex Vivo).</p>
+
+<div class="card">
+<h3>۱. PCR — سه مرحله‌ی چرخه‌ای که باید دقیق حفظش کنی</h3>
+<p>PCR (Polymerase Chain Reaction) از تکرار سه مرحله در یک چرخه‌ی دمایی ساخته می‌شه:</p>
+<div class="grid3">
+<div class="mt indel"><h4>۱. Denaturation (واسرشت)</h4>دما بالا می‌ره (~۹۵°C) → دو رشته‌ی DNA از هم باز می‌شن</div>
+<div class="mt miss"><h4>۲. Annealing (اتصال پرایمر)</h4>دما پایین میاد (~۵۰-۶۵°C) → پرایمرها به رشته‌های تک‌زنجیره متصل می‌شن</div>
+<div class="mt splice"><h4>۳. Extension (طویل‌سازی)</h4>دما به دمای بهینه‌ی آنزیم Taq پلیمراز می‌رسه (~۷۲°C) → رشته‌ی جدید ساخته می‌شه</div>
+</div>
+<div class="why"><b>چرا این ترتیب منطقی‌ست؟</b> اول باید رشته‌ها باز بشن (Denaturation)، بعد پرایمر بتونه بشینه (Annealing)، و فقط بعد از اون آنزیم می‌تونه از روی پرایمر شروع به طویل‌سازی کنه (Extension). این ترتیب دقیقاً از منطق فیزیکی خود واکنش میاد، نه یه قرارداد دلبخواهی — پس اگه ترتیب رو فراموش کردی، منطقش رو بازسازی کن.</p>
+</div>
+</div>
+
+<div class="q" id="qpcr">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+<span>سوال — در تکثیر PCR مراحل تکثیر یک ناحیه‌ی ژنومیک به ترتیب کدام است؟</span>
+<span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) Extension → Denaturation → Annealing</li>
+<li>ب) Annealing → Extension → Denaturation</li>
+<li>ج) Denaturation → Extension → Annealing</li>
+<li>د) Denaturation → Annealing → Extension</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">د</span></p></details></div>
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+<h3>۲. وکتور پلاسمیدی — چهار جزء ضروری</h3>
+<p>یه پلاسمید برای این‌که به‌عنوان وکتور کار کنه، باید حتماً این چهار جزء رو داشته باشه:</p>
+<div class="grid4">
+<div class="mt indel"><h4>Origin of Replication</h4>مبدأ همانندسازی — بدون این، پلاسمید داخل باکتری میزبان تکثیر نمی‌شه</div>
+<div class="mt miss"><h4>Multiple Cloning Site (MCS)</h4>جایگاهی با چند سایت برش آنزیم محدودکننده، برای وارد کردن قطعه‌ی موردنظر</div>
+<div class="mt splice"><h4>ژن مقاومت آنتی‌بیوتیکی (Selectable Marker)</h4>برای این‌که بشه باکتری‌های حاوی پلاسمید رو از بقیه جدا/انتخاب کرد</div>
+<div class="mt non"><h4>Promoter</h4>برای این‌که ژن واردشده واقعاً بیان بشه</div>
+</div>
+<div class="why"><b>چرا این سوال گمراه‌کننده طراحی می‌شه؟</b> چون گزینه‌های نامرتبط و ناآشنا (مثل اسم عجیب‌وغریب یه آنزیم یا پروتئین بی‌ربط) رو کنار این چهار جزء واقعی می‌ذارن. اگه این چهار جزء رو محکم بلد باشی، هر گزینه‌ی پنجمی که این‌جا نیومده رو راحت رد می‌کنی — چون تنها چیزی که این‌جا لیست نشده، لزوماً غیرضروریه.</p>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+<h3>۳. ژن‌درمانی — In Vivo در برابر Ex Vivo، و سلول هدف ایده‌آل</h3>
+<div class="grid2">
+<div class="mt indel"><h4>In Vivo</h4>وکتور حامل ژن، مستقیماً به بدن بیمار تزریق/تجویز می‌شه — سلول‌ها همون‌جا داخل بدن اصلاح می‌شن</div>
+<div class="mt miss"><h4>Ex Vivo</h4>سلول‌های بیمار (مثلاً سلول‌های بنیادی خونساز) از بدن خارج می‌شن، در آزمایشگاه با وکتور اصلاح می‌شن، بعد دوباره به بدن برمی‌گردن — مثال کلاسیک: درمان SCID (نقص ایمنی ترکیبی شدید)</div>
+</div>
+<p>سلول هدف ایده‌آل برای ژن‌درمانی چهار ویژگی باید داشته باشه: در دسترس باشه، قابل هدف‌گیری دقیق باشه، نیمه‌عمر بالایی داشته باشه (تا اثر درمان ماندگار بمونه)، و <strong class="k">بتونه تکثیر بشه</strong> — چون اگه سلول تکثیر نشه، هر بار سلول‌های قدیمی از بین برن، اثر درمان به‌مرور محو می‌شه.</p>
+</div>
+
+<div class="q" id="q19">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+<span>سوال — کدام گزینه در مورد سلول هدف ایده‌آل برای ژن‌درمانی نادرست است؟</span>
+<span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) نیمه عمر بالا &nbsp; ب) در دسترس &nbsp; ج) قابل هدف‌گیری &nbsp; د) عدم تکثیر سلولی</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">د</span> — دقیقاً برعکس؛ سلول هدف باید <b>بتونه</b> تکثیر بشه.</p></details></div>
+</div>
+
+<div class="q" id="q10">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+<span>سوال — ژن‌درمانی به روش Ex Vivo در درمان کدام بیماری قابل کاربرد است؟</span>
+<span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا پاسخ باز شه</div>
+<div class="ans" style="display:block;padding:0 20px 18px;"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">SCID (نقص ایمنی ترکیبی شدید)</span> — سلول‌های بنیادی خونساز بیمار از مغز استخوان خارج، در آزمایشگاه اصلاح ژنتیکی، و دوباره تزریق می‌شن.</p></details></div>
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+<h3>۴. مقایسه‌ی وکتورها — آدنوویروس در برابر کروموزوم مصنوعی در برابر باکتریوفاژ لامبدا</h3>
+<table class="wide">
+<tr><th>وکتور</th><th>مزیت کلیدی</th><th>محدودیت</th></tr>
+<tr><td><b>آدنوویروس</b></td><td>تیتر ویروسی بسیار بالا (تولید انبوه آسون)</td><td>بیان کوتاه‌مدت (ادغام در ژنوم میزبان نمی‌شه)، محرک ایمنی قوی</td></tr>
+<tr><td><b>باکتریوفاژ لامبدا</b></td><td>کارایی بالا در کلون‌سازی قطعات با اندازه‌ی متوسط</td><td>ظرفیت حمل قطعه‌ی محدود</td></tr>
+<tr><td><b>کروموزوم مصنوعی (YAC/BAC)</b></td><td>می‌تونه قطعات <b>بسیار بزرگ‌تر</b> DNA رو حمل کنه</td><td>دستکاری و کار باهاش پیچیده‌تره</td></tr>
+</table>
+</div>
+
+<div class="q" id="q21">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+<span>سوال — مزیت حامل‌های آدنوویروسی کدام است؟</span>
+<span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) تیتر بالای ویروس &nbsp; ب) اندازه بزرگ قطعه کلون‌شده &nbsp; ج) عدم تحریک سیستم ایمنی &nbsp; د) بیان کوتاه‌مدت</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">الف</span> — دقت کن «بیان کوتاه‌مدت» (گزینه‌ی د) در واقع یک محدودیته، نه مزیت؛ این‌جا تله‌ست که یه محدودیت واقعی رو به‌عنوان مزیت جا بزنن.</p></details></div>
+</div>
+
+<div class="q" id="q39">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+<span>سوال — مزیت یک حامل کروموزوم مصنوعی نسبت به باکتریوفاژ لامبدا در چیست؟</span>
+<span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) سادگی انتقال به سلول میزبان &nbsp; ب) توانایی حمل قطعه بزرگ‌تر &nbsp; ج) دستکاری آسان‌تر &nbsp; د) ماندگاری بالاتر در شرایط محیطی</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span></p></details></div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۱</span> نقاط مشترک — خوشه‌ی دوم: تشخیص و غربالگری پیش از تولد</h2>
+<p class="stage-desc">هدف PND (Prenatal Diagnosis) کمک به والدین برای شناسایی اختلالات جنینی و داشتن فرزند سالمه. اولین و مهم‌ترین تفکیکی که باید بدونی: <b>تست غربالگری ≠ تست تشخیصی</b>.</p>
+
+<div class="card">
+<h3>۵. غربالگری در برابر تشخیصی</h3>
+<div class="grid2">
+<div class="mt indel"><h4>تست‌های غربالگری (Screening)</h4>ساده، قابل تکرار، برای عموم قابل استفاده. فقط افراد پرخطر رو <b>شناسایی</b> می‌کنن — خودشون تشخیص قطعی نمی‌دن. مثال: NT، تست‌های بیوشیمیایی سرم مادر (Combined/Triple/Quad)</div>
+<div class="mt non"><h4>تست‌های تشخیصی (Diagnostic)</h4>تهاجمی‌ترن، ریسک سقط دارن، ولی نتیجه‌ی قطعی می‌دن. مثال: کاریوتایپ از طریق CVS یا آمنیوسنتز</div>
+</div>
+<div class="why"><b>چرا این تفکیک مهمه؟</b> چون هیچ‌وقت نباید فقط بر اساس یه تست غربالگری با ریسک بالا، تصمیم به سقط جنین گرفت — همیشه باید قبلش با یه تست تشخیصی (کاریوتایپ) تایید بشه.</p>
+</div>
+</div>
+
+<div class="card">
+<h3>۶. غربالگری‌های سرم مادر — از NT تا Quad Test</h3>
+<table class="wide">
+<tr><th>تست</th><th>زمان</th><th>اجزا</th></tr>
+<tr><td><b>NT (Nuchal Translucency)</b></td><td>هفته ۱۱-۱۳</td><td>ضخامت مایع پشت گردن جنین با سونوگرافی</td></tr>
+<tr><td><b>Combined Test</b></td><td>سه‌ماهه‌ی اول</td><td>NT + PAPP-A + Free β-hCG + سن مادر</td></tr>
+<tr><td><b>Triple Test</b></td><td>سه‌ماهه‌ی دوم</td><td>AFP + uE3 + β-hCG + سن مادر</td></tr>
+<tr><td><b>Quad Test</b></td><td>هفته ۱۵-۱۸ (سه‌ماهه‌ی دوم)</td><td>Triple + Inhibin-A (دقت تشخیصی بالاتر)</td></tr>
+<tr><td><b>Integrated Test</b></td><td>سه‌ماهه‌ی اول + دوم با هم</td><td>ترکیب کامل هر دو سه‌ماهه — بالاترین دقت</td></tr>
+</table>
+<div class="why"><b>چرا هرچه تست‌ها رو ترکیب کنیم دقت بالاتر می‌ره؟</b> چون هر مارکر به‌تنهایی نویز زیادی داره (مثلاً سن مادر به‌تنهایی فقط ۳۰-۳۵٪ موارد تریزومی ۲۱ رو پیش‌بینی می‌کنه)؛ ترکیب چند مارکر مستقل، نویز رو کاهش و توان تشخیصی رو افزایش می‌ده — درست مثل این‌که چند شاهد مستقل، از یه شاهد تنها، مطمئن‌تر باشن.</p>
+</div>
+</div>
+
+<div class="q" id="qscreen">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+<span>سوال — در مورد غربالگری‌های دوران بارداری، دقت تشخیصی کدام مورد از سایرین بیشتر است؟</span>
+<span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) NT + غربالگری سه‌ماهه‌ی اول</li>
+<li>ب) غربالگری سه‌ماهه‌ی اول به همراه غربالگری سه‌ماهه‌ی دوم</li>
+<li>ج) غربالگری سه‌ماهه‌ی اول</li>
+<li>د) غربالگری سه‌ماهه‌ی دوم</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span> — دقیقاً منطق «Integrated Test» بالا؛ ترکیب هر دو سه‌ماهه از تک‌تک اجزاش دقیق‌تره.</p></details></div>
+</div>
+
+<div class="q" id="qafp">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+<span>سوال — اندازه‌گیری غلظت کدام ماده در سرم مادر باردار برای غربالگری نقص لوله‌ی عصبی جنین مفید است؟</span>
+<span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) PAPP-A &nbsp; ب) AFP &nbsp; ج) Beta HCG &nbsp; د) Cholesterol</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span></p><div class="distract">آلفافیتوپروتئین (AFP) از کبد جنین ترشح می‌شه؛ وقتی لوله‌ی عصبی جنین به‌درستی بسته نشه (Spina Bifida، بی‌مغزی)، AFP بیشتری وارد مایع آمنیوتیک و از اون‌جا خون مادر می‌شه — پس سطح <b>بالای</b> AFP در سرم مادر، پرچم قرمز نقص لوله‌ی عصبیه (برخلاف سندرم داون که معمولاً با AFP <b>پایین</b> همراهه — این تضاد جهت رو حتماً به‌خاطر بسپار).</div></details></div>
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+<h3>۷. Cell-free Fetal DNA / NIPT — یک تست غربالگری، نه تشخیصی</h3>
+<p>در خون مادر، مقدار کمی DNA آزاد با منشأ جفتی (که نماینده‌ی خوبی از ژنوم جنینه) در گردشه. NIPT این DNA رو استخراج و توالی‌یابی می‌کنه تا احتمال تریزومی‌های ۲۱، ۱۸، ۱۳ رو تخمین بزنه.</p>
+<div class="flag"><b>⚠️ تله‌ی مهم:</b> با این‌که دقت NIPT خیلی بالاست (اغلب بالای ۹۹٪)، هنوز یک تست <b>غربالگری</b> محسوب می‌شه، نه تشخیصی — و <b>هرگز جای کاریوتایپ رو نمی‌گیره</b>. دلایلش: امکان Mosaicism جنین/جفت، امکان وجود جفت با کاریوتایپ متفاوت از جنین، و مقدار ناکافی DNA در نمونه‌گیری‌های خیلی زودهنگام. پس یه نتیجه‌ی مثبت NIPT، همیشه باید با آمنیوسنتز یا CVS تایید بشه، قبل از هر تصمیم مداخله‌ای.</p>
+</div>
+</div>
+
+<div class="card">
+<h3>۸. CVS در برابر آمنیوسنتز</h3>
+<div class="grid2">
+<div class="mt splice"><h4>CVS (نمونه‌برداری از پرزهای جفتی)</h4>زودتر انجام می‌شه (هفته ۱۰-۱۳)، از بافت جفت نمونه می‌گیره — ریسک سقط کمی بالاتر از آمنیوسنتز</div>
+<div class="mt indel"><h4>آمنیوسنتز</h4>دیرتر انجام می‌شه (از هفته ۱۵ به بعد)، از مایع آمنیوتیک (حاوی سلول‌های جنینی) نمونه می‌گیره — ریسک سقط کمی کمتر</div>
+</div>
+<p>هر دو <b>تهاجمی</b> هستن (برخلاف سونوگرافی و آزمایش خون که غیرتهاجمی‌ان) و هر دو می‌تونن نتیجه‌ی قطعی کاریوتایپی بدن.</p>
+</div>
+
+<div class="q" id="qpgd">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+<span>سوال — تشخیص بیماری ژنتیکی در جنین تهیه‌شده در آزمایشگاه، روی سلول ... انجام می‌شود؟</span>
+<span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) Blastomere; Pre-implantation Genetic Diagnosis</li>
+<li>ب) Blastomere; Prenatal Genetic Diagnosis</li>
+<li>ج) Blastocyst; Pre-implantation Genetic Diagnosis</li>
+<li>د) Morula; Pre-implantation Genetic Diagnosis</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">الف</span></p><div class="distract">این‌جا یادت باشه (از بخش ۳): PGD همون چیزیه که برای خانواده‌های با ریسک بالا (مثل کیس Reduced Penetrance که در بخش ۳ دیدیم) به‌جای PND توصیه شد — چون تصمیم رو قبل از بارداری، در سطح جنین آزمایشگاهی (Blastomere، سلول‌های اولیه‌ی جنین قبل از لانه‌گزینی) می‌گیره.</div></details></div>
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+<h3>۹. هموگلوبینوپاتی‌ها در تشخیص پیش از تولد — یه مثال کاربردی</h3>
+<p>تالاسمی بتا یکی از شایع‌ترین مواردیه که PND براش انجام می‌شه (خصوصاً در جمعیت‌های با ازدواج فامیلی بالا، یادته از بخش ۲؟). روش استاندارد تشخیص، مستقیم رفتن سراغ ژنه:</p>
+<div class="why"><b>چرا فقط CBC و الکتروفورز کافی نیست؟</b> این دو، برای <b>غربالگری حامل</b> (مثلاً افزایش HbA2 که مشخصه‌ی کلاسیک حامل بتا تالاسمیه) خوبن، ولی برای تشخیص قطعی جهش و مشاوره‌ی ژنتیک دقیق (کدوم جهش؟ چقدر شدید؟)، باید مستقیم ژن بتا-گلوبین رو با PCR تکثیر و توالی‌یابی کرد.</p>
+</div>
+</div>
+
+<div class="q" id="qthal1">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+<span>سوال — افزایش کدام هموگلوبین در الکتروفورز، نشانه‌ی اصلی بتا تالاسمی است؟</span>
+<span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) HbA2 &nbsp; ب) HbF &nbsp; ج) Hb Gower I &nbsp; د) HbA</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">الف</span></p></details></div>
+</div>
+
+<div class="q" id="qthal2">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+<span>سوال — روش رایج برای شناسایی جهش در ژن مسئول بتا تالاسمی کدام است؟</span>
+<span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) تکثیر ژن‌های آلفا و بتا با PCR و انجام تعیین توالی</li>
+<li>ب) انجام آزمایش CBC به‌دنبال آن PCR</li>
+<li>ج) انجام آزمایش CBC و الکتروفورز هموگلوبین</li>
+<li>د) تکثیر ژن بتا با PCR و انجام تعیین توالی</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">د</span> — دقت کن فقط ژن <b>بتا</b>، نه هر دو آلفا و بتا با هم؛ چون داریم مشخصاً بتا تالاسمی رو بررسی می‌کنیم.</p></details></div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۱</span> نقاط مشترک — خوشه‌ی سوم: جمعیت‌شناسی ژنتیک و تعادل Hardy-Weinberg</h2>
+<p class="stage-desc">حالا از سطح یک بیمار/خانواده، می‌ریم سطح کل جمعیت — این‌جا دیگه شجره‌نامه نداریم، فقط فراوانی آلل و ژنوتایپ در کل جامعه.</p>
+
+<div class="card">
+<h3>۱۰. معادله‌ی Hardy-Weinberg — قلب این مبحث</h3>
+<p>اگه یه جایگاه ژنی دو آلل داشته باشه (A با فراوانی p، a با فراوانی q)، طبق این اصل، در یک جمعیت بزرگ با جفت‌گیری تصادفی و بدون عوامل مخل، فراوانی ژنوتایپ‌ها این‌طور ثابت می‌مونه:</p>
+<div class="pulse">
+<b>معادله‌ی پایه ↓</b>
+p + q = 1 &nbsp;&nbsp;|&nbsp;&nbsp; p² + 2pq + q² = 1
+<br><span style="font-size:.85rem;opacity:.85;">p² = فراوانی هموزیگوت AA &nbsp;|&nbsp; 2pq = فراوانی هتروزیگوت Aa &nbsp;|&nbsp; q² = فراوانی هموزیگوت aa</span>
+</div>
+<div class="why"><b>چرا این معادله برای بیماری‌های نادر مغلوب این‌قدر کاربردیه؟</b> چون معمولاً فقط <b>Incidence</b> (میزان بروز بیماری = q²) رو از آمار بالینی داریم، ولی q (فراوانی آلل) و 2pq (فراوانی ناقلین در جامعه) رو نمی‌دونیم. با این معادله، از روی یه عدد بالینی ساده (چند نفر از هزار نفر مبتلا هستن)، می‌تونیم به فراوانی آلل و ناقلین برسیم — این دقیقاً کاربرد اصلی این فرمول در مشاوره‌ی ژنتیکه.</p>
+</div>
+</div>
+
+<div class="case">
+<b class="tag-case">🧮 مثال حل‌شده (طبق جزوه):</b> تالاسمی یک بیماری اتوزومال مغلوب با Incidence حدود ۱ در ۱۰۰۰۰ است. فراوانی ناقلین (heterozygote) در جامعه چقدره؟
+<ol style="padding-right:20px;margin-top:10px;">
+<li>q² = 1/10000 → q = √(1/10000) = 0.01</li>
+<li>p = 1 − q = 0.99</li>
+<li>فراوانی ناقلین = 2pq = 2 × 0.01 × 0.99 ≈ <b>0.02 (یعنی ۲٪ جامعه، یا تقریباً ۱ نفر از هر ۵۰ نفر)</b></li>
+</ol>
+<div class="why" style="margin-top:10px;"><b>چرا این نتیجه در نگاه اول عجیب به‌نظر می‌رسه؟</b> چون با این‌که فقط ۱ نفر از ۱۰۰۰۰ نفر واقعاً <b>بیمار</b>ه، ولی ۲٪ کل جمعیت (یعنی ۲۰۰ نفر از همون ۱۰۰۰۰ نفر) <b>ناقل</b>ان. این فاصله‌ی بزرگ بین «بیمار» و «ناقل» دقیقاً همون چیزیه که باعث می‌شه بیماری‌های AR مغلوب، خیلی شایع‌تر از چیزی باشن که فقط از روی آمار مبتلایان به‌نظر می‌رسه — و همین، پایه‌ی توصیه‌ی غربالگری ناقلین قبل از ازدواج در بیماری‌هایی مثل تالاسمیه.</p>
+</div>
+</div>
+
+<div class="q" id="q40">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+<span>سوال ۴۰ — ژنوتیپ یک SNP در ۲۰۰ نفر: MM=۳۰ , LL=۸۰ (بقیه هتروزیگوت ML). همه‌ی موارد صحیح است بجز:</span>
+<span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 قبل از دیدن گزینه‌ها، خودت محاسبه رو انجام بده</div>
+<ul class="opts">
+<li>الف) فراوانی آلل L حدود ۶۳٪ می‌باشد</li>
+<li>ب) فراوانی هتروزیگوت، ۴۵٪ می‌باشد</li>
+<li>ج) فراوانی هموزیگوت‌ها، مجموعاً ۱۰۰٪ می‌باشد</li>
+<li>د) فراوانی آلل M، حدود ۳۷٪ می‌باشد</li>
+</ul>
+<div class="ans">
+بریفینگ سریع قبل از حل: از ۲۰۰ نفر (= ۴۰۰ آلل)، MM=۳۰ نفر و LL=۸۰ نفر؛ پس ML (هتروزیگوت) = ۲۰۰−۳۰−۸۰ = ۹۰ نفر. حالا فراوانی هر آلل رو حساب کن: تعداد آلل M = (۲×۳۰) + ۹۰ = ۱۵۰ از ۴۰۰ کل آلل → ۳۷.۵٪. تعداد آلل L = (۲×۸۰) + ۹۰ = ۲۵۰ از ۴۰۰ → ۶۲.۵٪.
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ج</span></p>
+<div class="distract">
+الف، ب و د هر سه با محاسبه‌ی بالا هم‌خوانی دارن (فراوانی L≈۶۳٪، هتروزیگوت=۹۰/۲۰۰=۴۵٪، فراوانی M≈۳۷٪). گزینه‌ی «ج» تله‌ی مفهومیه: مجموع دو هموزیگوت (MM+LL = ۳۰+۸۰ = ۱۱۰ نفر از ۲۰۰) فقط ۵۵٪ می‌شه، نه ۱۰۰٪ — چون هتروزیگوت‌ها (۴۵٪ باقی‌مونده) رو فراموش کردن. این دقیقاً همون تفاوت مهمی‌ست که در معادله‌ی Hardy-Weinberg باید همیشه یادت بمونه: p² + 2pq + q² = 1، نه فقط p² + q² = 1.
+</div>
+</details>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+<h3>۱۱. ریسک عود تجربی (Empiric Recurrence Risk) در بیماری‌های مولتی‌فاکتوریال</h3>
+<p>یادته از بخش ۱، مولتی‌فاکتوریال الگوی وراثتی مندلی نداره؟ پس نمی‌شه با پانت‌اسکوئر ریسک عودش رو حساب کرد — به‌جاش از داده‌های <b>تجربی/آماری</b> استفاده می‌کنیم (چقدر واقعاً در خانواده‌های مشابه دیده شده).</p>
+<div class="why"><b>چرا این ریسک، نه صفره نه خیلی بالا؟</b> چون این بیماری‌ها (مثل شکاف لب/کام) از تجمع چند آلل کم‌اثر + محیط میان؛ داشتن یک فرزند مبتلا، نشون می‌ده خانواده به‌طور نسبی به‌خط آستانه (Liability Threshold) نزدیک‌تره — پس ریسک فرزند بعدی، کمی بیشتر از ریسک عمومی جامعه‌ست، ولی درصد ثابت و قابل‌پیش‌بینی مثل مندلی (۲۵٪ یا ۵۰٪) نیست.</p>
+</div>
+</div>
+
+<div class="q" id="qcleft">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+<span>سوال — زوجی سالم، کودکی با شکاف لب دارند، بدون هیچ سابقه‌ی فامیلی. برای فرزند بعدی کدام توصیه درست‌تر است؟</span>
+<span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) حداکثر ۵۰٪ احتمال ابتلا وجود دارد</li>
+<li>ب) بروز بیماری برای فرزند بعدی غیرقابل‌اجتناب است</li>
+<li>ج) احتمال ابتلا فرزند بعدی کمی بیشتر از میزان بروز آن در جمعیت خواهد بود</li>
+<li>د) احتمال ابتلا فرزند بعدی تقریباً برابر صفر است</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ج</span> (خطر عود تجربی حدود ۳-۵٪ — به‌وضوح بیشتر از ریسک پایه‌ی جمعیت عمومی، ولی به‌هیچ‌وجه نزدیک ۵۰٪ مندلی نیست).</p></details></div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۲</span> مطالب بدون سوال ولی مهم</h2>
+<p class="stage-desc">این‌ها مستقیم سوال ندارن ولی فهم Hardy-Weinberg رو کامل‌تر می‌کنن.</p>
+
+<div class="card">
+<h3>عواملی که تعادل Hardy-Weinberg را به‌هم می‌زنند</h3>
+<div class="grid3">
+<div class="mt indel"><h4>Non-random Mating</h4>جفت‌گیری انتخابی (مثل ازدواج فامیلی) — تنوع رو کم می‌کنه</div>
+<div class="mt miss"><h4>Mutation (نرخ بالا)</h4>اگه نرخ جهش خیلی بالا باشه، فراوانی آلل به‌سرعت تغییر می‌کنه</div>
+<div class="mt splice"><h4>Selection</h4>Positive: فرد قوی‌تر بقای بیشتر (مثال کلاسیک: Heterozygote Advantage در سیکل‌سل/مالاریا و در سیستیک فیبروزیس/اسهال). Negative: فرد ضعیف حذف می‌شه</div>
+<div class="mt indel"><h4>Genetic Drift</h4>نوسان تصادفی فراوانی آلل، خصوصاً در جمعیت‌های کوچک</div>
+<div class="mt miss"><h4>Gene Flow (مهاجرت)</h4>ورود/خروج افراد با فراوانی آللی متفاوت</div>
+<div class="mt splice"><h4>Founder Effect</h4>یه جمعیت کوچک از تعداد محدودی «جد» شروع می‌شه — فراوانی آلل‌های نادر جد، در اون جمعیت به‌طرز غیرمعمولی بالا می‌ره (مثال کلاسیک: یهودیان اشکنازی)</div>
+</div>
+<div class="why"><b>چرا Heterozygote Advantage یه استثنای جالبه؟</b> در مالاریا، فرد هتروزیگوت سیکل‌سل (نه بیمار هموزیگوت، نه کاملاً سالم) در برابر مالاریا مقاوم‌تره — پس در مناطق مالاریاخیز، این آلل با وجود بیماری‌زا بودنش در حالت هموزیگوت، در جمعیت باقی می‌مونه و حتی فراوانی نسبتاً بالایی پیدا می‌کنه؛ یه مثال از این‌که Selection همیشه به سمت حذف آلل «بد» نمی‌ره، بلکه به تعادل هزینه-فایده در سطح جمعیت وابسته‌ست.</p>
+</div>
+</div>
+
+<div class="card">
+<h3>Incidence در برابر Prevalence</h3>
+<p><strong class="k">Incidence (میزان بروز):</strong> تعداد موارد <b>جدید</b> بیماری در یک بازه‌ی زمانی مشخص.<br>
+<strong class="k">Prevalence (شیوع):</strong> تعداد کل موارد <b>موجود</b> بیماری در جامعه در یک لحظه، صرف‌نظر از این‌که کِی تشخیص داده شدن.</p>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۴</span> مرور نهایی — اتصال سه خوشه به هم و به بخش‌های قبل</h2>
+<div class="card">
+<p>نقشه‌ی این بخش: PCR و وکتورها ابزار <b>ساختن/دستکاری</b> DNA هستن؛ غربالگری پیش از تولد ابزار <b>تشخیص زودهنگام</b> در یک بارداری خاصه؛ و Hardy-Weinberg ابزار فهمیدن رفتار یه آلل در <b>کل جمعیت</b>ه. این سه، سه مقیاس متفاوت از یک موضوع واحدن: مولکول → فرد/جنین → جمعیت.</p>
+<div class="check">
+<b>✓ چک فهم سریع (Spaced Retrieval):</b><br>
+۱. چرا NIPT با وجود دقت بالا، هنوز باید با آمنیوسنتز/CVS تایید بشه؟<br>
+۲. اگه Incidence یه بیماری AR مغلوب ۱ در ۴۰۰۰۰ باشه، فراوانی ناقلین تقریباً چند درصده؟<br>
+۳. چرا ریسک عود شکاف لب برای فرزند بعدی، نه صفره نه ۵۰٪؟
+<details class="reveal" style="margin-top:8px;"><summary>جواب‌ها رو ببین</summary>
+<p>۱. چون یک تست غربالگریه نه تشخیصی — به‌خاطر امکان Mosaicism جفتی/جنینی و محدودیت‌های نمونه‌گیری، ممکنه خطای مثبت یا منفی کاذب بده.<br>
+۲. q²=1/40000 → q=0.005 → 2pq≈۲×۰.۹۹۵×۰.۰۰۵≈۱٪ (تقریباً ۱ نفر از ۱۰۰ نفر ناقله).<br>
+۳. چون مولتی‌فاکتوریاله (بخش ۱) — نه الگوی مندلی داره (که ۵۰٪/۲۵٪ می‌داد)، نه بی‌ربط به ژنتیکه (که صفر می‌داد)؛ داشتن یک فرزند مبتلا فقط نشون می‌ده خانواده به آستانه‌ی ابتلا نزدیک‌تره.</p>
+</details>
+</div>
+</div>
+</section>
+
+<div class="cheat">
+<h2>📋 چک‌لیست شب امتحان — بخش ۹</h2>
+<div class="grid2">
+<div class="col">
+<ul>
+<li>PCR: Denaturation → Annealing → Extension</li>
+<li>وکتور پلاسمیدی: Origin of Replication + MCS + مقاومت آنتی‌بیوتیکی + Promoter</li>
+<li>سلول هدف ژن‌درمانی ایده‌آل: باید بتونه <b>تکثیر</b> بشه</li>
+<li>Ex Vivo کلاسیک: SCID؛ آدنوویروس: تیتر بالا ولی بیان کوتاه‌مدت؛ کروموزوم مصنوعی: بزرگ‌ترین ظرفیت حمل</li>
+<li>غربالگری ≠ تشخیصی؛ NIPT دقتش بالاست ولی همچنان غربالگریه</li>
+<li>AFP بالا → نقص لوله‌ی عصبی؛ AFP پایین → پرچم داون</li>
+</ul>
+</div>
+<div class="col">
+<ul>
+<li>Combined (سه‌ماهه‌ی اول) + Quad (سه‌ماهه‌ی دوم) = Integrated → بالاترین دقت</li>
+<li>بتا تالاسمی: الکتروفورز HbA2 بالا (غربالگری) → PCR+توالی‌یابی ژن بتا (تشخیص قطعی)</li>
+<li>PGD روی Blastomere، قبل از لانه‌گزینی؛ PND بعد از بارداری</li>
+<li>Hardy-Weinberg: p²+2pq+q²=1؛ از Incidence (q²) به فراوانی ناقلین (2pq) می‌رسیم</li>
+<li>⚠️ مجموع فقط هموزیگوت‌ها هرگز ۱۰۰٪ نیست (هتروزیگوت‌ها رو یادت نره)</li>
+<li>Heterozygote Advantage: سیکل‌سل/مالاریا، CF/اسهال — آلل بیماری‌زا به‌خاطر مزیت هتروزیگوت در جمعیت می‌مونه</li>
+<li>ریسک عود مولتی‌فاکتوریال: تجربی، نه مندلی (نه صفر، نه ۵۰٪)</li>
+</ul>
+</div>
+</div>
+</div>
+
+</div>
+
+<footer>
+بخش ۹ از جزوه — ابزارهای مولکولی، غربالگری پیش از تولد، و جمعیت‌شناسی ژنتیک.
+<br><br>
+<b>یادداشت بازنگری:</b> تلاش کردم فایل «ژنتیک بالینی (استاد عباس‌زادگان).pdf» که در این پیام لینکش داده شد رو مستقیم بخونم، ولی چون حجمش (نزدیک ۲ مگابایت) از حد قابل‌پیش‌نمایش در مرورگر خارج بود و لینک خام (Raw) قابل استخراج نبود، نتونستم محتوای دقیقش رو ببینم — این رو صریح می‌گم تا پنهان نمونه. خوشبختانه سه خوشه‌ی این بخش (PCR/وکتورها/ژن‌درمانی، غربالگری پیش از تولد، Hardy-Weinberg) همگی به‌طور کامل در جلسات ۶، ۹ و ۱۰ جزوه‌ی پاسدار که از قبل در اختیار داشتم پوشش داده شده بودن، پس این خلأ منبع، در عمل تاثیری روی کامل بودن این بخش نذاشت. فایل «ژنتیک نمونه.txt» رو هم چک کردم و دقیقاً همون بانک سوالی بود که قبلاً داشتم (بدون سوال جدید). اگه فایل عباس‌زادگان حاوی نکته‌ی خاصی بود که این‌جا نیومده، لطفاً متن یا تصویرش رو مستقیم آپلود کن تا این بخش رو باهاش تطبیق بدم.
+</footer>
+
+</body>
+</html>
