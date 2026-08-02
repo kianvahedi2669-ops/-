@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جزوه ژنتیک | بخش ۱ — کلیات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF9F3;
+  --ink:#1E2321;
+  --ink-soft:#4B534E;
+  --teal:#1B4B43;
+  --teal-soft:#E7EFEC;
+  --gold:#C98A2C;
+  --gold-soft:#FBF0DC;
+  --rose:#AE4238;
+  --rose-soft:#F7E8E5;
+  --line:#DDD6C6;
+  --card:#FFFFFF;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Vazirmatn',sans-serif;
+  line-height:1.9;
+  font-size:17px;
+}
+.wrap{width:100%;max-width:1100px;margin:0 auto;padding:0 24px;}
+.hero{
+  background:linear-gradient(180deg,var(--teal) 0%,#123830 100%);
+  color:#F3F0E6;
+  padding:56px 0 40px;
+  position:relative;
+  overflow:hidden;
+}
+.dna-rule{
+  height:10px;
+  width:100%;
+  background-image:repeating-linear-gradient(90deg,var(--gold) 0 10px, transparent 10px 22px);
+  opacity:.85;
+}
+.hero h1{font-size:2.1rem;font-weight:800;margin:0 0 8px;}
+.hero p.sub{color:#CFE3DC;font-weight:400;font-size:1.05rem;margin:0;}
+.hero .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
+.tag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);padding:5px 14px;border-radius:999px;font-size:.85rem;}
+section{padding:40px 0;}
+h2.stage{
+  font-size:1.5rem;font-weight:800;color:var(--teal);
+  display:flex;align-items:center;gap:12px;margin-bottom:6px;
+}
+h2.stage .num{
+  background:var(--teal);color:#fff;width:34px;height:34px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;
+}
+.stage-desc{color:var(--ink-soft);font-size:.95rem;margin:0 0 26px;padding-right:46px;}
+.hy{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--gold-soft);color:#7A5314;border:1px solid #E9C989;
+  padding:3px 12px;border-radius:999px;font-size:.82rem;font-weight:600;margin-bottom:10px;
+}
+.stars{color:var(--gold);letter-spacing:1px;}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:24px 26px;margin:20px 0;box-shadow:0 1px 2px rgba(0,0,0,.03);
+}
+.card h3{margin-top:0;font-size:1.15rem;color:var(--ink);border-bottom:2px solid var(--teal-soft);padding-bottom:10px;}
+.pulse{background:var(--teal);color:#fff;border-radius:10px;padding:16px 20px;margin:16px 0;font-size:.98rem;}
+.pulse b{display:block;margin-bottom:4px;color:var(--gold-soft);}
+.why{
+  border-right:3px solid var(--gold);background:var(--gold-soft);
+  padding:10px 16px;margin:14px 0;border-radius:0 8px 8px 0;font-size:.95rem;
+}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
+@media(max-width:680px){.compare{grid-template-columns:1fr;}}
+.compare .box{border-radius:10px;padding:16px;font-size:.93rem;}
+.box.a{background:var(--rose-soft);border:1px solid #E3C3BE;}
+.box.b{background:var(--teal-soft);border:1px solid #C7D9D2;}
+.box h4{margin:0 0 8px;font-size:1rem;}
+.case{
+  background:#F4F6F4;border:1px dashed #9EB3AA;border-radius:10px;
+  padding:16px 20px;margin:16px 0;font-size:.95rem;
+}
+.case b.tag-case{color:var(--teal);}
+.q{
+  background:var(--card);border:1.5px solid var(--line);border-radius:12px;
+  margin:18px 0;overflow:hidden;
+}
+.q .qhead{padding:16px 20px;font-weight:700;background:#F4F1E7;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.q .qhead .src{font-size:.75rem;font-weight:400;color:var(--ink-soft);}
+.q ul{list-style:none;padding:0 20px 6px;margin:10px 0;}
+.q li{padding:8px 10px;border-radius:6px;margin-bottom:6px;background:#FAFAF8;}
+.q .ans{display:none;padding:0 20px 18px;font-size:.92rem;}
+.q.open .ans{display:block;}
+.q .ans .correct{color:var(--teal);font-weight:700;}
+.q .distract{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px;}
+.toggle-hint{font-size:.78rem;color:var(--ink-soft);padding:0 20px 12px;}
+.check{background:var(--teal-soft);border:1px solid #C7D9D2;border-radius:10px;padding:16px 20px;margin:16px 0;}
+.check b{color:var(--teal);}
+.errspot{background:#FDF3E8;border:1px solid #EED2A6;border-radius:10px;padding:16px 20px;font-size:.94rem;margin:16px 0;}
+details.reveal summary{cursor:pointer;color:var(--rose);font-weight:600;}
+.divider{
+  height:8px;width:100%;margin:34px 0;
+  background-image:repeating-linear-gradient(90deg,var(--line) 0 8px, transparent 8px 18px);
+}
+.cheat{
+  background:var(--teal);color:#F3F0E6;border-radius:16px;padding:30px;margin:40px 0;
+}
+.cheat h2{margin-top:0;color:#fff;}
+.cheat ul{padding-right:20px;}
+.cheat li{margin-bottom:8px;}
+footer{padding:30px 0 60px;color:var(--ink-soft);font-size:.85rem;text-align:center;}
+strong.k{color:var(--teal);}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>جزوه تعمیقی ژنتیک — بخش ۱</h1>
+    <p class="sub">کلیات ژنتیک: تعاریف پایه، جهش در برابر پلی‌مورفیسم، اپی‌ژنتیک، و بیماری‌های مولتی‌فاکتوریال</p>
+    <div class="tags">
+      <span class="tag">جلسات ۱ تا ۵ — استاد پاسدار</span>
+      <span class="tag">پوشش نمونه سوالات مرتبط</span>
+      <span class="tag">قدم اول از چند قدم</span>
+    </div>
+  </div>
+</div>
+<div class="dna-rule"></div>
+
+<div class="wrap">
+
+<section>
+<h2 class="stage"><span class="num">۱</span> نقاط مشترک با نمونه سوالات</h2>
+<p class="stage-desc">از سخت‌ترین و پرتکرارترین مفهوم شروع می‌کنیم: تفاوت جهش و پلی‌مورفیسم — نقطه‌ای که بیشترین سوال امتحانی رویش طراحی شده.</p>
+
+<div class="hy">🎯 High-yield: <span class="stars">★★★★★</span> — تقریباً هر امتحانی حداقل یک سوال از این‌جا داره</div>
+
+<div class="card">
+<h3>۱. جهش (Mutation/Pathogenic Variant) در برابر پلی‌مورفیسم (Polymorphism)</h3>
+
+<p>یه مثال ساده قبل از تعریف: فرض کن دوتا آدم رو کنار هم بذاری. ۹۹.۹٪ توالی DNA‌شون عیناً یکیه. اون ۰.۱٪ باقی‌مونده، همون چیزیه که «فرق‌شون» می‌ذاره — و دقیقاً همین ۰.۱٪ محل بحث امروزمونه.</p>
+
+<div class="why"><b>چرا این مهمه؟</b> چون کل منطق تشخیص ژنتیکی، مشاوره ژنتیک، و حتی تصمیم به سقط درمانی، رو همین تفکیک می‌سازه. اگه یه پزشک این دو رو قاطی کنه، ممکنه یه تغییر بی‌خطر رو پاتولوژیک اعلام کنه (اضطراب بی‌مورد) یا برعکس، یه جهش خطرناک رو نادیده بگیره.</p>
+
+<div class="compare">
+  <div class="box a">
+    <h4>🔴 دسته اول: جهش (پاتولوژیک)</h4>
+    <ul style="padding-right:18px;margin:0;">
+      <li>فراوانی آللی &lt; ۱٪ (یا حتی &lt; ۱۰⁻⁶)</li>
+      <li>نادر است</li>
+      <li>الگوی وراثتی واضح و قابل‌رسم در شجره‌نامه دارد (مونوژنیک)</li>
+      <li>فرد را به بیماری شدید مبتلا می‌کند یا ظاهر را کاملاً از نرمال خارج می‌کند</li>
+      <li>مثال: تالاسمی، آنمی داسی‌شکل</li>
+    </ul>
+  </div>
+  <div class="box b">
+    <h4>🟢 دسته دوم: پلی‌مورفیسم</h4>
+    <ul style="padding-right:18px;margin:0;">
+      <li>فراوانی آللی &gt; ۱٪</li>
+      <li>شایع است</li>
+      <li>هیچ الگوی وراثتی واضحی ندارد — نمی‌شود برایش شجره‌نامه رسم کرد</li>
+      <li>در چارچوب نرمال باقی می‌ماند؛ فقط می‌تواند «استعداد» ابتلا به بیماری را تغییر دهد</li>
+      <li>مثال: رنگ چشم، آلل‌های مؤثر بر متابولیسم وارفارین</li>
+    </ul>
+  </div>
+</div>
+
+<p>یه نکته‌ی ظریف که جزوه رو‌شون تأکید می‌کنه: <strong class="k">جهش‌ها معمولاً در نواحی coding یا تنظیمی اتفاق می‌افتن</strong> (چون اون‌جاست که تغییر واقعاً اثر می‌ذاره)، اما <strong class="k">پلی‌مورفیسم‌ها می‌تونن هرجای ژنوم باشن</strong> — نه فقط نواحی coding. این خودش یکی از تله‌های رایج امتحانه.</p>
+
+<div class="pulse">
+<b>نبض سوال ↓</b>
+پس اگه گزینه‌ای بگه «جهش‌ها همیشه در نواحی کدکننده رخ می‌دهند» یا «پلی‌مورفیسم‌ها فقط در نواحی غیرکدکننده‌اند» — هر دو غلطن. محل وقوع، ملاک تفکیک نیست؛ <strong class="k">فراوانی و پیامد بالینی</strong> ملاکه.
+</div>
+
+<p>یه دسته سوم هم هست که خیلی وقت‌ها فراموش می‌شه: <strong class="k">VUS (Variant of Uncertain Significance)</strong> — تغییری که نه قطعاً پاتولوژیکه نه قطعاً بی‌خطر. بسته به این‌که به کدوم سمت نزدیک‌تر باشه، بهش می‌گن «likely pathogenic» یا «likely benign».</p>
+</div>
+
+<div class="q" id="q1">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۱ — در مورد تغییرات توالی DNA همه موارد درست است بجز؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن روش تا گزینه‌ها و پاسخ باز شه</div>
+<ul>
+  <li>الف) SNP فراوان‌ترین نوع تغییر توالی در سرتاسر ژنوم است</li>
+  <li>ب) تغییر در تعداد تکرارهای موجود در ژنوم همیشه بیماری‌زاست</li>
+  <li>ج) پلی‌مورفیسم‌ها می‌توانند تغییر در اسید آمینه ایجاد نمایند</li>
+  <li>د) پلی‌مورفیسم‌ها باعث بروز تفاوت‌ها در جمعیت می‌شوند</li>
+</ul>
+<div class="ans">
+پیش از این‌که پاسخ رو بخونی: با توجه به چیزی که بالا خوندیم، کدوم گزینه با تعریف «پلی‌مورفیسم = غیربیماری‌زا در اکثریت موارد» تناقض داره؟
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ب</span></p>
+<div class="distract">
+<b>چرا بقیه گزینه‌ها درستن؟</b><br>
+الف) درسته — SNPها (تک‌نوکلئوتیدی) شایع‌ترین نوع تنوع ژنومی‌اند.<br>
+ج) درسته — یه SNP توی ناحیه coding می‌تونه missense باشه و اسید آمینه رو عوض کنه، بدون این‌که لزوماً بیماری‌زا باشه.<br>
+د) درسته — همون منطقی که بالا گفتیم: پلی‌مورفیسم = پایه‌ی تفاوت‌های فردی.<br><br>
+<b>چرا گزینه ب تله‌ست؟</b> چون CNV (تغییر تعداد کپی) می‌تونه بی‌خطر باشه (مثلاً یه رنج نرمال از تکرار) یا بیماری‌زا (مثل تالاسمی آلفا). کلمه‌ی «همیشه» این گزینه رو غلط می‌کنه — این یکی از پرتکرارترین ترفندهای طراحی سوال در ژنتیکه: هر جا «همیشه» یا «هیچ‌گاه» دیدی، شک کن.
+</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="q2">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۲ — تفاوت جهش و چندشکلی در چیست؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن روش تا گزینه‌ها و پاسخ باز شه</div>
+<ul>
+  <li>الف) اولی بیماری‌زاست و دومی عمدتاً غیر بیماری‌زاست</li>
+  <li>ب) اولی از دومی شایع‌تر است</li>
+  <li>ج) اولی باعث ایجاد تفاوت‌های ظاهری اشخاص می‌شود، در صورتی که دومی این قابلیت را ندارد</li>
+  <li>د) اولی میزان فراوانی آللی بیش از ۱٪ دارد و دومی کمتر از یک درصد در جامعه است</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">الف</span></p>
+<div class="distract">
+<b>تحلیل تله‌ها:</b><br>
+ب) دقیقاً برعکسه — پلی‌مورفیسم شایع‌تره، نه جهش.<br>
+ج) غلطه — پلی‌مورفیسم هم می‌تونه تفاوت ظاهری ایجاد کنه (مثل رنگ چشم، لاله‌ی گوش آزاد)، فقط این تفاوت از حدود نرمال خارج نمی‌شه.<br>
+د) دقیقاً برعکس شده! فراوانی آللی بالای ۱٪ مال پلی‌مورفیسمه، نه جهش. این گزینه یه جور «قلب کردن عمدی داده‌ها»ست که خیلی رایجه — همیشه اعداد رو دوبار چک کن.
+</div>
+</details>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+<h3>۲. عوامل خطر ژنتیکی (Genetic Risk Factors)</h3>
+<p>قبل از پروژه‌ی ژنوم انسان، وقتی از ریسک‌فاکتور صحبت می‌شد، فقط منظور عوامل محیطی/بالینی بود (مثل هایپرتنشن به‌عنوان ریسک‌فاکتور ایسکمی قلبی). بعد از این پروژه، یه لایه‌ی جدید کشف شد: <strong class="k">تغییرات ژنی شایعی که خودشون بیماری ایجاد نمی‌کنن، ولی استعداد ابتلا رو بالا می‌برن</strong>.</p>
+
+<div class="case">
+<b class="tag-case">🩺 کیس بالینی:</b> دو خواهر و برادر دوقلوی ناهمسان رو تصور کن که توی یه خانواده با شرایط زندگی کاملاً یکسان بزرگ شدن. یکی‌شون در ۵۰ سالگی دچار بیماری قلبی می‌شه، اون یکی نه. تفاوت از کجاست؟ وقتی محیط ثابته، توضیح باقی‌مونده «تفاوت‌های ژنتیکی» ماست — همون ریسک‌فاکتورهای ژنتیکی.
+</div>
+
+<p>این ریسک‌فاکتورها با عدد سنجیده می‌شن: <strong class="k">RR (Relative Risk)</strong> برای عوامل محیطی و <strong class="k">OR (Odds Ratio)</strong> برای عوامل ژنتیکی. اگه OR=۱ باشه یعنی هیچ اثری نداره؛ بالای ۱ یعنی افزایش خطر، زیر ۱ یعنی کاهش خطر (مثلاً OR=۱.۷ یعنی ۷۰٪ ریسک بیشتر).</p>
+
+<div class="why"><b>چرا این مهمه؟</b> چون نکته‌ی کلیدی اینه که این عوامل ژنتیکی <strong class="k">«ایجادکننده»</strong> بیماری نیستن، بلکه <strong class="k">«افزایش‌دهنده‌ی خطر»</strong>ان. این یه تفاوت مفهومی ظریفه که طراح سوال عاشقشه.</p>
+</div>
+
+<div class="q" id="q3">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۳ — تمامی موارد ذیل در خصوص عوامل خطر ژنتیکی درست است بجز:</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن روش تا گزینه‌ها و پاسخ باز شه</div>
+<ul>
+  <li>الف) در بیماری‌های چند عاملی این ریسک‌فاکتورها همراه با عوامل محیطی در بروز بیماری تأثیر دارند</li>
+  <li>ب) میزان افزایش خطر توسط این عوامل معمولاً زیاد نیست</li>
+  <li>ج) با استفاده از نتایج مطالعات همراهی مشخص می‌گردند</li>
+  <li>د) معمولاً عامل ژنتیک ایجادکننده‌ی بیماری‌های چند عاملی محسوب می‌شوند</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">د</span></p>
+<div class="distract">
+دقیقاً همون نکته‌ای که بالا روش تأکید کردیم: این عوامل «افزایش‌دهنده‌ی خطر»ان، نه «ایجادکننده». الف، ب و ج هر سه با تعریف استاندارد این مفهوم همخوانی دارن — الف اشاره به ماهیت مولتی‌فاکتوریال بودن داره، ب به این واقعیت که هر آلل به‌تنهایی اثر کوچیکی داره (نه مثل جهش‌های مونوژنیک)، و ج به روش کشف‌شون (association studies) اشاره می‌کنه که بعداً می‌بینیمش.
+</div>
+</details>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+<h3>۳. اپی‌ژنتیک (Epigenetics)</h3>
+<p>همه چیز، توالی ژنوم نیست. گاهی صفتی رو می‌بینیم که در خانواده زیاده و انگار ارثیه، ولی وقتی توالی DNA رو چک می‌کنیم، هیچ تغییری پیدا نمی‌شه. این‌جا پای <strong class="k">اپی‌ژنتیک</strong> وسط میاد: تغییر در بیان ژن، بدون تغییر در توالی DNA — معمولاً از طریق مکانیزم‌هایی مثل متیلاسیون.</p>
+
+<div class="case">
+<b class="tag-case">🐭 داستان واقعی — موش‌های آگوتی:</b> دو موش خواهر و برادر، از نظر ژنتیکی تقریباً یکسان. یکی از مادرهایی که در بارداری اسید فولیک اضافه دریافت کرده بود، به دنیا اومد: قهوه‌ای، لاغر و سالم. اون یکی، بدون اون مکمل: زرد و چاق. چرا؟ چون متیلاسیون اپی‌ژنتیکِ ژن آگوتی، در حضور اسید فولیک، بیان اون ژن رو خاموش کرده بود. توالی DNA هر دو موش یکی بود؛ فقط «سوئیچ» بیانش فرق داشت.
+</div>
+
+<div class="why"><b>چرا این مهمه؟</b> چون اپی‌ژنتیک پل بین ژن و محیطه — نشون می‌ده که محیط (تغذیه، مثلاً) می‌تونه مستقیماً روی بیان ژن اثر بذاره، بدون این‌که حتی یک نوکلئوتید عوض بشه.</p>
+</div>
+
+<div class="q" id="q4">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۴ — تعریف اپی‌ژنتیک از روی صورت سوال</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن روش تا گزینه‌ها و پاسخ باز شه</div>
+<ul>
+  <li>به پدیده‌ای محیطی که بیان ژنوم فرد را تغییر می‌دهد، به نسل‌های بعدی منتقل شود و قابلیت برگشت‌پذیری داشته باشد، کدام اطلاق می‌شود؟</li>
+  <li>الف) تغییرات ژنتیک &nbsp; ب) تغییرات ارثی &nbsp; ج) تغییرات اپی‌ژنتیک &nbsp; د) تغییرات با بروز دیررس</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ج</span></p>
+<div class="distract">
+سه کلیدواژه‌ی صورت سوال دقیقاً تعریف اپی‌ژنتیکه: (۱) منشأ محیطی، (۲) قابل انتقال به نسل بعد (مثل مورد موش آگوتی)، (۳) <strong>قابل برگشت</strong> — یعنی برخلاف جهش دائمی DNA، این تغییر بیانی می‌تونه برگرده. گزینه‌ی «الف» زیادی کلیه (هر بیماری‌ای یه پایه‌ی ژنتیکی داره)، و «ب» اشتباهه چون تغییرات ارثیِ کلاسیک، توالی DNA رو عوض می‌کنن، نه فقط بیانش رو.
+</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="q13">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۱۳ — کدامیک جزو تغییرات اپی‌ژنتیک تقسیم‌بندی می‌شود؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن روش تا گزینه‌ها و پاسخ باز شه</div>
+<ul>
+  <li>الف) تغییر در واژگونی رشته DNA</li>
+  <li>ب) تغییر ترتیب توالی نوکلئوتیدهای DNA</li>
+  <li>ج) تغییر متیلاسیون در سطح DNA</li>
+  <li>د) تمامی تغییرات DNA</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ج</span></p>
+<div class="distract">
+گزینه‌های الف و ب هر دو نوعی تغییر در <strong>توالی</strong> DNA‌ان (inversion و رودشدن ترتیب نوکلئوتید) — پس این‌ها جهش کلاسیک‌ان، نه اپی‌ژنتیک. متیلاسیون تنها گزینه‌ایه که توالی رو دست‌نخورده نگه می‌داره و فقط روی «بیان» اثر می‌ذاره — دقیقاً تعریف اپی‌ژنتیک.
+</div>
+</details>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+<h3>۴. ژنوم انسان — چند رقم کلیدی که باید محکم بدونی</h3>
+<div class="pulse">
+<b>نبض سوال ↓</b>
+تعداد ژن‌های انسان: <strong>حدود ۲۵٬۰۰۰</strong> (نه ۱۰۰٬۰۰۰ که قبل از پروژه ژنوم انسان تخمین زده می‌شد). نکته‌ی جالب: تعداد ژن، نشان‌دهنده‌ی «برتری» گونه‌ها نیست — گیاه برنج و حتی گیاه شاهی (Arabidopsis) ژن‌های بیشتری از انسان دارند! پیچیدگی یه گونه به تعداد ژن‌هاش ربطی نداره.
+</div>
+
+<p>فقط <strong class="k">حدود ۲ تا ۲.۵٪</strong> ژنوم انسان ناحیه‌ی coding (پروتئین‌ساز) است؛ ۹۷.۵٪ باقی‌مونده نقش مستقیم در پروتئین‌سازی نداره (هرچند بخشی از این نواحی نقش تنظیمی یا ساختاری مهمی دارن — این رو با «بی‌نقش بودن مطلق» اشتباه نگیر).</p>
+</div>
+
+<div class="q" id="q8">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۸ — در مورد ژن‌ها تمامی موارد ذیل صحیح است بجز:</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن روش تا گزینه‌ها و پاسخ باز شه</div>
+<ul>
+  <li>الف) اکثر موتاسیون‌ها در ژنوم هسته یا میتوکندری بیماری‌زا هستند</li>
+  <li>ب) تعداد ژن‌های انسان حدود ۲۵ هزار عدد برآورد می‌شود</li>
+  <li>ج) promoter نقش تنظیمی در بیان ژن دارد</li>
+  <li>د) ژن‌های مسئول بیماری‌های چند عاملی کاملاً شناخته‌شده‌اند</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">د</span></p>
+<div class="distract">
+یادت باشه: بیماری‌های چند عاملی (مولتی‌فاکتوریال) نتیجه‌ی تعامل چندین ژن با اثر کوچیک + محیط‌ان — و بخش بزرگی از این ژن‌ها هنوز شناخته نشدن (طبق آمار خود جزوه، ۵۰٪ علل بیماری‌های ژنتیکی هنوز «ناشناخته» طبقه‌بندی می‌شه). گزینه‌ی الف هم جالبه: با این‌که فقط ۰.۱٪ ژنوم بین افراد فرق داره، وقتی موتاسیون واقعی (نه پلی‌مورفیسم) در ژنوم هسته یا میتوکندری رخ بده، بخش زیادیش بیماری‌زاست — چون این تغییرات معمولاً در نواحی حیاتی رخ می‌دن.
+</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="q22">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۲۲ — در مورد ژنوم انسان صحیح است بجز:</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن روش تا گزینه‌ها و پاسخ باز شه</div>
+<ul>
+  <li>الف) تعداد ژن‌های انسان حدود ۲۵ هزار عدد بوده و از تعداد ژن‌های گونه‌های دیگر بیشتر است</li>
+  <li>ب) اکثر ژن‌ها در هسته وجود دارند</li>
+  <li>ج) ژنوم هاپلوئید انسان حدود ۳ میلیارد جفت باز دارد</li>
+  <li>د) اکثر موتاسیون‌ها در ژنوم هسته یا میتوکندری بیماری‌زا هستند</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">الف</span></p>
+<div class="distract">
+دقیقاً همون نکته‌ی «برنج و شاهی» که بالا گفتیم — تعداد ژن انسان از خیلی گونه‌های به‌ظاهر ساده‌تر <strong>کمتره</strong>، نه بیشتر. این سوال و سوال ۸ عملاً دوتا روی یه مفهوم امتحان می‌گیرن؛ اگه یکیش رو گرفتی، اون یکی هم قائم می‌مونه.
+</div>
+</details>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+<h3>۵. بیماری‌های مولتی‌فاکتوریال — Heritability و شباهت دوقلوها</h3>
+
+<p>وقتی می‌گیم <strong class="k">Heritability (H²)</strong> یه بیماری ۵۰٪ است (مثلاً دیابت)، یعنی از کل تنوع فنوتیپیِ اون صفت در یک جمعیت، ۵۰٪ به تفاوت‌های ژنتیکی برمی‌گرده و ۵۰٪ به محیط. این عدد رو با <strong class="k">مقایسه‌ی دوقلوهای همسان (MZ) و ناهمسان (DZ)</strong> حساب می‌کنن.</p>
+
+<div class="why"><b>چرا این مهمه؟</b> چون منطقش خیلی ساده و قابل‌استدلاله: دوقلوهای همسان از نظر ژنتیکی ۱۰۰٪ یکی‌ان. اگه یه بیماری خیلی به ژنتیک وابسته باشه (Heritability بالا)، وقتی یکی از دوقلوهای همسان مبتلا بشه، شانس ابتلای اون یکی (Concordance rate) هم خیلی بالا می‌ره — چون هر دو دقیقاً همون ریسک ژنتیکی رو دارن. در دوقلوهای ناهمسان (که فقط ۵۰٪ ژن مشترک دارن، مثل خواهر و برادر عادی)، این هم‌خوانی به‌مراتب کمتره.</p>
+</div>
+
+<div class="pulse">
+<b>نبض سوال ↓</b>
+پس رابطه‌ی مستقیم: <strong>هرچه Heritability بیشتر → Concordance rate در دوقلوهای همسان (نسبت به ناهمسان) بیشتر.</strong> این رابطه، پایه‌ی سوال ۳۰ هست.
+</div>
+
+<div class="errspot">
+<b>🔍 خطایاب — این پاراگراف رو بخون و غلطش رو پیدا کن:</b><br>
+«اگه Heritability یه بیماری ۸۰٪ باشه، یعنی ۸۰٪ از افرادی که ژن مستعدکننده رو دارن، قطعاً به بیماری مبتلا می‌شن.»
+<details class="reveal"><summary>پاسخ رو ببین</summary>
+<p>❌ غلطه. Heritability درصد <strong>سهم ژنتیک در تنوع بین‌فردیِ یک صفت در سطح جمعیت</strong> است، نه احتمال ابتلای یک فرد خاص با یک ژنوتیپ خاص. این دو مفهوم رو قاطی کردن، یکی از شایع‌ترین بدفهمی‌های این بحثه (و دقیقاً برای همینم توی سوالات امتحانی زیاد ازش تله می‌سازن).</p>
+</details>
+</div>
+</div>
+
+<div class="q" id="q16">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۱۶ — کدامیک جزو ویژگی‌های بیماری‌های مولتی‌فاکتوریال نمی‌باشد؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن روش تا گزینه‌ها و پاسخ باز شه</div>
+<ul>
+  <li>الف) عمدتاً بیماری‌های شایع بالغین مثل دیابت و پرفشاری جزء این دسته هستند</li>
+  <li>ب) بیماری‌های مادرزادی را شامل نمی‌شوند</li>
+  <li>ج) هم عوامل ژنتیکی و هم عوامل محیطی در آنها نقش دارد</li>
+  <li>د) عمدتاً در یک جنس شیوع بالاتری دارند</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ب</span></p>
+<div class="distract">
+تله‌ی این سوال اینه که ذهنت رو سمت «دیابت و فشارخون» (بیماری‌های بالغین) می‌بره و باعث می‌شه فراموش کنی مولتی‌فاکتوریال فقط مال بزرگسالی نیست. نقایص مادرزادی مثل <strong>Spina bifida</strong> (باز ماندن کانال نخاعی) و پیلوروستنوز هم مولتی‌فاکتوریال‌ان و از بدو تولد وجود دارن. پس «شامل نمی‌شود» غلطه.
+</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="q28">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۲۸ — تمام بیماری‌های زیر مولتی‌فاکتوریال است بجز:</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن روش تا گزینه‌ها و پاسخ باز شه</div>
+<ul>
+  <li>الف) دیابت &nbsp; ب) فشار خون &nbsp; ج) نزدیک‌بینی &nbsp; د) کوتوله‌گی</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">د</span></p>
+<div class="distract">
+کوتوله‌گی (آکندروپلازی) یه بیماری تک‌ژنی اتوزومال غالبه (جهش در ژن FGFR3) — نه مولتی‌فاکتوریال. این‌جا باید تشخیص بدی کدوم بیماری‌ها «شایع + بدون الگوی مندلی واضح» هستن (دیابت، فشارخون، نزدیک‌بینی) در برابر بیماری‌ای که یه جهش تک‌ژنیِ شناخته‌شده داره.
+</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="q30">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۳۰ — دو بیماری با Heritability به‌ترتیب ۸۰٪ و ۴۰٪ — نقش ژنتیک و شانس ابتلای دوقلوهای همسان در کدام بیشتره؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن روش تا گزینه‌ها و پاسخ باز شه</div>
+<ul>
+  <li>الف) بیماری الف - بیماری ب &nbsp; ب) بیماری ب - بیماری الف &nbsp; ج) بیماری ب - بیماری ب &nbsp; د) بیماری الف - بیماری الف</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">د</span></p>
+<div class="distract">
+دقیقاً همون رابطه‌ی مستقیمی که بالا در بخش «نبض سوال» گفتیم: بیماری با H² بالاتر (۸۰٪ = بیماری الف)، هم نقش ژنتیکی پررنگ‌تری داره و هم Concordance rate بالاتری در دوقلوهای همسان. هر دو جواب برای یک بیماری یکی‌ان، چون از یک ریشه میان — این نکته رو قبل از دیدن گزینه‌ها حدس بزن، همیشه جواب می‌ده.
+</div>
+</details>
+</div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۲</span> مطالب بدون سوال ولی مهم</h2>
+<p class="stage-desc">این‌ها توی نمونه‌سوالات مستقیماً نیومدن، ولی برای فهم بقیه‌ی مباحث (خصوصاً جمعیت‌شناسی ژنتیک که در بخش بعدی می‌ریم سراغش) پایه‌ان.</p>
+
+<div class="card">
+<h3>واژگان پایه که باید در حافظه‌ی فعال داشته باشی</h3>
+<table style="width:100%;border-collapse:collapse;font-size:.94rem;">
+<tr style="background:var(--teal-soft);"><td style="padding:10px;font-weight:700;">ژن</td><td style="padding:10px;">قطعه‌ای از DNA با ابتدا و انتهای مشخص که یا فانکشنی رو مدیریت می‌کنه یا محصولی می‌سازه</td></tr>
+<tr><td style="padding:10px;font-weight:700;">آلل</td><td style="padding:10px;">هر نسخه/شکل جایگزین یک ژن در یک جایگاه مشخص روی کروموزوم — «آلل همونیه که فرق داره»</td></tr>
+<tr style="background:var(--teal-soft);"><td style="padding:10px;font-weight:700;">ژنوتایپ</td><td style="padding:10px;">مجموعه ژن‌های فرد / ساختار ژنتیکی</td></tr>
+<tr><td style="padding:10px;font-weight:700;">فنوتایپ</td><td style="padding:10px;">مشخصات قابل مشاهده‌ی فرد</td></tr>
+<tr style="background:var(--teal-soft);"><td style="padding:10px;font-weight:700;">هاپلوتایپ</td><td style="padding:10px;">مجموعه آلل‌هایی که با هم به ارث می‌رسن و روی یک کروموزوم قرار دارن</td></tr>
+<tr><td style="padding:10px;font-weight:700;">SNP</td><td style="padding:10px;">تغییر یک نوکلئوتید — شایع‌ترین نوع پلی‌مورفیسم</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>سه دسته‌بندی کلی بیماری از دید ژنتیکی</h3>
+<div class="compare">
+<div class="box b">
+<h4>مونوژنیک (تک‌ژنی)</h4>
+<p style="margin:0;">جهش در یک ژن مشخص → مانند تالاسمی، آنمی داسی‌شکل. الگوی وراثتی مندلی واضح.</p>
+</div>
+<div class="box a">
+<h4>کروموزومال</h4>
+<p style="margin:0;">تغییر در تعداد یا ساختار کروموزوم‌ها → مانند سندرم داون (تریزومی ۲۱). الگوی مندلی ندارد.</p>
+</div>
+</div>
+<div class="box" style="background:var(--gold-soft);border:1px solid #E9C989;margin-top:14px;">
+<h4>پلی‌ژنیک/مولتی‌فاکتوریال</h4>
+<p style="margin:0;">اکثر بیماری‌های شایع (چاقی، HTN، نزدیک‌بینی) → بار اصلی بیماری در جامعه. هم ژنتیک هم محیط، بدون الگوی وراثتی ساده.</p>
+</div>
+</div>
+
+<div class="check">
+<b>✓ چک فهم سریع:</b> قبل از رفتن سراغ بخش بعد، بدون نگاه به بالا جواب بده:<br>
+۱. فرق فراوانی آللی جهش و پلی‌مورفیسم چیه؟<br>
+۲. چرا اپی‌ژنتیک با جهش کلاسیک فرق داره (دو تا نقطه‌ی تفاوت)؟<br>
+۳. اگه Heritability یه بیماری صفر باشه، انتظار داری Concordance rate دوقلوهای همسان و ناهمسان چطور باشه؟
+<details class="reveal" style="margin-top:8px;"><summary>جواب‌ها رو ببین</summary>
+<p>۱. جهش &lt;۱٪، پلی‌مورفیسم &gt;۱٪.<br>
+۲. (الف) اپی‌ژنتیک توالی DNA رو عوض نمی‌کنه فقط بیان رو؛ (ب) اپی‌ژنتیک قابل برگشته، جهش کلاسیک معمولاً نه.<br>
+۳. اگه H²=۰ باشه، یعنی بیماری کاملاً محیطیه — پس Concordance rate باید در دوقلوهای همسان و ناهمسان تقریباً یکسان باشه (چون تفاوت ژنتیکی نقشی نداره).</p>
+</details>
+</div>
+</div>
+</section>
+
+<div class="cheat">
+<h2>📋 چک‌لیست شب امتحان — بخش ۱</h2>
+<ul>
+<li><b>جهش:</b> نادر (&lt;۱٪)، پاتولوژیک، الگوی وراثتی واضح، هر جای ژنوم اما اثر عمده‌اش در نواحی حیاتی.</li>
+<li><b>پلی‌مورفیسم:</b> شایع (&gt;۱٪)، معمولاً بی‌خطر، بدون الگوی وراثتی مشخص، هر جای ژنوم.</li>
+<li><b>VUS:</b> نه پاتولوژیک نه بی‌خطر — likely pathogenic / likely benign بسته به شواهد.</li>
+<li><b>اپی‌ژنتیک:</b> تغییر بیان بدون تغییر توالی، منشأ محیطی، قابل انتقال به نسل بعد، قابل برگشت (مثال کلاسیک: موش آگوتی).</li>
+<li><b>تعداد ژن انسان ≈ ۲۵٬۰۰۰</b> — کمتر از برخی گیاهان مثل برنج و شاهی؛ تعداد ژن ≠ پیچیدگی گونه.</li>
+<li><b>فقط ۲–۲.۵٪ ژنوم، coding است.</b></li>
+<li><b>ریسک‌فاکتور ژنتیکی = افزایش‌دهنده‌ی خطر، نه ایجادکننده‌ی بیماری.</b> سنجش با OR (ژنتیکی) در برابر RR (محیطی).</li>
+<li><b>Heritability بالاتر → Concordance rate بالاتر در دوقلوهای همسان نسبت به ناهمسان.</b></li>
+<li>سه دسته بیماری: مونوژنیک (الگوی مندلی واضح) / کروموزومال (بدون الگوی مندلی) / مولتی‌فاکتوریال (ژن + محیط، بدون الگوی ساده).</li>
+<li>⚠️ تله رایج: بیماری‌های مادرزادی هم می‌تونن مولتی‌فاکتوریال باشن (مثل Spina bifida) — «مادرزادی» با «تک‌ژنی» مترادف نیست.</li>
+</ul>
+</div>
+
+</div>
+
+<footer>
+بخش ۱ از جزوه — کلیات ژنتیک. برای ادامه (جمعیت‌شناسی ژنتیک، Hardy-Weinberg، الگوهای وراثتی AD/AR/X-linked) بگو بریم سراغ بخش ۲.
+</footer>
+
+</body>
+</html>

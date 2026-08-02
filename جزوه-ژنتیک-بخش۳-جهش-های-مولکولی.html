@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جزوه ژنتیک | بخش ۳ — جهش‌های مولکولی و طبقه‌بندی ACMG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF9F3; --ink:#1E2321; --ink-soft:#4B534E;
+  --teal:#1B4B43; --teal-soft:#E7EFEC;
+  --gold:#C98A2C; --gold-soft:#FBF0DC;
+  --rose:#AE4238; --rose-soft:#F7E8E5;
+  --line:#DDD6C6; --card:#FFFFFF;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Vazirmatn',sans-serif;line-height:1.9;font-size:17px;}
+.wrap{width:100%;padding:0 clamp(16px,4vw,56px);}
+.hero{background:linear-gradient(180deg,var(--teal) 0%,#123830 100%);color:#F3F0E6;padding:52px 0 36px;}
+.dna-rule{height:10px;width:100%;background-image:repeating-linear-gradient(90deg,var(--gold) 0 10px, transparent 10px 22px);opacity:.85;}
+.hero h1{font-size:2.1rem;font-weight:800;margin:0 0 8px;}
+.hero p.sub{color:#CFE3DC;font-weight:400;font-size:1.05rem;margin:0;}
+.hero .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
+.tag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);padding:5px 14px;border-radius:999px;font-size:.85rem;}
+section{padding:40px 0;}
+h2.stage{font-size:1.5rem;font-weight:800;color:var(--teal);display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+h2.stage .num{background:var(--teal);color:#fff;width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.stage-desc{color:var(--ink-soft);font-size:.95rem;margin:0 0 26px;padding-right:46px;}
+.hy{display:inline-flex;align-items:center;gap:6px;background:var(--gold-soft);color:#7A5314;border:1px solid #E9C989;padding:3px 12px;border-radius:999px;font-size:.82rem;font-weight:600;margin-bottom:10px;}
+.stars{color:var(--gold);letter-spacing:1px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px clamp(18px,3vw,40px);margin:20px 0;box-shadow:0 1px 2px rgba(0,0,0,.03);}
+.card h3{margin-top:0;font-size:1.2rem;color:var(--ink);border-bottom:2px solid var(--teal-soft);padding-bottom:10px;}
+.pulse{background:var(--teal);color:#fff;border-radius:10px;padding:16px 20px;margin:16px 0;font-size:.98rem;}
+.pulse b{display:block;margin-bottom:4px;color:var(--gold-soft);}
+.why{border-right:3px solid var(--gold);background:var(--gold-soft);padding:10px 16px;margin:14px 0;border-radius:0 8px 8px 0;font-size:.95rem;}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:18px 0;}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin:16px 0;}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:16px 0;}
+.mt{border-radius:12px;padding:18px 20px;font-size:.93rem;border:1px solid var(--line);}
+.mt h4{margin:0 0 10px;font-size:1.02rem;display:flex;align-items:center;gap:8px;}
+.mt.miss{background:var(--gold-soft);border-color:#E9C989;}
+.mt.non{background:var(--rose-soft);border-color:#E3C3BE;}
+.mt.splice{background:#EDE6F5;border-color:#CBB8E0;}
+.mt.indel{background:var(--teal-soft);border-color:#C7D9D2;}
+.case{background:#F4F6F4;border:1px dashed #9EB3AA;border-radius:10px;padding:16px 20px;margin:16px 0;font-size:.95rem;}
+.case b.tag-case{color:var(--teal);}
+.q{background:var(--card);border:1.5px solid var(--line);border-radius:12px;margin:18px 0;overflow:hidden;}
+.q .qhead{padding:16px 20px;font-weight:700;background:#F4F1E7;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.q .qhead .src{font-size:.75rem;font-weight:400;color:var(--ink-soft);white-space:nowrap;}
+.q ul.opts{list-style:none;padding:0;margin:14px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px;}
+.q ul.opts li{padding:8px 12px;border-radius:6px;background:#FAFAF8;font-size:.94rem;}
+.q .ans{display:none;padding:0 20px 18px;font-size:.92rem;}
+.q.open .ans{display:block;}
+.q .ans .correct{color:var(--teal);font-weight:700;}
+.q .distract{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px;}
+.toggle-hint{font-size:.78rem;color:var(--ink-soft);padding:10px 20px 0;}
+.check{background:var(--teal-soft);border:1px solid #C7D9D2;border-radius:10px;padding:16px 20px;margin:16px 0;}
+.check b{color:var(--teal);}
+.errspot{background:#FDF3E8;border:1px solid #EED2A6;border-radius:10px;padding:16px 20px;font-size:.94rem;margin:16px 0;}
+details.reveal summary{cursor:pointer;color:var(--rose);font-weight:600;}
+.divider{height:8px;width:100%;margin:34px 0;background-image:repeating-linear-gradient(90deg,var(--line) 0 8px, transparent 8px 18px);}
+.cheat{background:var(--teal);color:#F3F0E6;border-radius:16px;padding:32px clamp(18px,3vw,44px);margin:40px 0;}
+.cheat h2{margin-top:0;color:#fff;}
+.cheat .grid2{margin:0;}
+.cheat .col{background:rgba(255,255,255,.06);border-radius:10px;padding:16px 18px;}
+.cheat ul{padding-right:20px;margin:0;}
+.cheat li{margin-bottom:8px;}
+footer{padding:30px 0 60px;color:var(--ink-soft);font-size:.85rem;text-align:center;}
+strong.k{color:var(--teal);}
+table.wide{width:100%;border-collapse:collapse;font-size:.94rem;}
+table.wide td,table.wide th{padding:10px;border-bottom:1px solid var(--line);text-align:right;}
+table.wide tr:nth-child(even){background:#F6F4EC;}
+code{background:#EFEAD9;padding:2px 8px;border-radius:5px;font-family:monospace;font-size:.9rem;direction:ltr;display:inline-block;}
+.spectrum{display:flex;border-radius:10px;overflow:hidden;margin:18px 0;font-size:.85rem;text-align:center;}
+.spectrum div{flex:1;padding:14px 6px;color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>جزوه تعمیقی ژنتیک — بخش ۳</h1>
+    <p class="sub">جهش‌ها در سطح مولکولی: ساختار ژن، انواع جهش تک‌نوکلئوتیدی، نام‌گذاری HGVS، و طبقه‌بندی ACMG (از Benign تا Pathogenic)</p>
+    <div class="tags">
+      <span class="tag">جلسه ۳ پاسدار + جزوه‌ی مجرد</span>
+      <span class="tag">پوشش نمونه سوالات مرتبط</span>
+      <span class="tag">قدم سوم از ده</span>
+    </div>
+  </div>
+</div>
+<div class="dna-rule"></div>
+
+<div class="wrap">
+
+<section>
+<h2 class="stage"><span class="num">۱</span> نقاط مشترک با نمونه سوالات</h2>
+<p class="stage-desc">قبل از انواع جهش، باید مطمئن باشیم ساختار ژن و مسیر بیانش (رونویسی → پردازش → ترجمه) رو محکم داری — چون هر نوع جهش، دقیقاً یه نقطه از این مسیر رو خراب می‌کنه.</p>
+
+<div class="hy">🎯 High-yield: <span class="stars">★★★★★</span> — تقریباً هر امتحانی حداقل ۲-۳ سوال از این محور داره</div>
+
+<div class="card">
+<h3>۱. ساختار ژن و مسیر بیان ژن</h3>
+<p>یه ژن رو مثل یه دستور آشپزی تصور کن: قبل از خود دستور، یه تابلوی راهنما هست («از این‌جا شروع کن») به اسم <strong class="k">Promoter</strong> که بیان ژن رو کنترل می‌کنه. خود دستور غذا، از دو نوع بخش تشکیل شده: <strong class="k">اگزون</strong>‌ها (بخش‌های واقعاً کدکننده، که می‌مونن) و <strong class="k">اینترون</strong>‌ها (بخش‌هایی که نقشی در ساخت پروتئین ندارن و باید حذف بشن).</p>
+<p>مسیر کامل: <code>DNA → (رونویسی/Transcription) → pre-mRNA → (پردازش/Splicing: حذف اینترون‌ها و چسبیدن اگزون‌ها به هم) → mRNA بالغ → (ترجمه/Translation) → پروتئین</code></p>
+<div class="why"><b>چرا این مهمه؟</b> چون جایی که یه جهش رخ بده، مستقیماً تعیین می‌کنه چه نوع خرابی‌ای ایجاد می‌شه: جهش توی promoter → بیان کم/زیاد می‌شه؛ جهش توی اگزون → پروتئین مستقیماً خراب می‌شه؛ جهش دقیقاً سر مرز اینترون-اگزون → کل فرایند Splicing به‌هم می‌ریزه.</p>
+</div>
+</div>
+
+<div class="q" id="q20">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۲۰ — ناحیه کدینگ ژن چه نام دارد؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) آغازگر &nbsp; ب) اگزون &nbsp; ج) فعال‌کننده &nbsp; د) اینترون</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ب</span></p>
+<div class="distract">
+اگزون = ناحیه‌ای که واقعاً وارد mRNA بالغ می‌شه و کد می‌کنه. اینترون دقیقاً برعکسشه — حذف می‌شه و کدکننده نیست. «آغازگر» (Promoter) هم کدکننده نیست، فقط تنظیم‌کننده‌ست.
+</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="q25">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۲۵ — بیان ژن شامل کدام قسمت نمی‌شود؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) پسا ترجمه &nbsp; ب) رونویسی &nbsp; ج) ترجمه &nbsp; د) همانند‌سازی</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">د</span></p>
+<div class="distract">
+همانندسازی (Replication) یعنی کپی شدن خود DNA برای تقسیم سلولی — کاملاً فرایند جدایی از «بیان ژن». بیان ژن (Expression) دقیقاً یعنی رونویسی + ترجمه (و تنظیمات بعد از ترجمه). این سوال با سوال ۱۸ («کنترل بیان ژنی در چه سطحی انجام می‌شود؟» → پاسخ: رونویسی، پس‌رونویسی، ترجمه — یعنی هر سه سطح) هم‌خونی داره؛ یه بار که این مسیر رو قفل کنی، هر دو سوال جواب داده می‌شن.
+</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="q24">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۲۴ — در ارتباط با RNA تنظیمی کدام جمله نادرست است؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) محصول آن به پروتئین ختم نمی‌شود</li>
+  <li>ب) ساخت پروتئین را تنظیم می‌کند</li>
+  <li>ج) عملکرد سلول را تنظیم می‌کند</li>
+  <li>د) همان RNA کدینگ است</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">د</span></p>
+<div class="distract">
+RNA تنظیمی (مثل microRNA) دقیقاً برعکس RNA کدینگ (mRNA) عمل می‌کنه — خودش هرگز ترجمه نمی‌شه به پروتئین، بلکه نقشش کنترل/تنظیم بیان ژن‌های دیگه‌ست. این یه مفهوم پایه‌ست که توی بحث «مولکولار پروفایلینگ سرطان» (RNA-seq) هم بعداً بهش برمی‌گردیم.
+</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="q36">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۳۶ — کدام نقش را زنجیره‌ی Poly-A در mRNA ایفا نمی‌کند؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) پایداری mRNA در سیتوپلاسم</li>
+  <li>ب) کمک به انتقال mRNA به سیتوپلاسم</li>
+  <li>ج) افزایش شناسایی mRNA به ساختمان ریبوزوم</li>
+  <li>د) نقش در Splicing</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">د</span></p>
+<div class="distract">
+پلی‌آ یه دنباله‌ست که <b>بعد از</b> تموم شدن رونویسی، در انتهای mRNA اضافه می‌شه — یعنی زمانی که Splicing قبلاً (یا هم‌زمان ولی مستقل) انجام شده. نقش پلی‌آ در پایداری، صادرات از هسته، و شناسایی توسط ریبوزومه — نه در فرایند حذف اینترون‌ها.
+</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="q26">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۲۶ — کدام جزء خصوصیات همانند‌سازی DNA نمی‌باشد؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) قطعات اکازاکی توسط آنزیم DNA ligase به هم متصل شده و رشته‌ی leading را تشکیل می‌دهد</li>
+  <li>ب) باز شدن دو زنجیره DNA</li>
+  <li>ج) الگوبرداری از هر دو زنجیره</li>
+  <li>د) وجود یک رشته از همانندسازی قبلی</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">الف</span></p>
+<div class="distract">
+تله‌ی این سوال دقیقاً جابه‌جا کردن leading و laggingه. قطعات اُکازاکی مال رشته‌ی <b>lagging</b>ان (چون این رشته باید تکه‌تکه و در جهت مخالف حرکت پلیمراز ساخته بشه)، نه leading. رشته‌ی leading پیوسته و بدون قطعه ساخته می‌شه. اگه این اسم‌ها رو قاطی کنی، این سوال همیشه گیرت می‌ندازه.
+</div>
+</details>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+<h3>۲. چهار نوع جهش تک‌نوکلئوتیدی — مقایسه‌ی کنار هم</h3>
+<p>حالا که مسیر بیان ژن دستته، بیا ببینیم هر نوع جهش دقیقاً کدوم نقطه از این مسیر رو خراب می‌کنه:</p>
+
+<div class="grid4">
+<div class="mt miss">
+<h4>🟡 Missense (بدمعنی)</h4>
+<p style="margin:0;">یک نوکلئوتید عوض می‌شه → یک اسید آمینه به اسید آمینه‌ی <b>دیگه‌ای</b> تبدیل می‌شه. می‌تونه مضر باشه یا نباشه — بستگی داره اون اسید آمینه چقدر برای عملکرد پروتئین حیاتی بوده.</p>
+</div>
+<div class="mt non">
+<h4>🔴 Nonsense (بی‌معنی)</h4>
+<p style="margin:0;">تغییر نوکلئوتید، یک <b>کدون پایان زودرس</b> می‌سازه → ریبوزوم زودتر از موعد کارش تموم می‌شه → پروتئین <b>ناقص/کوتاه</b>. سلول معمولاً می‌فهمه پروتئین ناقصه و کلاً ساختش رو متوقف می‌کنه.</p>
+</div>
+<div class="mt splice">
+<h4>🟣 Splicing (پردازشی)</h4>
+<p style="margin:0;">در مرز اینترون-اگزون رخ می‌ده → فرایند حذف اینترون به‌هم می‌ریزه → یا یه اگزون کامل حذف می‌شه، یا یه اینترون کامل توی mRNA باقی می‌مونه.</p>
+</div>
+<div class="mt indel">
+<h4>🟢 Insertion/Deletion</h4>
+<p style="margin:0;">نوکلئوتید کم یا زیاد می‌شه. اگه تعداد، مضرب صحیح ۳ <b>نباشه</b> → فریم خوانش کاملاً به‌هم می‌ریزه (Frameshift) → معمولاً به یه Nonsense زودرس هم منجر می‌شه.</p>
+</div>
+</div>
+
+<div class="pulse">
+<b>نبض سوال ↓</b>
+جمع‌بندی: از بین این ۴ نوع، <strong>Missense</strong> بیشترین شانس رو داره که «بی‌خطر» (benign) از آب دربیاد، چون فقط یه اسید آمینه عوض شده نه کل ساختار. <strong>Nonsense</strong> و <strong>Frameshift با فریم به‌هم‌ریخته</strong> معمولاً مخرب‌ترن چون کل بقیه‌ی پروتئین رو از دست می‌دن.
+</div>
+</div>
+
+<div class="q" id="qmissense">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — جهشی که باعث تغییر اسید آمینه به اسید آمینه‌ی جدید می‌شود چه نام دارد؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) Frameshift mutation &nbsp; ب) Synonymous mutation &nbsp; ج) Non-sense mutation &nbsp; د) Mis-sense mutation</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">د</span></p>
+<div class="distract">
+نکته‌ی اضافه که این سوال یادآوری می‌کنه: یه گزینه‌ی دیگه‌ای هم هست که اصلاً توی جزوه به‌عنوان یکی از ۴ نوع اصلی نیومده ولی باید بشناسیش — <b>Synonymous (هم‌معنی)</b>: نوکلئوتید عوض می‌شه ولی به‌خاطر تباهی کد ژنتیکی (Codon degeneracy)، همون اسید آمینه‌ی قبلی ساخته می‌شه. این یعنی حتی از Missense هم بی‌خطرتره — تقریباً همیشه Silent/Benign محسوب می‌شه.
+</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="q15">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۱۵ — جهشی که باعث تولید پروتئین با طول کوتاه می‌شود چه نام دارد؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) هم‌معنی &nbsp; ب) بی‌معنی &nbsp; ج) با معنی &nbsp; د) بدمعنی</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ب (Nonsense)</span></p>
+</div>
+</div>
+</div>
+
+<div class="errspot">
+<b>🔍 خطایاب:</b> این جمله رو بخون: «یه جهش Nonsense همیشه بیماری‌زاست، چون همیشه پروتئین رو کاملاً از کار می‌ندازه.»
+<details class="reveal"><summary>پاسخ رو ببین</summary>
+<p>❌ غلطه. اگه کدون پایان زودرس، خیلی نزدیک به انتهای پروتئین اتفاق بیفته (مثلاً پروتئین ۳۰۰۰ اسید آمینه‌ای، و جهش در جایگاه ۲۹۰۰)، ممکنه فقط یه «دم» کوچیک و کم‌اهمیت از پروتئین حذف بشه و عملکرد اصلی حفظ بشه — درست مثل یه وسیله که بعد از سرهم کردنش، چندتا پیچ‌ومهره‌ی اضافه باقی می‌مونه. پس محل دقیق جهش روی پروتئین، تعیین‌کننده‌ی شدته، نه فقط نوعش.</p>
+</details>
+</div>
+
+<div class="q" id="q7">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۷ — جهش حذف ژنی که چارچوب را به‌هم نمی‌زند چه ویژگی دارد و یک مثال بزنید؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) ساخت پروتئین کوچک‌تر. بیماری دوشن</li>
+  <li>ب) ساخت پروتئین کوچک‌تر. بیماری بیکر</li>
+  <li>ج) ساخت پروتئین بزرگ‌تر. بیماری دوشن</li>
+  <li>د) ساخت پروتئین بزرگ‌تر. بیماری بیکر</li>
+</ul>
+<div class="ans">
+این سوال دقیقاً روی همون نکته‌ی «مضرب صحیح ۳» تکیه داره که بالا گفتیم — قبل از دیدن پاسخ، به این فکر کن: اگه حذف، مضرب صحیح ۳ باشه، فریم به‌هم می‌ریزه یا نه؟
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ب</span></p>
+<div class="distract">
+وقتی حذف، مضرب صحیح ۳ نوکلئوتید باشه، فریم خوانش دست‌نخورده می‌مونه — فقط چندتا اسید آمینه از وسط پروتئین جا میفته. نتیجه: پروتئین دیستروفین کوتاه‌تر ولی تا حدی کارکرد داره → فنوتیپ خفیف‌تر بیماری <b>بیکر</b>. در مقابل، دوشن (فنوتیپ شدید) معمولاً از حذف‌های <b>خارج از فریم</b> میاد که پروتئین رو کاملاً بی‌عملکرد می‌کنه. این یکی از بهترین مثال‌های بالینیه که نشون می‌ده «نوع جهش» به‌تنهایی کافی نیست، «تاثیرش روی فریم خوانش» تعیین‌کننده‌ی شدت بیماریه.
+</div>
+</details>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+<h3>۳. طبقه‌بندی ACMG — از Benign تا Pathogenic (طیف پنج‌گانه)</h3>
+<p>هر واریانتی که کشف می‌شه، روی یه طیف پنج‌تایی جا می‌گیره — نه یه تصمیم دوتایی «بیماری‌زا/بی‌خطر»:</p>
+
+<div class="spectrum">
+<div style="background:#2E7D5B;">Benign<br><span style="font-size:.75rem;opacity:.85;">مطمئنیم بی‌خطره</span></div>
+<div style="background:#6FA98A;">Likely Benign<br><span style="font-size:.75rem;opacity:.85;">احتمالاً بی‌خطر</span></div>
+<div style="background:var(--gold);">VUS<br><span style="font-size:.75rem;opacity:.85;">نامشخص</span></div>
+<div style="background:#C97A6B;">Likely Pathogenic<br><span style="font-size:.75rem;opacity:.85;">احتمالاً بیماری‌زا</span></div>
+<div style="background:var(--rose);">Pathogenic<br><span style="font-size:.75rem;opacity:.85;">قطعاً بیماری‌زا</span></div>
+</div>
+
+<p>وقتی با یه VUS مواجه می‌شیم (نه مطمئنیم بی‌ضرره، نه مطمئنیم بیماری‌زا)، ابزار اصلی برای حل‌وفصلش <strong class="k">Cosegregation Analysis</strong>ه: چک می‌کنیم آیا این واریانت، همراه با بیماری در اعضای خانواده منتقل می‌شه یا نه.</p>
+<div class="grid2">
+<div style="background:var(--teal-soft);border-radius:10px;padding:16px;font-size:.93rem;"><b>اگه Segregation قطع بشه</b><br>یعنی افراد بیمار خانواده لزوماً این واریانت رو ندارن، یا افراد سالم هم دارنش → به سمت <b>Likely Benign</b> می‌ره.</div>
+<div style="background:var(--rose-soft);border-radius:10px;padding:16px;font-size:.93rem;"><b>اگه Segregation دیده بشه</b><br>یعنی واریانت دقیقاً همراه با بیماری در خانواده منتقل می‌شه → به سمت <b>Likely Pathogenic</b> می‌ره.</div>
+</div>
+<div class="why"><b>چرا این مهمه؟</b> چون تا وقتی وضعیت VUS مشخص نشده، از نظر بالینی <b>نمی‌شه</b> تصمیم مداخله‌ای (مثل سقط جنین) گرفت — نمی‌شه با داده‌ی مبهم، تصمیم قطعی گرفت.</p>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+<h3>۴. نام‌گذاری استاندارد جهش‌ها (HGVS) — خیلی خلاصه ولی کاربردی</h3>
+<p>این نمادها توی گزارش‌های واقعی آزمایشگاه ژنتیک همیشه هستن؛ لازم نیست کل استاندارد رو حفظ کنی، فقط منطقش رو بفهم:</p>
+<table class="wide">
+<tr><th>نماد</th><th>یعنی چی؟</th></tr>
+<tr><td><code>c.629C&gt;T</code></td><td>در جایگاه ۶۲۹ توالی کدکننده، سیتوزین (C) به تیمین (T) تبدیل شده</td></tr>
+<tr><td><code>p.Thr210Met</code></td><td>در سطح پروتئین، اسید آمینه‌ی جایگاه ۲۱۰ از ترئونین به متیونین تبدیل شده (نتیجه‌ی همون c.629C&gt;T بالا — یه مثال missense)</td></tr>
+<tr><td><code>p.Ala150Ter</code> یا <code>p.Ala150*</code> یا <code>p.Ala150X</code></td><td>هر سه یعنی یک چیز: در جایگاه ۱۵۰، آلانین به کدون پایان (Stop) تبدیل شده — یعنی Nonsense</td></tr>
+<tr><td><code>c.448insA</code></td><td>در جایگاه ۴۴۸، یک نوکلئوتید (آدنین) اضافه شده — Insertion</td></tr>
+<tr><td><code>c.448+1G&gt;?</code></td><td>جهش یک نوکلئوتید بعد از جایگاه ۴۴۸ (یعنی داخل ابتدای اینترون) — محل حساس Splicing</td></tr>
+</table>
+<div class="why"><b>چرا این مهمه؟</b> چون وقتی توی یه سوال یا گزارش بالینی با <code>p.Ala150Ter</code> مواجه بشی، باید فوری تشخیص بدی این یه Nonsenseه (به‌خاطر Ter/*/X) و انتظار پروتئین کوتاه‌شده رو داشته باشی — بدون این‌که نیاز باشه کسی برات توضیح بده.</p>
+</div>
+</div>
+
+<div class="q" id="qdenovo">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۱۴ — بیماری که از بدو تولد وجود دارد و تغییرات ژنی در والدین وجود ندارد، چه نامیده می‌شود؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) مادرزادی و ژنتیکی</li>
+  <li>ب) مادرزادی و ارثی</li>
+  <li>ج) تک‌گیر و ارثی</li>
+  <li>د) تک‌گیر و ژنتیکی</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">د</span></p>
+<div class="distract">
+این‌جا دقیقاً بین «ارثی» و «ژنتیکی» باید فرق بذاری (یادته از بخش ۲؟) — چون والدین این جهش رو ندارن، به نسل بعد قابل انتقال نبوده (یعنی جهش <i>de novo</i> است)، پس «ارثی» غلطه. اما خود جهش، ماهیت ژنتیکیه (توالی DNA عوض شده) و چون فقط همین یه فرد رو گرفتار کرده، «تک‌گیر»ه (نه Familial). گزینه‌ی «مادرزادی» هم می‌تونست وسوسه‌انگیز باشه، ولی صورت سوال درباره‌ی محل منشأ جهش می‌پرسه نه زمان بروز.
+</div>
+</details>
+</div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۲</span> مطالب بدون سوال ولی مهم</h2>
+<p class="stage-desc">این‌ها مستقیم توی بانک سوال نبودن، ولی برای فهم گزارش‌های ژنتیکی واقعی حیاتی‌ان.</p>
+
+<div class="card">
+<h3>سلسله‌مراتب اندازه‌ی جهش‌ها و ابزار تشخیصشون</h3>
+<table class="wide">
+<tr><th>سطح</th><th>اندازه</th><th>فراوانی</th><th>ابزار تشخیص</th></tr>
+<tr><td><b>سایتوژنتیک</b></td><td>کل کروموزوم یا بازوی بزرگ</td><td>بیشترین (~۱ در ۲۵ تقسیم سلولی)</td><td>کاریوتایپ (میکروسکوپ نوری)</td></tr>
+<tr><td><b>مولکولار سایتوژنتیک / CNV</b></td><td>قطعه‌ای از کروموزوم، بیش از یک ژن</td><td>حدود ۱ در ۱۷۰۰</td><td>FISH</td></tr>
+<tr><td><b>مولکولار ژنتیک / SNV</b></td><td>یک نوکلئوتید</td><td>کمترین (~۱ در ۱ میلیارد)</td><td>PCR + توالی‌یابی (Sequencing)</td></tr>
+</table>
+<div class="why"><b>چرا این مهمه؟</b> چون یه رابطه‌ی معکوس این‌جا برقراره: <b>هرچه جهش کوچک‌تر باشه، تشخیصش نیازمند ابزار دقیق‌تر و غیرمستقیم‌تره</b> — و همین‌طور، بیماری‌های ناشی از جهش‌های بزرگ‌تر (کروموزومی) معمولاً «پرسروصداتر»ن (چهره‌ی غیرطبیعی، اختلالات متعدد) ولی خودِ فرد کمتر زنده می‌مونه که به کلینیک اطفال بزرگ‌تر برسه؛ در مقابل، جهش‌های تک‌ژنی/SNV چون خفیف‌ترن، بیشتر به ارث می‌رسن (چون ناقلین زنده می‌مونن و تولیدمثل می‌کنن).</p>
+</div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۳</span> کیس سینتزی — یه گزارش واقعی ژنتیک رو با هم بخونیم</h2>
+<div class="card">
+<div class="case">
+<b class="tag-case">🩺 سناریو (بر پایه‌ی جزوه‌ی مجرد):</b> گزارش آزمایشگاه ژنتیک یه بیمار این‌طوره: در ژنی که به ساختار پوستی مربوطه، نوکلئوتید شماره‌ی ۶۲۹ سیتوزین بوده، به تیمین تبدیل شده (<code>c.629C&gt;T</code>). این تغییر روی پروتئین، ترئونین جایگاه ۲۱۰ رو به متیونین تبدیل کرده (<code>p.Thr210Met</code>). بیمار برای این جایگاه <b>هتروزیگوت</b> است (هم آلل نرمال هم آلل جهش‌یافته رو داره). بیمار دچار تاول‌زایی پوستی است.
+</div>
+<p>حالا با هم قدم‌به‌قدم استدلال کنیم:</p>
+<ol style="padding-right:20px;">
+<li><b>نوع جهش چیه؟</b> یه اسید آمینه (ترئونین) به اسید آمینه‌ی دیگه (متیونین) تبدیل شده → این <strong class="k">Missense</strong>ه.</li>
+<li><b>الگوی وراثتی چیه؟</b> جست‌وجو در دیتابیس OMIM نشون می‌ده این ژن با بیماری <strong class="k">اتوزومال غالب (AD)</strong> مرتبطه.</li>
+<li><b>آیا با AD جور درمیاد؟</b> بله — بیمار هتروزیگوته و فنوتیپ بیماری AD نشون می‌ده. تا این‌جا تفسیر با هم جور دراومده.</li>
+<li><b>طبقه‌بندی ACMG چیه؟</b> بر اساس دیتابیس‌های SNP و گایدلاین ACMG، این ژن به‌عنوان <strong class="k">Pathogenic</strong> طبقه‌بندی شده.</li>
+<li><b>قدم بعدی چیه؟</b> باید تابلوی بالینی بیمار (تاول پوستی) رو با علائم گزارش‌شده در OMIM برای این بیماری تطبیق داد، و <b>تاریخچه‌ی خانوادگی</b> رو هم چک کرد.</li>
+</ol>
+<div class="pulse">
+<b>حالا سوال سخت‌تر (Desirable Difficulty) ↓</b>
+فرض کن والدین بیمار رو چک می‌کنیم و می‌بینیم <b>هر دو</b> این جهش رو دارن، ولی <b>هیچ‌کدوم علامت بالینی ندارن</b>. با چیزی که در بخش ۲ درباره‌ی Penetrance یاد گرفتیم، این یعنی چی و چه تصمیمی برای بارداری بعدی این خانواده درسته؟
+<details class="reveal" style="margin-top:10px;"><summary style="color:#FBF0DC;">پاسخ رو ببین</summary>
+<p style="color:#F3F0E6;">این یعنی این ژن <b>Reduced Penetrance</b> داره — دقیقاً همون مفهومی که بخش ۲ روش کار کردیم. نتیجه‌ی عملی: چون نمی‌شه با قطعیت گفت داشتن جهش = بیمار شدن، از نظر اخلاقی <b>نمی‌شه</b> برای بارداری بعدی PND (تشخیص پیش از تولد با آزمایش جنین حین بارداری) پیشنهاد داد — چون حتی اگه جنین جهش رو داشته باشه، معلوم نیست بیمار بشه یا نه (شاید مثل والدینش سالم بمونه). راه‌حل توصیه‌شده: IVF همراه با PGD (تشخیص ژنتیکی پیش از لانه‌گزینی جنین) — یعنی تصمیم رو قبل از بارداری، در سطح جنین آزمایشگاهی بگیریم.</p>
+</details>
+</div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۴</span> مرور نهایی — اتصال به بخش‌های قبل</h2>
+<div class="card">
+<p>سه بخش رو که کنار هم بذاری، یه مسیر منطقی کامل می‌شه: بخش ۱ گفت جهش‌ها نادرن و پلی‌مورفیسم‌ها شایع؛ بخش ۲ گفت وقتی جهش داری، الگوی وراثتیش (AD/AR/...) رو چطور از شجره‌نامه بخونی؛ و این بخش نشون داد وقتی یه آزمایشگاه واقعاً یه جهش پیدا می‌کنه، چطور <b>در سطح مولکولی</b> توصیفش می‌کنن (Missense/Nonsense/...) و چطور <b>بالینی</b> طبقه‌بندیش می‌کنن (ACMG: Benign تا Pathogenic).</p>
+<div class="check">
+<b>✓ چک فهم سریع (Spaced Retrieval):</b><br>
+۱. یه واریانت با فراوانی آللی ۵٪ در جامعه پیدا شده — طبق منطق بخش ۱، به احتمال زیاد جزو کدوم دسته‌ی ACMGه (Pathogenic یا Benign)؟<br>
+۲. چرا Frameshift معمولاً از Missense مخرب‌تره؟<br>
+۳. اگه یه جهش Nonsense خیلی نزدیک به ابتدای پروتئین (نه انتها) رخ بده، انتظار داری اثرش شدیدتر باشه یا خفیف‌تر؟ چرا؟
+<details class="reveal" style="margin-top:8px;"><summary>جواب‌ها رو ببین</summary>
+<p>۱. فراوانی آللی بالای ۱٪ = پلی‌مورفیسم (بخش ۱) → به احتمال زیاد <b>Benign</b> یا Likely Benign.<br>
+۲. چون Frameshift کل فریم خوانش رو از اون نقطه به بعد به‌هم می‌ریزه (معمولاً به یه Nonsense زودرس هم می‌رسه)، در حالی که Missense فقط یه اسید آمینه رو عوض می‌کنه و بقیه‌ی پروتئین دست‌نخورده می‌مونه.<br>
+۳. شدیدتر — چون بخش بسیار بزرگ‌تری از پروتئین (تقریباً کل طولش) حذف می‌شه، برخلاف جهشی که نزدیک انتها باشه و فقط یه «دم» کوچیک رو حذف کنه.</p>
+</details>
+</div>
+</div>
+</section>
+
+<div class="cheat">
+<h2>📋 چک‌لیست شب امتحان — بخش ۳</h2>
+<div class="grid2">
+<div class="col">
+<ul>
+<li>مسیر بیان ژن: Promoter → (رونویسی) → pre-mRNA → (Splicing: حذف اینترون) → mRNA بالغ → (ترجمه) → پروتئین</li>
+<li><b>Missense:</b> یه اسید آمینه عوض می‌شه، ممکنه بی‌خطر باشه</li>
+<li><b>Nonsense:</b> کدون پایان زودرس، پروتئین کوتاه — شدتش به محل بستگی داره</li>
+<li><b>Splice:</b> مرز اینترون-اگزون خراب، اگزون حذف یا اینترون باقی می‌مونه</li>
+<li><b>Frameshift (indel غیرمضرب‌۳):</b> کل فریم به‌هم می‌ریزه، معمولاً شدید</li>
+</ul>
+</div>
+<div class="col">
+<ul>
+<li>⚠️ قطعات اُکازاکی → رشته‌ی <b>Lagging</b>، نه Leading</li>
+<li>⚠️ RNA تنظیمی ≠ RNA کدینگ (هیچ‌وقت ترجمه نمی‌شه)</li>
+<li>طیف ACMG: Benign → Likely Benign → VUS → Likely Pathogenic → Pathogenic</li>
+<li>VUS با <b>Cosegregation Analysis</b> حل می‌شه</li>
+<li><code>Ter</code> / <code>*</code> / <code>X</code> در نام‌گذاری پروتئین = Nonsense</li>
+<li>de novo mutation: تک‌گیر + ژنتیکی، ولی <b>ارثی نیست</b> (چون والدین ندارنش)</li>
+</ul>
+</div>
+</div>
+</div>
+
+</div>
+
+<footer>
+بخش ۳ از جزوه — جهش‌های مولکولی و ACMG. بخش بعدی: جمعیت‌شناسی ژنتیک و معادله‌ی Hardy-Weinberg.
+<br><br>
+<b>یادداشت بازنگری:</b> تمام سوالات نمونه‌ی مرتبط با ساختار ژن/بیان ژن/انواع جهش تک‌نوکلئوتیدی/de novo پوشش داده شد. سوال مربوط به لنفوم بورکیت (ترانسلوکاسیون) و سوالات کاریوتایپ عمداً این‌جا نیومدن چون به مبحث «ژنتیک سرطان» و «اختلالات کروموزومی» تعلق دارن، نه جهش‌های تک‌ژنی — در بخش‌های اختصاصی خودشون میان.
+</footer>
+
+</body>
+</html>

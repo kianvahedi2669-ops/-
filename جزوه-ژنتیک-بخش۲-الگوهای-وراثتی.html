@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جزوه ژنتیک | بخش ۲ — الگوهای وراثتی</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF9F3; --ink:#1E2321; --ink-soft:#4B534E;
+  --teal:#1B4B43; --teal-soft:#E7EFEC;
+  --gold:#C98A2C; --gold-soft:#FBF0DC;
+  --rose:#AE4238; --rose-soft:#F7E8E5;
+  --line:#DDD6C6; --card:#FFFFFF;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Vazirmatn',sans-serif;line-height:1.9;font-size:17px;}
+/* ⬇ عرض کامل صفحه — بدون max-width محدودکننده */
+.wrap{width:100%;padding:0 clamp(16px,4vw,56px);}
+.hero{background:linear-gradient(180deg,var(--teal) 0%,#123830 100%);color:#F3F0E6;padding:52px 0 36px;}
+.dna-rule{height:10px;width:100%;background-image:repeating-linear-gradient(90deg,var(--gold) 0 10px, transparent 10px 22px);opacity:.85;}
+.hero h1{font-size:2.1rem;font-weight:800;margin:0 0 8px;}
+.hero p.sub{color:#CFE3DC;font-weight:400;font-size:1.05rem;margin:0;}
+.hero .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
+.tag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);padding:5px 14px;border-radius:999px;font-size:.85rem;}
+section{padding:40px 0;}
+h2.stage{font-size:1.5rem;font-weight:800;color:var(--teal);display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+h2.stage .num{background:var(--teal);color:#fff;width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.stage-desc{color:var(--ink-soft);font-size:.95rem;margin:0 0 26px;padding-right:46px;}
+.hy{display:inline-flex;align-items:center;gap:6px;background:var(--gold-soft);color:#7A5314;border:1px solid #E9C989;padding:3px 12px;border-radius:999px;font-size:.82rem;font-weight:600;margin-bottom:10px;}
+.stars{color:var(--gold);letter-spacing:1px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px clamp(18px,3vw,40px);margin:20px 0;box-shadow:0 1px 2px rgba(0,0,0,.03);}
+.card h3{margin-top:0;font-size:1.2rem;color:var(--ink);border-bottom:2px solid var(--teal-soft);padding-bottom:10px;}
+.pulse{background:var(--teal);color:#fff;border-radius:10px;padding:16px 20px;margin:16px 0;font-size:.98rem;}
+.pulse b{display:block;margin-bottom:4px;color:var(--gold-soft);}
+.why{border-right:3px solid var(--gold);background:var(--gold-soft);padding:10px 16px;margin:14px 0;border-radius:0 8px 8px 0;font-size:.95rem;}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:18px 0;}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin:16px 0;}
+.pat{border-radius:12px;padding:18px 20px;font-size:.93rem;border:1px solid var(--line);}
+.pat h4{margin:0 0 10px;font-size:1.05rem;display:flex;align-items:center;gap:8px;}
+.pat.ad{background:var(--rose-soft);border-color:#E3C3BE;}
+.pat.ar{background:var(--teal-soft);border-color:#C7D9D2;}
+.pat.xr{background:var(--gold-soft);border-color:#E9C989;}
+.pat.xd{background:#EDE6F5;border-color:#CBB8E0;}
+.pat.y{background:#E4EEF7;border-color:#B9D3EA;}
+.pat.mt{background:#FBEAE0;border-color:#EBC2A9;}
+.pat ul{margin:0;padding-right:18px;}
+.pat li{margin-bottom:6px;}
+.case{background:#F4F6F4;border:1px dashed #9EB3AA;border-radius:10px;padding:16px 20px;margin:16px 0;font-size:.95rem;}
+.case b.tag-case{color:var(--teal);}
+.q{background:var(--card);border:1.5px solid var(--line);border-radius:12px;margin:18px 0;overflow:hidden;}
+.q .qhead{padding:16px 20px;font-weight:700;background:#F4F1E7;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.q .qhead .src{font-size:.75rem;font-weight:400;color:var(--ink-soft);white-space:nowrap;}
+.q ul.opts{list-style:none;padding:0;margin:14px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px;}
+.q ul.opts li{padding:8px 12px;border-radius:6px;background:#FAFAF8;font-size:.94rem;}
+.q .ans{display:none;padding:0 20px 18px;font-size:.92rem;}
+.q.open .ans{display:block;}
+.q .ans .correct{color:var(--teal);font-weight:700;}
+.q .distract{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px;}
+.toggle-hint{font-size:.78rem;color:var(--ink-soft);padding:10px 20px 0;}
+.check{background:var(--teal-soft);border:1px solid #C7D9D2;border-radius:10px;padding:16px 20px;margin:16px 0;}
+.check b{color:var(--teal);}
+.errspot{background:#FDF3E8;border:1px solid #EED2A6;border-radius:10px;padding:16px 20px;font-size:.94rem;margin:16px 0;}
+details.reveal summary{cursor:pointer;color:var(--rose);font-weight:600;}
+.divider{height:8px;width:100%;margin:34px 0;background-image:repeating-linear-gradient(90deg,var(--line) 0 8px, transparent 8px 18px);}
+.cheat{background:var(--teal);color:#F3F0E6;border-radius:16px;padding:32px clamp(18px,3vw,44px);margin:40px 0;}
+.cheat h2{margin-top:0;color:#fff;}
+.cheat .grid2{margin:0;}
+.cheat .col{background:rgba(255,255,255,.06);border-radius:10px;padding:16px 18px;}
+.cheat ul{padding-right:20px;margin:0;}
+.cheat li{margin-bottom:8px;}
+footer{padding:30px 0 60px;color:var(--ink-soft);font-size:.85rem;text-align:center;}
+strong.k{color:var(--teal);}
+table.wide{width:100%;border-collapse:collapse;font-size:.94rem;}
+table.wide td,table.wide th{padding:10px;border-bottom:1px solid var(--line);text-align:right;}
+table.wide tr:nth-child(even){background:#F6F4EC;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>جزوه تعمیقی ژنتیک — بخش ۲</h1>
+    <p class="sub">الگوهای وراثتی مندلی: AD، AR، X-linked (غالب/مغلوب)، Y-linked، میتوکندریال — و مفاهیم کلیدی همراهش (Penetrance، Expressivity، Anticipation)</p>
+    <div class="tags">
+      <span class="tag">جلسات ۱ تا ۲ — شرح‌حال و شجره‌نامه، پاسدار</span>
+      <span class="tag">پوشش نمونه سوالات مرتبط</span>
+      <span class="tag">قدم دوم — جمعیت‌شناسی ژنتیک (Hardy-Weinberg) در قدم بعدی میاد</span>
+    </div>
+  </div>
+</div>
+<div class="dna-rule"></div>
+
+<div class="wrap">
+
+<section>
+<h2 class="stage"><span class="num">۱</span> نقاط مشترک با نمونه سوالات</h2>
+<p class="stage-desc">قبل از هر چیز، سه سوالی که هر پزشک جلوی هر شجره‌نامه باید از خودش بپرسه — همون چیزی که پایه‌ی تشخیص الگوی وراثتیه.</p>
+
+<div class="hy">🎯 High-yield: <span class="stars">★★★★★</span></div>
+
+<div class="card">
+<h3>۰. قبل از هر بیماری خاص — سه رکن خوانش شجره‌نامه</h3>
+<p>هر بار که یه شجره‌نامه جلوت می‌ذارن، به همین ترتیب سه‌تا سوال بپرس:</p>
+<table class="wide">
+<tr><th>سوال</th><th>یعنی چی؟</th></tr>
+<tr><td><b>۱. Transmission</b></td><td>الگوی انتقال بین نسل‌ها چطوره؟ <b>عمودی</b> (هر نسل حداقل یه مبتلا — مثل AD) یا <b>افقی</b> (چند نسل رد می‌شه، بعد یهو توی یه نسل چندتا مبتلا — مثل AR)؟</td></tr>
+<tr><td><b>۲. Segregation</b></td><td>بیماری از مادر گرفته شده یا پدر؟ الگوی خاصی داره؟ در جنس خاصی دیده می‌شه؟</td></tr>
+<tr><td><b>۳. نسبت جنسیتی</b></td><td>مردها و زن‌ها به نسبت مساوی مبتلا می‌شن یا نه؟</td></tr>
+</table>
+<div class="why"><b>چرا این ترتیب مهمه؟</b> چون قبل از این‌که بری سراغ حفظ کردن جدول AD/AR/X-linked، اگه یاد بگیری با این سه سوال خودت الگو رو استخراج کنی، دیگه لازم نیست حفظ کنی — از روی شجره‌نامه استنتاج می‌کنی. این دقیقاً مهارتیه که سوالات شجره‌نامه‌محور امتحان ازت می‌خوان.</p>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+<h3>۱. شش الگوی وراثتی — مقایسه‌ی کنار هم</h3>
+<p>به‌جای این‌که هر الگو رو جدا جدا حفظ کنی، بذار کنار هم ببینیمشون تا نقطه‌ی افتراقشون قفل بشه توی ذهنت:</p>
+
+<div class="grid4">
+<div class="pat ad">
+<h4>🔴 AD — اتوزومال غالب</h4>
+<ul>
+<li>انتقال <b>عمودی</b> (گاهی افقی هم دیده می‌شه)</li>
+<li>۵۰٪ شانس ابتلای فرزند</li>
+<li>می‌تونه penetrance ناقص داشته باشه (escape)</li>
+<li>expressivity متغیر — شدت متفاوت در افراد یک خانواده</li>
+<li>مثال: FH (هایپرکلسترولمی خانوادگی)، مارفان، هانتینگتون</li>
+</ul>
+</div>
+<div class="pat ar">
+<h4>🟢 AR — اتوزومال مغلوب</h4>
+<ul>
+<li>انتقال <b>افقی</b></li>
+<li>شیوع کمتر، ولی در ازدواج فامیلی بیشتر دیده می‌شه</li>
+<li>والدین ظاهراً سالم، فرزند مبتلا</li>
+<li>مثال: تالاسمی، سیکل‌سل، Cystic Fibrosis، SMA</li>
+</ul>
+</div>
+<div class="pat xr">
+<h4>🟡 X-linked مغلوب</h4>
+<ul>
+<li>مادرها همیشه ناقل‌ان (ممکنه ظاهراً سالم باشن)</li>
+<li>پسرها بیشتر مبتلا می‌شن</li>
+<li>مثال: هموفیلی</li>
+</ul>
+</div>
+<div class="pat xd">
+<h4>🟣 X-linked غالب</h4>
+<ul>
+<li>معمولاً فقط در خانم‌ها دیده می‌شه</li>
+<li>در جنس مذکر، شدت بیماری چنان زیاده که جنین در بارداری از بین می‌ره</li>
+<li>مثال: سندروم Rett، راشیتیسم مقاوم به ویتامین D</li>
+</ul>
+</div>
+<div class="pat y">
+<h4>🔵 Y-linked (Holandric)</h4>
+<ul>
+<li>فقط از پدر به پسر</li>
+<li>هرگز از پدر به دختر منتقل نمی‌شه (چون دخترها کروموزوم Y ندارن)</li>
+<li>مثال: آزوسپرمی</li>
+</ul>
+</div>
+<div class="pat mt">
+<h4>🟠 میتوکندریال</h4>
+<ul>
+<li>فقط از مادر — به <b>تمام</b> فرزندان، صرف‌نظر از جنسیت</li>
+<li>اگه پدر بیمار باشه و مادر سالم، بیماری منتقل نمی‌شه</li>
+<li>میتوکندری سلول تخم، منشأ مادری داره</li>
+</ul>
+</div>
+</div>
+
+<div class="pulse">
+<b>نبض سوال ↓</b>
+پرتکرارترین تله‌ی این بخش، قاطی کردن «X-linked غالب» با «میتوکندریال»ه، چون هر دو ممکنه شبیه به هم به‌نظر برسن. فرق کلیدی: در X-linked غالب، معمولاً <b>فرزند پسر زنده نمی‌مونه</b> (چون بیماری در حضور فقط یه X سالم خیلی شدیده). در میتوکندریال، وقتی <b>پدر</b> بیمار باشه و مادر سالم، بیماری اصلاً منتقل نمی‌شه — چون میتوکندری از اسپرم وارد تخم نمی‌شه.
+</div>
+</div>
+
+<div class="q" id="q5">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۵ — دو زوج مبتلا به آکندروپلازی ازدواج کنند، شانس تولد فرزند سالم چقدره؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) ۲/۳</li>
+  <li>ب) ۱/۴</li>
+  <li>ج) ۱/۳</li>
+  <li>د) ۱/۲</li>
+</ul>
+<div class="ans">
+قبل از دیدن پاسخ: آکندروپلازی یه بیماری AD هست. اگه هر دو والد هتروزیگوت (Aa) باشن، پانت‌اسکوئر بکش — چند ترکیب aa (سالم) در میاد؟
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ب (۱/۴)</span></p>
+<div class="distract">
+<b>چرا؟</b> هر دو والد Aa هستن (چون هموزیگوت AA برای آکندروپلازی معمولاً کشنده است و اصلاً زنده نمی‌مونه که بخواد ازدواج کنه). پانت‌اسکوئر: Aa × Aa → ¼ AA (کشنده) : ½ Aa (مبتلا) : ¼ aa (سالم). پس شانس فرزند سالم = ۱/۴.<br><br>
+<b>تله‌ی این سوال:</b> خیلیا ناخودآگاه فکر می‌کنن چون هر دو والد مبتلا هستن، پس همه‌ی فرزندا هم باید مبتلا باشن یا نسبت‌های استاندارد مندل به‌کل به‌هم می‌خوره — درصورتی‌که فقط باید یادت بمونه هموزیگوت AA این بیماری خاص، letal (کشنده) است، و این یه نکته‌ی اضافه روی پانت‌اسکوئر معمولیه.
+</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="q23">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۲۳ — نفوذ ژن استخوان‌سازی ناقص ۶۰٪، احتمال تولد فرزند مبتلا از یک والد ناقل اجباری سالم؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) ۳۰٪</li>
+  <li>ب) ۴۰٪</li>
+  <li>ج) ۱۰٪</li>
+  <li>د) ۲۰٪</li>
+</ul>
+<div class="ans">
+این سوال دو مفهوم رو با هم قاطی می‌کنه: احتمال انتقال ژن (که برای AD همیشه ۵۰٪ هست) و احتمال بروز بالینی وقتی ژن رو داری (که همون Penetrance هست). یادت باشه این دوتا جدان.
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">الف (۳۰٪)</span></p>
+<div class="distract">
+محاسبه: ۵۰٪ (احتمال انتقال آلل جهش‌یافته از والد AD) × ۶۰٪ (Penetrance، یعنی احتمال بروز بالینی در کسی که ژن رو داره) = ۳۰٪. اگه فقط یکی از این دو عدد رو در نظر می‌گرفتی (مثلاً فقط ۵۰٪ یا فقط ۶۰٪)، جواب اشتباه می‌شد — و دقیقاً برای همینم گزینه‌های ۴۰٪ و ۲۰٪ به‌عنوان تله چیده شدن (اعداد نزدیک ولی از محاسبه‌ی غلط).
+</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="q29">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۲۹ — در شجره‌نامه‌ای، چه خصوصیتی در انتقال صفت بیماری‌گونه قابل مشاهده است؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) Dominant negative</li>
+  <li>ب) Haplo-insufficiency</li>
+  <li>ج) Reduced penetrance</li>
+  <li>د) Variable expressivity</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح (طبق شجره‌ی نمونه سوال): <span class="correct">ج — Reduced Penetrance</span></p>
+<div class="distract">
+اینجا لازمه دقیق فرق «Reduced Penetrance» و «Variable Expressivity» رو بدونی — این دوتا مدام قاطی می‌شن:
+</div>
+<div class="compare-like" style="margin-top:10px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;">
+<div style="background:var(--rose-soft);border-radius:8px;padding:14px;font-size:.92rem;"><b>Reduced Penetrance</b><br>فرد آلل جهش‌یافته رو داره ولی <b>اصلاً</b> هیچ نشونه‌ی بالینی نداره — انگار «فرار کرده» (escape). سوال کلیدی: بیمار داره یا نداره؟</div>
+<div style="background:var(--teal-soft);border-radius:8px;padding:14px;font-size:.92rem;"><b>Variable Expressivity</b><br>فرد آلل رو داره <b>و</b> علائم بالینی هم داره، ولی شدت/نوع درگیری در افراد مختلف خانواده فرق می‌کنه — یکی خفیف، یکی شدید. سوال کلیدی: چقدر بیمار داره؟</div>
+</div>
+</div>
+</div>
+
+<div class="q" id="qve">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — پدیده‌ای که یک موتاسیون در افراد یک خانواده فنوتیپ‌های متفاوت (از نظر شدت) ایجاد کند</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) Penetrance</li>
+  <li>ب) Variable Expressivity</li>
+  <li>ج) Pleiotropic</li>
+  <li>د) Pseudogene</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ب</span></p>
+<div class="distract">
+دقیقاً همون تعریفی که بالا گفتیم. نکته‌ی اضافه: گزینه‌ی «Pleiotropic» یه مفهوم دیگه‌ست — وقتی <b>یک</b> ژن روی <b>چند سیستم/ارگان مختلف بدن</b> اثر می‌ذاره (نه این‌که شدتش در افراد فرق کنه). این دو رو قاطی نکن: Variable expressivity = تفاوت شدت بین افراد؛ Pleiotropy = تفاوت اندام‌های درگیر در یک فرد.
+</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="qhuntington">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — کدام بیماری الگوی توارث اتوزومال غالب دارد؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) سندرم دوشن</li>
+  <li>ب) تالاسمی</li>
+  <li>ج) هانتینگتون</li>
+  <li>د) سندرم داون</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ج</span></p>
+<div class="distract">
+سه گزینه‌ی دیگه رو باید بتونی رد کنی بدون فکر زیاد: دوشن → X-linked مغلوب. تالاسمی → AR. سندرم داون → کروموزومال (تریزومی ۲۱)، اصلاً الگوی مندلی نداره. هانتینگتون علاوه بر AD بودن، مثال کلاسیک <b>Anticipation</b> هم هست (تکرار CAG که هر نسل بیشتر می‌شه و سن بروز پایین‌تر میاد) — این نکته رو نگه‌دار، پایین‌تر بهش برمی‌گردیم.
+</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="qfh">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — هایپرکلسترولمی خانوادگی (FH) اتوزومال غالب، به علت موتاسیون در کدام ژن؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) PH Receptor &nbsp; ب) LH Receptor &nbsp; ج) HDL Receptor &nbsp; د) LDL Receptor</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">د</span></p>
+<div class="distract">
+این دقیقاً همون مثالیه که جزوه‌ی پاسدار به‌عنوان illness script کلاسیک AD معرفی کرده: نقص در گیرنده‌ی LDL → کلسترول LDL نمی‌تونه از خون وارد سلول بشه → تجمع در خون → بیماری‌های قلبی‌عروقی زودرس. اگه یادت بمونه «FH = مشکل گیرنده، نه خود چربی»، دیگه گزینه‌های دیگه (HDL/LH/PH) به‌نظر بی‌ربط میان.
+</div>
+</details>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+<h3>۲. X-linked مغلوب — کیس هموفیلی</h3>
+<div class="case">
+<b class="tag-case">🩺 کیس بالینی:</b> مردی مبتلا به هموفیلی با یه زن کاملاً سالم ازدواج می‌کنه. چه اتفاقی برای فرزندانشون می‌افته؟ فکر کن قبل از خوندن جواب: پدر، کروموزوم X بیمارش رو فقط می‌تونه به <b>دخترها</b> بده (چون پسرها از پدر فقط Y می‌گیرن).
+</div>
+</div>
+
+<div class="q" id="qhemophilia">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — اگر مرد مبتلا به هموفیلی با زن سالم ازدواج کند، فرزندانشان چگونه خواهند بود؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) تمام دخترانشان ناقل هستند</li>
+  <li>ب) تمام فرزندان مبتلا هستند</li>
+  <li>ج) تمام پسرانشان ناقل هستند</li>
+  <li>د) تمام دخترانشان مبتلا هستند</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">الف</span></p>
+<div class="distract">
+پدر: X<sup>bیمار</sup>Y. مادر: X<sup>سالم</sup>X<sup>سالم</sup>. دخترها همیشه یه X از پدر (بیمار) و یه X از مادر (سالم) می‌گیرن → همه‌ی دخترها ناقل (Carrier) می‌شن، نه مبتلا (چون هتروزیگوت‌ان و بیماری مغلوبه). پسرها فقط Y رو از پدر می‌گیرن، پس هیچ‌کدوم نه مبتلا می‌شن نه ناقل — کاملاً از این بیماری خاص بی‌تاثیرن.
+</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="qxr2">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — در بیماری مغلوب وابسته به X کدامیک صحیح است؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) زنان بیش از مردان به بیماری دچار می‌شوند</li>
+  <li>ب) ۵۰٪ فرزندان مذکر مبتلا و ۵۰٪ فرزندان مونث ناقل می‌باشند</li>
+  <li>ج) انتقال از پدر به پسر</li>
+  <li>د) همه موارد</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ب</span></p>
+<div class="distract">
+این سوال درباره‌ی حالت کلاسیک‌تره: مادر ناقل (X<sup>N</sup>X<sup>بیمار</sup>) × پدر سالم (X<sup>N</sup>Y). نتیجه: از پسرها، ۵۰٪ مبتلا (X<sup>بیمار</sup>Y) و ۵۰٪ سالم؛ از دخترها، ۵۰٪ ناقل (X<sup>N</sup>X<sup>بیمار</sup>) و ۵۰٪ کاملاً سالم. الف غلطه چون در X-linked recessive، <b>مردها</b> بیشتر مبتلا می‌شن نه زنان (چون فقط یه X دارن و جای فرار نیست). ج هم غلطه چون X-linked هیچ‌وقت «پدر به پسر» منتقل نمی‌شه — این ویژگی مخصوص Y-linked (هولاندریک) است.
+</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="q17">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۱۷ — صفاتی که از پدر فقط به پسران یا فقط به دختران منتقل می‌شود، به‌ترتیب از راست به چپ کدامند؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) وابسته به جنس غالب - هولاندریک</li>
+  <li>ب) هولاندریک - وابسته به جنس غالب</li>
+  <li>ج) هولاندریک - وابسته به جنس مغلوب</li>
+  <li>د) وابسته به جنس غالب - محدود به جنس</li>
+</ul>
+<div class="ans">
+پیش از دیدن پاسخ: صورت سوال دو حالت رو می‌خواد — «فقط پسر» و «فقط دختر». کدوم الگو دقیقاً فقط پسر می‌گیره؟
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ب</span></p>
+<div class="distract">
+هولاندریک (Y-linked) = فقط پدر به پسر (چون فقط پسرها Y می‌گیرن) → این جواب «فقط پسر»ه.<br>
+X-linked غالب از پدر = پدر کروموزوم X خودش رو فقط به دخترهاش می‌ده (پسرها ازش Y می‌گیرن) → پس اگه پدر مبتلا به یه بیماری X-linked غالب باشه، <b>همه‌ی دخترهاش</b> مبتلا می‌شن و <b>هیچ‌کدوم پسرهاش</b> نه. این جواب «فقط دختر»ه.<br>
+پس ترتیب راست‌به‌چپ (فقط پسر → فقط دختر) = هولاندریک - وابسته به جنس غالب = گزینه‌ی ب.
+</div>
+</details>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+<h3>۳. Anticipation (پیش‌افتادگی ژنتیکی)</h3>
+<p>اگه نوع و الگوی اختلال ژنومی رو بشناسیم، می‌تونیم پیش‌بینی کنیم که <strong class="k">هر نسل که می‌گذره، بیماری شدیدتر و سن ابتلا پایین‌تر میاد</strong>. این پدیده معمولاً پشتش تکرار توالی‌های سه‌حرفی مثل CAG هست که هر نسل تعدادشون بیشتر می‌شه.</p>
+<div class="why"><b>چرا این مهمه؟</b> چون همه‌ی بیماری‌های AD این ویژگی رو ندارن — فقط اون‌هایی که پایه‌شون تکرار نوکلئوتیدیه (مثل هانتینگتون، دیستروفی میوتونیک، آتاکسی‌های اسپینوسربلار).</p>
+</div>
+</div>
+
+<div class="q" id="qanticip">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — پدیده‌ی پیش‌افتادگی ژنتیکی در مورد کدام بیماری صدق نمی‌کند؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) دیستروفی میوتونیک مادرزادی</li>
+  <li>ب) دیستروفی عضلانی دوشن</li>
+  <li>ج) دیستروفی عضلانی اوکولوفارنژیال</li>
+  <li>د) سندروم X شکننده</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ب</span></p>
+<div class="distract">
+دوشن ناشی از حذف/جهش در ژن دیستروفین است (نه تکرار سه‌نوکلئوتیدی گسترش‌یابنده)، پس Anticipation نداره. بقیه‌ی گزینه‌ها (میوتونیک، اوکولوفارنژیال، X شکننده) همگی از خانواده‌ی بیماری‌های تکرار توالی‌ان و Anticipation کلاسیک نشون می‌دن.
+</div>
+</details>
+</div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۲</span> مطالب بدون سوال ولی مهم</h2>
+<p class="stage-desc">این‌ها مستقیم سوال ندارن، اما بدون این‌ها فهم عمیق شجره‌نامه‌خوانی ناقص می‌مونه.</p>
+
+<div class="card">
+<h3>تفاوت چهار اصطلاح مشابه که قاطی می‌شن</h3>
+<table class="wide">
+<tr><th>اصطلاح</th><th>تعریف دقیق</th></tr>
+<tr><td><b>Congenital (مادرزادی)</b></td><td>از بدو تولد وجود داره، صرف‌نظر از این‌که علتش محیطیه یا ارثی</td></tr>
+<tr><td><b>Genetic (ژنتیکی)</b></td><td>هیچ بیماری‌ای نداریم که ژنتیک اصلاً توش نقش نداشته باشه — فقط میزان این نقش فرق می‌کنه</td></tr>
+<tr><td><b>Familial (فامیلی)</b></td><td>تجمع خانوادگی داره — می‌تونه کاملاً محیطی باشه (مثل گواتر در خانواده‌ی کم‌ید) یا ژنتیکی</td></tr>
+<tr><td><b>Hereditary (ارثی)</b></td><td>بیماری‌های مونوژنیک که از نسلی به نسل دیگه منتقل می‌شن، یا بیماری‌های اپی‌ژنتیک (مثل سندروم آنجلمن)</td></tr>
+</table>
+<div class="why"><b>چرا این مهمه؟</b> چون این چهار کلمه در فارسی محاوره تقریباً مترادف به‌نظر می‌رسن، ولی در متن تخصصی معانی کاملاً جدایی دارن — و طراح سوال عاشق اینه که یکیش رو جای اون یکی بذاره.</p>
+</div>
+</div>
+
+<div class="card">
+<h3>Heterogeneity در برابر بیماری پلی‌ژنیک</h3>
+<p>یه بیماری مونوژنیک می‌تونه <strong class="k">هتروژن</strong> باشه — یعنی یک فنوتیپ بالینی، در افراد مختلف، ناشی از جهش در <b>ژن‌های متفاوت</b> باشه (مثل کاتاراکت یا FH). این با بیماری پلی‌ژنیک اشتباه گرفته می‌شه، ولی فرقشون اساسیه:</p>
+<div class="grid2">
+<div style="background:var(--rose-soft);border-radius:10px;padding:16px;font-size:.93rem;"><b>بیماری هتروژن (مونوژنیک)</b><br>در <b>هر فرد</b>، فقط <b>یک</b> ژن دخیله — منتها این یک ژن، در افراد مختلف می‌تونه فرق کنه. الگوی وراثتی در شجره‌نامه‌ی هر خانواده <b>واضحه</b>.</div>
+<div style="background:var(--teal-soft);border-radius:10px;padding:16px;font-size:.93rem;"><b>بیماری پلی‌ژنیک</b><br>در <b>هر فرد</b>، چند ژن مختلف <b>هم‌زمان</b> دست‌به‌دست هم می‌دن. الگوی وراثتی <b>ندارد</b>.</div>
+</div>
+</div>
+
+<div class="card">
+<h3>Germline در برابر Somatic Mutation</h3>
+<p><strong class="k">Germline:</strong> تغییری که در زمان تکوین سلول تخم رخ داده — در <b>تمام</b> سلول‌های بدن هست (از مخاطی تا لنفوسیت)، و قابل انتقال به نسل بعده.</p>
+<p><strong class="k">Somatic:</strong> فقط در بافت خاصی رخ می‌ده (مثلاً پوست در معرض UV) — بقیه‌ی سلول‌های بدن این تغییر رو ندارن، و به نسل بعد منتقل نمی‌شه. این نوع تغییر پایه‌ی خیلی از سرطان‌هاست.</p>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۳</span> ارتباطات پیچیده و کیس سینتزی</h2>
+<p class="stage-desc">حالا بیا چند مفهوم رو با هم قاطی کنیم، دقیقاً همون چیزی که سوالات سخت‌تر امتحان روش طراحی می‌شن.</p>
+
+<div class="card">
+<h3>کیس سینتزی — یه خانواده با شجره‌نامه‌ی گیج‌کننده</h3>
+<div class="case">
+<b class="tag-case">🩺 سناریو:</b> پزشکی روی یه شجره‌نامه کار می‌کنه که توش یه بیماری پوستی (تاول‌زایی) در بچه دیده می‌شه، اما هیچ‌کدوم از والدین علائم بالینی ندارن. آزمایش ژنتیک نشون می‌ده بچه <b>هتروزیگوت</b> برای یه جهش missense در ژن مسئوله، و طبق OMIM این بیماری <b>AD</b> است. حالا دو تا احتمال جلوته:
+<br>۱) والدین این جهش رو ندارن (یعنی جهش <i>de novo</i> رخ داده).
+<br>۲) والدین جهش رو دارن ولی هیچ علامتی نشون نمی‌دن.
+</div>
+<p>پیش از خوندن ادامه، فکر کن: کدوم حالت «بدترین حالت ممکن» از نظر مشاوره‌ی ژنتیکه؟</p>
+<details class="reveal"><summary>تحلیل رو ببین</summary>
+<p>حالت ۲ (والدین جهش رو دارن ولی سالمن) بدترین حالته — چون یعنی این ژن <strong class="k">Reduced Penetrance</strong> داره. این خیلی مهمه چون: (الف) دیگه نمی‌تونی مطمئن باشی «سالم بودن ظاهری والدین» یعنی جهش رو ندارن — پس باید حتماً تست ژنتیک بگیری، نه فقط معاینه‌ی بالینی. (ب) از نظر اخلاقی، دیگه نمی‌شه برای بارداری بعدی PND (تشخیص پیش از تولد) پیشنهاد داد — چون حتی اگه جنین جهش رو داشته باشه، به‌خاطر نفوذ ناقص نمی‌شه گفت قطعاً بیمار می‌شه یا نه (شاید مثل پدرش سالم بمونه). به‌جاش IVF + PGD (تشخیص پیش از لانه‌گزینی) توصیه می‌شه.</p>
+</details>
+</div>
+
+<div class="card">
+<h3>مقایسه‌ی نهایی — X-linked غالب در برابر میتوکندریال (سوال کلاسیک شجره‌نامه)</h3>
+<p>این دو الگو از دور شبیه هم به‌نظر می‌رسن (هر دو می‌تونن هم به پسر هم به دختر منتقل بشن از مادر)، ولی یه شجره‌نامه‌ی ساده کافیه که فرقشون رو نشون بده:</p>
+<table class="wide">
+<tr><th></th><th>X-linked غالب</th><th>میتوکندریال</th></tr>
+<tr><td><b>وقتی پدر مبتلاست</b></td><td>همه‌ی دخترها مبتلا، هیچ پسری مبتلا نیست</td><td>هیچ فرزندی مبتلا نمی‌شه (میتوکندری از اسپرم منتقل نمی‌شه)</td></tr>
+<tr><td><b>وقتی مادر مبتلاست</b></td><td>۵۰٪ فرزندان (هر دو جنس) مبتلا</td><td><b>همه‌ی</b> فرزندان (هر دو جنس) مبتلا</td></tr>
+<tr><td><b>بقای پسران</b></td><td>در بسیاری موارد پسر مبتلا زنده نمی‌مونه</td><td>مشکلی در بقای پسر ایجاد نمی‌کنه</td></tr>
+</table>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۴</span> مرور نهایی — اتصال به بخش ۱</h2>
+<div class="card">
+<p>یادته توی بخش ۱ گفتیم بیماری‌های <strong class="k">مونوژنیک</strong> برخلاف <strong class="k">مولتی‌فاکتوریال</strong>، الگوی وراثتی واضح و قابل‌رسم دارن؟ حالا با شش الگوی این بخش (AD/AR/X-linked×۲/Y-linked/میتوکندریال) دقیقاً همون «الگوی واضح» رو دیدیم که در جهش‌های مونوژنیک انتظارش رو داشتیم. نکته‌ی تازه اینه که حتی درون همین دسته‌ی «الگوی واضح» هم، مفاهیمی مثل <b>Reduced Penetrance</b> می‌تونن ظاهر شجره‌نامه رو گمراه‌کننده کنن — پس «الگوی واضح داشتن» به معنای «همیشه ساده بودن تفسیر» نیست.</p>
+<div class="check">
+<b>✓ چک فهم سریع (Spaced Retrieval از بخش ۱ و ۲):</b><br>
+۱. اگه Heritability یه بیماری ۱۰۰٪ باشه ولی الگوی وراثتیش روی شجره‌نامه هیچ نظمی نداشته باشه، این بیماری به احتمال زیاد از کدوم دسته‌ست؟<br>
+۲. تفاوت Reduced Penetrance و Variable Expressivity در یک جمله؟<br>
+۳. چرا در جهش‌های Y-linked هرگز از پدر به دختر منتقل نمی‌شه؟
+<details class="reveal" style="margin-top:8px;"><summary>جواب‌ها رو ببین</summary>
+<p>۱. پلی‌ژنیک/مولتی‌فاکتوریال (نه مونوژنیک) — چون با وجود Heritability بالا، بازم به‌خاطر دخالت چند ژن، الگوی مندلی ساده نداره.<br>
+۲. Penetrance = بیمار می‌شه یا نه (all-or-none)؛ Expressivity = چقدر شدید بیمار می‌شه.<br>
+۳. چون دخترها از پدر کروموزوم X می‌گیرن نه Y؛ ژن روی Y فقط می‌تونه به فرزند پسر برسه.</p>
+</details>
+</div>
+</div>
+</section>
+
+<div class="cheat">
+<h2>📋 چک‌لیست شب امتحان — بخش ۲</h2>
+<div class="grid2">
+<div class="col">
+<ul>
+<li>قبل از هر شجره‌نامه: Transmission → Segregation → نسبت جنسیتی</li>
+<li><b>AD:</b> عمودی، ۵۰٪، penetrance ناقص ممکنه، expressivity متغیر (مثال: FH → گیرنده‌ی LDL، هانتینگتون)</li>
+<li><b>AR:</b> افقی، ازدواج فامیلی ریسک رو بالا می‌بره (تالاسمی، CF، SMA)</li>
+<li><b>X-linked مغلوب:</b> مادر همیشه ناقل، پسرها بیشتر مبتلا (هموفیلی، دوشن)</li>
+<li><b>X-linked غالب:</b> فقط در دخترها دیده می‌شه، پسر مبتلا معمولاً زنده نمی‌مونه (Rett)</li>
+</ul>
+</div>
+<div class="col">
+<ul>
+<li><b>Y-linked (هولاندریک):</b> فقط پدر→پسر</li>
+<li><b>میتوکندریال:</b> مادر → همه‌ی فرزندان، پدر بیمار اثری نداره</li>
+<li>⚠️ Penetrance ناقص ≠ Variable Expressivity — یکی «بیمار هست/نیست»، اون یکی «چقدر شدید»</li>
+<li><b>Anticipation:</b> تکرار CAG/سه‌نوکلئوتیدی، هر نسل بدتر (هانتینگتون، میوتونیک) — دوشن نداره</li>
+<li>چهار اصطلاح: Congenital ≠ Genetic ≠ Familial ≠ Hereditary — هرکدوم تعریف مستقل خودشون رو دارن</li>
+</ul>
+</div>
+</div>
+</div>
+
+</div>
+
+<footer>
+بخش ۲ از جزوه — الگوهای وراثتی مندلی. بخش بعدی: جمعیت‌شناسی ژنتیک و معادله‌ی Hardy-Weinberg (محاسبه‌ی فراوانی آللی/ژنوتیپی، عوامل به‌هم‌زننده‌ی تعادل مثل Founder Effect و Genetic Drift) — چون این مبحث محاسباتیه و حجمش زیاده، جدا از این بخش نگهش داشتم تا سنگین نشه.
+<br><br>
+<b>یادداشت بازنگری:</b> تمام سوالات نمونه‌ی مرتبط با AD/AR/X-linked/Y-linked/میتوکندریال/Penetrance/Expressivity/Anticipation در این بخش پوشش داده شد. سوالات مربوط به کاریوتایپ و ناهنجاری‌های کروموزومی (مثل جابجایی رابرتسونی، تریزومی‌ها) عمداً اینجا نیومدن — چون به بحث «الگوی وراثتی» مربوط نیستن، بلکه به «اختلالات کروموزومی» تعلق دارن و در یه بخش جدا میان.
+</footer>
+
+</body>
+</html>
