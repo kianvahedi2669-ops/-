@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جزوه ژنتیک | بخش ۶ — ناهنجاری‌های کروموزومی و غربالگری پیش از تولد</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF9F3; --ink:#1E2321; --ink-soft:#4B534E;
+  --teal:#1B4B43; --teal-soft:#E7EFEC;
+  --gold:#C98A2C; --gold-soft:#FBF0DC;
+  --rose:#AE4238; --rose-soft:#F7E8E5;
+  --line:#DDD6C6; --card:#FFFFFF;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Vazirmatn',sans-serif;line-height:1.9;font-size:17px;}
+.wrap{width:100%;padding:0 clamp(16px,4vw,56px);}
+.hero{background:linear-gradient(180deg,var(--teal) 0%,#123830 100%);color:#F3F0E6;padding:52px 0 36px;}
+.dna-rule{height:10px;width:100%;background-image:repeating-linear-gradient(90deg,var(--gold) 0 10px, transparent 10px 22px);opacity:.85;}
+.hero h1{font-size:2.1rem;font-weight:800;margin:0 0 8px;}
+.hero p.sub{color:#CFE3DC;font-weight:400;font-size:1.05rem;margin:0;}
+.hero .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
+.tag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);padding:5px 14px;border-radius:999px;font-size:.85rem;}
+section{padding:40px 0;}
+h2.stage{font-size:1.5rem;font-weight:800;color:var(--teal);display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+h2.stage .num{background:var(--teal);color:#fff;width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.stage-desc{color:var(--ink-soft);font-size:.95rem;margin:0 0 26px;padding-right:46px;}
+.hy{display:inline-flex;align-items:center;gap:6px;background:var(--gold-soft);color:#7A5314;border:1px solid #E9C989;padding:3px 12px;border-radius:999px;font-size:.82rem;font-weight:600;margin-bottom:10px;}
+.stars{color:var(--gold);letter-spacing:1px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px clamp(18px,3vw,40px);margin:20px 0;box-shadow:0 1px 2px rgba(0,0,0,.03);}
+.card h3{margin-top:0;font-size:1.2rem;color:var(--ink);border-bottom:2px solid var(--teal-soft);padding-bottom:10px;}
+.pulse{background:var(--teal);color:#fff;border-radius:10px;padding:16px 20px;margin:16px 0;font-size:.98rem;}
+.pulse b{display:block;margin-bottom:4px;color:var(--gold-soft);}
+.why{border-right:3px solid var(--gold);background:var(--gold-soft);padding:10px 16px;margin:14px 0;border-radius:0 8px 8px 0;font-size:.95rem;}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:18px 0;}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin:16px 0;}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:16px 0;}
+.mt{border-radius:12px;padding:18px 20px;font-size:.93rem;border:1px solid var(--line);}
+.mt h4{margin:0 0 10px;font-size:1.02rem;display:flex;align-items:center;gap:8px;}
+.mt.miss{background:var(--gold-soft);border-color:#E9C989;}
+.mt.non{background:var(--rose-soft);border-color:#E3C3BE;}
+.mt.splice{background:#EDE6F5;border-color:#CBB8E0;}
+.mt.indel{background:var(--teal-soft);border-color:#C7D9D2;}
+.case{background:#F4F6F4;border:1px dashed #9EB3AA;border-radius:10px;padding:16px 20px;margin:16px 0;font-size:.95rem;}
+.case b.tag-case{color:var(--teal);}
+.q{background:var(--card);border:1.5px solid var(--line);border-radius:12px;margin:18px 0;overflow:hidden;}
+.q .qhead{padding:16px 20px;font-weight:700;background:#F4F1E7;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.q .qhead .src{font-size:.75rem;font-weight:400;color:var(--ink-soft);white-space:nowrap;}
+.q ul.opts{list-style:none;padding:0;margin:14px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px;}
+.q ul.opts li{padding:8px 12px;border-radius:6px;background:#FAFAF8;font-size:.94rem;}
+.q .ans{display:none;padding:0 20px 18px;font-size:.92rem;}
+.q.open .ans{display:block;}
+.q .ans .correct{color:var(--teal);font-weight:700;}
+.q .distract{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px;}
+.toggle-hint{font-size:.78rem;color:var(--ink-soft);padding:10px 20px 0;}
+.check{background:var(--teal-soft);border:1px solid #C7D9D2;border-radius:10px;padding:16px 20px;margin:16px 0;}
+.check b{color:var(--teal);}
+.errspot{background:#FDF3E8;border:1px solid #EED2A6;border-radius:10px;padding:16px 20px;font-size:.94rem;margin:16px 0;}
+details.reveal summary{cursor:pointer;color:var(--rose);font-weight:600;}
+.divider{height:8px;width:100%;margin:34px 0;background-image:repeating-linear-gradient(90deg,var(--line) 0 8px, transparent 8px 18px);}
+.cheat{background:var(--teal);color:#F3F0E6;border-radius:16px;padding:32px clamp(18px,3vw,44px);margin:40px 0;}
+.cheat h2{margin-top:0;color:#fff;}
+.cheat .grid2{margin:0;}
+.cheat .col{background:rgba(255,255,255,.06);border-radius:10px;padding:16px 18px;}
+.cheat ul{padding-right:20px;margin:0;}
+.cheat li{margin-bottom:8px;}
+footer{padding:30px 0 60px;color:var(--ink-soft);font-size:.85rem;text-align:center;}
+strong.k{color:var(--teal);}
+table.wide{width:100%;border-collapse:collapse;font-size:.94rem;}
+table.wide td,table.wide th{padding:10px;border-bottom:1px solid var(--line);text-align:right;}
+table.wide tr:nth-child(even){background:#F6F4EC;}
+code{background:#EFEAD9;padding:2px 8px;border-radius:5px;font-family:monospace;font-size:.9rem;direction:ltr;display:inline-block;}
+.spectrum{display:flex;border-radius:10px;overflow:hidden;margin:18px 0;font-size:.85rem;text-align:center;}
+.spectrum div{flex:1;padding:14px 6px;color:#fff;}
+.kt{font-family:monospace;direction:ltr;display:inline-block;background:#EFEAD9;padding:2px 8px;border-radius:5px;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>جزوه تعمیقی ژنتیک — بخش ۶</h1>
+    <p class="sub">ناهنجاری‌های عددی و ساختاری کروموزومی، جابجایی رابرتسونی، سندرم‌های ترنر/کلاین‌فلتر، و غربالگری/تشخیص پیش از تولد</p>
+    <div class="tags">
+      <span class="tag">جزوه‌ی پاسدار — کروموزوم‌شناسی بالینی</span>
+      <span class="tag">پوشش نمونه سوالات مرتبط</span>
+      <span class="tag">قدم ششم از ده</span>
+    </div>
+  </div>
+</div>
+<div class="dna-rule"></div>
+
+<div class="wrap">
+
+<section>
+<h2 class="stage"><span class="num">۱</span> نقاط مشترک با نمونه سوالات</h2>
+<p class="stage-desc">تا اینجا سطح <b>ژن (بخش ۲و۳)</b> و سطح <b>جمعیت (بخش ۴و۵)</b> رو دیدیم. این بخش یه سطح دیگه‌ست: وقتی اشتباه نه در یک نوکلئوتید، بلکه در <strong class="k">تعداد یا ساختار کل یک کروموزوم</strong> رخ می‌ده. این‌جا واحد اندازه‌گیری دیگه «جهش در یک ژن» نیست، بلکه ده‌ها تا صدها ژن یک‌جا کم یا زیاد می‌شن — به همین خاطر این بیماری‌ها معمولاً شدیدتر و چندسیستمی‌ان.</p>
+
+<div class="hy">🎯 High-yield: <span class="stars">★★★★★</span> — یکی از پرتکرارترین مباحث در نمونه سوالات؛ محاسبه‌ی کاریوتایپ و ریسک تکرار حتماً بیاد</div>
+
+<div class="card">
+<h3>۱. آنیوپلوئیدی چیست و از کجا میاد؟ (Nondisjunction)</h3>
+<p><strong class="k">آنیوپلوئیدی (Aneuploidy)</strong> یعنی تعداد کروموزوم‌ها به‌جای مضرب دقیق از ۲۳ (حالت طبیعی ۴۶=۲×۲۳)، یکی کم یا زیاد باشه — مثلاً ۴۵ یا ۴۷. علتش تقریباً همیشه <strong class="k">Nondisjunction</strong> است: یعنی دو کروموزوم همتا (یا دو کروماتید خواهری) در میوز از هم جدا نمی‌شن و با هم به یک گامت می‌رن.</p>
+<p>این اتفاق می‌تونه در دو نقطه‌ی متفاوت رخ بده و نتیجه‌ش فرق می‌کنه:</p>
+<ol style="padding-right:20px;">
+<li><b>Nondisjunction در میوز I:</b> کل جفت کروموزوم همتا (هر دو نسخه از یک والد) با هم جدا نمی‌شن → گامت حاصل یا هر دو نسخه رو داره یا هیچ‌کدوم رو.</li>
+<li><b>Nondisjunction در میوز II:</b> فقط دو کروماتید خواهریِ یک کروموزوم از هم جدا نمی‌شن → این خطا دیرتر رخ می‌ده و شایع‌تر در تخمک‌های مادران مسن‌تره.</li>
+</ol>
+<div class="why"><b>چرا سن مادر مهم‌ترین ریسک‌فاکتوره؟</b> تخمک‌های یک زن از قبل تولدش در پروفاز میوز I «متوقف» شدن و تا زمان تخمک‌گذاری (حتی ۴۰ سال بعد) همون‌جا می‌مونن. هرچه این توقف طولانی‌تر بشه، دستگاه دوک میوزی (spindle apparatus) و پروتئین‌های چسبنده‌ی بین کروماتیدها (cohesin) بیشتر فرسوده می‌شن — پس احتمال Nondisjunction، به‌خصوص در میوز I، با افزایش سن مادر به‌شدت بالا می‌ره.</p>
+</div>
+</div>
+
+<div class="card">
+<h3>۲. سه‌گانه‌ی تریزومی اتوزومی بزرگ — مقایسه‌ی کنار هم</h3>
+<p>سه تریزومی اتوزومی که تا سن تولد زنده می‌مونن (بقیه‌ی تریزومی‌های اتوزومی معمولاً قبل از تولد سقط می‌شن) رو باید همیشه در تقابل مستقیم با هم به‌خاطر بسپاری، نه جدا جدا:</p>
+<div class="grid3">
+<div class="mt indel"><h4>تریزومی ۲۱ — سندرم داون</h4>شایع‌ترین تریزومی زنده‌مانده (~۱ در ۷۰۰ تولد). ویژگی: هیپوتونی، صورت مسطح، چین اپیکانتال، Single Palmar Crease، نقص قلبی (AV canal)، ناتوانی ذهنی متوسط. بیشترین امید به بقا در بین سه‌گانه.</div>
+<div class="mt miss"><h4>تریزومی ۱۸ — سندرم ادواردز</h4>شیوعش از تریزومی ۲۱ <b>کمتره</b> (~۱ در ۵۰۰۰). ویژگی: مشت‌شدگی انگشتان روی هم (clenched fists با انگشت اشاره روی وسطی)، نقص قلبی شدید، Rocker-bottom foot. اکثر نوزادان کمتر از یک سال زنده می‌مونن.</div>
+<div class="mt non"><h4>تریزومی ۱۳ — سندرم پاتو</h4>نادرترین (~۱ در ۱۶۰۰۰). ویژگی مشخصه: <b>شکاف کام و لب، پلی‌داکتیلی، فتق (امفالوسل)</b> — این سه‌تایی رو با هم به‌خاطر بسپار. میکروفتالمی و هولوپروزنسفالی هم شایعه.</div>
+</div>
+<div class="why"><b>چرا شیوع تریزومی ۱۳ و ۱۸ این‌قدر کمتر از ۲۱ است؟</b> کروموزوم ۲۱ کوچیک‌ترین کروموزوم انسانه — یعنی کمترین تعداد ژن رو داره. هرچه کروموزوم اضافه بزرگ‌تر باشه (مثل ۱۸ یا ۱۳)، تعداد ژن‌های اضافه‌ی بیان‌شده بیشتره و بار متابولیک/رشدی جنین آن‌قدر سنگین می‌شه که اکثر این جنین‌ها اصلاً به تولد زنده نمی‌رسن (سقط خودبه‌خودی زودرس). پس چیزی که در جامعه به‌عنوان «شیوع در تولد زنده» اندازه می‌گیریم، فقط اون سرِ طیفیه که تحمل‌پذیرتره.</p>
+</div>
+</div>
+
+<div class="q" id="q1">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — شکاف کام و لب، پلی‌داکتیلی و فتق در کدام سندرم دیده می‌شود؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) سندرم ادوارد</li>
+  <li>ب) سندرم پاتو</li>
+  <li>ج) سندرم دی‌جرج</li>
+  <li>د) سندرم داون</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ب</span> (تریزومی ۱۳)</p>
+<div class="distract">
+تله‌ی این سوال قاطی‌کردن ویژگی‌های ادوارد (مشت‌شده، رشد داخل‌رحمی محدود) با پاتوئه. کلید حفظی: پاتو = P برای Polydactyly و Palate (کام). دی‌جرج اصلاً ناهنجاری کروموزوم عددی نیست — یه میکرودیلیشن ۲۲q11.2 است که در ادامه‌ی همین بخش می‌بینیمش.
+</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="q2">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — درباره‌ی تریزومی ۱۸ کدام گزینه درست است؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) درصد شیوع آن از تریزومی ۲۱ بیشتر است</li>
+  <li>ب) درصد شیوع آن از تریزومی ۲۱ کمتر است</li>
+  <li>ج) درصد شیوع آن همسان با تریزومی ۲۱ است</li>
+  <li>د) هیچ‌کدام</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ب</span></p>
+<div class="distract">
+دقیقاً همون منطق «چرا» بالا: کروموزوم ۲۱ کوچیک‌تره، پس تریزومی‌اش بار ژنتیکی کمتری داره و بیشتر جنین‌ها زنده می‌مونن تا تولد → شیوعش در تولد زنده بیشتره.
+</div>
+</details>
+</div>
+</div>
+
+<div class="card">
+<h3>۳. ناهنجاری‌های ساختاری — وقتی خودِ کروموزوم می‌شکنه یا جابه‌جا می‌شه</h3>
+<p>برخلاف آنیوپلوئیدی (که تعداد کل کروموزوم عوض می‌شه)، در ناهنجاری‌های ساختاری، تعداد کروموزوم‌ها می‌تونه طبیعی بمونه ولی <b>محتوای</b> یکی از کروموزوم‌ها جابه‌جا، حذف، یا تکرار شده باشه.</p>
+
+<div class="pulse">
+<b>مهم‌ترین نوع برای امتحان: جابجایی رابرتسونی (Robertsonian Translocation)</b>
+این جابجایی فقط بین کروموزوم‌های <strong style="color:#FBF0DC;">آکروسنتریک</strong> (کروموزوم‌هایی که سانترومرشون خیلی نزدیک یک انتهاست) رخ می‌ده — یعنی فقط بین ۵ کروموزوم: <b>۱۳، ۱۴، ۱۵، ۲۱، ۲۲</b>. بازوی کوتاه این کروموزوم‌ها ماده‌ی ژنتیکی حیاتی کمی داره (عمدتاً ژن‌های rRNA تکراری)، پس وقتی دو تا از این کروموزوم‌ها از ناحیه‌ی سانترومر به هم می‌چسبن و بازوهای کوتاهشون گم می‌شه، فرد حامل هنوز تقریباً تمام ماده‌ی ژنتیکی لازم رو داره.
+</div>
+
+<ol style="padding-right:20px;">
+<li><b>مرحله‌ی ۱ — شکستن:</b> دو کروموزوم آکروسنتریک از نزدیکی سانترومر می‌شکنن.</li>
+<li><b>مرحله‌ی ۲ — چسبیدن:</b> دو بازوی بلند به هم می‌چسبن و یک کروموزوم واحد می‌سازن؛ دو بازوی کوتاه (که تقریباً بی‌اهمیتن) از بین می‌رن.</li>
+<li><b>مرحله‌ی ۳ — نتیجه:</b> فرد حامل این جابجایی <b>۴۵ کروموزوم</b> داره (نه ۴۶)، ولی چون ماده‌ی ژنتیکی مهمی گم نشده، از نظر بالینی کاملاً <strong class="k">سالم</strong> است — بهش <strong class="k">حامل متوازن (Balanced Carrier)</strong> می‌گیم.</li>
+</ol>
+
+<div class="why"><b>چرا این فرد از نظر بالینی سالمه در حالی که فقط ۴۵ کروموزوم داره؟</b> چون تعداد کروموزوم به‌تنهایی مهم نیست — مقدار کل ماده‌ی ژنتیکی مهمه. اینجا فقط دو تا بازوی کوچک بی‌محتوا حذف شدن؛ هیچ ژن حیاتی‌ای گم نشده، فقط بسته‌بندی فیزیکی DNA فرق کرده.</p>
+</div>
+</div>
+
+<div class="q" id="q3">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — در کدام‌یک از کاریوتیپ‌های زیر فرد از نظر بالینی سالم است؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) <span class="kt">45,X</span></li>
+  <li>ب) <span class="kt">46,XX,der(14;21)(q10;q10)</span></li>
+  <li>ج) <span class="kt">47,XX,+21</span></li>
+  <li>د) <span class="kt">45,XX,der(21;13)(q10;q10)</span></li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ + استدلال</summary>
+<p>پاسخ صحیح: <span class="correct">ب</span></p>
+<p>بیا هر گزینه رو با کدنویسی استاندارد کاریوتایپ (که در بخش ۴ دیدیم) بخونیم: <span class="kt">der(14;21)(q10;q10)</span> یعنی یک کروموزوم مشتق‌شده (derivative) از چسبیدن بازوهای بلند (q) کروموزوم ۱۴ و ۲۱ — این دقیقاً همون جابجایی رابرتسونی متوازنه. چون تعداد کروموزوم‌های نوشته‌شده ۴۶ است (یکی جابجا شده ولی یکی دیگه از مجموعه هم باقی مونده — یعنی این شخص یک نسخه‌ی طبیعی ۱۴، یک نسخه‌ی طبیعی ۲۱، و یک <span class="kt">der(14;21)</span>‌ داره)، هیچ ماده‌ی ژنتیکی اضافه یا کمی نداره → سالم.</p>
+<div class="distract">
+گزینه‌ی الف (<span class="kt">45,X</span>) سندرم ترنره؛ ج (<span class="kt">47,XX,+21</span>) تریزومی ۲۱ کامله (نه جابجایی، بلکه یک کروموزوم ۲۱ اضافه‌ی کامل)؛ د یک جابجایی <b>نامتوازن</b> است چون کروموزوم ۱۴ طبیعی وجود نداره در کنارش ذکر نشده — دقت به فرمت کامل کاریوتایپ همیشه لازمه.
+</div>
+</details>
+</div>
+</div>
+
+<div class="card">
+<h3>۴. حامل متوازن در برابر حامل نامتوازن — چرا این فرق، سرنوشت فرزندان رو عوض می‌کنه؟</h3>
+<p>وقتی یک حامل متوازن جابجایی رابرتسونی (مثلاً بین ۱۴ و ۲۱) بخواد بچه‌دار بشه، در میوز، این کروموزوم مشتق‌شده باید با کروموزوم‌های طبیعی ۱۴ و ۲۱ جفت بشه و جدا بشه. چون آرایش فضایی این سه کروموزوم (یک سه‌تایی به‌جای یک جفت معمولی) پیچیده‌ست، احتمال جداشدن نامساوی بالا می‌ره و گامت‌های نامتوازن تولید می‌شن.</p>
+<div class="grid2">
+<div class="mt indel"><h4>حامل متوازن (Balanced)</h4>تعداد کل ماده‌ی ژنتیکی طبیعیه، فقط بسته‌بندی فرق داره. بالینی سالم. تنها مشکل: در تولیدمثل، گامت‌های نامتوازن تولید می‌کنه.</div>
+<div class="mt non"><h4>حامل نامتوازن (Unbalanced)</h4>جنین یک نسخه‌ی اضافه یا کم از بازوی بلند ۲۱ (یا ۱۴) گرفته — این دقیقاً همون <b>«داون ترانسلوکیشنی»</b> است؛ فنوتیپ بالینی‌اش با تریزومی ۲۱ معمولی یکسانه، ولی کاریوتایپش ۴۶ کروموزوم نشون می‌ده (نه ۴۷)، چون یکی از کروموزوم‌های ۲۱ اضافه، به کروموزوم ۱۴ چسبیده.</div>
+</div>
+<div class="why"><b>چرا این تمایز برای مشاوره‌ی ژنتیک حیاتیه؟</b> اگه سندرم داون یه بچه از نوع تریزومی ۲۱ کامل (Nondisjunction ساده) باشه، ریسک تکرار در بارداری بعدی کمه و فقط به سن مادر مربوطه. ولی اگه از نوع ترانسلوکیشنی باشه، باید کاریوتایپ والدین چک بشه — چون اگه یکی از والدین حامل متوازن باشه، ریسک تکرار می‌تونه تا ۱۰-۱۵٪ (اگر مادر حامل باشه) بالا بره، چون این ریسک دیگه به سن مادر ربطی نداره و از ساختار کروموزومی والد میاد.</p>
+</div>
+</div>
+
+<div class="q" id="q4">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — خانمی با کاریوتایپ 45,XX,der(10;10) قصد بچه‌دار شدن دارد. به فرض تولد زنده، احتمال تولد نوزاد سالم چقدر است؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا استدلال باز شه</div>
+<div class="ans" style="display:block;padding:0 20px 18px;">
+<details class="reveal"><summary>نمایش پاسخ + استدلال</summary>
+<p>پاسخ صحیح: <span class="correct">صفر (۰٪)</span></p>
+<p>این‌جا یه تله‌ی مفهومی ظریفه: کروموزوم ۱۰ جزو ۵ کروموزوم آکروسنتریک (۱۳،۱۴،۱۵،۲۱،۲۲) نیست! پس این یه جابجایی رابرتسونی <b>هموزیگوت</b> بین دو نسخه از <b>همون</b> کروموزوم ۱۰ است (نه بین دو کروموزوم متفاوت) — یعنی هر دو کروموزوم ۱۰ این خانم با هم ادغام شدن. در میوز، این فرد فقط می‌تونه دو نوع گامت بسازه: یا گامتی با کروموزوم <span class="kt">der(10;10)</span> کامل (که نتیجه‌ش تریزومی ۱۰ در جنینه) یا گامتی بدون هیچ کروموزوم ۱۰ (که نتیجه‌ش مونوزومی ۱۰ است). هر دو حالت با حیات جنین ناسازگارن (letal) → به فرض تولد زنده هم، احتمال سالم بودن صفره؛ عملاً این فرد نابارور محسوب می‌شه.</p>
+</details>
+</div>
+</div>
+
+<div class="q" id="q5">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — جابجایی بین کدام دو کروموزوم زیر «جابجایی رابرتسونی» نام دارد؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) ۹ و ۱۴</li>
+  <li>ب) ۱۸ و ۱۴</li>
+  <li>ج) ۲۲ و ۱۳</li>
+  <li>د) ۱۶ و ۲۲</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ج</span> — چون ۱۳ و ۲۲ هر دو جزو ۵ کروموزوم آکروسنتریک هستن. در بقیه‌ی گزینه‌ها، حداقل یکی از دو کروموزوم (۹، ۱۸، یا ۱۶) آکروسنتریک نیست، پس جابجایی رابرتسونی کلاسیک نمی‌سازن.</p>
+</details>
+</div>
+</div>
+
+<div class="card">
+<h3>۵. جابجایی متقابل (Reciprocal Translocation) — وقتی خودِ ژن جهش نمی‌کنه ولی سرطان می‌سازه</h3>
+<p>برخلاف رابرتسونی (که فقط بین ۵ کروموزوم خاص و از نقطه‌ی سانترومر رخ می‌ده)، جابجایی متقابل می‌تونه بین <b>هر دو کروموزوم غیرهمتا</b> در هر نقطه‌ای رخ بده — دو کروموزوم قطعه‌هایی از هم رو مبادله می‌کنن. وقتی این شکست دقیقاً وسط دو ژن خاص بیفته، می‌تونه یک <strong class="k">ژن فیوژن (Fusion Gene)</strong> جدید بسازه که سرطان‌زاست.</p>
+<div class="grid2">
+<div class="mt indel"><h4>کروموزوم فیلادلفیا — لوسمی میلوئید مزمن (CML)</h4>ترانسلوکاسیون <span class="kt">t(9;22)</span> — بین کروموزوم ۹ و ۲۲. ژن <b>ABL</b> (از کروموزوم ۹) به ژن <b>BCR</b> (روی کروموزوم ۲۲) می‌چسبه و پروتئین فیوژن BCR-ABL می‌سازه که یک تیروزین‌کیناز دائماً فعال است.</div>
+<div class="mt non"><h4>لنفوم بورکیت</h4>ترانسلوکاسیون <span class="kt">t(8;14)</span> — انکوژن <b>c-MYC</b> (کروموزوم ۸) کنار پروموتر قوی ژن زنجیره‌ی سنگین ایمونوگلوبولین (کروموزوم ۱۴) قرار می‌گیره و بیش‌فعال می‌شه.</div>
+</div>
+<div class="why"><b>چرا این‌جا خود توالی ژن سالم می‌مونه ولی سرطان اتفاق می‌افته؟</b> برخلاف جهش نقطه‌ای (بخش ۳) که توالی یک ژن رو خراب می‌کنه، این‌جا مشکل «همسایگی» است: یا دو ژن با هم فیوژن می‌شن و یه پروتئین هیبریدی غیرطبیعی می‌سازن (فیلادلفیا)، یا یک انکوژن کاملاً سالم کنار یه پروموتر خیلی قوی می‌شینه و overexpress می‌شه (بورکیت). پس مکانیزم آسیب این‌جا «دوز و موقعیت»، نه «ساختار توالی».</p>
+</div>
+</div>
+
+<div class="q" id="q6">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — کروموزوم فیلادلفیا بدنبال ترانسلوکاسیون بین کدام کروموزوم‌ها به‌وجود می‌آید و کدام انکوژن در آن جهش می‌یابد؟</span>
+  <span class="src">نمونه سوال امتحانی (ترکیب دو نمونه سوال)</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) کروموزوم ۹ و ۲۱ — انکوژن RAS</li>
+  <li>ب) کروموزوم ۸ و ۲۱ — انکوژن BCR</li>
+  <li>ج) کروموزوم ۹ و ۲۲ — انکوژن ABL</li>
+  <li>د) کروموزوم ۸ و ۲۲ — انکوژن c-MYC</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ج</span> — <span class="kt">t(9;22)</span>، و انکوژنی که جابه‌جا و فعال می‌شه ABL است (که با BCR فیوژن می‌کنه).</p>
+<div class="distract">گزینه‌ی د دقیقاً توصیف لنفوم بورکیته، نه فیلادلفیا — این دو ترانسلوکاسیون معروف رو با هم قاطی نکن.</div>
+</details>
+</div>
+</div>
+
+<div class="card">
+<h3>۶. ناهنجاری‌های کروموزوم جنسی — ترنر و کلاین‌فلتر در تقابل</h3>
+<div class="hy">🎯 High-yield: <span class="stars">★★★★★</span></div>
+<div class="grid2">
+<div class="mt splice">
+<h4>سندرم ترنر — <span class="kt">45,X</span></h4>
+تنها مونوزومی که با حیات سازگار است (اکثر جنین‌های <span class="kt">45,X</span> سقط می‌شن؛ فقط درصد کمی به تولد زنده می‌رسن). فرد ظاهراً <b>مؤنث</b> است چون بدون کروموزوم Y، مسیر پیش‌فرض جنسیت زنانه پیش می‌ره. ویژگی: قد کوتاه، گردن پرده‌دار (webbed neck)، لنف‌ادم دست/پا در نوزادی، کوارکتاسیون آئورت، نارسایی زودرس تخمدان (Streak Ovaries) و نازایی. کاریوتایپ می‌تونه موزائیک (<span class="kt">45,X/46,XX</span>) یا دارای <b>ایزوکروموزوم</b> باشه — مثل <span class="kt">46,X,i(Xq)</span> که یعنی یک کروموزوم X طبیعی به‌علاوه یک کروموزوم غیرطبیعی که فقط از دو نسخه‌ی بازوی بلند X ساخته شده (بازوی کوتاه گم شده).
+</div>
+<div class="mt indel">
+<h4>سندرم کلاین‌فلتر — <span class="kt">47,XXY</span></h4>
+شایع‌ترین علت هیپوگنادیسم مردانه. فرد ظاهراً <b>مذکر</b> است (چون کروموزوم Y و ژن SRY حضور داره) ولی با یک X اضافه. ویژگی: قد <b>بلند</b> (نه کوتاه!)، ژنیکوماستی، بیضه‌های کوچک و سفت، تستوسترون پایین، ناباروری، و مشکلات یادگیری/اجتماعی خفیف.
+</div>
+</div>
+<div class="why"><b>چرا ترنر قد کوتاه ولی کلاین‌فلتر قد بلند داره — با این‌که هر دو «یک کروموزوم جنسی اضافه/کم» دارن؟</b> ژن <b>SHOX</b> (روی بازوی کوتاه X، در ناحیه‌ی pseudoautosomal که از سرکوب X خارج می‌مونه) مستقیماً روی رشد قد اثر می‌ذاره — دوز این ژن با تعداد کروموزوم X/Y همبستگی داره. در ترنر (۴۵,X) فقط یک نسخه از SHOX هست → کمبود دوز → قد کوتاه. در کلاین‌فلتر (۴۷,XXY) سه نسخه (از X و Y) هست → دوز اضافه → قد بلندتر از حد طبیعی.</p>
+</div>
+</div>
+
+<div class="q" id="q7">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — بیمار با کاریوتایپ 46,X,i(Xq) علائم کدام سندرم را دارد؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) سندرم پرادر-ویلی</li>
+  <li>ب) سندرم تمپل</li>
+  <li>ج) سندرم ترنر</li>
+  <li>د) سندرم داون</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ج</span> — ایزوکروموزوم Xq یکی از انواع کاریوتایپ‌های ترنر است؛ فرد فقط یک X طبیعی معادل داره (بازوی کوتاه یکی از X‌ها گم شده)، پس فنوتیپش شبیه ۴۵,X کلاسیکه.</p>
+</details>
+</div>
+</div>
+
+<div class="q" id="q8">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — کدام گزینه می‌تواند کاریوتایپ بیمار مبتلا به سندرم کلاین‌فلتر باشد؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) <span class="kt">47,XYY</span></li>
+  <li>ب) <span class="kt">46,XYY</span></li>
+  <li>ج) <span class="kt">46,XXY</span></li>
+  <li>د) <span class="kt">47,XXY</span></li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">د</span></p>
+<div class="distract">تله: گزینه‌ی «ج» (<span class="kt">46,XXY</span>) از نظر عددی نادرسته — X اضافه باید تعداد کل رو به ۴۷ برسونه، نه ۴۶ بمونه. همیشه جمع اعداد کروموزوم رو با تعداد کروموزوم‌های ذکرشده چک کن.</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="q9">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — کدام‌یک جزو علائم بیماران با کاریوتایپ 47,XXY نیست؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) مشکل در برقراری روابط اجتماعی</li>
+  <li>ب) تستوسترون خون پایین</li>
+  <li>ج) قد کوتاه</li>
+  <li>د) قد بلند</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ج</span> — کلاین‌فلتر با قد <b>بلند</b> همراهه، نه کوتاه (دقیقاً برعکس ترنر). این سوال مستقیماً همون مکانیزم دوز ژن SHOX رو تست می‌کنه که بالا توضیح دادیم.</p>
+</details>
+</div>
+</div>
+
+<div class="q" id="q10">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — تشخیص افتراقی بالینی سندرم ترنر کدام است؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) سندرم ولف-هیرشهورن</li>
+  <li>ب) سندرم کلاین‌فلتر</li>
+  <li>ج) سندرم آنجلمن</li>
+  <li>د) سندرم نونان</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">د</span></p>
+<div class="distract">سندرم <b>نونان</b> از نظر ظاهری (گردن پرده‌دار، قد کوتاه، نقص قلبی) خیلی شبیه ترنره، ولی علتش کاریوتایپ غیرطبیعی <b>نیست</b> — یه بیماری تک‌ژنی اتوزومال غالب (معمولاً ژن PTPN11) است و در دو جنس دیده می‌شه، برخلاف ترنر که فقط در فرد با یک کروموزوم X رخ می‌ده. این دقیقاً همون نوع سوالی است که چک‌لیست پداگوژیک این جزوه می‌خواد: موجودیت‌های قابل‌اشتباه صریح مقابل هم قرار بگیرن.</div>
+</details>
+</div>
+</div>
+
+<div class="card">
+<h3>۷. غربالگری و تشخیص پیش از تولد</h3>
+<p>حالا که می‌دونیم این ناهنجاری‌ها چی‌ان، سوال بعدی اینه: چطور قبل از تولد شناساییشون کنیم؟ دو دسته‌ی کاملاً متفاوت از روش داریم:</p>
+<div class="grid2">
+<div class="mt miss">
+<h4>غربالگری (Screening) — فقط ریسک را تخمین می‌زند</h4>
+غیرتهاجمی، بدون خطر برای جنین. شامل: سونوگرافی <b>NT</b> (Nuchal Translucency — ضخامت مایع پشت گردن جنین در سه‌ماهه‌ی اول)، آزمایش‌های سرمی مادر (مثل PAPP-A، Beta-HCG در سه‌ماهه‌ی اول؛ AFP، استریول، اینهیبین در سه‌ماهه‌ی دوم = Quad Screen). این‌ها فقط یک <b>احتمال</b> به دست می‌دن، نه تشخیص قطعی.
+</div>
+<div class="mt non">
+<h4>تشخیص (Diagnostic) — کاریوتایپ قطعی می‌دهد</h4>
+تهاجمی، با خطر کوچک سقط همراهه. شامل: <b>CVS</b> (نمونه‌برداری از پرزهای جفتی، سه‌ماهه‌ی اول، زودتر انجام می‌شه) و <b>آمنیوسنتز</b> (نمونه‌برداری از مایع آمنیوتیک، سه‌ماهه‌ی دوم). این‌ها سلول جنینی واقعی می‌گیرن و کاریوتایپ قطعی می‌دن.
+</div>
+</div>
+<div class="why"><b>چرا ترکیب غربالگری سه‌ماهه‌ی اول + دوم، دقت بالاتری از تک‌تک اون‌ها داره؟</b> هر مرحله (NT+سرم سه‌ماهه‌ی اول، و Quad Screen سه‌ماهه‌ی دوم) یه سری نشانگر مستقل اندازه می‌گیره که هرکدوم به‌تنهایی حساسیت محدودی دارن؛ وقتی این دو مجموعه‌ی اطلاعات مستقل با هم ترکیب بشن (Integrated/Sequential Screening)، نرخ کاذب مثبت پایین میاد و حساسیت کلی برای تشخیص تریزومی ۲۱ بالاتر از هرکدوم به‌تنهایی می‌شه.</p>
+</div>
+</div>
+
+<div class="q" id="q11">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — اندازه‌گیری غلظت کدام ماده در سرم مادر باردار می‌تواند در غربالگری نقص لوله‌ی عصبی جنین مفید باشد؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) PAPP-A</li>
+  <li>ب) AFP</li>
+  <li>ج) Beta HCG</li>
+  <li>د) Cholesterol</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ب</span> — آلفافیتوپروتئین (AFP) بالا در سرم مادر، مطرح‌کننده‌ی نقص لوله‌ی عصبی (Spina Bifida، Anencephaly) است؛ چون این نقص باعث نشت مستقیم AFP از مایع مغزی‌نخاعی جنین به مایع آمنیوتیک و سپس گردش خون مادر می‌شه.</p>
+<div class="distract">یادت باشه از بخش ۵ همین جزوه: نقص لوله‌ی عصبی خودش یک بیماری <b>مولتی‌فاکتوریاله</b> (نه کروموزومی) — پس این‌جا AFP رو با غربالگری کروموزومی قاطی نکن؛ AFP <b>پایین</b> (نه بالا) در واقع بیشتر مطرح‌کننده‌ی تریزومی ۲۱ است، نه بالا بودنش.</div>
+</details>
+</div>
+</div>
+
+<div class="q" id="q12">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — در مورد غربالگری‌های دوران بارداری، دقت تشخیصی کدام مورد از سایرین بیشتر است؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) NT + غربالگری سه‌ماهه‌ی اول</li>
+  <li>ب) غربالگری سه‌ماهه‌ی اول به‌همراه غربالگری سه‌ماهه‌ی دوم</li>
+  <li>ج) غربالگری سه‌ماهه‌ی اول (به‌تنهایی)</li>
+  <li>د) غربالگری سه‌ماهه‌ی دوم (به‌تنهایی)</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ب</span> — دقیقاً طبق «چرای» بالا؛ ترکیب دو مرحله، اطلاعات مستقل بیشتری جمع می‌کنه.</p>
+</details>
+</div>
+</div>
+
+<div class="q" id="q13">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — تشخیص بیماری ژنتیکی در جنین آزمایشگاهی که روی سلول ... انجام می‌شود، چه نامیده می‌شود؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) Blastomere؛ Pre-implantation Genetic Diagnosis</li>
+  <li>ب) Blastomere؛ Prenatal Genetic Diagnosis</li>
+  <li>ج) Blastocyst؛ Pre-implantation Genetic Diagnosis</li>
+  <li>د) Morula؛ Pre-implantation Genetic Diagnosis</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">الف</span></p>
+<div class="distract"><b>PGD</b> (تشخیص ژنتیکی پیش‌از‌لانه‌گزینی) روی جنین حاصل از IVF، قبل از انتقال به رحم انجام می‌شه — روی یک سلول (Blastomere) از جنین ۶ تا ۸ سلولی نمونه‌برداری می‌کنن. با «Prenatal» قاطی نکن: Prenatal یعنی بعد از لانه‌گزینی و در طول بارداری (مثل CVS/آمنیوسنتز)، نه قبلش.</div>
+</details>
+</div>
+</div>
+
+<div class="card">
+<h3>۸. هیدروپس فتالیس — وقتی یک بیماری تک‌ژنی، پیامد کروموزومی‌اش رو نشون می‌ده</h3>
+<p>هیدروپس فتالیس (تجمع شدید مایع در بافت‌های جنین) شدیدترین شکل <strong class="k">آلفاتالاسمی</strong> است، نه بتاتالاسمی. ژن آلفاگلوبین برخلاف بتاگلوبین، <b>۴ نسخه</b> داره (۲ نسخه از هر والد). وقتی هر دو والد ناقل حذف هر ۴ ژن آلفا (آلفا-تالاسمی هموزیگوت / --/--) باشن، جنین اصلاً نمی‌تونه هموگلوبین کارآمد بسازه.</p>
+<div class="why"><b>چرا نبود آلفاگلوبین باعث هیدروپس می‌شه؟</b> بدون زنجیره‌ی آلفا، هموگلوبین جنینی و بالغ اصلاً ساخته نمی‌شه؛ به‌جاش هموگلوبین غیرطبیعی <b>بارت (Hb Barts، از ۴ زنجیره‌ی گاما)</b> تشکیل می‌شه که تمایل اتصال به اکسیژن خیلی بالایی داره و عملاً اکسیژن رو به بافت‌ها آزاد نمی‌کنه → هیپوکسی شدید بافتی → نارسایی قلبی با برون‌ده بالا در جنین → نشت مایع به همه‌ی بافت‌ها (هیدروپس) → معمولاً مرگ داخل‌رحمی یا حین تولد.</p>
+</div>
+</div>
+
+<div class="q" id="q14">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — بیماری هیدروپس فتالیس با کدام ژنوتیپ والدینی به‌وجود می‌آید؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا استدلال باز شه</div>
+<div class="ans" style="display:block;padding:0 20px 18px;">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: هر دو والد ناقل <b>حذف هر ۴ ژن آلفاگلوبین (آلفا-تالاسمی هموزیگوت)</b> باشن. توجه کن این یک بیماری کروموزومی نیست، بلکه یک بیماری تک‌ژنی با پیامد بالینی‌ای شبیه ناهنجاری‌های شدید جنینیه — به همین دلیل در بحث ارزیابی هیدروپس ایدیوپاتیک جنین، غربالگری تالاسمی والدین جزو کارهای اجباریه.</p>
+</details>
+</div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۲</span> مطالب بدون سوال ولی مهم</h2>
+<p class="stage-desc">این مفاهیم مستقیم سوال نمونه نداشتن ولی برای فهم کامل چرا و چطور این ناهنجاری‌ها رخ می‌دن و بهشون برخورد می‌کنیم، ضروری‌ان — به‌خصوص چون در سوالات به‌عنوان «گزینه‌ی مزاحم/دیسترکتور» زیاد ظاهر شدن.</p>
+
+<div class="card">
+<h3>۱. موزائیسم (Mosaicism) — وقتی فقط بخشی از سلول‌های بدن درگیرن</h3>
+<p>در آنیوپلوئیدی معمولی، خطای Nondisjunction در میوز (تشکیل گامت) رخ می‌ده — پس <b>تمام</b> سلول‌های بدن جنین از همون یک زیگوت غیرطبیعی ساخته می‌شن. اما اگه این خطا بعد از لقاح، در یکی از تقسیمات میتوزی اولیه‌ی جنین رخ بده، فقط بخشی از سلول‌های بدن خط سلولی غیرطبیعی رو به ارث می‌برن؛ به این حالت <strong class="k">موزائیسم</strong> می‌گیم.</p>
+<div class="why"><b>چرا این تمایز بالینی مهمه؟</b> فرد موزائیک (مثلاً ترنر موزائیک <span class="kt">45,X/46,XX</span>) معمولاً فنوتیپ خفیف‌تری نسبت به فرم کامل داره، چون بخشی از سلول‌هاش کاملاً طبیعی‌ان و می‌تونن عملکرد نسبی رو جبران کنن. هرچه درصد خط سلولی غیرطبیعی بیشتر و زودتر در جنینی‌زایی اتفاق افتاده باشه، فنوتیپ به فرم کامل نزدیک‌تره.</p>
+</div>
+</div>
+
+<div class="card">
+<h3>۲. اختلالات Imprinting — پرادر-ویلی در برابر آنجلمن (مقایسه‌ی کنار هم)</h3>
+<p>این دو بیماری یه نمونه‌ی درخشان از اهمیت <strong class="k">Genomic Imprinting</strong> هستن که در بخش ۲ همین جزوه معرفی شد (بعضی ژن‌ها بسته به این‌که از پدر بیان بشن یا مادر، متیله/خاموش می‌شن). هر دو از <b>همون منطقه</b>، ناحیه‌ی ۱۵q11-13، حذف می‌شن — ولی نتیجه‌ی بالینی کاملاً متفاوته:</p>
+<div class="grid2">
+<div class="mt indel"><h4>سندرم پرادر-ویلی</h4>حذف نسخه‌ی <b>پدری</b> (Paternal) ژن‌های این ناحیه. علائم: هیپوتونی نوزادی، پرخوری اجباری و چاقی شدید بعد از شیرخوارگی، قد کوتاه، ناتوانی ذهنی خفیف.</div>
+<div class="mt non"><h4>سندرم آنجلمن</h4>حذف نسخه‌ی <b>مادری</b> (Maternal) همون منطقه (که ژن UBE3A رو غیرفعال می‌کنه). علائم: تأخیر شدید تکاملی، عدم تکلم، خنده‌های نامتناسب مکرر، تشنج، راه‌رفتن مضطرب (ataxic).</div>
+</div>
+<div class="why"><b>چرا حذف یک منطقه‌ی یکسان، دو بیماری کاملاً متفاوت می‌سازه؟</b> در حالت طبیعی، در این ناحیه، نسخه‌ی مادری بعضی ژن‌ها (مثل ژن‌های PWS) به‌طور طبیعی خاموشه و فقط نسخه‌ی پدری بیان می‌شه؛ در مقابل، ژن UBE3A فقط از نسخه‌ی مادری بیان می‌شه و نسخه‌ی پدری‌اش طبیعتاً خاموشه. پس اگه نسخه‌ی <b>پدری</b> (تنها نسخه‌ی فعال ژن‌های PWS) حذف بشه → پرادر-ویلی؛ اگه نسخه‌ی <b>مادری</b> (تنها نسخه‌ی فعال UBE3A) حذف بشه → آنجلمن. همین یک حذف، بسته به این‌که از کدوم والد اومده، دو بیماری متضاد می‌سازه — این دقیقاً نشون می‌ده که در Imprinting، «کدوم والد» به همون اندازه‌ی «چه ژنی» اهمیت داره.</p>
+</div>
+<div class="pulse"><b>راه دیگر برای همین نتیجه: Uniparental Disomy (UPD)</b>حتی اگه هیچ حذفی رخ نده، اگه فرد هر دو نسخه‌ی کروموزوم ۱۵ رو از یک والد به ارث ببره (مثلاً هر دو از مادر)، باز همون بیماری‌ (پرادر-ویلی، چون نسخه‌ی پدری فعال غایبه) رخ می‌ده — این یعنی مکانیزم بیماری، «غیبت نسخه‌ی فعال»، مهم‌تر از روش رسیدن به اون غیبته.</div>
+</div>
+
+<div class="card">
+<h3>۳. سندرم کروی‌دو‌شا (Cri-du-chat) و دی‌جرج — میکرودیلیشن‌های دیگر</h3>
+<div class="grid2">
+<div class="mt splice"><h4>سندرم فریاد گربه (Cri-du-chat)</h4>حذف بخشی از بازوی کوتاه کروموزوم ۵ (<span class="kt">5p-</span>). گریه‌ی نوزاد شبیه صدای گربه (به‌خاطر ناهنجاری حنجره)، میکروسفالی، ناتوانی ذهنی شدید. کاریوتایپ همچنان ۴۶ کروموزومه (فقط یک قطعه گم شده، نه کل کروموزوم).</div>
+<div class="mt miss"><h4>سندرم دی‌جرج</h4>میکرودیلیشن <span class="kt">22q11.2</span>. علائم کلاسیک (به‌خاطرسپاری با CATCH-22): نقص قلبی مادرزادی (Cardiac)، صورت غیرطبیعی (Abnormal facies)، آپلازی/هیپوپلازی تیموس (Thymic → نقص ایمنی سلولی)، شکاف کام (Cleft palate)، هیپوکلسمی (Hypocalcemia از هیپوپاراتیروئیدی).</div>
+</div>
+<div class="why"><b>چرا این‌ها «میکرودیلیشن» نامیده می‌شن نه «آنیوپلوئیدی»؟</b> چون قطعه‌ی گم‌شده آن‌قدر کوچیکه که در کاریوتایپ معمولی زیر میکروسکوپ نوری دیده نمی‌شه — تعداد کل کروموزوم‌ها طبیعیه (۴۶). برای تشخیصشون به روش‌های وضوح‌بالاتر مثل FISH یا آرایه‌ی CGH نیاز داریم، نه کاریوتایپ ساده.</p>
+</div>
+</div>
+
+<div class="card">
+<h3>۴. چرا اکثر سقط‌های سه‌ماهه‌ی اول، علت کروموزومی دارن؟</h3>
+<p>حدود نیمی از تمام سقط‌های خودبه‌خودی سه‌ماهه‌ی اول، ناهنجاری کروموزومی دارن. شایع‌ترین یافته‌ها به ترتیب: <b>تریزومی‌های اتوزومی</b> (شایع‌ترین گروه، مخصوصاً تریزومی ۱۶ که هیچ‌وقت زنده متولد نمی‌شه)، سپس <strong class="k">مونوزومی X (45,X)</strong> — که جالبه چون همون سندرم ترنره، ولی اکثر جنین‌های <span class="kt">45,X</span> اصلاً به تولد نمی‌رسن و فقط اقلیت کوچیکی زنده می‌مونن — و <strong class="k">تریپلوئیدی (۶۹ کروموزوم)</strong> که معمولاً از لقاح یک تخمک با دو اسپرم میاد.</p>
+<div class="why"><b>چرا طبیعت این‌قدر «سخت‌گیر» با ناهنجاری کروموزومیه؟</b> سقط خودبه‌خودی زودرس، مکانیزم طبیعی بدن برای حذف جنین‌هایی با بار ژنتیکی ناسازگار با حیاته — قبل از این‌که منابع بارداری برای جنینی صرف بشه که هیچ‌وقت زنده نمی‌مونه. همین اصل رو در «چرا تریزومی ۱۳/۱۸ نادرترن» بالا هم دیدیم؛ این یه الگوی تکرارشونده در کل این بخشه: هرچه بار ژنتیکی غیرطبیعی سنگین‌تر، احتمال از‌دست‌رفتن جنین زودتر و بیشتر.</p>
+</div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۳</span> کیس سینتزی — از سونوگرافی تا مشاوره‌ی ژنتیک</h2>
+<div class="card">
+<div class="case">
+<b class="tag-case">🩺 سناریو:</b> زوجی با سابقه‌ی یک فرزند مبتلا به سندرم داون مراجعه کردن. کاریوتایپ فرزند قبلی: <span class="kt">46,XY,der(21;21)(q10;q10)</span>. مادر ۲۸ ساله است (سن پایین، پس ریسک سنی بالا مطرح نیست). می‌خوان بدونن ریسک بارداری بعدی چقدره و چه آزمایشی باید انجام بدن.
+</div>
+<p>بیا قدم‌به‌قدم با ابزارهایی که در همین بخش ساختیم پیش بریم:</p>
+<ol style="padding-right:20px;">
+<li><b>قدم ۱ — نوع سندرم داون رو تشخیص بده:</b> کاریوتایپ فرزند <span class="kt">der(21;21)</span> نشون می‌ده، نه <span class="kt">47,+21</span> ساده. پس این یک <b>داون ترانسلوکیشنی هموزیگوت</b> است — دقیقاً مثل سوال <span class="kt">der(10;10)</span> که بالا دیدیم، این‌جا هر دو کروموزوم ۲۱ فرزند با هم ادغام شدن.</li>
+<li><b>قدم ۲ — چرا سن مادر مطرح نیست؟</b> چون این نوع داون از Nondisjunction ناشی نشده (که با سن مادر مرتبطه)، بلکه از یک جابجایی ساختاری در یکی از والدین اومده. پس باید سراغ کاریوتایپ والدین بریم، نه سن مادر.</li>
+<li><b>قدم ۳ — کاریوتایپ والدین رو بخواه:</b> اگه یکی از والدین حامل متوازن <span class="kt">45,XX/XY,der(21;21)</span> باشه (شبیه دقیقاً همون منطق سوال کاریوتایپ رابرتسونی هموزیگوت که بالا دیدیم)، این والد می‌تونه فقط دو نوع گامت بسازه: یا با کروموزوم ادغام‌شده (→ تریزومی ۲۱ در جنین) یا بدون هیچ کروموزوم ۲۱ (→ مونوزومی ۲۱، که کشنده و ناسازگار با حیاته).</li>
+<li><b>قدم ۴ — نتیجه‌گیری ریسک:</b> پس اگه یکی از والدین واقعاً حامل این جابجایی هموزیگوت باشه، <b>۱۰۰٪</b> بارداری‌های بعدی یا به سقط (مونوزومی) یا به تولد فرزند مبتلا به داون (تریزومی) ختم می‌شن — دقیقاً مثل چیزی که در کیس <span class="kt">der(10;10)</span> دیدیم، نه ریسک معمول ۱۰-۱۵٪ حامل رابرتسونی heterozygous.</li>
+<li><b>قدم ۵ — پیشنهاد آزمایشی:</b> چون ریسک تشخیصی این خانواده بسیار بالاست (نه یه ریسک پایه‌ی جمعیتی که با غربالگری غیرتهاجمی کافی باشه)، مستقیم باید سراغ روش <b>تشخیصی</b> بریم — CVS در سه‌ماهه‌ی اول برای کاریوتایپ قطعی جنین — نه فقط NT/سرم که صرفاً احتمال می‌ده.</li>
+</ol>
+<div class="pulse">
+<b>حالا وصلش کن به بخش ۲ (الگوهای وراثت):</b>
+چرا این نوع «ریسک ۱۰۰٪ به‌ازای هر بارداری» بیشتر شبیه منطق وراثت اتوزومال غالب (AD) به‌نظر می‌رسه تا منطق آنیوپلوئیدی معمولی وابسته به سن؟
+<details class="reveal" style="margin-top:10px;"><summary style="color:#FBF0DC;">پاسخ رو ببین</summary>
+<p style="color:#F3F0E6;">چون این‌جا منبع ریسک، مثل بیماری‌های AD، یک ساختار ژنتیکی <b>ثابت و قابل‌انتقال</b> در یکی از والدینه (کاریوتایپ حامل)، نه یک اتفاق تصادفی وابسته به سن مادر که هر بارداری مستقل حساب می‌شه. به همین خاطر مشاوره‌ی ژنتیک این خانواده باید حول محور «کاریوتایپ والد حامل» بچرخه، دقیقاً مثل وقتی که در بخش ۲ ریسک ۵۰٪ فرزند مبتلا به بیماری AD رو از روی کاریوتایپ/ژنوتیپ والد حساب می‌کردیم — نه یک جدول ریسک وابسته به سن.</p>
+</details>
+</div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۴</span> مرور نهایی — اتصال به بخش‌های قبل</h2>
+<div class="card">
+<p>این بخش یه زاویه‌ی کاملاً جدید به همون داستانی بود که از بخش ۱ دنبال می‌کنیم: بخش ۲ الگوی انتقال <b>یک ژن</b> رو در خانواده دید؛ بخش ۳ نشون داد وقتی <b>توالی یک ژن</b> خراب می‌شه چه اتفاقی می‌افته؛ بخش ۴ فراوانی آلل‌ها رو در <b>سطح جمعیت</b> دید؛ بخش ۵ نشون داد وقتی صدها ژن کوچیک + محیط با هم جمع می‌شن (مولتی‌فاکتوریال) چطور ریسک حساب می‌کنیم؛ و این بخش نشون داد وقتی واحد آسیب دیگه یک ژن نیست بلکه <b>کل یک کروموزوم یا بخش بزرگی از اون</b> است، چطور هم فنوتیپ‌های شدیدتر و چندسیستمی‌تر می‌بینیم، و هم ابزار مشاوره‌ی ژنتیکمون عوض می‌شه (کاریوتایپ به‌جای ژنوتایپینگ تک‌ژنی).</p>
+<div class="check">
+<b>✓ چک فهم سریع (Spaced Retrieval):</b><br>
+۱. چرا حامل متوازن جابجایی رابرتسونی، بالینی سالمه ولی فرزندش می‌تونه بیمار باشه؟<br>
+۲. فرق مکانیزمی بین کروموزوم فیلادلفیا و لنفوم بورکیت در چیه، با اینکه هر دو ترانسلوکاسیون‌ان؟<br>
+۳. چرا AFP سرم مادر هم در غربالگری نقص لوله‌ی عصبی (بالا بودنش) و هم در غربالگری تریزومی ۲۱ (پایین بودنش) به‌کار می‌ره — این دو یافته با هم متناقض نیستن؟<br>
+۴. با منطق «چرا شیوع تریزومی ۱۳ کمتر از ۲۱ است» که در همین بخش دیدیم، پیش‌بینی کن: بین سندرم ترنر (۴۵,X) و تریزومی ۲۱، کدوم درصد بیشتری از بارداری‌هاش به سقط ختم می‌شه؟
+<details class="reveal" style="margin-top:8px;"><summary>جواب‌ها رو ببین</summary>
+<p>۱. چون در حامل، کل ماده‌ی ژنتیکی طبیعیه (فقط بسته‌بندی فرق داره)؛ ولی در میوز، جدایش نامساوی سه کروموزوم به‌جای دو، می‌تونه گامت نامتوازن بسازه که در فرزند، ماده‌ی ژنتیکی واقعاً کم یا زیاد می‌شه.<br>
+۲. فیلادلفیا یک ژن فیوژن جدید (BCR-ABL) با عملکرد غیرطبیعی می‌سازه؛ بورکیت یک انکوژن سالم (c-MYC) رو کنار یه پروموتر قوی می‌ذاره و فقط overexpress می‌کنه — در بورکیت خود توالی ژن دست‌نخورده می‌مونه.<br>
+۳. نه متناقض نیستن — این دو نشانگر جهت‌های متفاوتی برای دو بیماری متفاوت دارن؛ AFP فقط یک نشانگر عمومیه که بسته به این‌که با چه الگویی از نشانگرهای دیگه ترکیب بشه، به سمت تشخیص‌های متفاوت اشاره می‌کنه.<br>
+۴. ترنر — چون همون‌طور که در بخش «مطالب بدون سوال» گفتیم، اکثریت قاطع جنین‌های ۴۵,X اصلاً به تولد زنده نمی‌رسن، در حالی که اکثریت جنین‌های تریزومی ۲۱ (بار ژنتیکی سبک‌تر) تا تولد زنده می‌مونن.</p>
+</details>
+</div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">📝</span> تمرین مرور — ۲۲ سوال کامل</h2>
+<p class="stage-desc">قبل از هر سوال، یه بریفینگ کوتاه از مفاهیمی که لازم داره می‌بینی. اول با نمونه سوالات امتحانی شروع می‌کنیم، بعد سوالات تولیدشده از همون مباحث برای عمق بیشتر.</p>
+
+<div class="card">
+<h3>بریفینگ ۱ — آنیوپلوئیدی اتوزومی و سه‌گانه‌ی تریزومی</h3>
+<p>یادآوری: تریزومی ۲۱ (داون، شایع‌ترین)، ۱۸ (ادواردز، مشت‌شده)، ۱۳ (پاتو، شکاف کام/پلی‌داکتیلی/فتق). شیوع با اندازه‌ی کروموزوم رابطه‌ی عکس داره.</p>
+</div>
+
+<div class="q" id="p1">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱ — نوزادی با مشت‌شدگی مداوم انگشتان (اشاره روی وسطی) و نقص شدید قلبی متولد شده. محتمل‌ترین تشخیص کدام است؟</span>
+  <span class="src">تولیدشده — سطح ۲ (همان پاراگراف)</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts"><li>الف) تریزومی ۲۱</li><li>ب) تریزومی ۱۸</li><li>ج) تریزومی ۱۳</li><li>د) سندرم ترنر</li></ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span> — clenched fist با انگشت اشاره روی وسطی، امضای کلاسیک تریزومی ۱۸ است.</p></details></div>
+</div>
+
+<div class="q" id="p2">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۲ — کدام مکانیزم مسئول اکثریت موارد آنیوپلوئیدی است و چرا با افزایش سن مادر بیشتر می‌شود؟</span>
+  <span class="src">تولیدشده — سطح ۳ (هم‌مبحث)</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts"><li>الف) جهش نقطه‌ای در ژن‌های سانترومری</li><li>ب) Nondisjunction، به‌خاطر فرسودگی دستگاه دوک در توقف طولانی میوز I</li><li>ج) خطای همانندسازی DNA در سلول‌های سوماتیک</li><li>د) جابجایی رابرتسونی اکتسابی</li></ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span></p></details></div>
+</div>
+
+<div class="card">
+<h3>بریفینگ ۲ — جابجایی رابرتسونی و متقابل</h3>
+<p>یادآوری: رابرتسونی فقط بین ۵ کروموزوم آکروسنتریک (۱۳،۱۴،۱۵،۲۱،۲۲)؛ حامل متوازن سالمه؛ فرزند می‌تونه نامتوازن باشه. متقابل بین هر دو کروموزوم، می‌تونه ژن فیوژن بسازه (فیلادلفیا، بورکیت).</p>
+</div>
+
+<div class="q" id="p3">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۳ — کدام‌یک از جفت‌کروموزوم‌های زیر می‌تواند جابجایی رابرتسونی بسازد؟</span>
+  <span class="src">تولیدشده — سطح ۳ (هم‌مبحث)</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts"><li>الف) ۲ و ۷</li><li>ب) ۱۵ و ۲۱</li><li>ج) ۱۹ و ۲۰</li><li>د) ۵ و ۶</li></ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span> — هر دو جزو ۵ کروموزوم آکروسنتریک.</p></details></div>
+</div>
+
+<div class="q" id="p4">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۴ — جهش حذف ژنی که چارچوب خواندن را برهم نمی‌زند، در دیستروفین چه پیامدی دارد و مثالش کدام است؟</span>
+  <span class="src">نمونه سوال امتحانی (مرتبط با بخش ۳، مرور بین‌بخشی)</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts"><li>الف) پروتئین کوچکتر — بیماری دوشن</li><li>ب) پروتئین کوچکتر — بیماری بیکر</li><li>ج) پروتئین بزرگتر — بیماری دوشن</li><li>د) پروتئین بزرگتر — بیماری بیکر</li></ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span> — این سوال یادآوری فعالِ بخش ۳ است (حذف درون‌چارچوب → پروتئین کوتاه‌تر ولی نیمه‌کاره‌ی کاربردی → فنوتیپ خفیف‌تر بیکر)؛ عمداً این‌جا تکرار شد تا اتصال دوباره به بخش‌های قبل حفظ بشه، چون دیستروفی عضلانی هم در تشخیص افتراقی ضعف نوزادی/هیپوتونی کنار سندرم‌های کروموزومی این بخش مطرح می‌شه.</p></details></div>
+</div>
+
+<div class="card">
+<h3>بریفینگ ۳ — کروموزوم‌های جنسی</h3>
+<p>یادآوری: ترنر (۴۵,X) قد کوتاه، مؤنث، Streak Ovaries؛ کلاین‌فلتر (۴۷,XXY) قد بلند، مذکر، هیپوگنادیسم. نونان شبیه ترنر ولی تک‌ژنی و در هر دو جنس.</p>
+</div>
+
+<div class="q" id="p5">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۵ — دلیل اصلی قد کوتاه در سندرم ترنر کدام است؟</span>
+  <span class="src">تولیدشده — سطح ۲</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts"><li>الف) کمبود دوز ژن SHOX</li><li>ب) کمبود هورمون تیروئید مادرزادی</li><li>ج) نقص در ژن FGFR3</li><li>د) کمبود ویتامین D</li></ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">الف</span></p><div class="distract">گزینه‌ی ج (FGFR3) مربوط به آکندروپلازی است — یک بیماری تک‌ژنی کاملاً متفاوت، نه یک ناهنجاری کروموزومی؛ مراقب این نوع قاطی‌کردن مبحثی باش.</div></details></div>
+</div>
+
+<div class="q" id="p6">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۶ — علت اصلی هیپوگنادیسم و ناباروری در سندرم کلاین‌فلتر چیست؟</span>
+  <span class="src">تولیدشده — سطح ۳</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts"><li>الف) نبود کروموزوم Y</li><li>ب) دوز اضافه‌ی ژن‌های X که عملکرد بیضه را مختل می‌کند</li><li>ج) حذف ژن SRY</li><li>د) موزائیسم ۴۵,X/۴۶,XY</li></ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span> — کروموزوم Y (و SRY) حضور داره، پس مسیر جنسیت مذکر طی می‌شه؛ مشکل از دوز اضافه‌ی X روی عملکرد اسپرماتوژنز میاد.</p></details></div>
+</div>
+
+<div class="card">
+<h3>بریفینگ ۴ — غربالگری و تشخیص پیش از تولد</h3>
+<p>یادآوری: غربالگری (NT، سرم، Quad Screen) فقط ریسک تخمین می‌زنه؛ تشخیص (CVS، آمنیوسنتز) کاریوتایپ قطعی می‌ده. ترکیب سه‌ماهه‌ی اول+دوم دقیق‌تره.</p>
+</div>
+
+<div class="q" id="p7">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۷ — کدام روش غربالگری پیش از تولد است، نه تشخیصی؟</span>
+  <span class="src">تولیدشده — سطح ۲</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts"><li>الف) آمنیوسنتز</li><li>ب) CVS</li><li>ج) اندازه‌گیری NT با سونوگرافی</li><li>د) PGD</li></ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ج</span> — تنها گزینه‌ی غیرتهاجمی که کاریوتایپ قطعی نمی‌ده، فقط ریسک رو تخمین می‌زنه.</p></details></div>
+</div>
+
+<div class="q" id="p8">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۸ — کدام تفاوت اصلی بین CVS و آمنیوسنتز است؟</span>
+  <span class="src">تولیدشده — سطح ۳</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts"><li>الف) CVS در سه‌ماهه‌ی اول و زودتر انجام می‌شود؛ آمنیوسنتز در سه‌ماهه‌ی دوم</li><li>ب) CVS غیرتهاجمی و بدون خطر است</li><li>ج) آمنیوسنتز فقط ریسک تخمین می‌زند</li><li>د) CVS فقط برای بیماری‌های تک‌ژنی به‌کار می‌رود</li></ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">الف</span></p></details></div>
+</div>
+
+<div class="card">
+<h3>بریفینگ ۵ — Imprinting، موزائیسم، و میکرودیلیشن‌ها</h3>
+<p>یادآوری: پرادر-ویلی (حذف پدری ۱۵q11-13) در برابر آنجلمن (حذف مادری همان منطقه)؛ دی‌جرج (22q11.2)؛ کروی‌دو‌شا (5p-).</p>
+</div>
+
+<div class="q" id="p9">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۹ — نوزادی با نقص قلبی مادرزادی، هیپوکلسمی، و آپلازی تیموس. محتمل‌ترین علت کدام است؟</span>
+  <span class="src">تولیدشده — سطح ۳</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts"><li>الف) میکرودیلیشن 22q11.2 (دی‌جرج)</li><li>ب) تریزومی ۲۱</li><li>ج) حذف 5p (کروی‌دو‌شا)</li><li>د) سندرم ترنر</li></ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">الف</span> — با کلید CATCH-22.</p></details></div>
+</div>
+
+<div class="q" id="p10">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۰ — کودکی با تأخیر شدید تکاملی، عدم تکلم، و خنده‌های نامتناسب مکرر، حذف ۱۵q11-13 دارد. این حذف از کدام والد به ارث رسیده؟</span>
+  <span class="src">تولیدشده — سطح ۲</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts"><li>الف) پدر</li><li>ب) مادر</li><li>ج) هر دو والد</li><li>د) هیچ‌کدام؛ de novo و بی‌ربط به منشأ والدینی</li></ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span> — این تصویر بالینی آنجلمن است (حذف نسخه‌ی مادری که تنها نسخه‌ی فعال UBE3A بود).</p></details></div>
+</div>
+
+<div class="card">
+<h3>بریفینگ ۶ — جمع‌بندی مقایسه‌ای کاریوتایپ‌ها</h3>
+<p>یادآوری: هر سوال کاریوتایپ رو با سه قدم بخون: (۱) عدد کل کروموزوم‌ها، (۲) نماد der/i/+ چه چیزی رو نشون می‌ده، (۳) نتیجه‌ی بالینی از روی این دو.</p>
+</div>
+
+<div class="q" id="p11">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۱ — سندرم داون، سندرم ادوارد و سندرم فریاد گربه هرکدام به ترتیب چند کروموزوم دارند؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts"><li>الف) ۴۷ و ۴۷ و ۴۶</li><li>ب) ۴۷ و ۴۶ و ۴۵</li><li>ج) ۴۷ و ۴۶ و ۴۷</li><li>د) ۴۵ و ۴۵ و ۴۵</li></ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">الف</span> — داون و ادوارد هر دو تریزومی کامل‌ان (۴۷)؛ فریاد گربه فقط یک حذف جزئیه، نه آنیوپلوئیدی، پس کاریوتایپش ۴۶ می‌مونه.</p><div class="distract">در نسخه‌ی اصلی این سوال در بانک سوالات، گزینه‌ی «الف» با اعداد ۴۷/۴۶/۴۶ آمده بود که از نظر بیولوژیک ناسازگاره (چون تریزومی ادواردز باید ۴۷ باشه، نه ۴۶) — این‌جا طبق منطق درست زیست‌شناسی اصلاح شد؛ همیشه اگه بین گزینه‌های یک بانک سوال و منطق علمی تناقض دیدی، بر اساس مکانیزم واقعی قضاوت کن.</div></details></div>
+</div>
+
+<div class="q" id="p12">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۲ — کدام‌یک از این کاریوتایپ‌ها نشان‌دهنده‌ی «داون ترانسلوکیشنی» است، نه تریزومی ۲۱ ساده؟</span>
+  <span class="src">تولیدشده — سطح ۲</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts"><li>الف) <span class="kt">47,XY,+21</span></li><li>ب) <span class="kt">46,XY,der(14;21)(q10;q10)</span></li><li>ج) <span class="kt">46,XY</span></li><li>د) <span class="kt">45,X</span></li></ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span> — فنوتیپ بالینی مثل داون معمولیه ولی کاریوتایپ ۴۶ کروموزومه چون یک ۲۱ اضافه به ۱۴ چسبیده، نه به‌صورت آزاد.</p></details></div>
+</div>
+
+<div class="q" id="p13">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۳ — کدام نوع سندرم داون، ریسک تکرارش با سن مادر ارتباطی ندارد و باید کاریوتایپ والدین چک شود؟</span>
+  <span class="src">تولیدشده — سطح ۳ (سینتزی)</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts"><li>الف) داون از نوع تریزومی ۲۱ کامل (Nondisjunction)</li><li>ب) داون از نوع ترانسلوکیشنی</li><li>ج) داون موزائیک</li><li>د) هر سه یکسان‌اند</li></ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span></p></details></div>
+</div>
+
+<div class="q" id="p14">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۴ — کروموزوم فیلادلفیا در کدام بدخیمی معمولاً دیده می‌شود؟</span>
+  <span class="src">تولیدشده — سطح ۲</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts"><li>الف) لنفوم بورکیت</li><li>ب) لوسمی میلوئید مزمن (CML)</li><li>ج) رتینوبلاستوما</li><li>د) لوسمی حاد لنفوبلاستیک کودکان</li></ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span></p></details></div>
+</div>
+
+<div class="q" id="p15">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۵ — لنفوم بورکیت به علت کدام‌یک از انواع جهش‌های زیر ایجاد می‌شود؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts"><li>الف) حذف کروموزومی</li><li>ب) امپلیفیکاسیون ژنی</li><li>ج) ترانسلوکاسیون متقابل</li><li>د) جهش نقطه‌ای</li></ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ج</span> — <span class="kt">t(8;14)</span></p></details></div>
+</div>
+
+<div class="q" id="p16">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۶ — کدام ماده‌ی هموگلوبینی غیرطبیعی، عامل مستقیم هیدروپس فتالیس در آلفا-تالاسمی هموزیگوت است؟</span>
+  <span class="src">تولیدشده — سطح ۲</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts"><li>الف) هموگلوبین بارت (Hb Barts)</li><li>ب) هموگلوبین S</li><li>ج) هموگلوبین A2</li><li>د) هموگلوبین فتال (HbF)</li></ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">الف</span></p></details></div>
+</div>
+
+<div class="q" id="p17">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۷ — کدام‌یک شایع‌ترین یافته‌ی کروموزومی در سقط‌های خودبه‌خودی سه‌ماهه‌ی اول است؟</span>
+  <span class="src">تولیدشده — سطح ۲</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts"><li>الف) تریزومی‌های اتوزومی</li><li>ب) کلاین‌فلتر</li><li>ج) جابجایی رابرتسونی متوازن</li><li>د) دی‌جرج</li></ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">الف</span></p></details></div>
+</div>
+
+<div class="q" id="p18">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۸ — چرا اکثر جنین‌های ۴۵,X سقط می‌شوند در حالی که خود سندرم ترنر با حیات (تا بزرگسالی) کاملاً سازگار است؟</span>
+  <span class="src">تولیدشده — سطح ۳ (Desirable Difficulty)</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا استدلال باز شه</div>
+<div class="ans" style="display:block;padding:0 20px 18px;">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>این یه ظرافت مهمه: ترنر تنها مونوزومی زنده‌مانده است چون کروموزوم X دارای پدیده‌ی <b>غیرفعال‌سازی X</b> است (که در ادامه‌ی جزوات بعدی بیشتر می‌بینیمش) — یعنی طبیعتاً بدن زن‌ها یکی از دو X رو خاموش می‌کنن، پس بدن به‌طور ذاتی برای «مقدار کمتر ماده‌ی ژنتیکی X» آماده‌ست. با این حال، هنوز هم اکثریت جنین‌های ۴۵,X (نه اقلیت) قبل از تولد از دست می‌رن — چون حتی با غیرفعال‌سازی X، بعضی ژن‌های ناحیه‌ی pseudoautosomal (مثل SHOX) هنوز به دو نسخه نیاز دارن و کمبودشون در مراحل اولیه‌ی جنینی می‌تونه کشنده باشه. نتیجه: ترنر «قابل تحمل‌ترین» مونوزومی‌ست، نه «کاملاً بی‌خطر».</p>
+</details>
+</div>
+</div>
+
+<div class="q" id="p19">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۹ — خطایاب: کدام جمله‌ی زیر نادرست است؟ «جابجایی رابرتسونی بین کروموزوم‌های ۱، ۲ و ۳ رخ می‌دهد چون این کروموزوم‌ها بزرگ‌ترین کروموزوم‌های انسان هستند.»</span>
+  <span class="src">تولیدشده — خطایاب/خودآزمایی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا استدلال باز شه</div>
+<div class="ans" style="display:block;padding:0 20px 18px;">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>کل جمله غلطه: جابجایی رابرتسونی فقط بین کروموزوم‌های <b>آکروسنتریک</b> (۱۳، ۱۴، ۱۵، ۲۱، ۲۲) رخ می‌ده — که هیچ‌کدوم از این‌ها بزرگ‌ترین کروموزوم‌ها نیستن (کروموزوم ۱ بزرگ‌ترینه ولی متاسنتریکه، نه آکروسنتریک). ملاک، اندازه‌ی کروموزوم نیست، بلکه محل قرارگیری سانترومر (خیلی نزدیک یک انتها) و کوچیک/بی‌اهمیت‌بودن بازوی کوتاهشونه.</p>
+</details>
+</div>
+</div>
+
+<div class="q" id="p20">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۲۰ — پیش‌بینی قبل از جواب: اگه یک زوج، هر دو حامل متوازن جابجایی رابرتسونی بین ۱۴ و ۲۱ باشند (نه فقط یکی)، فکر می‌کنی احتمال تولد فرزند کاملاً سالم (نه حامل، نه مبتلا) چقدر است؟</span>
+  <span class="src">تولیدشده — Generation Effect</span>
+</div>
+<div class="toggle-hint">👆 اول خودت حدس بزن، بعد بزن رو سوال</div>
+<div class="ans" style="display:block;padding:0 20px 18px;">
+<details class="reveal"><summary>نمایش پاسخ + استدلال</summary>
+<p>در عمل، این ترکیب به‌شدت نادره و اکثر ترکیب‌های گامتی یا کشنده‌ان (مثل مونوزومی/تریزومی ۱۴ یا ۲۱ آزاد) یا منجر به فرزند مبتلا/حامل می‌شن؛ احتمال فرزند کاملاً بدون هیچ نسخه‌ی جابجاشده (یعنی هم از پدر هم از مادر کروموزوم کاملاً طبیعی به ارث ببره) در این حالت به‌شدت پایینه، عملاً نزدیک صفر در عمل بالینی — دقیقاً همون منطقی که در سوال <span class="kt">der(10;10)</span> هموزیگوت دیدیم رو به‌کار ببر: هرچه پیچیدگی جورشدن کروموزوم‌ها در میوز بیشتر بشه (این‌جا هر دو والد به‌جای یکی)، فضای گامت‌های متوازن سالم به‌شدت کوچیک‌تر می‌شه.</p>
+</details>
+</div>
+</div>
+
+<div class="q" id="p21">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۲۱ — Confidence Calibration: چقدر مطمئنی که سندرم نونان یک ناهنجاری کروموزومی است؟ قبل از دیدن پاسخ، درصد اطمینانت رو (۰ تا ۱۰۰٪) در ذهنت مشخص کن.</span>
+  <span class="src">تولیدشده — Confidence Calibration</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال بعد از این‌که درصد اطمینانت رو مشخص کردی</div>
+<div class="ans" style="display:block;padding:0 20px 18px;">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>نه، نونان یک بیماری <b>تک‌ژنی اتوزومال غالب</b> است (نه کروموزومی) که فقط از نظر <b>ظاهر بالینی</b> شبیه ترنره. اگه اطمینانت پایین ۵۰٪ بود و به این‌جا رسیدی، نشون می‌ده اون تمایز «کروموزومی در برابر تک‌ژنی با فنوتیپ مشابه» رو خوب جا انداختی؛ اگه بالای ۸۰٪ مطمئن بودی که کروموزومیه، این دقیقاً همون misconceptioni است که باید روش کار کنی — نونان رو با کاریوتایپ کروموزومی قاطی نکن.</p>
+</details>
+</div>
+</div>
+
+<div class="q" id="p22">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۲۲ — کیس چندمرحله‌ای: جنینی در سونوگرافی سه‌ماهه‌ی اول، NT ضخیم و PAPP-A پایین نشان می‌دهد. مادر ۴۲ ساله است. کدام گام بعدی مناسب‌تر است؟</span>
+  <span class="src">تولیدشده — کیس سینتزی چندمرحله‌ای</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) صبر کردن تا زایمان و بررسی بعد از تولد</li>
+<li>ب) پیشنهاد CVS یا آمنیوسنتز برای کاریوتایپ قطعی، با توجه به هم‌زمانی ریسک سنی بالا و غربالگری مثبت</li>
+<li>ج) فقط تکرار همان غربالگری غیرتهاجمی در سه‌ماهه‌ی دوم و بس</li>
+<li>د) PGD، چون بارداری از قبل شکل گرفته</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ + استدلال</summary>
+<p>پاسخ صحیح: <span class="correct">ب</span></p>
+<p>سرنخ‌های صورت سوال رو به فکت‌های قبلی وصل کن: NT ضخیم و PAPP-A پایین (بخش «غربالگری») + سن مادر بالای ۳۵ (بخش «Nondisjunction و سن مادر») با هم دو منبع مستقل ریسک بالا رو نشون می‌دن. چون این ریسک تجمعی بالاست (نه فقط یک یافته‌ی مرزی)، دیگه غربالگری بیشتر (که فقط احتمال می‌ده) کافی نیست — باید سراغ یک روش <b>تشخیصی</b> بریم که کاریوتایپ قطعی بده. PGD گزینه‌ی غلطیه چون فقط قبل از لانه‌گزینی (روی جنین آزمایشگاهی IVF) کاربرد داره، نه روی بارداری‌ای که از قبل شکل گرفته.</p>
+</details>
+</div>
+</div>
+
+</section>
+
+<div class="cheat">
+<h2>📋 چک‌لیست شب امتحان — بخش ۶</h2>
+<div class="grid2">
+<div class="col">
+<ul>
+<li>تریزومی ۲۱ (داون، شایع‌ترین) > ۱۸ (ادواردز، clenched fist) > ۱۳ (پاتو، شکاف کام+پلی‌داکتیلی+فتق) — شیوع با اندازه‌ی کروموزوم رابطه‌ی عکس دارد</li>
+<li>Nondisjunction = علت اصلی آنیوپلوئیدی؛ در میوز I شایع‌تر و مرتبط با سن مادر</li>
+<li>جابجایی رابرتسونی: فقط بین ۵ کروموزوم آکروسنتریک (۱۳،۱۴،۱۵،۲۱،۲۲)؛ حامل متوازن سالم؛ کاریوتایپ ۴۵ کروموزوم</li>
+<li>حامل هموزیگوت رابرتسونی (مثل der(10;10) یا der(21;21)) → ۰٪ احتمال فرزند سالم</li>
+<li>داون ترانسلوکیشنی: کاریوتایپ ۴۶ ولی فنوتیپ داون؛ ریسک تکرار به کاریوتایپ والد وابسته، نه سن مادر</li>
+</ul>
+</div>
+<div class="col">
+<ul>
+<li>ترنر (۴۵,X): قد کوتاه، مؤنث، Streak Ovaries؛ کلاین‌فلتر (۴۷,XXY): قد بلند، مذکر، هیپوگنادیسم — هر دو با دوز ژن SHOX توضیح داده می‌شوند</li>
+<li>نونان = شبیه ترنر بالینی ولی تک‌ژنی AD، در هر دو جنس</li>
+<li>فیلادلفیا t(9;22) BCR-ABL → CML؛ بورکیت t(8;14) c-MYC → لنفوم</li>
+<li>پرادر-ویلی (حذف پدری ۱۵q11-13) در برابر آنجلمن (حذف مادری همان منطقه) — Imprinting</li>
+<li>AFP بالا → نقص لوله‌ی عصبی؛ AFP پایین (در ترکیب با سایر نشانگرها) → تریزومی ۲۱</li>
+<li>غربالگری (NT، سرم، Quad) فقط ریسک؛ CVS/آمنیوسنتز تشخیص قطعی؛ PGD فقط پیش از لانه‌گزینی</li>
+<li>هیدروپس فتالیس: آلفا-تالاسمی هموزیگوت (نه بتا) → Hb Barts</li>
+</ul>
+</div>
+</div>
+</div>
+
+</div>
+
+<footer>
+بخش ۶ از جزوه — ناهنجاری‌های کروموزومی و غربالگری پیش از تولد. بخش بعدی: بیماری‌های میتوکندریایی و الگوهای وراثت غیرمندلی (وراثت مادری، Anticipation، Uniparental Disomy در عمق بیشتر).
+<br><br>
+<b>یادداشت بازنگری:</b> تمام نمونه سوالات مرتبط با کاریوتایپ، جابجایی رابرتسونی/متقابل، ترنر/کلاین‌فلتر، غربالگری پیش از تولد، و هیدروپس فتالیس مستقیم پوشش داده شدن (۱۴ نمونه سوال). یک ناسازگاری عددی در نسخه‌ی خام یکی از سوالات (شماره‌ی کروموزوم‌های داون/ادوارد/فریادگربه) بین گزینه‌ی بانک سوال و منطق زیستی دیده شد که صریح در تمرین ۱۱ فلگ و اصلاح شد. سوال «تشخیص افتراقی سرطان پستان ارثی» و سوالات مربوط به سرطان/PCR/وکتورهای ژن‌درمانی که در فایل نمونه سوالات کنار مباحث کروموزومی اومده بودن، عمداً این‌جا نیامدن چون به مباحث ژنتیک مولکولی/سرطان مربوطن، نه ناهنجاری کروموزومی — این‌ها احتمالاً باید در یک بخش تکمیلی جدا (ژنتیک سرطان) پوشش داده بشن که فعلاً در نقشه‌ی ۱۰-بخشی این جزوه نیومده؛ اگه لازمه بهم بگو تا اضافه‌ش کنم.
+</footer>
+
+</body>
+</html>
