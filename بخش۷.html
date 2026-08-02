@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جزوه ژنتیک | بخش ۷ — وراثت غیرمندلی: میتوکندریایی، Anticipation و UPD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF9F3; --ink:#1E2321; --ink-soft:#4B534E;
+  --teal:#1B4B43; --teal-soft:#E7EFEC;
+  --gold:#C98A2C; --gold-soft:#FBF0DC;
+  --rose:#AE4238; --rose-soft:#F7E8E5;
+  --line:#DDD6C6; --card:#FFFFFF;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Vazirmatn',sans-serif;line-height:1.9;font-size:17px;}
+.wrap{width:100%;padding:0 clamp(16px,4vw,56px);}
+.hero{background:linear-gradient(180deg,var(--teal) 0%,#123830 100%);color:#F3F0E6;padding:52px 0 36px;}
+.dna-rule{height:10px;width:100%;background-image:repeating-linear-gradient(90deg,var(--gold) 0 10px, transparent 10px 22px);opacity:.85;}
+.hero h1{font-size:2.1rem;font-weight:800;margin:0 0 8px;}
+.hero p.sub{color:#CFE3DC;font-weight:400;font-size:1.05rem;margin:0;}
+.hero .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
+.tag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);padding:5px 14px;border-radius:999px;font-size:.85rem;}
+section{padding:40px 0;}
+h2.stage{font-size:1.5rem;font-weight:800;color:var(--teal);display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+h2.stage .num{background:var(--teal);color:#fff;width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.stage-desc{color:var(--ink-soft);font-size:.95rem;margin:0 0 26px;padding-right:46px;}
+.hy{display:inline-flex;align-items:center;gap:6px;background:var(--gold-soft);color:#7A5314;border:1px solid #E9C989;padding:3px 12px;border-radius:999px;font-size:.82rem;font-weight:600;margin-bottom:10px;}
+.stars{color:var(--gold);letter-spacing:1px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px clamp(18px,3vw,40px);margin:20px 0;box-shadow:0 1px 2px rgba(0,0,0,.03);}
+.card h3{margin-top:0;font-size:1.2rem;color:var(--ink);border-bottom:2px solid var(--teal-soft);padding-bottom:10px;}
+.pulse{background:var(--teal);color:#fff;border-radius:10px;padding:16px 20px;margin:16px 0;font-size:.98rem;}
+.pulse b{display:block;margin-bottom:4px;color:var(--gold-soft);}
+.why{border-right:3px solid var(--gold);background:var(--gold-soft);padding:10px 16px;margin:14px 0;border-radius:0 8px 8px 0;font-size:.95rem;}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:18px 0;}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin:16px 0;}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:16px 0;}
+.mt{border-radius:12px;padding:18px 20px;font-size:.93rem;border:1px solid var(--line);}
+.mt h4{margin:0 0 10px;font-size:1.02rem;display:flex;align-items:center;gap:8px;}
+.mt.miss{background:var(--gold-soft);border-color:#E9C989;}
+.mt.non{background:var(--rose-soft);border-color:#E3C3BE;}
+.mt.splice{background:#EDE6F5;border-color:#CBB8E0;}
+.mt.indel{background:var(--teal-soft);border-color:#C7D9D2;}
+.case{background:#F4F6F4;border:1px dashed #9EB3AA;border-radius:10px;padding:16px 20px;margin:16px 0;font-size:.95rem;}
+.case b.tag-case{color:var(--teal);}
+.q{background:var(--card);border:1.5px solid var(--line);border-radius:12px;margin:18px 0;overflow:hidden;}
+.q .qhead{padding:16px 20px;font-weight:700;background:#F4F1E7;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.q .qhead .src{font-size:.75rem;font-weight:400;color:var(--ink-soft);white-space:nowrap;}
+.q ul.opts{list-style:none;padding:0;margin:14px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px;}
+.q ul.opts li{padding:8px 12px;border-radius:6px;background:#FAFAF8;font-size:.94rem;}
+.q .ans{display:none;padding:0 20px 18px;font-size:.92rem;}
+.q.open .ans{display:block;}
+.q .ans .correct{color:var(--teal);font-weight:700;}
+.q .distract{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px;}
+.toggle-hint{font-size:.78rem;color:var(--ink-soft);padding:10px 20px 0;}
+.check{background:var(--teal-soft);border:1px solid #C7D9D2;border-radius:10px;padding:16px 20px;margin:16px 0;}
+.check b{color:var(--teal);}
+.errspot{background:#FDF3E8;border:1px solid #EED2A6;border-radius:10px;padding:16px 20px;font-size:.94rem;margin:16px 0;}
+details.reveal summary{cursor:pointer;color:var(--rose);font-weight:600;}
+.divider{height:8px;width:100%;margin:34px 0;background-image:repeating-linear-gradient(90deg,var(--line) 0 8px, transparent 8px 18px);}
+.cheat{background:var(--teal);color:#F3F0E6;border-radius:16px;padding:32px clamp(18px,3vw,44px);margin:40px 0;}
+.cheat h2{margin-top:0;color:#fff;}
+.cheat .grid2{margin:0;}
+.cheat .col{background:rgba(255,255,255,.06);border-radius:10px;padding:16px 18px;}
+.cheat ul{padding-right:20px;margin:0;}
+.cheat li{margin-bottom:8px;}
+footer{padding:30px 0 60px;color:var(--ink-soft);font-size:.85rem;text-align:center;}
+strong.k{color:var(--teal);}
+table.wide{width:100%;border-collapse:collapse;font-size:.94rem;}
+table.wide td,table.wide th{padding:10px;border-bottom:1px solid var(--line);text-align:right;}
+table.wide tr:nth-child(even){background:#F6F4EC;}
+code{background:#EFEAD9;padding:2px 8px;border-radius:5px;font-family:monospace;font-size:.9rem;direction:ltr;display:inline-block;}
+.spectrum{display:flex;border-radius:10px;overflow:hidden;margin:18px 0;font-size:.85rem;text-align:center;}
+.spectrum div{flex:1;padding:14px 6px;color:#fff;}
+.kt{font-family:monospace;direction:ltr;display:inline-block;background:#EFEAD9;padding:2px 8px;border-radius:5px;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>جزوه تعمیقی ژنتیک — بخش ۷</h1>
+    <p class="sub">وراثت غیرمندلی: ژنوم و وراثت میتوکندریایی، Anticipation در عمق مولکولی، و Uniparental Disomy (UPD)</p>
+    <div class="tags">
+      <span class="tag">جلسات ۵-۶ — پاسدار / عباس‌زادگان، وراثت غیرمعمول</span>
+      <span class="tag">پوشش نمونه سوالات مرتبط</span>
+      <span class="tag">قدم هفتم — همان‌طور که در پایان بخش ۶ قول داده شد</span>
+    </div>
+  </div>
+</div>
+<div class="dna-rule"></div>
+
+<div class="wrap">
+
+<section>
+<h2 class="stage"><span class="num">۰</span> قبل از شروع — یادآوری سریع از بخش‌های قبل</h2>
+<p class="stage-desc">همون‌طور که آخر بخش ۶ گفتیم، این بخش قراره سه‌تا سوراخ رو پر کنه: <b>وراثت مادری/میتوکندریایی</b>، <b>Anticipation با عمق واقعی</b>، و <b>Uniparental Disomy</b> — که در بخش ۶ فقط یه اشاره‌ی کوتاه بهش شد. قبل از شروع، سه تا نکته از بخش‌های قبل رو دوباره فعال کنیم چون امروز مستقیم بهشون تکیه می‌کنیم:</p>
+<div class="check">
+<b>یادآوری فعال از بخش‌های دورتر:</b>
+<ul style="padding-right:20px;margin:8px 0 0;">
+<li>از <b>بخش ۲:</b> Anticipation رو فقط در حد تعریف دیدیم — «هر نسل، بیماری شدیدتر/زودتر» به‌خاطر تکرار سه‌نوکلئوتیدی — و یک سوال (دوشن) حل کردیم. امروز می‌فهمیم *چرا* این تکرار زیاد می‌شه و *چرا* بعضی بیماری‌ها این الگو رو دارن و بعضی نه.</li>
+<li>از <b>بخش ۵:</b> Heritability (H²) رو دیدیم — سهم ژنتیک در تنوع یک صفت در یک جمعیت. امروز می‌بینیم چرا این مفهوم برای بیماری‌های میتوکندریایی اصلاً به همون شکل کاربرد نداره (چون واحد وراثت اینجا «سلول‌به‌سلول» است، نه فقط «فرد به فرد»).</li>
+<li>از <b>بخش ۶:</b> Imprinting و سندرم‌های پرادر-ویلی/آنجلمن رو دیدیم و گفتیم «حتی بدون حذف، اگه هر دو نسخه‌ی کروموزوم ۱۵ از یک والد بیاد، بازم بیماری رخ می‌ده» — همون جمله‌ی یک‌خطی، امروز به یک مبحث کامل (UPD) باز می‌شه.</li>
+</ul>
+</div>
+
+<div class="hy">🎯 High-yield: <span class="stars">★★★★</span> — این سه مبحث تک‌تک کمتر از الگوهای مندلی/کروموزومی در نمونه سوالات مستقیم اومدن، ولی چون مستقیماً از جزوه‌ی کلاسی (جلسات ۵ و ۶) میان، احتمال طرح سوال ازشون واقعیه — پس با دقت کامل جلو می‌ریم.</div>
+
+<div class="card">
+<h3>۱. ژنوم میتوکندری — چرا اصلاً «متفاوت» است؟</h3>
+<p>قبل از قانون وراثتش، باید بدونیم خودِ این ژنوم چه شکلیه؛ چون هر قانون وراثتی که الان می‌خونیم، مستقیم از ساختار فیزیکی این ژنوم میاد، نه یه قرارداد دلبخواهی.</p>
+<table class="wide">
+<tr><th>ویژگی</th><th>ژنوم میتوکندری</th><th>ژنوم هسته (برای مقایسه)</th></tr>
+<tr><td>اندازه</td><td><b>16.6 kb</b> — خیلی کوچیک</td><td>~۳ میلیارد جفت‌باز</td></tr>
+<tr><td>شکل</td><td><b>حلقوی (Circular)</b></td><td>خطی</td></tr>
+<tr><td>تعداد کپی در هر سلول</td><td><b>صدها تا هزاران کپی</b>، متغیر از سلول به سلول و از بافت به بافت</td><td>دقیقاً ۲ کپی (یکی از هر والد)</td></tr>
+<tr><td>محتوای کدکننده</td><td>~۹۷٪ کدکننده (فقط ~۳٪ ناحیه‌ی غیرکدکننده)</td><td>اکثریت قریب‌به‌اتفاق غیرکدکننده</td></tr>
+<tr><td>تعداد ژن</td><td><b>۳۷ ژن:</b> ۱۳ زیرواحد پروتئینی (آنزیم‌های زنجیره‌ی تنفسی)، ۲۲ tRNA، ۲ rRNA</td><td>~۲۰٬۰۰۰ ژن</td></tr>
+</table>
+<div class="why"><b>چرا این تفاوت‌ها مهمن، نه فقط یه سری عدد برای حفظ کردن؟</b> دو نتیجه‌ی بالینی مستقیم از این جدول میاد: (۱) چون ژنوم میتوکندری تقریباً تماماً کدکننده‌ست، <b>هر جهشی</b> در اون به احتمال زیاد یه ژن واقعی رو خراب می‌کنه — بر خلاف ژنوم هسته که بیشتر جهش‌ها توی نواحی بی‌اثر می‌افتن. (۲) چون هر سلول <b>صدها کپی</b> از این ژنوم داره (نه ۲ تا)، یک سلول می‌تونه هم‌زمان کپی‌های سالم و جهش‌یافته داشته باشه — این دقیقاً پایه‌ی مفهوم بعدی (Heteroplasmy) است که چیزی معادلش در ژنوم هسته اصلاً وجود نداره.</p>
+</div>
+</div>
+
+<div class="card">
+<h3>۲. قانون شجره‌نامه‌ی وراثت میتوکندریایی — چرا این‌قدر «تک‌جهته» است؟</h3>
+<p>وراثت میتوکندریایی از همه‌ی الگوهایی که در بخش ۲ دیدیم (AD، AR، X-linked، Y-linked) ساده‌تره — فقط دو قانون داره:</p>
+<div class="grid2">
+<div class="mt indel"><h4>مادر مبتلا</h4>به <b>همه‌ی فرزندان</b> (پسر و دختر) منتقل می‌کنه.</div>
+<div class="mt non"><h4>پدر مبتلا</h4>به <b>هیچ‌کدام</b> از فرزندان منتقل نمی‌کنه.</div>
+</div>
+<div class="why"><b>چرا این‌قدر مطلقه — چرا اصلاً میتوکندری پدری وارد نمی‌شه؟</b> به این زنجیره‌ی علّی توجه کن: تخمک حجم سیتوپلاسمی بزرگی داره و صدها هزار میتوکندری توش هست؛ اسپرم تقریباً فقط هسته‌ست و میتوکندری‌های کمی داره که همون تعداد کم هم بعد از لقاح، توسط سیستم یوبی‌کوئیتین-پروتئازوم سلول تخم به‌طور فعال <b>نشونه‌گذاری و تخریب</b> می‌شن. پس حتی اون مقدار کم میتوکندری پدری هم عملاً حذف می‌شه و ژنوم میتوکندریایی جنین، ۱۰۰٪ (یا عملاً ۱۰۰٪) از مادر میاد. به همین خاطر توی پزشکی قانونی هم از DNA میتوکندری برای ردیابی <b>خط مادری</b> خانواده استفاده می‌شه — همه‌ی افراد یک خط مادری (مادربزرگ، مادر، فرزندان، نوه‌های دختری) دقیقاً یک توالی mtDNA مشترک دارن، بدون توجه به این‌که پدرهاشون چه کسانی بودن.</p>
+</div>
+</div>
+
+<div class="q" id="q1">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — در یک شجره‌نامه، یک بیماری از مادرِ مبتلا به تمام فرزندان (پسر و دختر) منتقل می‌شود، ولی هیچ‌کدام از فرزندان پدر مبتلا بیمار نیستند. محتمل‌ترین الگوی وراثت کدام است؟</span>
+  <span class="src">تولیدشده — سطح ۱ (تعریف مستقیم)</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) اتوزومال غالب</li>
+  <li>ب) X-linked غالب</li>
+  <li>ج) میتوکندریال</li>
+  <li>د) Y-linked</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ج</span></p>
+<div class="distract">
+تله‌ی اصلی اینه که با X-linked غالب قاطی بشه، چون اونم گاهی الگوی «مادر → همه‌ی فرزندان» می‌ده. اما فرق کلیدی: در X-linked غالب، اگه <b>پدر</b> مبتلا باشه، به <b>همه‌ی دخترانش</b> منتقل می‌کنه (چون تنها X پدر رو به دخترها می‌ده) ولی به هیچ پسری نه؛ در میتوکندریال، پدر مبتلا مطلقاً به هیچ فرزندی (نه پسر، نه دختر) منتقل نمی‌کنه. پس تشخیص قطعی، بررسی انتقال از <b>پدر</b> مبتلاست، نه فقط مادر.
+</div>
+</details>
+</div>
+</div>
+
+<div class="card">
+<h3>۳. Homoplasmy و Heteroplasmy — واحد وراثتی جدیدی که در ژنوم هسته نداشتیم</h3>
+<p>چون هر سلول صدها کپی از mtDNA داره (نه ۲ تا)، یک مفهوم کاملاً تازه پیدا می‌شه:</p>
+<div class="grid2">
+<div class="mt indel"><h4>Homoplasmy</h4>تمام کپی‌های mtDNA در یک سلول <b>یکسان</b>‌اند — یا همه سالم، یا همه جهش‌یافته.</div>
+<div class="mt miss"><h4>Heteroplasmy</h4><b>مخلوطی</b> از کپی‌های سالم و جهش‌یافته، به نسبت‌های متفاوت، در یک سلول یا یک فرد.</div>
+</div>
+<div class="why"><b>چرا این مفهوم مستقیم روی شدت بیماری اثر می‌ذاره؟ (Threshold Effect)</b> یک بافت فقط وقتی علامت‌دار می‌شه که درصد کپی‌های جهش‌یافته از یک <b>آستانه‌ی مشخص</b> بگذره — و این آستانه به میزان وابستگی اون بافت به انرژی میتوکندریایی بستگی داره. مغز، عضله‌ی اسکلتی، عضله‌ی قلب، و شبکیه بیشترین مصرف انرژی رو دارن، پس زودتر از آستانه رد می‌شن و اولین بافت‌های علامت‌دار میشن — دقیقاً به همین دلیله که اکثر بیماری‌های میتوکندریایی، <b>عصبی-عضلانی</b> هستن، نه مثلاً پوستی.</p>
+</div>
+<div class="pulse"><b>یه نکته‌ی دیگه که مستقیم از همین‌جا میاد:</b> نسبت heteroplasmy می‌تونه از یک نسل به نسل بعد، و حتی از یک بافت به بافت دیگه در همون فرد، بدون هیچ جهش جدیدی، فرق کنه — چون در هر تقسیم سلولی، کپی‌های mtDNA به‌طور <b>تصادفی</b> بین دو سلول دختر پخش می‌شن (به این می‌گن Replicative Segregation یا Mitotic Segregation). این یعنی دو خواهر که دقیقاً همون جهش رو از مادرشون گرفتن، می‌تونن شدت بیماری کاملاً متفاوتی داشته باشن — نه به‌خاطر جهش جدید، فقط به‌خاطر این‌که تاس تقسیم سلولی، این‌بار جور دیگه‌ای افتاده.</div>
+</div>
+
+<div class="case">
+<b class="tag-case">🩺 کیس بالینی — Illness Script یک بیماری میتوکندریایی کلاسیک</b><br>
+بیمار ۱۶ ساله با دوره‌های حمله‌ی شبه‌سکته‌ای (Stroke-like episodes)، اسیدوز لاکتیک، تشنج، و سردرد میگرنی‌شکل مراجعه کرده. مادرش سابقه‌ی ضعف عضلانی خفیف داره؛ پدر کاملاً سالمه و هیچ خواهر/برادری از طرف پدر علامت‌دار نیست.
+<div class="why" style="margin-top:10px;"><b>چرا این ترکیب علائم + این الگوی شجره‌نامه با هم یه Illness Script کامل می‌سازن؟</b> ترکیب «دوره‌های شبه‌سکته‌ای + اسیدوز لاکتیک + میوپاتی» نام اختصاری کلاسیک <b>MELAS</b> (Mitochondrial Encephalomyopathy, Lactic Acidosis, and Stroke-like episodes) رو می‌سازه؛ و الگوی انتقال (فقط از خط مادری، پدر و اقوام پدری کاملاً سالم) دقیقاً تاییدکننده‌ی منشا میتوکندریاییه، نه یک بیماری تک‌ژنی هسته‌ای با Penetrance ناقص. بیماری خواهرِ MELAS از نظر ژن مشابه، به اسم <b>MERRF</b> (Myoclonic Epilepsy with Ragged Red Fibers) شناخته می‌شه — تشنج میوکلونیک، آتاکسی، و در بیوپسی عضله، فیبرهای قرمز ژنده (Ragged Red Fibers) به‌خاطر تجمع میتوکندری‌های غیرطبیعی دیده می‌شن.</p>
+</div>
+</div>
+
+</div>
+
+<div class="divider"></div>
+
+<div class="card">
+<h3>۴. Anticipation — این‌بار با مکانیزم مولکولی واقعی</h3>
+<p><b>یادآوری از بخش ۲:</b> اونجا گفتیم Anticipation یعنی «هر نسل، بیماری شدیدتر یا زودتر ظاهر می‌شه» و پشتش تکرار توالی‌های سه‌حرفی (Trinucleotide Repeat) است. سوالی که اونجا حل کردیم (دوشن، که Anticipation نداره چون علتش حذف ژن دیستروفینه نه تکرار توالی) رو دوباره یادت باشه. امروز می‌ریم سراغ <i>چرا</i> این تکرارها اصلاً زیاد می‌شن.</p>
+
+<div class="why"><b>مکانیزم مولکولی — Slippage در حین همانندسازی:</b> وقتی DNA پلیمراز به یک ناحیه با تکرار پشت‌سرهم یک توالی کوتاه (مثلاً …CAGCAGCAGCAG…) می‌رسه، این توالی تکراری می‌تونه روی خودش یه ساختار ثانویه (مثل سنجاق‌سر یا hairpin) بسازه. وقتی رشته‌ی الگو موقتاً از پلیمراز جدا می‌شه (مثلاً برای ویرایش خطا) و دوباره باید بهش وصل بشه، پلیمراز گاهی به‌جای برگشتن به نقطه‌ی دقیق قبلی، روی یکی از تکرارهای <b>مشابه</b> کناری می‌شینه — چون همه‌ی این تکرارها از نظر توالی یکسانن، پلیمراز نمی‌تونه تشخیص بده کدوم تکرار «همون قبلیه». نتیجه: یا یه تکرار اضافه کپی می‌شه (Expansion) یا یکی جا می‌مونه (Contraction). چون این خطا در هر نسل که تخمک/اسپرم ساخته می‌شه دوباره می‌تونه اتفاق بیفته، تعداد تکرارها معمولاً رو به افزایشه — و هرچه تعداد تکرار بیشتر بشه، این ناحیه بی‌ثبات‌تر می‌شه و احتمال Expansion باز هم بیشتر می‌شه (یه چرخه‌ی خود-تقویت‌شونده).</p>
+</div>
+
+<p>حالا مهم‌ترین نکته‌ای که در بخش ۲ نگفتیم: <b>همه‌ی بیماری‌های تکرار توالی یک‌جور نیستن.</b> باید دو دسته رو از هم جدا کنی:</p>
+<div class="grid2">
+<div class="mt indel"><h4>تکرار در ناحیه‌ی کدکننده (Coding) — بیماری‌های PolyQ</h4>تکرار <span class="kt">CAG</span> داخل اگزون، که برای اسید آمینه‌ی <b>گلوتامین (Q)</b> کد می‌ده. نتیجه: پروتئین با یه رشته‌ی بلند گلوتامین که تا می‌شه و تجمع (Aggregation) سمی می‌سازه. مثال‌ها: <b>هانتینگتون</b> (AD)، آتاکسی‌های اسپینوسربلار/SCA (بیشتر AD)، آتروفی عضلانی-نخاعی-بولبار یا Kennedy Disease/SBMA (X-linked).</div>
+<div class="mt splice"><h4>تکرار در ناحیه‌ی غیرکدکننده (UTR/Intron)</h4>تکرار در ناحیه‌ای که اصلاً ترجمه نمی‌شه، ولی بیان ژن یا پردازش mRNA رو مختل می‌کنه. مثال‌ها: <b>دیستروفی میوتونیک</b> (تکرار <span class="kt">CTG</span> در '3UTR ژن DMPK، AD)، <b>سندروم X شکننده / Fragile X</b> (تکرار <span class="kt">CGG</span> در '5UTR ژن FMR1، X-linked)، و <b>آتاکسی فریدریش</b> (تکرار <span class="kt">GAA</span> در اینترون ژن FXN، ولی این یکی <b>اتوزومال مغلوب</b> است).</div>
+</div>
+<div class="why"><b>چرا این تفکیک مهمه — چرا فریدریش با بقیه فرق داره؟</b> آتاکسی فریدریش تنها عضو این خانواده‌ست که <b>مغلوب</b> است (بقیه غالب یا X-linked‌ان) و مکانیزمش هم فرق داره: تکرار GAA در اینترون، رونویسی ژن FXN رو <b>کم</b> می‌کنه (Loss of function با کاهش مقدار پروتئین فراتاکسین)، نه این‌که پروتئین سمی جدید بسازه. چون هر دو نسخه باید معیوب باشن تا بیماری ظاهر بشه (مغلوب) و پدیده‌ی Expansion این‌جا اثر تجمعی نسل‌به‌نسل به همون شدت خانواده‌ی PolyQ نداره، فریدریش معمولاً <b>الگوی کلاسیک Anticipation نشون نمی‌ده</b> — دقیقاً همون نکته‌ای که طراح سوال دوست داره ازت بپرسه.</p>
+</div>
+</div>
+
+<div class="q" id="q2">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — بیماری‌های زیر در اثر گسترش توالی‌های CAG به‌وجود می‌آیند، به‌جز:</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) آتاکسی نخاعی‌مخچه‌ای (SCA)</li>
+  <li>ب) آتروفی عضلانی-نخاعی-بولبار (Kennedy)</li>
+  <li>ج) آتاکسی فریدریش</li>
+  <li>د) هانتینگتون</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ج</span></p>
+<div class="distract">
+همون‌طور که بالا دیدیم، آتاکسی فریدریش با تکرار <b>GAA</b> (نه CAG) در یک <b>اینترون</b> (نه اگزون) ایجاد می‌شه و اتوزومال مغلوبه — کاملاً از خانواده‌ی PolyQ (SCA، Kennedy، هانتینگتون) که هر سه‌شون تکرار CAG اگزونی و اختلال غالب/X-linked دارن، جداست. تله‌ی این سوال دقیقاً همینه که «چون فریدریش هم آتاکسی داره، پس باید شبیه SCA باشه» — ولی شباهت اسمی/بالینی به معنی شباهت مکانیزمی نیست.
+</div>
+</details>
+</div>
+</div>
+
+<div class="card">
+<h3>۵. جهت انتقال هم مهمه — چرا بعضی بیماری‌ها فقط از یک والد بدتر می‌شن؟</h3>
+<p>نکته‌ای که خیلی‌ها ازش غافلن: شدت Expansion، به این‌که تکرار از <b>کدوم والد</b> منتقل بشه بستگی داره — چون اسپرماتوژنز و اووژنز، دو محیط بیوشیمیایی و تعداد تقسیم متفاوت دارن.</p>
+<div class="grid3">
+<div class="mt indel"><h4>هانتینگتون</h4>Expansion شدیدتر و فرم زودرس (Juvenile Huntington) عمدتاً وقتی از <b>پدر</b> منتقل بشه.</div>
+<div class="mt miss"><h4>دیستروفی میوتونیک</h4>فرم شدید و مادرزادی (Congenital Myotonic Dystrophy) تقریباً همیشه وقتی از <b>مادر</b> منتقل بشه.</div>
+<div class="mt splice"><h4>X شکننده (Fragile X)</h4>جهش کامل (Full Mutation) عملاً فقط از طریق انتقال <b>مادری</b> رخ می‌ده؛ پدرِ ناقلِ Premutation معمولاً همون Premutation رو منتقل می‌کنه، نه جهش کامل.</div>
+</div>
+<div class="why"><b>چرا اصلاً باید این جهت‌ها رو حفظ کنی؟</b> چون در یک کیس بالینی، اگه بدونی مادر ناقل Premutation فرزندشا خطر بیشتری برای فرم شدید (Full Mutation) X شکننده داره در مقابل اگه پدر ناقل بود، می‌تونی مشاوره‌ی ژنتیک دقیق‌تری بدی — این دقیقاً نوع سوالی است که واقعیت بالینی رو با محاسبه‌ی ریسک ترکیب می‌کنه.</p>
+</div>
+</div>
+
+<div class="errspot">
+<b>🔍 خطایاب — این پاراگراف یک اشتباه عمدی داره، پیداش کن:</b><br>
+«Anticipation یک پدیده‌ی ژنتیکی است که در تمام بیماری‌های اتوزومال غالب دیده می‌شود؛ چون در هر نسل، تعداد کپی‌های ژن بیمار بیشتر می‌شود و بنابراین شدت بیماری افزایش می‌یابد.»
+<details class="reveal" style="margin-top:8px;"><summary>پاسخ رو ببین</summary>
+<p>دو اشتباه توی این جمله هست: (۱) Anticipation در «تمام» بیماری‌های AD دیده نمی‌شه — فقط اون دسته‌ای که پایه‌ی مولکولی‌شون تکرار توالی ناپایداره (هانتینگتون، میوتونیک، SCAها)؛ بیماری‌های AD دیگه مثل مارفان یا هایپرکلسترولمی خانوادگی هیچ Anticipation ندارن. (۲) مکانیزم درست «افزایش تعداد کپی‌های ژن» نیست، بلکه «افزایش تعداد تکرار توالی سه‌نوکلئوتیدی <i>درون</i> یک ژن» است — این دو مفهوم کاملاً متفاوتن (یکی duplication ژنه، یکی expansion توالی تکراری داخل یک ژن).</p>
+</details>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۱</span> نقاط مشترک با نمونه سوالات (ادامه) — Uniparental Disomy</h2>
+<p class="stage-desc">همون‌طور که در بخش ۶ وعده دادیم: اونجا فقط گفتیم «اگه هر دو نسخه‌ی کروموزوم ۱۵ از یک والد بیاد، بازم پرادر-ویلی رخ می‌ده» — الان می‌فهمیم این اتفاق دقیقاً چطور می‌افته و چقدر شایعه.</p>
+
+<div class="card">
+<h3>۶. UPD چیست و از کجا میاد؟</h3>
+<p><strong class="k">Uniparental Disomy (UPD)</strong> یعنی فرد هر دو نسخه‌ی یک جفت کروموزوم همتا رو از <b>یک والد</b> به ارث می‌بره و هیچ نسخه‌ای از والد دیگه نداره — با این‌که تعداد کل کروموزوم‌ها طبیعیه (۴۶) و در کاریوتایپ معمولی هیچ چیز غیرطبیعی دیده نمی‌شه.</p>
+<div class="grid2">
+<div class="mt indel"><h4>Heterodisomy</h4>دو نسخه‌ی <b>متفاوت</b> از همون والد (مثلاً هم نسخه‌ای که مادر از مادربزرگ گرفته، هم نسخه‌ای که از پدربزرگ گرفته) — نشونه‌ی این‌که خطا در <b>میوز I</b> اتفاق افتاده (جایی که هنوز دو همتای متفاوت از هم جدا نشدن).</div>
+<div class="mt miss"><h4>Isodisomy</h4>دو نسخه‌ی <b>کاملاً یکسان</b> از یک کروموزوم واحد (انگار یکی کپی شده) — نشونه‌ی خطا در <b>میوز II</b> یا یک خطای بعد از لقاح (Postzygotic) در تقسیم میتوز.</div>
+</div>
+<div class="why"><b>چرا این تفکیک، فقط یه اسم مولکولی نیست بلکه پیامد بالینی واقعی داره؟</b> در Isodisomy، اگه یکی از دو کروموزوم والد یک آلل مغلوب بیماری‌زا داشته باشه، فرد چون هر دو نسخه‌اش دقیقاً همون یه کروموزومه، عملاً <b>هموزیگوت</b> برای اون آلل مغلوب می‌شه — حتی اگه والد دیگه کاملاً سالم و ناقل نبوده باشه! این یعنی یک بیماری اتوزومال مغلوب می‌تونه در فرزندی ظاهر بشه که فقط <b>یکی</b> از والدینش ناقله؛ مثال کلاسیک: فیبروز کیستیک (CF) از طریق Isodisomy کروموزوم ۷ در فرزندی که فقط مادرش ناقل بوده.</p>
+</div>
+</div>
+
+<div class="card">
+<h3>۷. سه مکانیزم اصلی ساخت UPD</h3>
+<p>UPD خودش یه رویداد اولیه نیست، بلکه معمولاً نتیجه‌ی <b>تصحیح</b> یه خطای بزرگ‌تره:</p>
+<ol style="padding-right:20px;">
+<li><b>Trisomy Rescue (شایع‌ترین مکانیزم):</b> یه زیگوت با تریزومی (۳ نسخه از یک کروموزوم، دو تا از یک والد و یکی از والد دیگه) تشکیل می‌شه؛ سلول برای بقا، یکی از سه نسخه رو در یکی از تقسیمات میتوز اولیه از دست می‌ده. اگه به‌طور تصادفی همون نسخه‌ی تک (از والد اقلیت) حذف بشه، دو نسخه‌ی باقی‌مونده هر دو از همون یک والد میان → UPD.</li>
+<li><b>Monosomy Rescue:</b> یه زیگوت با مونوزومی (فقط ۱ نسخه از یک کروموزوم) تشکیل می‌شه؛ برای جبران، همون تک نسخه در یک تقسیم میتوز اولیه <b>دوبار همانندسازی/تکثیر</b> می‌شه تا عدد کروموزومی طبیعی برگرده — نتیجه Isodisomy کامل از همون یک والد.</li>
+<li><b>Gamete Complementation:</b> نادرترین حالت — یک گامت مادری که به‌طور تصادفی فاقد اون کروموزومه (Nullisomic)، با یک اسپرم که به‌طور تصادفی دو نسخه از همون کروموزوم داره (Disomic) لقاح می‌کنه؛ تصادفاً هر دو خطای مستقل، هم‌دیگه رو «جبران» می‌کنن و عدد کروموزومی طبیعی می‌مونه ولی هر دو نسخه از یک والدن.</li>
+</ol>
+<div class="why"><b>چرا مکانیزم ۱ (Trisomy Rescue) این‌قدر شایع‌تره؟</b> چون خودِ تریزومی (که از Nondisjunction میاد — یادت باشه از بخش ۶) در آنجیوژنز/میوز به‌مراتب شایع‌تر از مونوزومی یا خطای دوگانه‌ی هم‌زمانه؛ پس مسیری که با شایع‌ترین خطای اولیه شروع می‌شه، طبیعتاً شایع‌ترین مسیر نهایی هم می‌مونه — این دقیقاً همون منطق «چرا سن مادر با آنیوپلوئیدی مرتبطه» است که در بخش ۶ دیدیم، فقط این‌بار یه قدم جلوتر رفته.</p>
+</div>
+</div>
+
+<div class="q" id="q3">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — کدام مکانیزم زیر، شایع‌ترین راه پیدایش Uniparental Disomy است؟</span>
+  <span class="src">تولیدشده — سطح ۱</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+  <li>الف) Gamete Complementation</li>
+  <li>ب) Trisomy Rescue</li>
+  <li>ج) جهش نقطه‌ای در سانترومر</li>
+  <li>د) جابجایی رابرتسونی</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span></p></details></div>
+</div>
+
+<div class="card">
+<h3>۸. برگردیم به پرادر-ویلی و آنجلمن — این‌بار با اعداد واقعی</h3>
+<p>در بخش ۶ گفتیم هر دو سندرم از منطقه‌ی یکسان ۱۵q11-13 میان، فقط بسته به این‌که نسخه‌ی حذف‌شده/غایب پدری باشه یا مادری، نتیجه فرق می‌کنه. حالا سه مکانیزم مجزا که به همون نتیجه‌ی نهایی (غیبت نسخه‌ی فعال) می‌رسن رو کنار هم می‌بینیم:</p>
+<table class="wide">
+<tr><th>مکانیزم</th><th>پرادر-ویلی (غیبت نسخه‌ی پدری فعال)</th><th>آنجلمن (غیبت نسخه‌ی مادری فعال / UBE3A)</th></tr>
+<tr><td>حذف (Deletion) ۱۵q11-13</td><td>~۷۰٪ موارد (حذف نسخه‌ی <b>پدری</b>)</td><td>~۷۰٪ موارد (حذف نسخه‌ی <b>مادری</b>)</td></tr>
+<tr><td>Uniparental Disomy</td><td>~۲۵-۳۰٪ موارد (UPD <b>مادری</b> — هر دو نسخه از مادر، پس نسخه‌ی پدری فعال اصلاً وجود نداره)</td><td>~۲-۷٪ موارد (UPD <b>پدری</b>)</td></tr>
+<tr><td>جهش مرکز Imprinting یا تک‌ژنی</td><td>باقی‌مانده‌ی موارد نادر</td><td>جهش تک‌ژنی UBE3A: ~۵-۱۰٪؛ جهش مرکز Imprinting: ~۱۰-۲۰٪</td></tr>
+</table>
+<div class="why"><b>چرا UPD در پرادر-ویلی خیلی بیشتر از آنجلمن است؟</b> چون UPD مادری (لازم برای پرادر-ویلی) از مسیر Trisomy Rescue روی یه تریزومی ۱۵ مادری‌منشا میاد — و تریزومی ۱۵ به‌خاطر سن مادر، به‌طور کلی شایع‌تر از خطاهای معادلش با منشا پدریه (که برای UPD پدری لازمه). پس همون قانون «سن مادر و Nondisjunction» که در بخش ۶ خوندیم، این‌جا هم به‌طور غیرمستقیم اثر می‌ذاره و باعث می‌شه یکی از این دو مسیر UPD به‌طور طبیعی شایع‌تر باشه.</p>
+</div>
+</div>
+
+<div class="q" id="q4">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال — در یک بیمار مشکوک به سندرم پرادر-ویلی، آزمایش متیلاسیون غیرطبیعی است ولی حذف ۱۵q11-13 با FISH رد شده است. محتمل‌ترین علت کدام است؟</span>
+  <span class="src">تولیدشده — سطح ۲ (همان پاراگراف)</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+  <li>الف) تریزومی ۱۵ کامل</li>
+  <li>ب) Uniparental Disomy مادری کروموزوم ۱۵</li>
+  <li>ج) جابجایی رابرتسونی ۱۳/۱۵</li>
+  <li>د) موزائیسم سوماتیک بی‌ربط</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ + استدلال</summary><p>پاسخ صحیح: <span class="correct">ب</span> — وقتی حذف رد شده ولی الگوی متیلاسیون (که بازتاب‌دهنده‌ی این‌که کدوم نسخه فعاله) هنوز غیرطبیعیه، باید به دومین شایع‌ترین مکانیزم پرادر-ویلی فکر کنی که در جدول بالا دیدیم: UPD مادری. این دقیقاً همون منطق «رد کردن گزینه‌ی شایع‌تر برای رسیدن به گزینه‌ی بعدی در لیست احتمالات» است.</p></details></div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۲</span> مطالب بدون سوال ولی مهم</h2>
+<p class="stage-desc">این‌ها مستقیم نمونه سوال ندارن، ولی چون از همون منطق UPD/Imprinting میان و درک کلی وراثت غیرمندلی رو کامل می‌کنن، ارزش دیدن دارن.</p>
+
+<div class="card">
+<h3>۱. UPD در کروموزوم‌های دیگر — نه فقط ۱۵</h3>
+<div class="grid3">
+<div class="mt indel"><h4>کروموزوم ۱۱ — Beckwith-Wiedemann</h4>UPD پدری کروموزوم ۱۱ → بیان بیش‌ازحد ژن‌های رشدی پدری‌منشا → ماکروزومی، ماکروگلوسی، امفالوسل، خطر بالای تومور ویلمز.</div>
+<div class="mt miss"><h4>کروموزوم ۱۴ — دو سندرم متضاد</h4>UPD <b>پدری</b> ۱۴ → سندرم Kagami-Ogata (قفسه‌ی سینه‌ی کوچک، مشکلات تنفسی شدید). UPD <b>مادری</b> ۱۴ → سندرم <b>تمپل (Temple)</b> — قد کوتاه، هیپوتونی، تاخیر بلوغ؛ از نظر بالینی گاهی با ترنر یا پرادر-ویلی اشتباه گرفته می‌شه.</div>
+<div class="mt splice"><h4>کروموزوم ۷ — فیبروز کیستیک پنهان</h4>Isodisomy کروموزوم ۷ می‌تونه یک آلل مغلوب CFTR رو «دوبار» ظاهر کنه، حتی اگه فقط یک والد ناقل بوده باشه — مثالی که در بخش قبل دیدیم.</div>
+</div>
+<div class="why"><b>یادت باشه از بخش ۶:</b> در سوال تشخیص افتراقی سندرم ترنر، گزینه‌ی «سندرم تمپل» به‌عنوان یکی از انتخاب‌ها اومده بود (و جواب درست، نونان بود، نه تمپل). حالا می‌دونی چرا تمپل اصلاً توی اون سوال به‌عنوان گزینه اومده بود — چون از نظر قد کوتاه و برخی ویژگی‌ها، واقعاً شبیه ترنره، ولی مکانیزمش کاملاً متفاوت (UPD مادری ۱۴ در مقابل مونوزومی X) است.</p>
+</div>
+</div>
+
+<div class="card">
+<h3>۲. X-Inactivation (Lyonization) — یک مکانیزم غیرمندلی دیگر که با Imprinting قاطی نشه</h3>
+<p>در خانم‌ها (۴۶,XX)، در اوایل جنینی، در <b>هر سلول</b> به‌طور تصادفی یکی از دو کروموزوم X (یا از پدر، یا از مادر) غیرفعال می‌شه تا دوز ژن‌های X-linked با مردها (که فقط یک X دارن) برابر بشه. این انتخاب، برخلاف Imprinting، <b>تصادفی</b> است (نه همیشه از یک والد خاص) و در هر سلول مستقل تعیین می‌شه — نتیجه، هر خانمی از نظر بیان ژن‌های X-linked، یک موزائیک از دو جمعیت سلولیه.</p>
+<div class="why"><b>چرا این برای حامل‌های زن بیماری‌های X-linked مغلوب مهمه؟</b> اگه به‌طور تصادفی (Skewed X-Inactivation) اکثر سلول‌های یک بافت خاص، X سالم رو غیرفعال کرده باشن (و X دارای آلل بیمار فعال مونده باشه)، اون خانم حامل می‌تونه به‌طور غیرمنتظره علامت‌دار بشه — این دقیقاً همون چیزیه که در بخش ۲، وقتی گفتیم «حامل X-linked مغلوب معمولاً ظاهراً سالمه»، به‌عنوان یک استثنای احتمالی باید در ذهن داشته باشی.</p>
+</div>
+</div>
+
+<div class="card">
+<h3>۳. وراثت سه‌آللی (Triallelic Inheritance) — یک استثنای نادر روی «دو آلل کافیه»</h3>
+<p>در همه‌ی الگوهای مندلی که تا الان دیدیم، فرض این بود که فنوتیپ فقط با دو آلل (یکی از هر والد) در یک لوکوس تعیین می‌شه. سندرم <b>Bardet-Biedl</b> (چاقی مفرط، پلی‌داکتیلی، مشکلات کلیوی/کبدی، ناتوانی بینایی) استثناست: برای بروز کامل بیماری در بعضی خانواده‌ها، به یک آلل مغلوب در یک ژن BBS <b>به‌علاوه</b> یک آلل جهش‌یافته‌ی سوم در یک ژن BBS <i>دیگر</i> نیاز است.</p>
+<div class="why"><b>چرا این نکته رو باید بدونی؟</b> فقط برای این‌که یادت بمونه که مدل «یک ژن، دو آلل» همیشه کل داستان رو نمی‌گه — بعضی بیماری‌ها (به‌خصوص سندرم‌های سیلیوپاتی مثل Bardet-Biedl) از تعامل چند لوکوس هم‌زمان اثر می‌گیرن، شبیه یک حد واسط بین مونوژنیک و مولتی‌فاکتوریال (که در بخش ۵ کامل دیدیمش).</p>
+</div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۳</span> ارتباطات پیچیده — کیس سینتزی</h2>
+<p class="stage-desc">حالا سه مبحث امروز رو با هم و با بخش‌های قبل ترکیب می‌کنیم — دقیقاً شبیه چیزی که در امتحان به‌صورت یک کیس چندخطی می‌بینی.</p>
+
+<div class="case">
+<b class="tag-case">🧩 کیس سینتزی</b><br>
+خانواده‌ای با شجره‌نامه‌ی زیر مراجعه کردن: مادربزرگ مادری، ضعف عضلانی خفیف و افت شنوایی داشته که در سن بالا شروع شده. مادر، در سن جوان‌تر از مادربزرگش، همان ضعف عضلانی را به‌همراه دیابت پیدا کرده. یکی از دو فرزند مادر (پسر)، از نوزادی افت شدید تون عضلانی و مشکل تغذیه داشته و در معاینه‌ی چشم، تغییرات رنگدانه‌ای شبکیه دیده شده؛ خواهرش کاملاً سالم است. پدرِ این دو فرزند، از خانواده‌ای کاملاً بی‌علامت است.
+<div class="why" style="margin-top:10px;"><b>سوال ۱ — قبل از هر آزمایش، کدام الگوی وراثتی محتمل‌تره و چرا؟</b> شدت‌گیری در هر نسل (مادربزرگ خفیف و دیرشروع ← مادر متوسط ← نوه شدید و زودشروع) و این‌که فقط از خط مادری منتقل شده (پدر و خانواده‌ی پدری کاملاً سالم)، به‌شدت به سمت <b>وراثت میتوکندریایی</b> اشاره داره — نه Anticipation کلاسیک (که تکرار توالیه و روی ژنوم هسته‌ست، نه صرفاً مادری) و نه یک بیماری AD ساده.</p>
+<b>سوال ۲ — چرا خواهر پسر بیمار، کاملاً سالم مونده با این‌که ژنتیکاً از همون مادر همون میتوکندری رو گرفته؟</b> اینجا Threshold Effect و Replicative Segregation که در همین بخش دیدیم به کار میاد: نسبت heteroplasmy (درصد mtDNA جهش‌یافته) می‌تونه بین دو خواهر و خواهر، در حین تقسیمات اولیه‌ی جنینی، کاملاً متفاوت پخش بشه — پس یکی از آستانه‌ی علامت‌دار شدن بافت‌های حساس (عضله، شبکیه) رد می‌شه و دیگری نه، بدون این‌که هیچ جهش جدیدی رخ داده باشه.</p>
+</div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۴</span> مرور نهایی — نقشه‌ی کامل وراثت غیرمندلی</h2>
+<p class="stage-desc">حالا که هر سه مبحث رو دیدیم، بیایم یه نقشه‌ی مقایسه‌ای بسازیم که همه‌ی الگوهای غیرمندلیِ کل جزوه (بخش‌های ۲، ۶ و ۷) رو کنار هم بذاره — چون سوالات امتحانی عاشق اینن که این‌ها رو با هم قاطی کنن.</p>
+<table class="wide">
+<tr><th>الگو</th><th>واحد وراثت</th><th>نکته‌ی کلیدی افتراقی</th><th>کجا دیدیمش</th></tr>
+<tr><td>مندلی (AD/AR/X-linked/Y-linked)</td><td>یک لوکوس، دو آلل</td><td>الگوی شجره‌نامه‌ی ثابت و قابل‌پیش‌بینی با نسبت‌های مندلی</td><td>بخش ۲</td></tr>
+<tr><td>Imprinting (دلیشن)</td><td>یک لوکوس، ولی فقط یک نسخه (پدری یا مادری) طبیعتاً فعاله</td><td>حذف نسخه‌ی فعال (نه لزوماً هر دو نسخه) کافیه برای بیماری</td><td>بخش ۶</td></tr>
+<tr><td>Uniparental Disomy</td><td>یک جفت کروموزوم کامل از یک والد</td><td>می‌تونه هم بیماری‌های Imprinting رو تقلید کنه، هم بیماری‌های مغلوب رو با یک والد ناقل ظاهر کنه (Isodisomy)</td><td>بخش ۷ (همین‌جا)</td></tr>
+<tr><td>Anticipation</td><td>تکرار توالی ناپایدار درون یک ژن هسته‌ای</td><td>شدت/زودرسی بیماری در هر نسل بیشتر می‌شه؛ فقط در بیماری‌های تکرار توالی‌محور</td><td>بخش ۲ (مقدمه) و بخش ۷ (عمق)</td></tr>
+<tr><td>میتوکندریایی</td><td>ژنوم سیتوپلاسمی، خارج از هسته</td><td>فقط مادر منتقل می‌کنه؛ Heteroplasmy باعث شدت متغیر بین خواهر/برادرها می‌شه</td><td>بخش ۷ (همین‌جا)</td></tr>
+<tr><td>X-Inactivation</td><td>یکی از دو X در هر سلول زن، تصادفی خاموش می‌شه</td><td>می‌تونه حامل زن X-linked مغلوب رو غیرمنتظره علامت‌دار کنه</td><td>بخش ۷ (همین‌جا)</td></tr>
+</table>
+<div class="check">
+<b>یادآوری فعال — قبل از رفتن سراغ تمرین، بدون نگاه به بالا جواب بده:</b><br>
+۱. چرا وراثت میتوکندریایی هیچ‌وقت از پدر منتقل نمی‌شه؟<br>
+۲. فرق مکانیزمی Heterodisomy و Isodisomy در چیه، و کدومش می‌تونه یک بیماری مغلوب رو با فقط یک والد ناقل آشکار کنه؟<br>
+۳. چرا آتاکسی فریدریش با این‌که تکرار توالی داره، الگوی کلاسیک Anticipation نشون نمی‌ده؟<br>
+۴. با منطق «سن مادر و Nondisjunction» از بخش ۶، پیش‌بینی کن چرا UPD مادری در پرادر-ویلی از UPD پدری در آنجلمن شایع‌تره؟
+<details class="reveal" style="margin-top:8px;"><summary>جواب‌ها رو ببین</summary>
+<p>۱. چون فقط سیتوپلاسم تخمک (نه اسپرم) وارد سلول تخم می‌شه و میتوکندری‌های کم اسپرم هم بعد از لقاح فعالانه تخریب می‌شن.<br>
+۲. Heterodisomy از خطای میوز I میاد (دو نسخه‌ی متفاوت از یک والد)؛ Isodisomy از خطای میوز II یا پس از لقاح میاد (دو نسخه‌ی کاملاً یکسان) و چون یک کروموزوم واقعاً «دوبار دیده می‌شه»، می‌تونه یک آلل مغلوب رو هموزیگوت کنه حتی با یک والد ناقل.<br>
+۳. چون فریدریش اتوزومال مغلوبه و مکانیزمش کاهش بیان ژن (Loss of Function) با تکرار GAA در اینترونه، نه تجمع سمی پروتئین مثل بیماری‌های PolyQ غالب — این مکانیزم متفاوت باعث می‌شه اثر تشدید نسل‌به‌نسل به همون وضوح دیده نشه.<br>
+۴. چون UPD مادری معمولاً از Trisomy Rescue روی یک تریزومی ۱۵ با منشا مادری میاد، و تریزومی‌های مادری‌منشا (به‌خاطر ریسک سنی مادر که در بخش ۶ دیدیم) به‌طور کلی شایع‌تر از خطاهای مشابه با منشا پدری‌ان.</p>
+</details>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">📝</span> تمرین مرور — ۲۰ سوال کامل</h2>
+<p class="stage-desc">قبل از هر خوشه‌ی سوال، یه بریفینگ کوتاه می‌بینی. شروع با مفاهیم پایه‌ی هر مبحث، بعد کیس‌های ترکیبی و سوالات مرور بین‌بخشی.</p>
+
+<div class="card">
+<h3>بریفینگ ۱ — ژنوم و وراثت میتوکندریایی</h3>
+<p>یادآوری: mtDNA حلقوی، ۱۶.۶kb، ۳۷ ژن، صدها کپی در هر سلول. مادر مبتلا → همه‌ی فرزندان؛ پدر مبتلا → هیچ‌کس. Heteroplasmy = مخلوط کپی سالم/جهش‌یافته؛ Threshold Effect = بافت‌های پرانرژی (مغز، عضله، قلب) زودتر علامت‌دار می‌شن.</p>
+</div>
+
+<div class="q" id="p1">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱ — چرا اکثر بیماری‌های میتوکندریایی، بافت‌های عصبی و عضلانی را درگیر می‌کنند نه مثلاً پوست؟</span>
+  <span class="src">تولیدشده — سطح ۲</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) این بافت‌ها بیشترین تعداد کروموزوم هسته‌ای را دارند</li>
+<li>ب) این بافت‌ها بیشترین وابستگی به انرژی میتوکندریایی را دارند، پس زودتر از آستانه‌ی heteroplasmy رد می‌شوند</li>
+<li>ج) پوست اصلاً میتوکندری ندارد</li>
+<li>د) جهش‌های میتوکندریایی فقط در بافت‌های اکتودرمی رخ می‌دهند</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span></p></details></div>
+</div>
+
+<div class="q" id="p2">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۲ — مردی مبتلا به یک بیماری میتوکندریایی می‌خواهد بداند چه نسبتی از فرزندانش بیمار خواهند شد. پاسخ صحیح کدام است؟</span>
+  <span class="src">تولیدشده — سطح ۱</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) ۵۰٪ پسران</li>
+<li>ب) ۵۰٪ دختران</li>
+<li>ج) ۱۰۰٪ فرزندان</li>
+<li>د) هیچ‌کدام (۰٪)</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">د</span> — پدر مبتلا به بیماری میتوکندریایی، هرگز آن را منتقل نمی‌کند.</p></details></div>
+</div>
+
+<div class="q" id="p3">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۳ — دو خواهر با همان جهش میتوکندریایی از مادرشان، شدت بیماری کاملاً متفاوتی دارند. بهترین توضیح کدام است؟</span>
+  <span class="src">تولیدشده — سطح ۲</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) یکی از خواهرها حتماً جهش جدید de novo دارد</li>
+<li>ب) پخش تصادفی (Replicative Segregation) نسبت heteroplasmy در حین تقسیمات جنینی، بین دو خواهر متفاوت بوده است</li>
+<li>ج) این غیرممکن است چون هر دو از یک مادر هستند</li>
+<li>د) یکی از آن‌ها حتماً موزائیک کروموزومی است</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span></p></details></div>
+</div>
+
+<div class="card">
+<h3>بریفینگ ۲ — Anticipation و بیماری‌های تکرار توالی</h3>
+<p>یادآوری: Slippage پلیمراز روی توالی‌های تکراری → Expansion. PolyQ/CAG اگزونی (هانتینگتون، SCA، Kennedy) در برابر تکرار غیرکدکننده (میوتونیک-CTG، فرجایل X-CGG، فریدریش-GAA که مغلوبه و Anticipation کلاسیک نداره). جهت انتقال مهمه: هانتینگتون از پدر بدتر، میوتونیک و فرجایل X از مادر بدتر.</p>
+</div>
+
+<div class="q" id="p4">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۴ — مکانیزم مولکولی اصلی افزایش تعداد تکرار توالی در Anticipation کدام است؟</span>
+  <span class="src">تولیدشده — سطح ۱</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) کراس‌اوور نابرابر بین کروموزوم‌های همتا در میوز</li>
+<li>ب) Slippage پلیمراز روی ساختار ثانویه‌ی توالی تکراری در حین همانندسازی</li>
+<li>ج) Nondisjunction در میوز I</li>
+<li>د) متیلاسیون غیرطبیعی پروموتر</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span></p></details></div>
+</div>
+
+<div class="q" id="p5">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۵ — فرم مادرزادی و شدید دیستروفی میوتونیک، عمدتاً وقتی رخ می‌دهد که تکرار CTG از کدام والد منتقل شده باشد؟</span>
+  <span class="src">تولیدشده — سطح ۲</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) پدر</li>
+<li>ب) مادر</li>
+<li>ج) فرقی ندارد</li>
+<li>د) فقط اگر از هر دو والد منتقل شود</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span></p></details></div>
+</div>
+
+<div class="q" id="p6">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۶ — پدیده‌ی پیش‌افتادگی ژنتیکی (Anticipation) در مورد کدام بیماری صدق نمی‌کند؟ (مرور از بخش ۲)</span>
+  <span class="src">نمونه سوال امتحانی (مرور بین‌بخشی — بخش ۲)</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) دیستروفی میوتونیک مادرزادی</li>
+<li>ب) دیستروفی عضلانی دوشن</li>
+<li>ج) دیستروفی عضلانی اوکولوفارنژیال</li>
+<li>د) سندروم X شکننده</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span> — عمداً این سوال دوباره این‌جا اومد (Spaced Retrieval) چون امروز عمق بیشتری از «چرا» پشتش داری: دوشن از حذف ژن دیستروفین میاد، نه از یک توالی تکراری ناپایدار.</p></details></div>
+</div>
+
+<div class="q" id="p7">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۷ — Confidence Calibration: چقدر مطمئنی که «هر بیماری AD با شدت متفاوت در افراد خانواده، حتماً Anticipation دارد»؟ قبل از دیدن پاسخ، درصد اطمینانت را در ذهن مشخص کن.</span>
+  <span class="src">تولیدشده — Confidence Calibration</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال بعد از این‌که درصد اطمینانت رو مشخص کردی</div>
+<div class="ans" style="display:block;padding:0 20px 18px;">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>غلطه. شدت متفاوت بین افراد خانواده می‌تونه از <b>Variable Expressivity</b> بیاد (که در بخش ۲ دیدیم) بدون این‌که هیچ Anticipationای در کار باشه؛ Anticipation فقط زمانی مطرحه که این افزایش شدت، مشخصاً <b>با هر نسل</b> (نه بین افراد هم‌نسل) و همراه با زودرس‌تر شدن سن شروع باشه، و پایه‌ی مولکولی‌اش تکرار توالی ناپایدار باشه. اگه اطمینانت بالا بود که این جمله درسته، دقیقاً وقتشه Variable Expressivity رو با Anticipation قاطی نکنی.</p>
+</details>
+</div>
+</div>
+
+<div class="card">
+<h3>بریفینگ ۳ — Uniparental Disomy</h3>
+<p>یادآوری: Heterodisomy (دو نسخه‌ی متفاوت، خطای میوز I) در برابر Isodisomy (دو نسخه‌ی یکسان، خطای میوز II یا پس از لقاح). Trisomy Rescue شایع‌ترین مکانیزمه. UPD مادری ۱۵ → پرادر-ویلی (~۲۵-۳۰٪ موارد)؛ UPD پدری ۱۵ → آنجلمن (~۲-۷٪ موارد). Isodisomy می‌تونه بیماری مغلوب رو با فقط یک والد ناقل آشکار کنه.</p>
+</div>
+
+<div class="q" id="p8">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۸ — کدام نوع UPD، نشانه‌ی خطا در میوز I است؟</span>
+  <span class="src">تولیدشده — سطح ۱</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) Isodisomy</li>
+<li>ب) Heterodisomy</li>
+<li>ج) هر دو به یک اندازه</li>
+<li>د) هیچ‌کدام، UPD همیشه پس از لقاح رخ می‌دهد</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span></p></details></div>
+</div>
+
+<div class="q" id="p9">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۹ — نوزادی با فیبروز کیستیک متولد شده. آزمایش ژنتیک نشان می‌دهد فقط مادر ناقل یک آلل جهش‌یافته‌ی CFTR است و پدر کاملاً سالم و بدون آلل جهش‌یافته است. محتمل‌ترین توضیح کدام است؟</span>
+  <span class="src">تولیدشده — سطح ۲ (کاربرد بالینی Isodisomy)</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) جهش de novo در آلل پدری رخ داده ولی تشخیص داده نشده</li>
+<li>ب) Isodisomy کروموزوم ۷ — نوزاد هر دو نسخه از همان کروموزوم مادری (حامل آلل جهش‌یافته) را دارد</li>
+<li>ج) این نتیجه‌ی آزمایشگاهی حتماً اشتباه است</li>
+<li>د) بیماری اکتسابی است نه ژنتیکی</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ + استدلال</summary><p>پاسخ صحیح: <span class="correct">ب</span> — سرنخ کلیدی «فقط یک والد ناقل، ولی فرزند مبتلا» رو به مفهومی که در همین بخش دیدیم وصل کن: در Isodisomy، یک کروموزوم مادری (شامل آلل جهش‌یافته) دوبار «دیده می‌شه»، پس فرزند از نظر عملکردی هموزیگوت می‌شه بدون این‌که پدر اصلاً نقشی داشته باشه.</p></details></div>
+</div>
+
+<div class="q" id="p10">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۰ — کدام سندرم زیر با UPD پدری کروموزوم ۱۴ مرتبط است؟</span>
+  <span class="src">تولیدشده — سطح ۳ (هم‌مبحث)</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) سندرم تمپل</li>
+<li>ب) سندرم Kagami-Ogata</li>
+<li>ج) سندرم بکویت-ویدمن</li>
+<li>د) سندرم آنجلمن</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ب</span> — سندرم تمپل از UPD <b>مادری</b> ۱۴ میاد، دقیقاً برعکس.</p></details></div>
+</div>
+
+<div class="q" id="p11">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۱ — در سوال تشخیص افتراقی سندرم ترنر (بخش ۶)، «سندرم تمپل» به‌عنوان یکی از گزینه‌های نادرست آمده بود. چرا این گزینه اصلاً منطقی به‌نظر می‌رسید؟</span>
+  <span class="src">تولیدشده — مرور بین‌بخشی (بخش ۶ + بخش ۷)</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) چون سندرم تمپل هم قد کوتاه و برخی ویژگی‌های شبیه ترنر دارد، با این‌که مکانیزمش UPD مادری ۱۴ است نه مونوزومی X</li>
+<li>ب) چون سندرم تمپل هم یک ناهنجاری کروموزوم جنسی است</li>
+<li>ج) چون سندرم تمپل و ترنر هر دو از یک ژن مشترک می‌آیند</li>
+<li>د) این گزینه هیچ ارتباط منطقی‌ای نداشت</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">الف</span></p></details></div>
+</div>
+
+<div class="card">
+<h3>بریفینگ ۴ — کیس‌های ترکیبی و مرور بین‌بخشی</h3>
+<p>حالا مفاهیم امروز رو با هم و با بخش‌های ۱ تا ۶ ترکیب می‌کنیم.</p>
+</div>
+
+<div class="q" id="p12">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۲ — کیس چندمرحله‌ای: نوزادی با هیپوتونی شدید، مشکل تغذیه، و بعداً چاقی مفرط و پرخوری اجباری مراجعه کرده. آزمایش متیلاسیون کروموزوم ۱۵ غیرطبیعی است. FISH حذف را رد می‌کند و کاریوتایپ کاملاً طبیعی (۴۶ کروموزوم) است. محتمل‌ترین یافته‌ی نهایی کدام است؟</span>
+  <span class="src">تولیدشده — کیس سینتزی چندمرحله‌ای</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) موزائیسم سوماتیک تریزومی ۱۵</li>
+<li>ب) UPD مادری کروموزوم ۱۵ (پرادر-ویلی بدون حذف)</li>
+<li>ج) بیماری میتوکندریایی</li>
+<li>د) جهش de novo در ژن FGFR3</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ + استدلال</summary><p>پاسخ صحیح: <span class="correct">ب</span></p><p>سرنخ‌ها رو زنجیره کن: علائم (هیپوتونی نوزادی + پرخوری اجباری بعدی) = تصویر بالینی کلاسیک پرادر-ویلی که در بخش ۶ دیدیم. متیلاسیون غیرطبیعی = تایید این‌که نسخه‌ی پدری فعال غایبه. حذف رد شده و کاریوتایپ طبیعیه = مکانیزم دلیشن (که ~۷۰٪ مواقع علته) کنار می‌ره، پس باید سراغ دومین مکانیزم شایع (که در همین بخش با جدول دیدیم) بریم: UPD مادری.</p></details></div>
+</div>
+
+<div class="q" id="p13">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۳ — Refutation: «چون خانم‌ها دو کروموزوم X دارند، همیشه دوز ژن‌های X-linked در آن‌ها دقیقاً دو برابر مردهاست.» این جمله چرا غلط است؟</span>
+  <span class="src">تولیدشده — Refutation Text</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال بعد از فکر کردن</div>
+<div class="ans" style="display:block;padding:0 20px 18px;"><details class="reveal"><summary>نمایش پاسخ</summary><p>غلطه چون X-Inactivation (Lyonization) در هر سلول یکی از دو X را خاموش می‌کند تا دوز ژن با مردها برابر بشه — نتیجه، خانم‌ها هم عملاً فقط یک X فعال در هر سلول دارند، فقط این‌که کدوم X (پدری یا مادری) فعال بمونه، از سلول به سلول تصادفیه؛ پس دوز ژن برابره، نه دوبرابر.</p></details></div>
+</div>
+
+<div class="q" id="p14">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۴ — خانمی حامل شناخته‌شده‌ی هموفیلی A (بخش ۲) است ولی برخلاف انتظار، خودش هم علائم خفیف خونریزی دارد. محتمل‌ترین توضیح با مفاهیم همین بخش کدام است؟</span>
+  <span class="src">تولیدشده — سطح ۳ (ترکیب بخش ۲ و بخش ۷)</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) Skewed X-Inactivation — به‌طور تصادفی اکثر سلول‌های کبدی او، X سالم را خاموش کرده‌اند</li>
+<li>ب) او حتماً UPD کروموزوم X دارد</li>
+<li>ج) این غیرممکن است، حامل‌ها هرگز علامت‌دار نمی‌شوند</li>
+<li>د) او حتماً یک جهش میتوکندریایی هم‌زمان دارد</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">الف</span></p></details></div>
+</div>
+
+<div class="q" id="p15">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۵ — First-Principles: بدون نگاه به بالا، توضیح بده چرا اصلاً یک سلول انسانی به «صدها کپی» mtDNA نیاز دارد ولی به فقط «۲ کپی» از هر کروموزوم هسته‌ای نیاز دارد؟</span>
+  <span class="src">تولیدشده — First-Principles Breakdown</span>
+</div>
+<div class="toggle-hint">👆 بعد از فکر کردن، پاسخ رو ببین</div>
+<div class="ans" style="display:block;padding:0 20px 18px;"><details class="reveal"><summary>نمایش پاسخ</summary><p>هر میتوکندری خودش به چند کپی از ژنومش برای تولید مداوم انرژی در همون‌جا نیاز داره (تولید پروتئین‌های محلی، بدون وابستگی به واردات از هسته برای هر پروتئین)؛ و چون هر سلول ده‌ها تا صدها میتوکندری داره، مجموع کپی‌های mtDNA به‌طور طبیعی خیلی بالا می‌ره. ژنوم هسته برعکس، فقط یک نسخه‌ی «نقشه‌ی مرجع» کامل لازم داره که در هر تقسیم دقیق کپی و توزیع بشه — دو نسخه (یکی از هر والد) صرفاً برای این‌که سیستم مغلوب/غالب و تنوع ژنتیکی کار کنه کافیه.</p></details></div>
+</div>
+
+<div class="q" id="p16">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۶ — کدام‌یک از موارد زیر، مثالی از Heterodisomy است؟</span>
+  <span class="src">تولیدشده — سطح ۱</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) فرد هر دو نسخه‌ی کروموزوم ۱۵ را از مادر دارد، ولی این دو نسخه از مادربزرگ و پدربزرگِ مادری متفاوت‌اند</li>
+<li>ب) فرد دو نسخه‌ی کاملاً یکسان از یک کروموزوم مادری دارد</li>
+<li>ج) فرد یک نسخه از پدر و یک نسخه از مادر دارد (حالت طبیعی)</li>
+<li>د) فرد سه نسخه از یک کروموزوم دارد</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">الف</span></p></details></div>
+</div>
+
+<div class="q" id="p17">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۷ — کدام‌یک زیر جزء تشخیص‌های افتراقی بالینی سندرم Bardet-Biedl نیست؟ (مرور — چاقی و پلی‌داکتیلی را با کدام سندرم بخش ۶ اشتباه نگیر)</span>
+  <span class="src">تولیدشده — Distractor Analysis / مرور بخش ۶</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) سندرم پرادر-ویلی (به‌خاطر چاقی مشترک)</li>
+<li>ب) سندرم پاتو / تریزومی ۱۳ (به‌خاطر پلی‌داکتیلی مشترک)</li>
+<li>ج) هانتینگتون</li>
+<li>د) هیچ‌کدام — هر سه از نظر یک یا چند علامت با Bardet-Biedl مشترک‌اند</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">ج</span> — هانتینگتون هیچ ربطی به چاقی یا پلی‌داکتیلی نداره؛ اما پرادر-ویلی (چاقی) و پاتو (پلی‌داکتیلی) واقعاً با Bardet-Biedl از نظر علامت مشترک‌اند و باید در تشخیص افتراقی نگه داشته بشن — این سوال عمداً طراحی شد تا مرور فعال بخش ۶ (پاتو) و بخش ۷ (پرادر-ویلی) رو با هم بیاره.</p></details></div>
+</div>
+
+<div class="q" id="p18">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۸ — Desirable Difficulty: یک زوج، هر دو ناقل شناخته‌شده‌ی یک بیماری اتوزومال مغلوب (مثل تالاسمی، بخش ۲) هستند. فرزندشان مبتلاست، ولی توالی‌یابی نشان می‌دهد هر دو آلل بیمار فرزند، دقیقاً از یک کروموزوم مادری آمده‌اند نه از پدر. چه اتفاقی افتاده؟</span>
+  <span class="src">تولیدشده — سطح سخت‌تر (ترکیب چند مفهوم)</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) این نتیجه با وراثت مندلی ساده هم کاملاً سازگار است، جای تعجب ندارد</li>
+<li>ب) به‌طور مستقل از احتمال مندلی، Isodisomy کروموزوم حامل ژن بیماری از مادر رخ داده و آلل پدری اصلاً به فرزند نرسیده</li>
+<li>ج) این نتیجه غیرممکن است و باید آزمایش تکرار شود</li>
+<li>د) پدر واقعی فرزند شخص دیگری است</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ + استدلال</summary><p>پاسخ صحیح: <span class="correct">ب</span> — چون سوال صریح گفته «هر دو آلل از یک کروموزوم مادری»، این دقیقاً امضای Isodisomy است، نه وراثت مندلی معمولی (که در اون، یک آلل از هرکدام از والدین میاد). این سوال سخت‌تر از حد معمول طراحی شده تا هوشیاریت رو نسبت به جزئیات دقیق صورت سوال بسنجه.</p></details></div>
+</div>
+
+<div class="q" id="p19">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۱۹ — مرور از بخش ۵: کدام یک از موارد زیر، «Heritability بالا» را به‌درستی توصیف می‌کند و چرا این مفهوم مستقیماً برای توصیف شدت heteroplasmy در یک خانواده‌ی میتوکندریایی به کار نمی‌رود؟</span>
+  <span class="src">تولیدشده — مرور بین‌بخشی (بخش ۵ + بخش ۷)</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) Heritability سهم تنوع ژنتیکی در تنوع یک صفت در سطح جمعیت است؛ ولی تفاوت شدت heteroplasmy بین خواهر و برادر از پخش تصادفی میتوکندری در تقسیم سلولی می‌آید، نه از تفاوت ژنتیکی واقعی بین آن‌ها</li>
+<li>ب) Heritability یعنی درصد بیمارانی که علامت‌دار می‌شوند</li>
+<li>ج) این دو مفهوم کاملاً یکسان و قابل‌جایگزینی‌اند</li>
+<li>د) Heritability فقط برای بیماری‌های میتوکندریایی تعریف می‌شود</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">الف</span></p></details></div>
+</div>
+
+<div class="q" id="p20">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>تمرین ۲۰ — کدام یک از موارد زیر، اصل استفاده از mtDNA در پزشکی قانونی برای تعیین هویت را به‌درستی توضیح می‌دهد؟</span>
+  <span class="src">تولیدشده — سطح ۳ (کاربرد واقعی)</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه</div>
+<ul class="opts">
+<li>الف) همه‌ی افراد یک خط مادری (مادربزرگ، مادر، فرزندان، نوه‌های دختری) توالی mtDNA یکسانی دارند، صرف‌نظر از این‌که پدرهایشان چه کسانی بوده‌اند</li>
+<li>ب) mtDNA هر فرد کاملاً منحصربه‌فرد است، مثل اثر انگشت</li>
+<li>ج) mtDNA فقط برای تعیین جنسیت جنین کاربرد دارد</li>
+<li>د) mtDNA از هر دو والد به یک نسبت به ارث می‌رسد</li>
+</ul>
+<div class="ans"><details class="reveal"><summary>نمایش پاسخ</summary><p>پاسخ صحیح: <span class="correct">الف</span></p></details></div>
+</div>
+
+</section>
+
+<div class="cheat">
+<h2>📋 چک‌لیست شب امتحان — بخش ۷</h2>
+<div class="grid2">
+<div class="col">
+<ul>
+<li>mtDNA: حلقوی، ۱۶.۶kb، ۳۷ ژن (۱۳ پروتئین + ۲۲ tRNA + ۲ rRNA)، صدها کپی/سلول، ~۹۷٪ کدکننده</li>
+<li>وراثت میتوکندریایی: مادر مبتلا → همه‌ی فرزندان؛ پدر مبتلا → هیچ فرزندی (سیتوپلاسم تخمک، تخریب فعال میتوکندری اسپرم)</li>
+<li>Homoplasmy = همه‌ی کپی‌ها یکسان؛ Heteroplasmy = مخلوط سالم/جهش‌یافته؛ Threshold Effect = بافت‌های پرانرژی (مغز، عضله، قلب، شبکیه) اول علامت‌دار می‌شوند</li>
+<li>Replicative Segregation = پخش تصادفی نسبت heteroplasmy در تقسیم سلولی → شدت متفاوت بین خواهر/برادر با همان جهش</li>
+<li>MELAS = شبه‌سکته + اسیدوز لاکتیک + میوپاتی؛ MERRF = تشنج میوکلونیک + Ragged Red Fibers</li>
+<li>Anticipation: Slippage پلیمراز روی توالی تکراری → Expansion؛ فقط در بیماری‌های تکرار توالی‌محور، نه همه‌ی AD</li>
+<li>PolyQ اگزونی-CAG (هانتینگتون AD، SCA اکثراً AD، Kennedy X-linked) در برابر تکرار غیرکدکننده (میوتونیک-CTG AD، فرجایل X-CGG X-linked، فریدریش-GAA AR بدون Anticipation کلاسیک)</li>
+</ul>
+</div>
+<div class="col">
+<ul>
+<li>جهت انتقال: هانتینگتون جوانی از پدر؛ میوتونیک مادرزادی و فرجایل X کامل از مادر</li>
+<li>UPD: هر دو نسخه‌ی یک کروموزوم از یک والد؛ Heterodisomy (خطای میوز I) در برابر Isodisomy (خطای میوز II یا پس از لقاح)</li>
+<li>Isodisomy می‌تواند بیماری مغلوب را با فقط یک والد ناقل آشکار کند (مثال: CF با Isodisomy کروموزوم ۷)</li>
+<li>Trisomy Rescue = شایع‌ترین مکانیزم UPD؛ بقیه: Monosomy Rescue، Gamete Complementation</li>
+<li>پرادر-ویلی: حذف پدری ~۷۰٪، UPD مادری ~۲۵-۳۰٪. آنجلمن: حذف مادری ~۷۰٪، UPD پدری ~۲-۷٪، جهش UBE3A ~۵-۱۰٪</li>
+<li>UPD پدری ۱۱ → بکویت-ویدمن؛ UPD پدری ۱۴ → Kagami-Ogata؛ UPD مادری ۱۴ → سندرم تمپل (شبیه ترنر ظاهراً)</li>
+<li>X-Inactivation تصادفی است (نه لزوماً از یک والد خاص) و می‌تواند حامل زن X-linked مغلوب را با Skewing غیرمنتظره علامت‌دار کند</li>
+<li>Bardet-Biedl = وراثت سه‌آللی، استثنا روی مدل «یک ژن، دو آلل»</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<footer>
+بخش ۷ از جزوه — وراثت غیرمندلی: میتوکندریایی، Anticipation، و Uniparental Disomy. بخش بعدی (بخش ۸): همان‌طور که در پایان بخش ۶ فلگ شد، مباحث ژنتیک مولکولی سرطان (انکوژن‌ها/ژن‌های سرکوبگر تومور، فرضیه‌ی دو-ضربه‌ای، ترانسلوکاسیون‌های سرطانی) و فارماکوژنتیک (G6PD، TPMT، RYR1، HNF1A) که در نمونه سوالات دیده شده ولی هنوز جایی در نقشه‌ی این جزوه پوشش داده نشده‌اند.
+<br><br>
+<b>یادداشت بازنگری:</b> این بخش را طبق چک‌لیست پداگوژیک مادر بازبینی کردم: هر اصطلاح (Heteroplasmy، Homoplasmy، UPD، Heterodisomy/Isodisomy، Threshold Effect و غیره) در اولین استفاده تعریف شده؛ مکانیزم‌ها شماره‌گذاری‌شده‌اند (سه مکانیزم UPD)؛ موجودیت‌های قابل‌اشتباه (پرادر-ویلی/آنجلمن، Heterodisomy/Isodisomy، PolyQ/غیرکدکننده) در تقابل مستقیم مقایسه شدند؛ عمق ستاره‌بندی رعایت شد؛ هر ارجاع به بخش قبل (۲، ۵، ۶) با یادآوری واقعی همراه بود؛ خلاصه‌ی پایان‌بخش استفاده نشد (به‌جاش تکرار در طول متن)؛ ۲۰ سوال کامل با بریفینگ قبل از هرکدام در بخش تمرین آمد. تنها سوال مستقیم نمونه‌ی امتحانی که دقیقاً به این سه‌مبحث مربوط بود (بیماری‌های CAG به‌جز فریدریش) استفاده شد؛ چون بانک سوال نمونه‌ی در دسترسم برای وراثت میتوکندریایی و UPD به‌طور مستقیم سوالی نداشت، محتوای این دو بخش عمدتاً از خودِ جزوه‌ی کلاسی (جلسات ۵ و ۶) و سوالات تولیدشده ساخته شد — اگر بعداً نمونه سوال مستقیمی برای این دو زیرمبحث پیدا کردی، بگو تا این بخش رو باهاش تطبیق بدم.
+</footer>
+
+</body>
+</html>
