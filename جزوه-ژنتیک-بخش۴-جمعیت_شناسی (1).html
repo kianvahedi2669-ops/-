@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جزوه ژنتیک | بخش ۴ — جمعیت‌شناسی ژنتیک و Hardy-Weinberg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF9F3; --ink:#1E2321; --ink-soft:#4B534E;
+  --teal:#1B4B43; --teal-soft:#E7EFEC;
+  --gold:#C98A2C; --gold-soft:#FBF0DC;
+  --rose:#AE4238; --rose-soft:#F7E8E5;
+  --line:#DDD6C6; --card:#FFFFFF;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Vazirmatn',sans-serif;line-height:1.9;font-size:17px;}
+.wrap{width:100%;padding:0 clamp(16px,4vw,56px);}
+.hero{background:linear-gradient(180deg,var(--teal) 0%,#123830 100%);color:#F3F0E6;padding:52px 0 36px;}
+.dna-rule{height:10px;width:100%;background-image:repeating-linear-gradient(90deg,var(--gold) 0 10px, transparent 10px 22px);opacity:.85;}
+.hero h1{font-size:2.1rem;font-weight:800;margin:0 0 8px;}
+.hero p.sub{color:#CFE3DC;font-weight:400;font-size:1.05rem;margin:0;}
+.hero .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
+.tag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);padding:5px 14px;border-radius:999px;font-size:.85rem;}
+section{padding:40px 0;}
+h2.stage{font-size:1.5rem;font-weight:800;color:var(--teal);display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+h2.stage .num{background:var(--teal);color:#fff;width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.stage-desc{color:var(--ink-soft);font-size:.95rem;margin:0 0 26px;padding-right:46px;}
+.hy{display:inline-flex;align-items:center;gap:6px;background:var(--gold-soft);color:#7A5314;border:1px solid #E9C989;padding:3px 12px;border-radius:999px;font-size:.82rem;font-weight:600;margin-bottom:10px;}
+.stars{color:var(--gold);letter-spacing:1px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px clamp(18px,3vw,40px);margin:20px 0;box-shadow:0 1px 2px rgba(0,0,0,.03);}
+.card h3{margin-top:0;font-size:1.2rem;color:var(--ink);border-bottom:2px solid var(--teal-soft);padding-bottom:10px;}
+.pulse{background:var(--teal);color:#fff;border-radius:10px;padding:16px 20px;margin:16px 0;font-size:.98rem;}
+.pulse b{display:block;margin-bottom:4px;color:var(--gold-soft);}
+.why{border-right:3px solid var(--gold);background:var(--gold-soft);padding:10px 16px;margin:14px 0;border-radius:0 8px 8px 0;font-size:.95rem;}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:18px 0;}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin:16px 0;}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:16px 0;}
+.mt{border-radius:12px;padding:18px 20px;font-size:.93rem;border:1px solid var(--line);}
+.mt h4{margin:0 0 10px;font-size:1.02rem;display:flex;align-items:center;gap:8px;}
+.mt.miss{background:var(--gold-soft);border-color:#E9C989;}
+.mt.non{background:var(--rose-soft);border-color:#E3C3BE;}
+.mt.splice{background:#EDE6F5;border-color:#CBB8E0;}
+.mt.indel{background:var(--teal-soft);border-color:#C7D9D2;}
+.case{background:#F4F6F4;border:1px dashed #9EB3AA;border-radius:10px;padding:16px 20px;margin:16px 0;font-size:.95rem;}
+.case b.tag-case{color:var(--teal);}
+.q{background:var(--card);border:1.5px solid var(--line);border-radius:12px;margin:18px 0;overflow:hidden;}
+.q .qhead{padding:16px 20px;font-weight:700;background:#F4F1E7;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.q .qhead .src{font-size:.75rem;font-weight:400;color:var(--ink-soft);white-space:nowrap;}
+.q ul.opts{list-style:none;padding:0;margin:14px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px;}
+.q ul.opts li{padding:8px 12px;border-radius:6px;background:#FAFAF8;font-size:.94rem;}
+.q .ans{display:none;padding:0 20px 18px;font-size:.92rem;}
+.q.open .ans{display:block;}
+.q .ans .correct{color:var(--teal);font-weight:700;}
+.q .distract{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px;}
+.toggle-hint{font-size:.78rem;color:var(--ink-soft);padding:10px 20px 0;}
+.check{background:var(--teal-soft);border:1px solid #C7D9D2;border-radius:10px;padding:16px 20px;margin:16px 0;}
+.check b{color:var(--teal);}
+.errspot{background:#FDF3E8;border:1px solid #EED2A6;border-radius:10px;padding:16px 20px;font-size:.94rem;margin:16px 0;}
+details.reveal summary{cursor:pointer;color:var(--rose);font-weight:600;}
+.divider{height:8px;width:100%;margin:34px 0;background-image:repeating-linear-gradient(90deg,var(--line) 0 8px, transparent 8px 18px);}
+.cheat{background:var(--teal);color:#F3F0E6;border-radius:16px;padding:32px clamp(18px,3vw,44px);margin:40px 0;}
+.cheat h2{margin-top:0;color:#fff;}
+.cheat .grid2{margin:0;}
+.cheat .col{background:rgba(255,255,255,.06);border-radius:10px;padding:16px 18px;}
+.cheat ul{padding-right:20px;margin:0;}
+.cheat li{margin-bottom:8px;}
+footer{padding:30px 0 60px;color:var(--ink-soft);font-size:.85rem;text-align:center;}
+strong.k{color:var(--teal);}
+table.wide{width:100%;border-collapse:collapse;font-size:.94rem;}
+table.wide td,table.wide th{padding:10px;border-bottom:1px solid var(--line);text-align:right;}
+table.wide tr:nth-child(even){background:#F6F4EC;}
+code{background:#EFEAD9;padding:2px 8px;border-radius:5px;font-family:monospace;font-size:.9rem;direction:ltr;display:inline-block;}
+.spectrum{display:flex;border-radius:10px;overflow:hidden;margin:18px 0;font-size:.85rem;text-align:center;}
+.spectrum div{flex:1;padding:14px 6px;color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>جزوه تعمیقی ژنتیک — بخش ۴</h1>
+    <p class="sub">جمعیت‌شناسی ژنتیک: قانون Hardy-Weinberg، محاسبه‌ی فراوانی ناقلین، Linkage Disequilibrium، Founder Effect و انتخاب طبیعی</p>
+    <div class="tags">
+      <span class="tag">جزوه‌ی پاسدار — جلسه ۶</span>
+      <span class="tag">پوشش نمونه سوالات مرتبط</span>
+      <span class="tag">قدم چهارم از ده</span>
+    </div>
+  </div>
+</div>
+<div class="dna-rule"></div>
+
+<div class="wrap">
+
+<section>
+<h2 class="stage"><span class="num">۱</span> نقاط مشترک با نمونه سوالات</h2>
+<p class="stage-desc">تا اینجا هر بار درباره‌ی یک <b>فرد یا خانواده</b> صحبت کردیم (شجره‌نامه، الگوی وراثت). این بخش زاویه‌ی دید رو عوض می‌کنه: به‌جای یک خانواده، کل <b>جمعیت</b> رو نگاه می‌کنیم — و ابزار اصلیش قانون Hardy-Weinberg است.</p>
+
+<div class="hy">🎯 High-yield: <span class="stars">★★★★★</span> — محاسبه‌ی فراوانی آلل و هتروزیگوت تقریباً هر سال سوال داره</div>
+
+<div class="card">
+<h3>۱. قانون Hardy-Weinberg — چرا اصلاً به این فرمول نیاز داریم؟</h3>
+<p>فرض کن یه جمعیت بزرگ داریم که توش جفت‌گیری کاملاً تصادفیه (کسی بر اساس یه صفت خاص همسرشو انتخاب نمی‌کنه)، و هیچ عامل مزاحمی (جهش زیاد، مهاجرت، انتخاب طبیعی) وجود نداره. سوال اینه: در این حالت، فراوانی آلل‌ها نسل به نسل چه تغییری می‌کنه؟</p>
+<div class="why"><b>چرا این مهمه؟</b> جواب هاردی و واینبرگ اینه: <b>هیچ تغییری نمی‌کنه</b> — فراوانی آلل‌ها ثابت می‌مونه. این خودش یه نقطه‌ی مرجع (baseline) می‌شه: اگه در یه جمعیت واقعی فراوانی‌ها با این پیش‌بینی جور درنیومد، می‌فهمیم یکی از اون عوامل مزاحم (جهش، انتخاب، مهاجرت، جفت‌گیری غیرتصادفی، رانش ژنتیکی) داره جمعیت رو به‌هم می‌زنه.</p>
+<p>فرمول با دو آلل <code>p</code> (شایع‌تر) و <code>q</code> (نادرتر):</p>
+<p style="text-align:center;font-size:1.15rem;"><code>p + q = 1</code> &nbsp;&nbsp;و&nbsp;&nbsp; <code>p² + 2pq + q² = 1</code></p>
+<p>این سه جمله دقیقاً سه ژنوتیپ ممکن رو نشون می‌دن: <code>p²</code> = هموزیگوت آلل شایع (AA)، <code>2pq</code> = هتروزیگوت (Aa)، <code>q²</code> = هموزیگوت آلل نادر (aa).</p>
+<div class="why"><b>چرا ۲pq و نه فقط pq؟</b> چون هتروزیگوت به دو روش قابل ساخته: آلل A از پدر + آلل a از مادر، یا برعکس (a از پدر + A از مادر). این دو حالت جدا از هم محاسبه و جمع می‌شن — برای همینه ضریب ۲ میاد.</p>
+</div>
+</div>
+
+<div class="q" id="q1">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۴۰ — ژنوتایپینگ یک SNP در ۲۰۰ نفر: MM=۳۰، LL=۸۰. کدام گزینه نادرست است؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) فراوانی آلل L حدود ۶۳٪ است</li>
+  <li>ب) فراوانی هتروزیگوت ۴۵٪ است</li>
+  <li>ج) فراوانی هموزیگوت‌ها مجموعاً ۱۰۰٪ است</li>
+  <li>د) فراوانی آلل M حدود ۳۷٪ است</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ + استدلال کامل</summary>
+<p>پاسخ صحیح: <span class="correct">ج</span></p>
+<p>بیا قدم‌به‌قدم حساب کنیم — این دقیقاً همون روشیه که در بخش ۱ برای فراوانی آللی یاد گرفتیم:</p>
+<ol style="padding-right:20px;">
+<li>از ۲۰۰ نفر: MM=۳۰، LL=۸۰ → پس هتروزیگوت (ML) = ۲۰۰−۳۰−۸۰ = <b>۹۰ نفر</b>.</li>
+<li>فراوانی هتروزیگوت = ۹۰÷۲۰۰ = <b>۴۵٪</b> ← گزینه‌ی ب درسته.</li>
+<li>فراوانی هموزیگوت‌ها مجموعاً = MM(۱۵٪) + LL(۴۰٪) = ۵۵٪، <b>نه ۱۰۰٪</b> (چون ۴۵٪ باقی‌مونده هتروزیگوتن) ← گزینه‌ی ج غلطه، پس جواب همینه.</li>
+<li>برای فراوانی آلل L: تعداد آلل L را می‌شماریم — از LL هرکدام ۲ آلل L (۸۰×۲=۱۶۰) + از هتروزیگوت‌ها هرکدام ۱ آلل L (۹۰×۱=۹۰) = ۲۵۰ آلل L از کل ۴۰۰ آلل (۲۰۰ نفر×۲) → ۲۵۰÷۴۰۰ = <b>۶۲.۵٪ ≈ ۶۳٪</b> ← گزینه‌ی الف درسته.</li>
+<li>فراوانی آلل M = ۱۰۰٪−۶۳٪ = <b>۳۷٪</b> (چون p+q همیشه باید ۱۰۰٪ بشه) ← گزینه‌ی د درسته.</li>
+</ol>
+<div class="distract">
+تله‌ی اصلی این سوال اینه که آدم فکر کنه «هموزیگوت + هتروزیگوت باید ۱۰۰٪ بشه» رو باید چک کنه با «مجموع فقط هموزیگوت‌ها». اما در هر جمعیت واقعی، سه دسته‌ی ژنوتیپی (AA، Aa، aa) با هم جمعاً ۱۰۰٪ می‌شن، نه فقط دو تای هموزیگوت. اگه این فرق رو نگیری، گزینه‌ی غلط رو به‌عنوان «صحیح» انتخاب می‌کنی.
+</div>
+</details>
+</div>
+</div>
+
+<div class="card">
+<h3>۲. کاربرد معکوس Hardy-Weinberg: از شیوع بیماری به فراوانی ناقلین</h3>
+<p>کاربرد واقعاً پرتکرار این فرمول در امتحان، جای دیگه‌ایه: وقتی <b>شیوع (Incidence)</b> یه بیماری AR رو در جامعه می‌دونیم و می‌خوایم بفهمیم چند درصد جمعیت <b>ناقل خاموش</b> (هتروزیگوت بدون علامت) هستن.</p>
+<div class="case">
+<b class="tag-case">🩺 مثال (تالاسمی):</b> فرض کن شیوع یه بیماری AR در جامعه ۱ در ۱۰۰۰۰ نفره. سوال: چند درصد جمعیت ناقل این بیماری هستن؟
+<ol style="padding-right:20px;margin-top:10px;">
+<li>چون بیماری AR است، فقط کسانی بیمار می‌شن که هموزیگوت مغلوب (aa) باشن — یعنی <code>q² = 1/10000</code>.</li>
+<li>پس <code>q = √(1/10000) = 1/100 = ۰.۰۱</code></li>
+<li>و <code>p = 1 − q = ۰.۹۹</code></li>
+<li>فراوانی ناقلین (هتروزیگوت‌های خاموش) = <code>2pq = 2 × 0.99 × 0.01 ≈ ۰.۰۲ = ۲٪</code></li>
+</ol>
+<div class="why"><b>چرا این نتیجه مهمه؟</b> ببین چه فاصله‌ی بزرگی بین این دو عدده: فقط <b>۱ در ۱۰۰۰۰</b> نفر واقعاً بیماره، ولی <b>۲٪ کل جمعیت</b> (یعنی ۲۰۰ نفر از هر ۱۰۰۰۰ نفر) ناقل خاموشن — تقریباً <b>۲۰۰ برابر</b> بیشتر از بیماران. این دقیقاً چراییِ توصیه‌ی تست WES پیش از ازدواج فامیلیه که در بخش‌های قبل دیدیم: چون ناقل بودن خیلی شایع‌تر از بیمار بودنه، ریسک واقعی وقتی بالا می‌ره که <b>دو ناقل خاموش</b> با هم ازدواج کنن.</p>
+</div>
+</div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۲</span> مطالب بدون سوال ولی مهم</h2>
+<p class="stage-desc">این‌ها مستقیم توی بانک سوال نبودن، ولی چارچوب مفهومی جمعیت‌شناسی ژنتیک رو کامل می‌کنن — و برای فهم عمیق‌تر بخش‌های بعدی (Association Studies، ریسک فاکتورهای ژنتیکی) لازمن.</p>
+
+<div class="card">
+<h3>۱. تعریف Population و Population Genetics</h3>
+<p><strong class="k">Population (جمعیت)</strong>: گروهی از موجودات هم‌گونه که با هم <b>interbreed</b> می‌کنن (تولیدمثل می‌کنن) — نه کل گونه، بلکه اون بخشی که واقعاً با هم جفت‌گیری می‌کنن.</p>
+<p><strong class="k">Population Genetics</strong>: مطالعه‌ی این‌که فراوانی آلل‌ها و ژنوتیپ‌ها در یه جمعیت، تحت تأثیر چه عواملی قرار می‌گیره و در طول زمان چطور تغییر می‌کنه.</p>
+</div>
+
+<div class="card">
+<h3>۲. عوامل به‌هم‌زننده‌ی تعادل Hardy-Weinberg</h3>
+<p>قانون Hardy-Weinberg فقط زمانی برقراره که پنج شرط رعایت بشه. هر کدوم از این‌ها که نقض بشه، فراوانی آلل‌ها بین نسل‌ها تغییر می‌کنه:</p>
+<table class="wide">
+<tr><th>عامل</th><th>توضیح</th></tr>
+<tr><td><b>جفت‌گیری غیرتصادفی (Non-random mating)</b></td><td>وقتی افراد بر اساس یه صفت خاص همسر انتخاب می‌کنن (Assortative mating) — مثلاً ازدواج فامیلی (Consanguinity) که خودش یه زیرمجموعه‌ی این دسته‌ست</td></tr>
+<tr><td><b>نرخ جهش بالا (Mutation rate)</b></td><td>معمولاً خودش به‌تنهایی خیلی کم اثره (نرخ جهش پایینه)، ولی در مناطق پرتشعشع می‌تونه اثر معناداری بذاره</td></tr>
+<tr><td><b>انتخاب طبیعی (Selection)</b></td><td>افراد ضعیف‌تر (Negative selection) حذف می‌شن یا افراد مقاوم‌تر (Positive selection) بیشتر باقی می‌مونن — پرکاربردترین عامل در امتحان</td></tr>
+<tr><td><b>مهاجرت (Migration / Gene flow)</b></td><td>ورود یا خروج افراد از جمعیت، فراوانی آلل‌ها رو تغییر می‌ده</td></tr>
+<tr><td><b>رانش ژنتیکی (Genetic drift)</b></td><td>نوسان تصادفی فراوانی آلل در جمعیت‌های <b>کوچک</b> — هرچه جمعیت کوچک‌تر، احتمال این نوسان بیشتره</td></tr>
+</table>
+<div class="why"><b>چرا این پنج‌تا رو باید کنار هم نگه داری؟</b> چون در امتحان معمولاً یه سناریو می‌دن (مثلاً «یه جزیره‌ی کوچک با جمعیت محدود» یا «جامعه‌ای با ازدواج فامیلی بالا») و می‌خوان بفهمی کدوم عامل مسئول به‌هم‌خوردن تعادله. جمعیت کوچک → فکر Genetic drift و Founder effect باش؛ ازدواج فامیلی زیاد → فکر Non-random mating باش.</p>
+</div>
+</div>
+
+<div class="card">
+<h3>۳. تست آماری برای چک کردن تعادل Hardy-Weinberg</h3>
+<p>وقتی می‌خوایم بفهمیم فراوانی‌های ژنوتیپی مشاهده‌شده (Observed) در یه جمعیت واقعاً در تعادل Hardy-Weinberg هستن یا نه، فراوانی مورد انتظار (Expected) رو از روی فرمول <code>p²+2pq+q²</code> حساب می‌کنیم و با مشاهدات مقایسه می‌کنیم — با آزمون <b>Chi-squared (کای‌اسکوئر)</b>.</p>
+<div class="why"><b>چرا این مقایسه لازمه؟</b> چون خودِ محاسبه‌ی p و q از روی داده‌های مشاهده‌شده به‌تنهایی چیزی رو ثابت نمی‌کنه — باید ببینیم فاصله‌ی بین «چیزی که دیدیم» و «چیزی که تئوری HW پیش‌بینی می‌کرد» از نظر آماری معنادار هست یا نه. اگه <code>P-Value &lt; 0.05</code> باشه، یعنی این فاصله تصادفی نیست و جمعیت واقعاً در تعادل HW نیست (یکی از پنج عامل بالا داره اثر می‌ذاره).</p>
+</div>
+</div>
+
+<div class="card">
+<h3>۴. Linkage Disequilibrium (LD) در برابر Recombination Fraction (θ) — یه تمایز کلیدی</h3>
+<p>این دو مفهوم خیلی شبیه هم به‌نظر می‌رسن ولی سطح تحلیلشون فرق داره — دقیقاً همون‌جوری که در بخش ۲ بین <b>ارثی</b> و <b>ژنتیکی</b> فرق گذاشتیم، این‌جا هم باید سطح تحلیل رو جدا نگه داری:</p>
+<table class="wide">
+<tr><th></th><th>Recombination Fraction (θ)</th><th>Linkage Disequilibrium (LD)</th></tr>
+<tr><td><b>سطح تحلیل</b></td><td>یک <b>شجره‌نامه</b> — ارث‌بری درون یک خانواده</td><td>یک <b>جمعیت</b> — همراهی آماری آلل‌ها در کل جامعه</td></tr>
+<tr><td><b>ابزار</b></td><td>Linkage Analysis روی پدیگری</td><td>مقایسه‌ی فراوانی آللی بین جمعیت‌ها/افراد نامرتبط</td></tr>
+<tr><td><b>مقدار خنثی (بدون پیوستگی)</b></td><td>θ = ۰.۵ (۵۰-۵۰ — کاملاً تصادفی)</td><td>LD نزدیک صفر</td></tr>
+</table>
+<div class="why"><b>چرا وقتی شجره‌نامه نداریم سراغ LD می‌ریم؟</b> چون گاهی یه بیماری ژنتیکی داریم که ژنش هنوز شناخته نشده، ولی می‌بینیم یه مارکر پلی‌مورفیک خاص همیشه همراه بیماراست و در افراد سالم نیست. این همراهی در سطح <b>جمعیت</b> (نه یک خانواده‌ی خاص) دیده شده — پس به‌جای دنبال کردن یه شجره، از الگوی LD در جمعیت استفاده می‌کنیم تا بفهمیم ژن بیماری‌زا احتمالاً کجای کروموزوم، نزدیک همون مارکر، قرار داره.</p>
+</div>
+</div>
+
+<div class="card">
+<h3>۵. Heterozygosity (هتروزیگوسیتی)</h3>
+<p>مجموع فراوانی هتروزیگوت‌ها در یک لوکوس ژنی. اگه فقط ۲ آلل داشته باشیم، فقط یه نوع هتروزیگوت داریم؛ ولی هرچه تعداد آلل‌های ممکن در اون لوکوس بیشتر باشه، تنوع هتروزیگوت‌ها هم بیشتر می‌شه (چون ترکیب‌های دوبه‌دوی بیشتری ممکنه).</p>
+</div>
+
+<div class="card">
+<h3>۶. Founder Effect (پدیده‌ی مؤسس)</h3>
+<p>در یک جمعیت کوچک که همه از یک جد مشترک منشأ گرفتن، آلل‌های همون جد (چه سالم چه معیوب) با فراوانی بالاتری نسبت به یک جمعیت معمولی در جمعیت باقی می‌مونن — چون تنوع ژنتیکی اولیه محدود بوده. مثال کلاسیک: یهودیان اشکنازی، که فراوانی بعضی بیماری‌های نادر (مثل تی-ساکس) در بینشون به‌طور محسوسی بالاتر از جمعیت عمومیه.</p>
+<div class="why"><b>ربطش به Genetic Drift چیه؟</b> Founder effect در واقع یک نوع خاص از Genetic drift است — رانش ژنتیکی‌ای که از یک «گلوگاه جمعیتی» (population bottleneck) در ابتدای شکل‌گیری اون جمعیت کوچک شروع شده، نه از نوسان تصادفی مداوم.</p>
+</div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۳</span> کیس سینتزی — چرا کم‌خونی داسی‌شکل در آفریقا شایع مونده؟</h2>
+<div class="card">
+<div class="case">
+<b class="tag-case">🩺 سناریو:</b> کم‌خونی داسی‌شکل (Sickle Cell Anemia) یک بیماری AR شدید است — افراد هموزیگوت (SS) از RBCهای داسی‌شکل رنج می‌برن که در مویرگ‌ها گیر می‌کنن، ایسکمی و نکروز ایجاد می‌کنن. با این حال، آلل S در آفریقا (جایی که مالاریا شایعه) فراوانی غیرمنتظره‌ای بالا داره. چرا انتخاب طبیعی این آلل مضر رو حذف نکرده؟
+</div>
+<p>بیا با چیزی که تا الان یاد گرفتیم، قدم‌به‌قدم استدلال کنیم:</p>
+<ol style="padding-right:20px;">
+<li><b>افراد هموزیگوت سالم (AA):</b> RBC طبیعی دارن، ولی در برابر پلاسمودیوم (انگل مالاریا) هیچ محافظتی ندارن — اگه مالاریا بگیرن، ممکنه بمیرن.</li>
+<li><b>افراد هموزیگوت بیمار (SS):</b> RBCهای داسی‌شکل دارن، عمر کوتاه‌تری دارن و از خود بیماری داسی‌شکل (نه مالاریا) می‌میرن — قبل از این‌که اصلاً فرصت کنن مالاریا بگیرن.</li>
+<li><b>افراد هتروزیگوت (AS):</b> RBCهاشون از نظر مورفولوژیک تقریباً طبیعیه (فقط تحت هیپوکسی شدید داسی می‌شن) — این یعنی از عوارض شدید بیماری داسی‌شکل در امانن. اما وقتی پلاسمودیوم وارد RBCشون می‌شه، محیط داخل سلول به اندازه‌ای که انگل برای تکثیر نیاز داره مساعد نیست، پس در برابر مالاریا هم نسبتاً محافظت می‌شن.</li>
+</ol>
+<div class="pulse">
+<b>نتیجه (Heterozygote Advantage) ↓</b>
+پس در مناطق مالاریاخیز، هتروزیگوت (AS) از هر دو گروه هموزیگوت وضعیت بقای بهتری داره — هم از بیماری داسی‌شکل شدید در امانه، هم نسبت به مالاریا مقاوم‌تره. این یعنی <b>Positive Selection</b> برای نگه‌داشتن آلل S در جمعیت عمل می‌کنه؛ آلل به‌جای حذف‌شدن، در سطح جمعیتی پایدار می‌مونه.
+<details class="reveal" style="margin-top:10px;"><summary style="color:#FBF0DC;">این الگو کجای دیگه هم دیده می‌شه؟</summary>
+<p style="color:#F3F0E6;">همین منطق (Heterozygote Advantage) در سیستیک فایبروزیس هم مطرحه — در مناطقی که اسهال‌های کشنده (مثل وبا) شایع بوده، ناقلین هتروزیگوت CF ترشحات غلیظ‌تری دارن که ممکنه مقاومت نسبی در برابر از‌دست‌دادن مایعات شدید ایجاد کنه، پس از اسهال کشنده کمتر می‌میرن. در هر دو مثال، نکته‌ی مشترک اینه: <b>یک بیماری AR جدی می‌تونه در جمعیت باقی بمونه، چون خودِ حالت ناقل (نه بیمار) یک مزیت بقا در برابر یک فشار محیطی خاص می‌ده.</b></p>
+</details>
+</div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۴</span> مرور نهایی — اتصال به بخش‌های قبل</h2>
+<div class="card">
+<p>این بخش، زاویه‌ی دید رو از «یک فرد/خانواده» به «کل جمعیت» عوض کرد. بخش ۱ گفت جهش‌ها زیر ۱٪ فراوانی دارن و پلی‌مورفیسم‌ها بالای ۱٪ — این بخش نشون داد <b>چرا</b>: چون طبق Hardy-Weinberg، بدون فشار انتخابی، فراوانی آلل‌ها ثابت می‌مونه؛ فقط جهش‌های به‌شدت مضر (که انتخاب طبیعی حذفشون می‌کنه) زیر ۱٪ باقی می‌مونن. بخش ۲ درباره‌ی الگوی وراثت AR در یک خانواده صحبت کرد؛ این بخش نشون داد چطور از شیوع AR در کل جامعه، فراوانی ناقلین خاموش رو حساب کنیم — همون محاسبه‌ای که پایه‌ی توصیه‌ی WES پیش از ازدواج فامیلیه.</p>
+<div class="check">
+<b>✓ چک فهم سریع (Spaced Retrieval):</b><br>
+۱. اگه شیوع یه بیماری AR در جامعه ۱ در ۴۰۰۰۰ باشه، فراوانی ناقلین خاموش تقریباً چند درصده؟<br>
+۲. چرا Founder effect را یک نوع خاص از Genetic drift می‌دونیم؟<br>
+۳. بین Linkage Analysis و Linkage Disequilibrium، کدوم به یک شجره‌نامه‌ی مشخص نیاز داره و کدوم به داده‌ی سطح جمعیت؟
+<details class="reveal" style="margin-top:8px;"><summary>جواب‌ها رو ببین</summary>
+<p>۱. <code>q²=1/40000 → q=1/200=0.005 → p≈0.995 → 2pq≈2×0.995×0.005≈0.01=1٪</code> — یعنی حدود ۱٪ جمعیت ناقل خاموشن.<br>
+۲. چون هر دوشون از یک کاهش ناگهانی تنوع ژنتیکی در یک جمعیت کوچک ناشی می‌شن؛ Founder effect دقیقاً همون رانش ژنتیکی‌ایه که در لحظه‌ی شکل‌گیری اون جمعیت کوچک از یک جد محدود رخ داده.<br>
+۳. Linkage Analysis روی یک شجره‌نامه‌ی مشخص کار می‌کنه (سطح خانواده)؛ Linkage Disequilibrium از داده‌های سطح جمعیت (افراد نامرتبط) استفاده می‌کنه.</p>
+</details>
+</div>
+</div>
+</section>
+
+<div class="cheat">
+<h2>📋 چک‌لیست شب امتحان — بخش ۴</h2>
+<div class="grid2">
+<div class="col">
+<ul>
+<li><code>p+q=1</code> و <code>p²+2pq+q²=1</code></li>
+<li>برای بیماری AR: <code>q²=Incidence</code> → <code>q=√Incidence</code> → فراوانی ناقلین = <code>2pq</code></li>
+<li>مثال کلیدی: شیوع ۱ در ۱۰۰۰۰ → q=۰.۰۱ → ناقلین ≈ ۲٪ (~۲۰۰ برابر شیوع بیماری)</li>
+<li>تعادل HW را با آزمون Chi-squared چک می‌کنیم؛ <code>P&lt;0.05</code> = عدم تعادل</li>
+</ul>
+</div>
+<div class="col">
+<ul>
+<li>۵ عامل به‌هم‌زننده‌ی HW: Non-random mating، Mutation، Selection، Migration، Genetic drift</li>
+<li>Linkage Analysis = سطح <b>شجره‌نامه</b> (θ)؛ LD = سطح <b>جمعیت</b></li>
+<li>θ=۰.۵ یعنی بدون پیوستگی؛ هرچه θ کمتر، پیوستگی بیشتر</li>
+<li>Founder Effect = رانش ژنتیکی در یک جمعیت کوچک با جد مشترک محدود</li>
+<li>Heterozygote Advantage: داسی‌شکل↔مالاریا، CF↔اسهال کشنده</li>
+</ul>
+</div>
+</div>
+</div>
+
+</div>
+
+<footer>
+بخش ۴ از جزوه — جمعیت‌شناسی ژنتیک و Hardy-Weinberg. بخش بعدی: بیماری‌های مولتی‌فاکتوریال و Heritability.
+<br><br>
+<b>یادداشت بازنگری:</b> از نمونه سوالات، فقط سوال ۴۰ (گروه خونی MN) مستقیماً به این مبحث مرتبط بود و پوشش داده شد. بقیه‌ی محتوا (محاسبه‌ی ناقلین، LD، Founder effect، Heterozygote advantage) از جزوه‌ی پاسدار (جلسه ۶) استخراج شد چون سوال نمونه‌ی مستقیمی براشون در فایل موجود پیدا نشد — طبق دستور پرامپت مادر، این نکته صریح فلگ می‌شه تا در صورت پیدا شدن سوالات بیشتر بعداً تکمیل بشه.
+</footer>
+
+</body>
+</html>

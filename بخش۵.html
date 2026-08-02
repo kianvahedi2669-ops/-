@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جزوه ژنتیک | بخش ۵ — بیماری‌های مولتی‌فاکتوریال و Heritability</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF9F3; --ink:#1E2321; --ink-soft:#4B534E;
+  --teal:#1B4B43; --teal-soft:#E7EFEC;
+  --gold:#C98A2C; --gold-soft:#FBF0DC;
+  --rose:#AE4238; --rose-soft:#F7E8E5;
+  --line:#DDD6C6; --card:#FFFFFF;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Vazirmatn',sans-serif;line-height:1.9;font-size:17px;}
+.wrap{width:100%;padding:0 clamp(16px,4vw,56px);}
+.hero{background:linear-gradient(180deg,var(--teal) 0%,#123830 100%);color:#F3F0E6;padding:52px 0 36px;}
+.dna-rule{height:10px;width:100%;background-image:repeating-linear-gradient(90deg,var(--gold) 0 10px, transparent 10px 22px);opacity:.85;}
+.hero h1{font-size:2.1rem;font-weight:800;margin:0 0 8px;}
+.hero p.sub{color:#CFE3DC;font-weight:400;font-size:1.05rem;margin:0;}
+.hero .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
+.tag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);padding:5px 14px;border-radius:999px;font-size:.85rem;}
+section{padding:40px 0;}
+h2.stage{font-size:1.5rem;font-weight:800;color:var(--teal);display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+h2.stage .num{background:var(--teal);color:#fff;width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.stage-desc{color:var(--ink-soft);font-size:.95rem;margin:0 0 26px;padding-right:46px;}
+.hy{display:inline-flex;align-items:center;gap:6px;background:var(--gold-soft);color:#7A5314;border:1px solid #E9C989;padding:3px 12px;border-radius:999px;font-size:.82rem;font-weight:600;margin-bottom:10px;}
+.stars{color:var(--gold);letter-spacing:1px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px clamp(18px,3vw,40px);margin:20px 0;box-shadow:0 1px 2px rgba(0,0,0,.03);}
+.card h3{margin-top:0;font-size:1.2rem;color:var(--ink);border-bottom:2px solid var(--teal-soft);padding-bottom:10px;}
+.pulse{background:var(--teal);color:#fff;border-radius:10px;padding:16px 20px;margin:16px 0;font-size:.98rem;}
+.pulse b{display:block;margin-bottom:4px;color:var(--gold-soft);}
+.why{border-right:3px solid var(--gold);background:var(--gold-soft);padding:10px 16px;margin:14px 0;border-radius:0 8px 8px 0;font-size:.95rem;}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:18px 0;}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin:16px 0;}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:16px 0;}
+.mt{border-radius:12px;padding:18px 20px;font-size:.93rem;border:1px solid var(--line);}
+.mt h4{margin:0 0 10px;font-size:1.02rem;display:flex;align-items:center;gap:8px;}
+.mt.miss{background:var(--gold-soft);border-color:#E9C989;}
+.mt.non{background:var(--rose-soft);border-color:#E3C3BE;}
+.mt.splice{background:#EDE6F5;border-color:#CBB8E0;}
+.mt.indel{background:var(--teal-soft);border-color:#C7D9D2;}
+.case{background:#F4F6F4;border:1px dashed #9EB3AA;border-radius:10px;padding:16px 20px;margin:16px 0;font-size:.95rem;}
+.case b.tag-case{color:var(--teal);}
+.q{background:var(--card);border:1.5px solid var(--line);border-radius:12px;margin:18px 0;overflow:hidden;}
+.q .qhead{padding:16px 20px;font-weight:700;background:#F4F1E7;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.q .qhead .src{font-size:.75rem;font-weight:400;color:var(--ink-soft);white-space:nowrap;}
+.q ul.opts{list-style:none;padding:0;margin:14px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px;}
+.q ul.opts li{padding:8px 12px;border-radius:6px;background:#FAFAF8;font-size:.94rem;}
+.q .ans{display:none;padding:0 20px 18px;font-size:.92rem;}
+.q.open .ans{display:block;}
+.q .ans .correct{color:var(--teal);font-weight:700;}
+.q .distract{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px;}
+.toggle-hint{font-size:.78rem;color:var(--ink-soft);padding:10px 20px 0;}
+.check{background:var(--teal-soft);border:1px solid #C7D9D2;border-radius:10px;padding:16px 20px;margin:16px 0;}
+.check b{color:var(--teal);}
+.errspot{background:#FDF3E8;border:1px solid #EED2A6;border-radius:10px;padding:16px 20px;font-size:.94rem;margin:16px 0;}
+details.reveal summary{cursor:pointer;color:var(--rose);font-weight:600;}
+.divider{height:8px;width:100%;margin:34px 0;background-image:repeating-linear-gradient(90deg,var(--line) 0 8px, transparent 8px 18px);}
+.cheat{background:var(--teal);color:#F3F0E6;border-radius:16px;padding:32px clamp(18px,3vw,44px);margin:40px 0;}
+.cheat h2{margin-top:0;color:#fff;}
+.cheat .grid2{margin:0;}
+.cheat .col{background:rgba(255,255,255,.06);border-radius:10px;padding:16px 18px;}
+.cheat ul{padding-right:20px;margin:0;}
+.cheat li{margin-bottom:8px;}
+footer{padding:30px 0 60px;color:var(--ink-soft);font-size:.85rem;text-align:center;}
+strong.k{color:var(--teal);}
+table.wide{width:100%;border-collapse:collapse;font-size:.94rem;}
+table.wide td,table.wide th{padding:10px;border-bottom:1px solid var(--line);text-align:right;}
+table.wide tr:nth-child(even){background:#F6F4EC;}
+code{background:#EFEAD9;padding:2px 8px;border-radius:5px;font-family:monospace;font-size:.9rem;direction:ltr;display:inline-block;}
+.spectrum{display:flex;border-radius:10px;overflow:hidden;margin:18px 0;font-size:.85rem;text-align:center;}
+.spectrum div{flex:1;padding:14px 6px;color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>جزوه تعمیقی ژنتیک — بخش ۵</h1>
+    <p class="sub">بیماری‌های مولتی‌فاکتوریال: مدل Liability-Threshold، Heritability، مطالعات دوقلو، تجمع خانوادگی (λs) و ریسک تکرار در خانواده</p>
+    <div class="tags">
+      <span class="tag">جزوه‌ی پاسدار — جلسه ۷</span>
+      <span class="tag">پوشش نمونه سوالات مرتبط</span>
+      <span class="tag">قدم پنجم از ده</span>
+    </div>
+  </div>
+</div>
+<div class="dna-rule"></div>
+
+<div class="wrap">
+
+<section>
+<h2 class="stage"><span class="num">۱</span> نقاط مشترک با نمونه سوالات</h2>
+<p class="stage-desc">تا اینجا با بیماری‌های <b>مونوژنیک</b> کار کردیم — یک ژن، یک الگوی وراثت مشخص، ریسک ثابت (مثلاً ۵۰٪ در AD). این بخش کاملاً یه بازی متفاوته: بیماری‌هایی که هیچ الگوی وراثتی واضحی روی شجره‌نامه ندارن، ولی «توی خانواده می‌مونن».</p>
+
+<div class="hy">🎯 High-yield: <span class="stars">★★★★☆</span> — سوالات مفهومی (نه محاسباتی سنگین) زیاد میان</div>
+
+<div class="card">
+<h3>۱. بیماری مولتی‌فاکتوریال چیست؟</h3>
+<p>در بیماری مونوژنیک (مثل تالاسمی)، یک ژن به‌تنهایی بیماری رو می‌سازه. در بیماری مولتی‌فاکتوریال، به‌جاش یه عالمه <strong class="k">Variation</strong> (تغییرات شایع ژنومی، نه جهش‌های نادر) هرکدوم یه اثر خیلی کوچیک می‌ذارن، و این اثرهای کوچیک با هم جمع می‌شن — به‌علاوه‌ی <strong class="k">محیط</strong>.</p>
+<div class="why"><b>چرا variation ها به‌تنهایی بیماری نمی‌سازن؟</b> چون برخلاف جهش، این تغییرات اثر Causative (علّی-مستقیم) ندارن؛ فقط یه ریسک اضافه می‌کنن که تا وقتی با تعداد کافی از variation های دیگه و یه فشار محیطی جمع نشه، اثری در محدوده‌ی نرمال باقی می‌مونه.</p>
+<p>پس استعداد ابتلا (<strong class="k">Liability</strong>) به این بیماری‌ها از دو عامل مجزا میاد: <b>۱) ژنتیک</b> (تعداد زیاد ژن با اثر کوچیک) و <b>۲) محیط</b>. مثال‌ها: فشار خون، دیابت، آسم، سکته‌ی مغزی، و حتی خیلی از ناهنجاری‌های مادرزادی مثل لب‌شکری.</p>
+</div>
+</div>
+
+<div class="q" id="q1">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۱۶ — کدام‌یک جزو ویژگی‌های بیماری‌های مولتی‌فاکتوریال نیست؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) عمدتاً بیماری‌های شایع بالغین مثل دیابت و پرفشاری جزو این دسته‌اند</li>
+  <li>ب) بیماری‌های مادرزادی را شامل نمی‌شوند</li>
+  <li>ج) هم عوامل ژنتیکی و هم محیطی نقش دارند</li>
+  <li>د) عمدتاً در یک جنس شیوع بالاتری دارند</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ</summary>
+<p>پاسخ صحیح: <span class="correct">ب</span></p>
+<div class="distract">
+تله‌ی این سوال اینه که فکر کنی «مادرزادی» فقط برای بیماری‌های ژنتیکی ساده به‌کار می‌ره. اما لب‌شکری/کام‌شکری و خیلی ناهنجاری‌های مادرزادی دیگه دقیقاً <b>مولتی‌فاکتوریال</b>ن (هم ژنتیک هم محیط، از بدو تولد بروز می‌کنن) — پس گزینه‌ی «شامل نمی‌شوند» غلطه. گزینه‌ی «د» درسته چون همون‌طور که در کیس سینتزی همین بخش می‌بینیم، خیلی از این بیماری‌ها واقعاً در یک جنس شایع‌تر و در جنس دیگه نادرترن.
+</div>
+</details>
+</div>
+</div>
+
+<div class="card">
+<h3>۲. Heritability (وراثت‌پذیری، H²) — سنجش سهم ژنتیک</h3>
+<p>یه کمیت عددی بین ۰ تا ۱۰۰ که مشخص می‌کنه در بروز یه فنوتیپ، چند درصدش به عوامل ژنتیکی برمی‌گرده. هرچه H² بالاتر، سهم زمینه‌ی ژنتیکی در اون بیماری بیشتره.</p>
+<table class="wide">
+<tr><th>بیماری</th><th>H² (وراثت‌پذیری)</th></tr>
+<tr><td>اختلالات روانی</td><td>~۸۵٪ (فقط ۱۵٪ محیط)</td></tr>
+<tr><td>آسم</td><td>~۸۰٪</td></tr>
+<tr><td>دیابت</td><td>~۵۰٪ (ژنتیک و محیط مساوی)</td></tr>
+<tr><td>زخم معده</td><td>~۳۷٪</td></tr>
+</table>
+<div class="why"><b>چطور H² رو اندازه می‌گیرن؟</b> با مقایسه‌ی <b>دوقلوهای همسان (MZ)</b> و <b>ناهمسان (DZ)</b>. چون MZها از نظر ژنتیکی ۱۰۰٪ یکسانن ولی DZها فقط ۵۰٪ ژن مشترک دارن (مثل خواهر-برادر معمولی)، هر تفاوتی که در میزان «با‌هم‌بیمار‌شدن» بین این دو گروه دوقلو دیده بشه، به حساب سهم ژنتیک گذاشته می‌شه.</p>
+</div>
+</div>
+
+<div class="card">
+<h3>۳. مطالعات دوقلو و Concordance Rate</h3>
+<p><strong class="k">Concordance Rate</strong> یعنی درصد دفعاتی که وقتی یک دوقلو به بیماری مبتلاست، دوقلوی دیگه‌ش هم مبتلا می‌شه.</p>
+<div class="why"><b>چرا این رابطه مستقیمه؟</b> هرچه اثر ژنتیک روی یه بیماری بیشتر باشه، Concordance Rate در دوقلوهای همسان (MZ) به‌طور قابل‌توجهی بیشتر از دوقلوهای ناهمسان (DZ) می‌شه — چون MZها ژنوم یکسان دارن، اگه علت اصلی ژنتیکی باشه، هر دوشون باید تقریباً به یک اندازه مستعد بشن. اگه محیط سهم غالب داشت، این فرق بین MZ و DZ خیلی کمرنگ‌تر می‌بود (چون محیط زندگی مشترکشون تقریباً یکیه، فارغ از این‌که همسان باشن یا نه).</p>
+</div>
+</div>
+
+<div class="q" id="q2">
+<div class="qhead" onclick="this.parentElement.classList.toggle('open')">
+  <span>سوال ۳۰ — دو بیماری با H²=۸۰٪ و H²=۴۰٪. نقش ژنتیک در کدام پررنگ‌تر است؟ احتمال ابتلای هم‌زمان دوقلوهای همسان در کدام بیشتر است؟</span>
+  <span class="src">نمونه سوال امتحانی</span>
+</div>
+<div class="toggle-hint">👆 بزن رو سوال تا گزینه‌ها باز شه، بعد رو «نمایش پاسخ» بزن</div>
+<ul class="opts">
+  <li>الف) بیماری الف – بیماری ب</li>
+  <li>ب) بیماری ب – بیماری الف</li>
+  <li>ج) بیماری ب – بیماری ب</li>
+  <li>د) بیماری الف – بیماری الف</li>
+</ul>
+<div class="ans">
+<details class="reveal"><summary>نمایش پاسخ + استدلال</summary>
+<p>پاسخ صحیح: <span class="correct">د</span></p>
+<p>هر دو سوال جوابشون یکیه، چون هر دو مستقیماً از H² بالاتر نتیجه می‌شن: بیماری الف (H²=۸۰٪) سهم ژنتیکی بیشتری داره → طبق منطقی که بالا گفتیم، Concordance rate در دوقلوهای همسان هم برای همین بیماری بالاتر خواهد بود، چون هر دو پدیده از یک ریشه‌ی مشترک (اثر قوی‌تر ژن‌ها) میان.</p>
+<div class="distract">
+تله‌ی این سوال اینه که فکر کنی این دو سوال جواب‌های متفاوتی دارن (برای همینه گزینه‌های الف/ب/ج هرکدوم یه ترکیب مخلوط پیشنهاد می‌دن) — ولی چون هر دو پدیده مستقیماً به میزان H² وابسته‌ان، جواب هر دو باید هم‌جهت باشه.
+</div>
+</details>
+</div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۲</span> مطالب بدون سوال ولی مهم</h2>
+<p class="stage-desc">این‌ها مستقیم سوال نمونه نداشتن ولی برای فهم این‌که چطور به یه خانواده «درصد ریسک» می‌دیم، حیاتی‌ان.</p>
+
+<div class="card">
+<h3>۱. مدل Liability-Threshold — چرا یه بیماری «همه یا هیچ» به‌نظر می‌رسه؟</h3>
+<p>فرض کن Liability (کل استعداد ابتلا، حاصل جمع ژنتیک+محیط) در جامعه مثل قد یا وزن، یک توزیع نرمال (منحنی زنگوله‌ای) داره. اکثر افراد (~۹۵٪) نزدیک میانه‌ی این منحنی‌ان. اما یه نقطه‌ی برش به اسم <strong class="k">Threshold</strong> وجود داره — فقط کسانی که Liabilityشون از این آستانه رد بشه، فنوتیپ بیماری رو نشون می‌دن.</p>
+<div class="why"><b>چرا این مدل بهتر از «یا داری یا نداری» است؟</b> چون توضیح می‌ده چرا خویشاوندان یه بیمار، حتی اگه خودشون بیمار نباشن، بازم Liability بالاتری از میانگین جامعه دارن (نزدیک‌تر به Threshold) — پس ریسکشون برای ابتلا (یا داشتن فرزند مبتلا) از فرد عادی جامعه بیشتره، هرچند فرمول ثابت AD/AR این‌جا صدق نمی‌کنه.</p>
+</div>
+</div>
+
+<div class="card">
+<h3>۲. تجمع خانوادگی: شاخص λs</h3>
+<p><strong class="k">λs</strong> = (ریسک ابتلای خواهر/برادر فرد بیمار) ÷ (ریسک ابتلا در کل جمعیت). هرچه λs بزرگ‌تر، تجمع خانوادگی اون بیماری قوی‌تره.</p>
+<table class="wide">
+<tr><th>بیماری</th><th>ریسک خواهر/برادر (sib risk)</th><th>ریسک جمعیت</th><th>λs</th></tr>
+<tr><td>دیابت نوع ۲</td><td>۳۵٪</td><td>۱۰٪</td><td>۳.۵</td></tr>
+<tr><td>دیابت نوع ۱</td><td>۶٪</td><td>۰.۴٪</td><td><b>۱۵</b></td></tr>
+</table>
+<div class="why"><b>چرا دیابت نوع ۱ با sib risk کمتر (۶٪ در برابر ۳۵٪)، λs بزرگ‌تری داره؟</b> این‌جا دقیقاً همون تله‌ای هست که باید ازش عبور کنی: λs یه نسبته، نه یه عدد مطلق. دیابت نوع ۱ در کل جمعیت خیلی نادرتره (۰.۴٪ در برابر ۱۰٪)، پس حتی همون ریسک ۶٪ در خواهر/برادر، نسبت به ریسک زمینه‌ای پایینش، جهش بسیار بزرگ‌تری محسوب می‌شه. این یعنی نقش ژنتیک نسبی در دیابت نوع ۱ (در مقایسه با محیط) در واقع پررنگ‌تره — با این‌که عدد خام sib risk کمتره.</p>
+</div>
+</div>
+
+<div class="card">
+<h3>۳. Baseline Risk — ریسک پایه در جمعیت عمومی</h3>
+<table class="wide">
+<tr><th>گروه</th><th>Baseline Risk</th></tr>
+<tr><td>ناهنجاری‌های Minor مادرزادی</td><td>۱ در ۳۰ (~۳٪)</td></tr>
+<tr><td>ناهنجاری‌های Major مادرزادی</td><td>۱ در ۵۰ (۲٪)</td></tr>
+<tr><td>ازدواج فامیلی نزدیک (First cousins)</td><td>۱ در ۲۰ (۵٪) برای ناهنجاری Major</td></tr>
+<tr><td>زوجین با کاهش باروری (Infertile couples)</td><td>۱ در ۱۰ (۱۰٪)</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>۴. چهار عاملی که ریسک تکرار بیماری در خانواده رو بالا می‌برن</h3>
+<div class="grid2">
+<div class="mt miss"><h4>۱. شدت بیماری</h4>لب‌شکری یک‌طرفه در خانواده → ریسک ۲٪. لب‌شکری دو‌طرفه (شدیدتر) → ریسک ۶٪. هرچه بیماری در فرد مبتلا شدیدتر بوده، احتمال بروزش در بستگان بیشتره.</div>
+<div class="mt non"><h4>۲. نزدیکی خویشاوندی</h4>در Spina Bifida، ریسک بستگان درجه‌یک ۴٪ است؛ هرچه به فرد بیمار دورتر باشیم (درجه دو، درجه سه)، ریسک به‌شدت افت می‌کنه.</div>
+<div class="mt splice"><h4>۳. تعداد افراد مبتلای فامیل</h4>در Spina Bifida، اگه فقط یک نفر در خانواده مبتلا باشه، ریسک فرد دوم ۴٪ است؛ اگه دو نفر مبتلا باشن، ریسک فرد سوم به ۱۰٪ می‌رسه.</div>
+<div class="mt indel"><h4>۴. جنسیت فرد مبتلا</h4>در تنگی دریچه‌ی پیلور (Pyloric Stenosis) که در پسرها شایع‌تره، اگه یه <b>دختر</b> مبتلا بشه (جنس نادرتر برای این بیماری)، ریسک بستگانش بالاتر از حالتیه که یه پسر مبتلا شده باشه — چون همین کیس رو در بخش ۳ همین جزوه با هم می‌بینیم.</div>
+</div>
+</div>
+
+<div class="card">
+<h3>۵. Relative Risk (RR) در برابر Odds Ratio (OR)</h3>
+<p>هر دو ابزار سنجش «چقدر یه فاکتور، ریسک بیماری رو زیاد می‌کنه» هستن، ولی برای دو نوع فاکتور متفاوت به‌کار می‌رن:</p>
+<table class="wide">
+<tr><th></th><th>Relative Risk (RR)</th><th>Odds Ratio (OR)</th></tr>
+<tr><td><b>برای چه نوع فاکتوری</b></td><td>فاکتورهای <b>محیطی</b> (مثل سیگار)</td><td>فاکتورهای <b>ژنتیکی</b> (آلل‌های ریسک)</td></tr>
+<tr><td><b>مثال</b></td><td>RR سیگار برای سرطان ریه = ۴ → افراد سیگاری ۴ برابر ریسک بیشتری دارن</td><td>در مطالعات همراهی (Association Study)، فراوانی آلل در گروه بیمار/سالم مقایسه می‌شه</td></tr>
+<tr><td><b>معنای عدد ۱</b></td><td>بدون اثر</td><td>بدون اثر</td></tr>
+</table>
+<div class="why"><b>Association Study چطور کار می‌کنه؟</b> یه گروه بیمار و یه گروه کاملاً سالم (هم‌سن، هم‌جنسیت) رو مقایسه می‌کنیم؛ اگه یه آلل خاص در گروه بیمار فراوانی بیشتری داشته باشه، OR>۱ می‌شه و اون آلل رو «افزاینده‌ی ریسک» می‌نامیم. وقتی این مقایسه روی <b>کل ژنوم</b> انجام بشه (نه فقط یه ژن کاندید)، بهش <strong class="k">GWAS</strong> (Genome-Wide Association Study) می‌گیم.</p>
+</div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۳</span> کیس سینتزی — چرا دختر مبتلا به تنگی دریچه‌ی پیلور، خانواده‌ی پرریسک‌تری داره؟</h2>
+<div class="card">
+<div class="case">
+<b class="tag-case">🩺 سناریو:</b> تنگی دریچه‌ی پیلور (Pyloric Stenosis) یک بیماری مولتی‌فاکتوریاله که در <b>پسرها</b> شایع‌تره. یه خانواده داریم که دخترشون به این بیماری مبتلا شده. آیا ریسک برادر بعدی این خانواده بیشتره یا اگه پسرشون مبتلا بود؟
+</div>
+<p>بیا با مدل Liability-Threshold که تازه یاد گرفتیم، قدم‌به‌قدم پیش بریم:</p>
+<ol style="padding-right:20px;">
+<li>چون بیماری در پسرها شایع‌تره، Threshold (آستانه‌ی بروز بیماری) برای دخترها <b>دورتر</b> از میانه‌ی توزیع Liability قرار داره — یعنی یه دختر برای رد شدن از این آستانه، باید Liability به‌مراتب بالاتری (بار ژنتیکی سنگین‌تری) داشته باشه تا اصلاً بیمار بشه.</li>
+<li>پس وقتی می‌بینیم یه دختر واقعاً از این آستانه‌ی سخت رد شده و بیمار شده، این نشونه‌ست که این خانواده به‌طور خاص، بار ژنتیکی/محیطی خیلی سنگینی برای این بیماری داره — بیشتر از یه خانواده‌ی معمولی که توش یه پسر (که آستانه‌ی راحت‌تری داره) مبتلا شده.</li>
+<li>نتیجه: بستگان یک <b>دختر</b> مبتلا به پیلور استنوزیس، ریسک بالاتری برای ابتلا دارن نسبت به بستگان یک <b>پسر</b> مبتلا — دقیقاً همون عامل چهارم («جنسیت فرد مبتلا») که در بخش ۲ همین جزوه دیدیم.</li>
+</ol>
+<div class="pulse">
+<b>حالا وصلش کن به مفهوم λs ↓</b>
+با همین منطق، چرا فکر می‌کنی این موضوع («جنس نادرتر مبتلا = ریسک خانوادگی بالاتر») در واقع همون پدیده‌ای‌ه که در λs دیابت نوع ۱ دیدیم؟
+<details class="reveal" style="margin-top:10px;"><summary style="color:#FBF0DC;">پاسخ رو ببین</summary>
+<p style="color:#F3F0E6;">هر دو مثال یه اصل مشترک دارن: وقتی یه اتفاق (ابتلا) در یه زمینه‌ی <b>نادر</b> رخ بده — چه «نادر بودن جنسی» (دختر در پیلور استنوزیس) چه «نادر بودن جمعیتی» (دیابت نوع ۱ در کل جامعه) — همون اتفاق نشونه‌ی قوی‌تری از دخالت ژنتیکه، و ریسک بستگان رو نسبتاً بیشتر بالا می‌بره. هرچه عبور از آستانه سخت‌تر بوده، وقتی رخ بده، «سیگنال ژنتیکی» پشتش قوی‌تر تفسیر می‌شه.</p>
+</details>
+</div>
+</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section>
+<h2 class="stage"><span class="num">۴</span> مرور نهایی — اتصال به بخش‌های قبل</h2>
+<div class="card">
+<p>این بخش، سومین زاویه‌ی دیدمون بود: بخش ۲ الگوی وراثت رو در سطح <b>یک خانواده با یک ژن مشخص</b> دید (AD/AR/X-linked، ریسک ثابت ۵۰٪ یا ۲۵٪)؛ بخش ۴ فراوانی آلل‌ها رو در سطح <b>کل جمعیت</b> دید (Hardy-Weinberg)؛ این بخش نشون داد وقتی هیچ ژن تک و مشخصی مسئول نیست، بلکه صدها variation کوچیک + محیط با هم جمع می‌شن، چطور با ابزارهای متفاوتی (Heritability، λs، Liability-Threshold) به یه خانواده «درصد ریسک» می‌دیم — نه یه فرمول ثابت مندلی.</p>
+<div class="check">
+<b>✓ چک فهم سریع (Spaced Retrieval):</b><br>
+۱. اگه یه بیماری H²=۹۰٪ داشته باشه، انتظار داری Concordance Rate بین دوقلوهای MZ و DZ خیلی متفاوت باشه یا نزدیک هم؟<br>
+۲. چرا λs بیماری‌های مونوژنیک (مثل AD) می‌تونه اعدادی مثل ۵۰۰۰۰ بشه، در حالی که بیشترین λs مولتی‌فاکتوریال که دیدیم فقط ۱۵ بود؟<br>
+۳. طبق مدل Liability-Threshold، بستگان یک فرد مبتلا نسبت به جمعیت عمومی، Liability بالاتری دارن یا پایین‌تر؟
+<details class="reveal" style="margin-top:8px;"><summary>جواب‌ها رو ببین</summary>
+<p>۱. خیلی متفاوت — چون H² بالا یعنی سهم ژنتیک غالبه، و MZ (۱۰۰٪ ژن مشترک) باید خیلی بیشتر از DZ (۵۰٪ ژن مشترک) هم‌زمان مبتلا بشن.<br>
+۲. چون در بیماری مونوژنیک، ریسک زمینه‌ای در جمعیت (population risk) به‌شدت پایینه (مثلاً ۰.۰۰۱٪) در حالی که sib risk ثابت و بالاست (۵۰٪ برای AD) — این فاصله‌ی عظیم بین صورت و مخرج کسر λs، عدد رو خیلی بزرگ می‌کنه؛ در مولتی‌فاکتوریال چون population risk خودش نسبتاً بالاست، این فاصله هیچ‌وقت این‌قدر عظیم نمی‌شه.<br>
+۳. بالاتر — نزدیک‌تر به Threshold، هرچند لزوماً از آستانه رد نشدن.</p>
+</details>
+</div>
+</div>
+</section>
+
+<div class="cheat">
+<h2>📋 چک‌لیست شب امتحان — بخش ۵</h2>
+<div class="grid2">
+<div class="col">
+<ul>
+<li>Liability = ژنتیک (چند ژن با اثر کوچک) + محیط؛ فقط بالاتر از Threshold، بیماری بروز می‌کنه</li>
+<li>Heritability (H²): سهم ژنتیک از ۰ تا ۱۰۰٪؛ با مقایسه‌ی دوقلوی MZ/DZ حساب می‌شه</li>
+<li>H² نمونه: اختلال روانی ۸۵٪، آسم ۸۰٪، دیابت ۵۰٪، زخم معده ۳۷٪</li>
+<li>Concordance Rate بالاتر در MZ نسبت به DZ = نشونه‌ی سهم بالای ژنتیک</li>
+</ul>
+</div>
+<div class="col">
+<ul>
+<li>λs = ریسک خواهر/برادر ÷ ریسک جمعیت؛ عدد بزرگ‌تر یعنی تجمع خانوادگی قوی‌تر</li>
+<li>۴ عامل ریسک تکرار: شدت بیماری، نزدیکی خویشاوندی، تعداد مبتلایان فامیل، جنسیت فرد مبتلا (جنس نادرتر → ریسک خانوادگی بالاتر)</li>
+<li>RR برای فاکتور محیطی؛ OR برای فاکتور ژنتیکی (Association Study/GWAS)</li>
+<li>Baseline Risk: Minor ۱/۳۰، Major ۱/۵۰، فامیلی نزدیک ۱/۲۰، ناباروری ۱/۱۰</li>
+</ul>
+</div>
+</div>
+</div>
+
+</div>
+
+<footer>
+بخش ۵ از جزوه — بیماری‌های مولتی‌فاکتوریال و Heritability. بخش بعدی: نمونه‌برداری پیش از تولد و غربالگری بارداری (Prenatal Screening).
+<br><br>
+<b>یادداشت بازنگری:</b> سوالات ۱۶ و ۳۰ (مولتی‌فاکتوریال و Heritability) مستقیم پوشش داده شدن. سوال ۳ (ریسک‌فاکتورهای ژنتیکی) و سوال ۳۸ (موش آگوتی/اپی‌ژنتیک) به مباحث بخش‌های قبلی نزدیک‌تر بودن (به‌ترتیب: ریسک‌فاکتور به مفهوم association study که در همین بخش تحت RR/OR اومد، و موش آگوتی که در بخش ۱ پوشش داده شده بود) — عمداً این‌جا تکرار نشدن تا محتوا پراکنده نشه.
+</footer>
+
+</body>
+</html>
