@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>سند آموزشی پاتولوژی پوست - آزمون محور</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+:root {
+  --ink:#18212f; --muted:#5c6778; --line:#d9dee7; --paper:#ffffff; --bg:#f5f7fa;
+  --brand:#234b7a; --brand2:#3b6ea5; --soft:#eef4fb; --warn:#fff7e6; --warnline:#e3b653;
+  --good:#e9f7ef; --goodline:#5aa87a; --danger:#fff0ee; --dangerline:#cf6d61; --accent:#7b4ea3;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:"Vazirmatn", Vazir, Tahoma, Arial, sans-serif; line-height:1.95; font-size:15.5px; }
+body, button, input, textarea, select { font-family:"Vazirmatn", Vazir, Tahoma, Arial, sans-serif; }
+.page { max-width:1180px; margin:0 auto; background:var(--paper); min-height:100vh; }
+.container { width:100%; padding:28px 46px 60px; }
+.cover { background:linear-gradient(135deg,#193a61,#406f9f); color:#fff; padding:46px; border-radius:0 0 22px 22px; }
+.cover h1 { margin:0 0 14px; font-size:32px; line-height:1.35; }
+.cover p { margin:7px 0; max-width:900px; color:#eef4fb; }
+.badges { display:flex; gap:10px; flex-wrap:wrap; margin-top:18px; }
+.badge { border:1px solid rgba(255,255,255,.35); padding:5px 10px; border-radius:999px; font-size:13px; }
+.toc { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:20px 0 30px; }
+.toc a { text-decoration:none; color:var(--brand); background:var(--soft); border:1px solid #d7e2ef; padding:12px 14px; border-radius:12px; font-weight:700; }
+.lead { font-size:16px; background:#fbfcfe; border-right:5px solid var(--brand2); padding:16px 18px; border-radius:12px; margin-bottom:24px; }
+.section { margin-top:30px; }
+.section > h2 { font-size:25px; margin:0 0 6px; color:var(--brand); }
+.section-intro { color:var(--muted); margin:0 0 16px; }
+.group-box { background:#f8fafc; border:1px solid var(--line); padding:14px 16px; border-radius:12px; margin-bottom:22px; }
+.group-box h3 { margin:0 0 8px; font-size:16px; }
+.group-box ul { margin:0; padding-right:20px; }
+.question-card { border:1px solid var(--line); border-radius:16px; padding:22px; margin:24px 0; background:#fff; box-shadow:0 4px 15px rgba(28,46,70,.05); break-inside:auto; }
+.q-head { display:flex; gap:16px; justify-content:space-between; align-items:flex-start; margin-bottom:8px; }
+.q-label { color:var(--brand2); font-weight:800; font-size:13px; }
+.q-head h3 { margin:2px 0 0; font-size:21px; line-height:1.5; }
+.importance { white-space:nowrap; background:#f3f4f6; color:#394150; border:1px solid #d8dde6; padding:4px 9px; border-radius:999px; font-size:12px; }
+.source-line { color:#7b8494; font-size:12.5px; margin-bottom:14px; }
+.quality-note { background:var(--warn); border-right:4px solid var(--warnline); padding:10px 12px; border-radius:10px; margin:12px 0 16px; font-size:13.5px; }
+section h4 { color:#283a50; margin:20px 0 7px; font-size:15.5px; }
+.stem-full { font-weight:700; font-size:16px; background:#fbfcff; border:1px solid #e1e6ee; padding:13px 15px; border-radius:10px; margin:8px 0 10px; }
+.options { margin:7px 0 14px; padding-right:25px; }
+.options li { margin:4px 0; }
+.opt-letter { font-weight:800; color:var(--brand); }
+.answer-box { display:flex; gap:10px; align-items:center; justify-content:flex-start; background:var(--good); border-right:5px solid var(--goodline); padding:10px 14px; border-radius:10px; margin:14px 0; }
+.answer-box strong { font-size:18px; }
+.compact { margin:7px 0; padding-right:22px; }
+.option-analysis { display:grid; gap:10px; }
+.opt-analysis { border:1px solid #e0e4ea; border-radius:10px; padding:11px 13px; background:#fcfdff; }
+.opt-analysis.correct { background:var(--good); border-color:#b7dec5; }
+.opt-title { font-weight:800; margin-bottom:4px; }
+.opt-analysis p { margin:0 0 5px; }
+.why { font-size:13.5px; color:#465365; }
+.trap { background:var(--danger); border-right:5px solid var(--dangerline); padding:12px 14px; border-radius:10px; }
+.condition { background:#f6f1fb; border-right:5px solid var(--accent); padding:12px 14px; border-radius:10px; }
+.takeaway { background:#f8fafc; border:1px solid var(--line); padding:14px 16px; border-radius:12px; }
+.takeaway p { margin:6px 0; }
+.transfer { background:#eef7ff; border-right:5px solid var(--brand2); padding:12px 14px; border-radius:10px; }
+.transfer h4 { color:var(--brand); }
+.footer { margin-top:40px; border-top:1px solid var(--line); padding-top:18px; color:var(--muted); font-size:13px; }
+.sources { display:grid; gap:10px; }
+.source-item { padding:12px 14px; background:#fafbfc; border:1px solid var(--line); border-radius:10px; }
+@media(max-width:800px) { .container{padding:22px 18px 40px} .cover{padding:30px 20px} .toc{grid-template-columns:1fr} .q-head{flex-direction:column} body{font-size:15px} }
+@media print {
+  body { background:#fff; font-size:13.5px; }
+  .page { max-width:none; }
+  .cover { border-radius:0; break-after:page; }
+  .toc { break-inside:avoid; }
+  .question-card { box-shadow:none; }
+  a { color:inherit; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="cover">
+    <h1>سند آموزشی پاتولوژی پوست<br>آزمون‌محور و مسیر حل سؤال</h1>
+    <p>این سند برای حفظ‌کردن جزوه ساخته نشده؛ هدفش این است که وقتی Stem را می‌بینی، بدانی کدام داده وزن بیشتری دارد، چرا گزینه‌های نزدیک وسوسه‌کننده‌اند، و با چه رابطه‌ای به بهترین پاسخ می‌رسی.</p>
+    <p>مبنای کار: پرامپت مادر + جزوه پاتولوژی پوست + مجموعه نمونه‌سؤال‌های پاتولوژی پوست و استخوان. در بخش‌هایی که متن سؤال در فایل به‌علت OCR ناقص بوده، بازسازی خوانا با برچسب صریح انجام شده است.</p>
+    <div class="badges"><span class="badge">RTL / فارسی</span><span class="badge">حل تست داخل هر سؤال</span><span class="badge">تمرکز بر دام و افتراق</span><span class="badge">بدون الگوریتم مستقل</span></div>
+  </header>
+  <div class="container">
+    <div class="lead"><strong>قانون این سند:</strong> اول خود سؤال، بعد باز کردن Stem، بعد مقایسه گزینه‌های نزدیک، بعد دام طراح، و در پایان یک قانون تصمیم‌گیری قابل انتقال. جواب صرفاً نقطه پایان مسیر است.</div>
+    <h2>فهرست بخش‌ها</h2>
+    <div class="toc"><a href="#sec1">1. واکنش‌های اپیدرمی</a><a href="#sec2">2. بیماری‌های تاولی و DIF</a><a href="#sec3">3. تومورهای اپیدرمی و ضایعات آکتینیک</a><a href="#sec4">4. عفونت و کهیر</a></div>
+
+<section class="section" id="sec1"><h2>واکنش‌های اپیدرمی</h2><p class="section-intro">در این بخش، سؤال‌ها از تو نمی‌خواهند یک لیست از بیماری‌ها را حفظ کنی. هر بار pattern را از روی morphology درمی‌آوری: پسوریازیفرم، اسپونژیوتیک یا اینترفیس؛ بعد finding را به بیماری وصل می‌کنی.</p><div class="group-box"><h3>بعد از این مجموعه، طراح چه مهارتی را می‌سنجد؟</h3><ul><li>طراح بیشتر از اسم بیماری، pattern و محل سلول را می‌سنجد.</li><li>در پسوریازیس، محل نوتروفیل و جهت تغییرات epidermal architecture مهم‌اند.</li><li>«interface» را باید به‌عنوان یک reaction pattern مستقل از نام بیماری بشناسی.</li></ul></div><article class="question-card" id="q1">
+<div class="q-head"><div><span class="q-label">سؤال ۱</span><h3>پسوریازیس؛ از جای نوتروفیل‌ها تشخیص بده</h3></div><span class="importance خیلیمهم">خیلی مهم</span></div>
+<div class="source-line">منبع: پاتولوژی پوست و استخوان.md، سؤال ۲۳</div>
+<section><h4>صورت سؤال</h4><p class="stem-full">تجمعات کوچک نوتروفیل‌ها در نواحی اسپونژیوتیک اپیدرم سطحی همراه با لایه شاخی پاراکراتوتیک مشخصه کدام بیماری است؟</p><ul class="options"><li><span class="opt-letter">الف)</span> درماتیت هرپتی‌فرم</li><li><span class="opt-letter">ب)</span> اگزما</li><li><span class="opt-letter">ج)</span> زردزخم (Impetigo)</li><li><span class="opt-letter">د)</span> پسوریازیس</li></ul></section>
+<div class="answer-box"><span>نتیجه نهایی</span><strong>گزینه د</strong></div>
+<section><h4>سؤال واقعاً چی می‌پرسد؟</h4><p>این سؤال ظاهراً فقط می‌پرسد «این یافته مال کدام بیماری است»، اما واقعاً دارد از تو می‌خواهد دو چیز را هم‌زمان روی هم بیندازی: «محل تجمع نوتروفیل» و «الگوی اپیدرم/لایه شاخی».</p></section>
+<section><h4>خب، از Stem چه چیزهایی را وزن بدهیم؟</h4><ul class="compact"><li>«تجمع نوتروفیل در اپیدرم سطحی» یک داده مکانی است؛ باید آن را از «نوتروفیل در نوک پاپی‌های درم» جدا کنی.</li><li>«لایه شاخی پاراکراتوتیک» هم جهت را به سمت یک الگوی پسوریازیفرم می‌برد؛ پس فقط دیدن کلمه نوتروفیل کافی نیست.</li></ul>
+<section><h4>حالا با صدای بلند فکر کنیم</h4><p>خب، دام سؤال همین‌جاست: نوتروفیل را دیدن نباید تو را مستقیم ببرد سمت هر بیماری تاولی یا هر عفونت. اول ببین نوتروفیل دقیقاً کجاست. اینجا در اپیدرم سطحی و در لایه شاخی پاراکراتوتیک قرار گرفته. همین محل، کنار پاراکراتوز، کفه ترازو را به سمت پسوریازیس می‌برد.</p></section>
+<section><h4>تحلیل گزینه‌ها</h4><div class="option-analysis">
+<div class="opt-analysis "><div class="opt-title">گزینه الف</div><p>در نگاه اول ممکن است درست به نظر برسد چون درماتیت هرپتی‌فرم هم یک بیماری نوتروفیلی و تاولی است. اما در DH، یافته کلیدی «میکروآبسه نوتروفیلی در نوک پاپی‌های درم» است، نه تجمع در اپیدرم سطحی.</p><div class="why"><strong>جمع‌بندی تستی:</strong> غلط؛ محل سلول مهم است.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ب</div><p>اگزما از نظر الگوی میکروسکوپی بیشتر با اسپونژیوز، یعنی ادم بین سلولی اپیدرم، شناخته می‌شود. خود جزوه نیز اسپونژیوز را الگوی اصلی اگزما معرفی می‌کند.</p><div class="why"><strong>جمع‌بندی تستی:</strong> از نظر علمی بیماری مهمی است، ولی این Stem آن را هدف نگرفته است.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ج</div><p>در زردزخم نیز نوتروفیل‌ها می‌توانند در زیر لایه شاخی تجمع پیدا کنند و پوسچول زیرشاخی بسازند. بنابراین نوتروفیل + اپیدرم به‌تنهایی کافی نیست.</p><div class="why"><strong>جمع‌بندی تستی:</strong> شباهت واقعی دارد، اما «پاراکراتوز + الگوی پسوریازیفرم» مسیر را عوض می‌کند.</div></div>
+<div class="opt-analysis correct"><div class="opt-title">گزینه د</div><p>در پسوریازیس، میکروآبسه مونرو در لایه شاخی پاراکراتوتیک و پوسچول اسفنجی شکل کوگوژ در اپیدرم سطحی از یافته‌های کلاسیک‌اند.</p><div class="why"><strong>جمع‌بندی تستی:</strong> این گزینه هم از نظر محل نوتروفیل و هم از نظر الگوی اپیدرم با Stem جور است.</div></div>
+</div></section>
+<section class="trap"><h4>دام سؤال</h4><p>دام این است که «نوتروفیل = هر بیماری نوتروفیلی» برداشت شود. علامتی که باید جلویت را بگیرد این است: نوتروفیل در کجا جمع شده؟</p></section>
+<section class="condition"><h4>شرطی که جواب را عوض می‌کند</h4><p>اگر سؤال فقط «وجود نوتروفیل» را می‌گفت، افتراق بازتر می‌شد. اینجا محل نوتروفیل و پاراکراتوز دو شرط تعیین‌کننده‌اند.</p></section>
+<section><h4>نیت احتمالی طراح</h4><p>بسیار محتمل است که طراح خواسته باشد تفاوت الگوی نوتروفیلی پسوریازیس با DH و زردزخم را امتحان کند.</p></section>
+<section class="takeaway"><h4>سه لایه‌ای که باید بماند</h4>
+<p><strong>نکته اصلی:</strong> پسوریازیس با پاراکراتوز، آکانتوز منظم و نوتروفیل در میکروآبسه مونرو/پوسچول کوگوژ شناخته می‌شود.</p>
+<p><strong>کلید تستی:</strong> وقتی «نوتروفیل» دیدی، قبل از نام بیماری محل آن را بخوان.</p>
+<p><strong>دام نزدیک:</strong> DH: نوک پاپی درم ← پسوریازیس: لایه شاخی پاراکراتوتیک/اپیدرم سطحی ← زردزخم: عمدتاً پوسچول زیرشاخی.</p>
+</section>
+<section class="transfer"><h4>قانون قابل انتقال</h4><p>در تست‌های پاتولوژی پوست، سلول مهم است، ولی «جای سلول» اغلب از خود سلول مهم‌تر است.</p></section>
+</article><article class="question-card" id="q4">
+<div class="q-head"><div><span class="q-label">سؤال ۴</span><h3>درماتیت اینترفیس؛ موضوع واقعی «الگوی واکنش» است</h3></div><span class="importance خیلیمهم">خیلی مهم</span></div>
+<div class="source-line">منبع: پاتولوژی پوست و استخوان.md، آزمون بهمن ۱۴۰۰، سؤال ۶</div>
+<section><h4>صورت سؤال</h4><p class="stem-full">کدام بیماری پوستی درگیری اینترفیس دارد؟</p><ul class="options"><li><span class="opt-letter">الف)</span> پسوریازیس</li><li><span class="opt-letter">ب)</span> اگزما</li><li><span class="opt-letter">ج)</span> اریتم مولتی‌فرم</li><li><span class="opt-letter">د)</span> لیکن سیمپلکس مزمن</li></ul></section>
+<div class="answer-box"><span>نتیجه نهایی</span><strong>گزینه ج</strong></div>
+<section><h4>سؤال واقعاً چی می‌پرسد؟</h4><p>موضوع ظاهری سؤال بیماری پوستی است؛ موضوع واقعی، تشخیص «الگوی بافتی» است. باید بین سه الگوی اصلی که در منبع تکرار می‌شوند فرق بگذاری: پسوریازیفرم، اسپونژیوتیک و اینترفیس.</p></section>
+<section><h4>خب، از Stem چه چیزهایی را وزن بدهیم؟</h4><ul class="compact"><li>«درگیری اینترفیس» یعنی تمرکز التهاب در محل اتصال درم و اپیدرم.</li><li>در این الگو، آسیب لایه بازال و آپوپتوز کراتینوسیت‌ها اهمیت دارد.</li></ul>
+<section><h4>حالا با صدای بلند فکر کنیم</h4><p>اینجا اصلاً لازم نیست از روی شرح حال طولانی حدس بزنی. سؤال اسم pattern را داده. پس pattern را با بیماری‌های نمونه‌اش وصل کن: اریتم مولتی‌فرم در این فایل یکی از نمونه‌های کلاسیک interface dermatitis است.</p></section>
+<section><h4>تحلیل گزینه‌ها</h4><div class="option-analysis">
+<div class="opt-analysis "><div class="opt-title">گزینه الف</div><p>پسوریازیس با الگوی پسوریازیفرم، آکانتوز منظم، پاراکراتوز و میکروآبسه‌های نوتروفیلی توصیف شده است.</p><div class="why"><strong>جمع‌بندی تستی:</strong> نه؛ pattern متفاوت است.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ب</div><p>اگزما با اسپونژیوز یعنی ادم بین‌سلولی اپیدرم شناخته می‌شود.</p><div class="why"><strong>جمع‌بندی تستی:</strong> گزینه علمی و نزدیک، ولی pattern دیگری دارد.</div></div>
+<div class="opt-analysis correct"><div class="opt-title">گزینه ج</div><p>در اریتم مولتی‌فرم، ارتشاح لنفوسیتی در محل اتصال درم و اپیدرم و آسیب کراتینوسیت‌های بازال دیده می‌شود.</p><div class="why"><strong>جمع‌بندی تستی:</strong> این همان چیزی است که سؤال می‌خواهد.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه د</div><p>لیکن سیمپلکس مزمن به‌دلیل خارش طولانی بیشتر الگوی پسوریازیفرم با آکانتوز و هیپرکراتوز می‌دهد.</p><div class="why"><strong>جمع‌بندی تستی:</strong> باز هم pattern دیگری است.</div></div>
+</div></section>
+<section class="trap"><h4>دام سؤال</h4><p>دام این است که «بیماری پوستی التهابی» را با «interface» یکی بگیری. سؤال درباره نام بیماری نیست؛ درباره معماری واکنش بافتی است.</p></section>
+<section><h4>نیت احتمالی طراح</h4><p>قطعی؛ ساختار سؤال مستقیماً قصد سنجش pattern recognition را نشان می‌دهد.</p></section>
+<section class="takeaway"><h4>سه لایه‌ای که باید بماند</h4>
+<p><strong>نکته اصلی:</strong> Interface dermatitis: التهاب در dermoepidermal junction، آسیب بازال، واکوئولار change و apoptotic keratinocytes.</p>
+<p><strong>کلید تستی:</strong> Interface = مرز درم/اپیدرم را نگاه کن.</p>
+<p><strong>دام نزدیک:</strong> پسوریازیس = psoriasiform؛ اگزما = spongiotic؛ اریتم مولتی‌فرم = interface.</p>
+</section>
+<section class="transfer"><h4>قانون قابل انتقال</h4><p>وقتی سؤال «pattern» می‌دهد، اسم بیماری را عقب ببر و ابتدا خود pattern را تشخیص بده.</p></section>
+</article><article class="question-card" id="q6">
+<div class="q-head"><div><span class="q-label">سؤال ۶</span><h3>پسوریازیس؛ یک سؤال «چه چیزی وجود ندارد؟»</h3></div><span class="importance خیلیمهم">خیلی مهم</span></div>
+<div class="source-line">منبع: پاتولوژی پوست و استخوان.md، آزمون بهمن ۱۴۰۰، سؤال ۵</div>
+<div class="quality-note"><strong>کیفیت متن منبع:</strong> متن گزینه چهارم در فایل اصلی به‌علت OCR ناقص است؛ عبارت «ضخیم شدن صفحه سوپراپاپیلاری» از توضیح تشریحی همان منبع بازسازی شده است. منبع تصریح می‌کند که یافته واقعی «نازک شدن صفحه سوپراپاپیلاری» است.</div>
+<section><h4>صورت سؤال</h4><p class="stem-full">در پسوریازیس چه چیزی در بررسی میکروسکوپی وجود ندارد؟</p><ul class="options"><li><span class="opt-letter">الف)</span> نوتروفیل در لایه شاخی</li><li><span class="opt-letter">ب)</span> پاراکراتوز</li><li><span class="opt-letter">ج)</span> لنفوسیت در درم سطحی</li><li><span class="opt-letter">د)</span> ضخیم شدن صفحه سوپراپاپیلاری</li></ul></section>
+<div class="answer-box"><span>نتیجه نهایی</span><strong>گزینه د</strong></div>
+<section><h4>سؤال واقعاً چی می‌پرسد؟</h4><p>طراح دارد از یک فهرست تقریباً کاملاً درست، فقط یک گزینه خلاف الگوی کلاسیک را قایم می‌کند. اینجا باید هر گزینه را با morphology پسوریازیس تطبیق بدهی، نه اینکه دنبال یک کلمه بیماری‌نام بگردی.</p></section>
+<section><h4>خب، از Stem چه چیزهایی را وزن بدهیم؟</h4><ul class="compact"><li>پسوریازیس: پاراکراتوز، آکانتوز منظم، کاهش/از بین رفتن لایه گرانولر، نازک شدن صفحه سوپراپاپیلاری و تجمع نوتروفیل‌ها.</li><li>پس گزینه‌ای که «نازک شدن» را برعکس کند، مشکوک می‌شود.</li></ul>
+<section><h4>حالا با صدای بلند فکر کنیم</h4><p>سه گزینه اول را که می‌خوانی، هر سه بوی پسوریازیس می‌دهند. پس دنبال تنها جایی بگرد که جهت تغییر را برعکس کرده. منبع می‌گوید صفحه سوپراپاپیلاری نازک می‌شود، نه ضخیم.</p></section>
+<section><h4>تحلیل گزینه‌ها</h4><div class="option-analysis">
+<div class="opt-analysis "><div class="opt-title">گزینه الف</div><p>میکروآبسه مونرو یعنی نوتروفیل‌ها در لایه شاخی پاراکراتوتیک؛ از یافته‌های کلاسیک‌اند.</p><div class="why"><strong>جمع‌بندی تستی:</strong> وجود دارد.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ب</div><p>پاراکراتوز از یافته‌های اصلی پسوریازیس است و بخشی از پوست‌ریزی نقره‌ای را توضیح می‌دهد.</p><div class="why"><strong>جمع‌بندی تستی:</strong> وجود دارد.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ج</div><p>ارتشاح لنفوسیتی در درم سطحی نیز در الگوی التهابی پسوریازیس دیده می‌شود.</p><div class="why"><strong>جمع‌بندی تستی:</strong> وجود دارد.</div></div>
+<div class="opt-analysis correct"><div class="opt-title">گزینه د</div><p>ضخیم شدن صفحه سوپراپاپیلاری با توضیح جزوه در تضاد است؛ یافته واقعی، نازک شدن آن است.</p><div class="why"><strong>جمع‌بندی تستی:</strong> در آزمون با این صورت، بهترین پاسخ است.</div></div>
+</div></section>
+<section class="trap"><h4>دام سؤال</h4><p>دام «فقط یادآوری وجود یک تغییر» است. در بعضی تست‌ها جهت تغییر مهم‌تر از اسم تغییر است: thinning با thickening فرق دارد.</p></section>
+<section><h4>نیت احتمالی طراح</h4><p>بسیار محتمل است که طراح عمداً از یک واژه متضاد استفاده کرده باشد.</p></section>
+<section class="takeaway"><h4>سه لایه‌ای که باید بماند</h4>
+<p><strong>نکته اصلی:</strong> پسوریازیس: parakeratosis + regular acanthosis + suprapapillary thinning + Munro/Kogoj.</p>
+<p><strong>کلید تستی:</strong> در سؤال‌های NOT/EXCEPT، هر گزینه را مستقل با الگوی پاتولوژیک چک کن.</p>
+<p><strong>دام نزدیک:</strong> وجود نوتروفیل و پاراکراتوز به نفع پسوریازیس است؛ تغییر خلاف «نازک شدن» صفحه سوپراپاپیلاری به نفع گزینه نادرست/پاسخ سؤال است.</p>
+</section>
+<section class="transfer"><h4>قانون قابل انتقال</h4><p>در سؤال‌های «کدام دیده نمی‌شود؟» به جای پیدا کردن یک گزینه آشنا، چهار گزینه را یکی‌یکی با الگوی پایه مقایسه کن.</p></section>
+</article><div class="group-box"><h3>الگوی مشترک سؤال‌های این بخش</h3><ul><li>طراح بیشتر از اسم بیماری، pattern و محل سلول را می‌سنجد.</li><li>در پسوریازیس، محل نوتروفیل و جهت تغییرات epidermal architecture مهم‌اند.</li><li>«interface» را باید به‌عنوان یک reaction pattern مستقل از نام بیماری بشناسی.</li></ul><p><strong>مهارت قابل انتقال:</strong> در تست بعدی همین درس، قبل از اینکه سراغ اسم بیماری بروی، از خودت بپرس «این سؤال از من چه تصمیمی می‌خواهد؟» و همان تصمیم را با یک finding یا pattern گره بزن.</p></div></section><section class="section" id="sec2"><h2>بیماری‌های تاولی و DIF</h2><p class="section-intro">اینجا کلید حل، اتصال سه قطعه است: سطح جداشدگی تاول، آنتی‌ژن/ساختار هدف و الگوی DIF. همین سه‌تایی بارها در تست‌ها تکرار شده است.</p><div class="group-box"><h3>بعد از این مجموعه، طراح چه مهارتی را می‌سنجد؟</h3><ul><li>سطح جداشدگی تاول، آنتی‌ژن و DIF به‌صورت یک زنجیره طراحی می‌شوند.</li><li>مقایسه PF/PV/BP/DH در منبع بر پایه محل تاول و نوع رسوب آنتی‌بادی است.</li><li>در این گروه، associationهای شکلی مثل fishnet، linear و granular بسیار امتحانی‌اند.</li></ul></div><article class="question-card" id="q2">
+<div class="q-head"><div><span class="q-label">سؤال ۲</span><h3>درماتیت هرپتی‌فرم؛ نوک پاپی‌ها را پیدا کن</h3></div><span class="importance خیلیمهم">خیلی مهم</span></div>
+<div class="source-line">منبع: پاتولوژی پوست و استخوان.md، سؤال ۱۶</div>
+<section><h4>صورت سؤال</h4><p class="stem-full">در بیوپسی ضایعات تاولی خارش‌دار ناحیه آرنج و زانو در خانمی ۴۰ ساله، تجمعات نوتروفیل‌ها در قله پاپی درم گزارش شده است. محتمل‌ترین تشخیص کدام است؟</p><ul class="options"><li><span class="opt-letter">الف)</span> پمفیگوس ولگاریس</li><li><span class="opt-letter">ب)</span> درماتیت هرپتی‌فرم</li><li><span class="opt-letter">ج)</span> پمفیگوس فولیاسه</li><li><span class="opt-letter">د)</span> پمفیگوئید تاولی</li></ul></section>
+<div class="answer-box"><span>نتیجه نهایی</span><strong>گزینه ب</strong></div>
+<section><h4>سؤال واقعاً چی می‌پرسد؟</h4><p>سؤال ظاهراً درباره یک بیماری تاولی است، ولی کلید واقعی آن «تاول» نیست؛ ترکیب محل ضایعه + خارش شدید + جای نوتروفیل است.</p></section>
+<section><h4>خب، از Stem چه چیزهایی را وزن بدهیم؟</h4><ul class="compact"><li>آرنج و زانو یعنی سطح اکستانسور؛ این الگو برای DH آشناست.</li><li>«قله پاپی درم» داده تشخیصی سنگین سؤال است.</li><li>خارش‌دار بودن ضایعات کمک می‌کند بیماری‌های تاولی شل و مخاطی را کمتر جدی بگیریم.</li></ul>
+<section><h4>حالا با صدای بلند فکر کنیم</h4><p>اینجا اول به «قله پاپی درم» گیر بده. اگر نوتروفیل‌ها آنجا جمع شده‌اند، یک مسیر خیلی مشخص داریم. حالا وقتی با «خارش شدید» و درگیری سطوح اکستانسور ترکیبش کنی، DH جلو می‌افتد.</p></section>
+<section><h4>تحلیل گزینه‌ها</h4><div class="option-analysis">
+<div class="opt-analysis "><div class="opt-title">گزینه الف</div><p>پمفیگوس ولگاریس با آکانتولیز و تاول سوپربازال شناخته می‌شود؛ الگوی اصلی آن نوتروفیل در قله پاپی نیست.</p><div class="why"><strong>جمع‌بندی تستی:</strong> نه؛ سطح جداشدگی و نوع التهاب نمی‌خواند.</div></div>
+<div class="opt-analysis correct"><div class="opt-title">گزینه ب</div><p>درماتیت هرپتی‌فرم با ضایعات شدیداً خارش‌دار و قرینه در سطوح اکستانسور همراه است و در میکروسکوپ نوتروفیل‌ها در نوک پاپی‌های درم می‌نشینند.</p><div class="why"><strong>جمع‌بندی تستی:</strong> بهترین پاسخ؛ چند داده مستقل هم‌زمان به آن اشاره می‌کنند.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ج</div><p>پمفیگوس فولیاسه یک تاول بسیار سطحی/ساب‌کورنئال دارد و آنتی‌ژن آن DSG1 است؛ Stem چنین اطلاعاتی نمی‌دهد و محل نوتروفیل هم نمی‌خواند.</p><div class="why"><strong>جمع‌بندی تستی:</strong> علمی است اما جواب این سؤال نیست.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه د</div><p>پمفیگوئید تاولی تاول ساب‌اپیدرمال می‌دهد و در منابع این فایل، ارتشاح آن بیشتر با ائوزینوفیل‌ها مطرح شده است.</p><div class="why"><strong>جمع‌بندی تستی:</strong> محل التهاب با Stem جور نیست.</div></div>
+</div></section>
+<section class="trap"><h4>دام سؤال</h4><p>دام اصلی «تاول + نوتروفیل» است؛ باید محل نوتروفیل را از حفظ تشخیص بیماری جدا کنی.</p></section>
+<section class="condition"><h4>شرطی که جواب را عوض می‌کند</h4><p>اگر به‌جای نوک پاپی‌های درم، تاول ساب‌اپیدرمال با ائوزینوفیل می‌دیدی، پمفیگوئید تاولی جدی‌تر می‌شد.</p></section>
+<section><h4>نیت احتمالی طراح</h4><p>قطعی نیست، اما بسیار محتمل است که طراح روی تفاوت DH با سایر بیماری‌های تاولی تمرکز داشته باشد.</p></section>
+<section class="takeaway"><h4>سه لایه‌ای که باید بماند</h4>
+<p><strong>نکته اصلی:</strong> DH: تاول ساب‌اپیدرمال، نوتروفیل در نوک پاپی‌های درم، IgA گرانولر و ارتباط با سلیاک.</p>
+<p><strong>کلید تستی:</strong> نوک پاپی درم + خارش شدید + اکستانسور = DH.</p>
+<p><strong>دام نزدیک:</strong> DH در برابر BP: نوتروفیل در نوک پاپی/IgA گرانولر در DH، در حالی که BP تاول ساب‌اپیدرمال با DIF خطی IgG/C3 در غشای پایه دارد.</p>
+</section>
+<section class="transfer"><h4>قانون قابل انتقال</h4><p>برای بیماری‌های تاولی، «سطح تاول + سلول غالب + الگوی DIF» را به یک بسته واحد تبدیل کن.</p></section>
+</article><article class="question-card" id="q3">
+<div class="q-head"><div><span class="q-label">سؤال ۳</span><h3>پمفیگوس فولیاسه؛ سطح جداشدگی تاول را بخوان</h3></div><span class="importance خیلیمهم">خیلی مهم</span></div>
+<div class="source-line">منبع: پاتولوژی پوست و استخوان.md، سؤال ۱۸</div>
+<div class="quality-note"><strong>کیفیت متن منبع:</strong> صورت گزینه‌ها در فایل متنی به علت OCR بخشی مخدوش است؛ گزینه‌ها در این سند به‌صورت خوانا و فقط بر اساس توضیح تشریحی همان منبع بازسازی شده‌اند.</div>
+<section><h4>صورت سؤال</h4><p class="stem-full">در ضایعات پمفیگوس فولیاسه، سطح جداشدگی تاول در کدام ناحیه قرار دارد؟</p><ul class="options"><li><span class="opt-letter">الف)</span> لایه گرانولر / زیر لایه شاخی</li><li><span class="opt-letter">ب)</span> بالای لایه بازال (سوپرابازال)</li><li><span class="opt-letter">ج)</span> غشای پایه / زیر اپیدرم</li><li><span class="opt-letter">د)</span> لایه خاردار (اسپینوزوم)</li></ul></section>
+<div class="answer-box"><span>نتیجه نهایی</span><strong>گزینه الف</strong></div>
+<section><h4>سؤال واقعاً چی می‌پرسد؟</h4><p>این سؤال یک «نقشه آنتی‌ژن به لایه پوست» می‌خواهد. اگر اول disease name را حفظ کنی، ممکن است پمفیگوس‌ها را قاطی کنی؛ اگر آنتی‌ژن و محل آن را وصل کنی، پاسخ تقریباً خودکار می‌شود.</p></section>
+<section><h4>خب، از Stem چه چیزهایی را وزن بدهیم؟</h4><ul class="compact"><li>در PF آنتی‌بادی علیه DSG1 است.</li><li>DSG1 بیشتر در لایه‌های سطحی اپیدرم قرار دارد.</li><li>پس آسیب سطحی‌تر است و تاول ساب‌کورنئال/سطح لایه گرانولر شکل می‌گیرد.</li></ul>
+<section><h4>حالا با صدای بلند فکر کنیم</h4><p>بین ولگاریس و فولیاسه، اینجا یک تفاوت تعیین‌کننده داریم: ولگاریس DSG3 هم دارد و درگیری عمقی‌تر و مخاطی‌تر می‌دهد؛ فولیاسه بیشتر سطحی است چون هدف اصلی DSG1 است. پس دنبال محل جداشدگی سطحی بگرد.</p></section>
+<section><h4>تحلیل گزینه‌ها</h4><div class="option-analysis">
+<div class="opt-analysis correct"><div class="opt-title">گزینه الف</div><p>تاول PF بسیار سطحی و ساب‌کورنئال است؛ جزوه آن را در سطح لایه گرانولر توصیف می‌کند.</p><div class="why"><strong>جمع‌بندی تستی:</strong> درست؛ مستقیم با پاتوژنز منبع جور است.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ب</div><p>سوپرابازال در پمفیگوس ولگاریس دیده می‌شود، نه فولیاسه.</p><div class="why"><strong>جمع‌بندی تستی:</strong> گزینه نزدیک و دام‌دار؛ اسم «پمفیگوس» مشترک است ولی سطح یکی نیست.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ج</div><p>غشای پایه یعنی تاول ساب‌اپیدرمال، الگویی که در پمفیگوئید تاولی دیده می‌شود.</p><div class="why"><strong>جمع‌بندی تستی:</strong> این گزینه بیماری دیگری را تداعی می‌کند.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه د</div><p>منبع این محل را به‌عنوان محل مشخص جداشدگی اصلی PF معرفی نمی‌کند.</p><div class="why"><strong>جمع‌بندی تستی:</strong> از نظر تستی بهترین افتراق با A و B در سطح تاول اتفاق می‌افتد.</div></div>
+</div></section>
+<section class="trap"><h4>دام سؤال</h4><p>دام کلاسیک، یکی گرفتن «پمفیگوس» با «پمفیگوس ولگاریس» است. اسم گروه بیماری به‌تنهایی برای تعیین سطح تاول کافی نیست.</p></section>
+<section><h4>نیت احتمالی طراح</h4><p>بسیار محتمل: طراح می‌خواهد relationship بین آنتی‌ژن DSG1 و محل سطحی تاول را بسنجد.</p></section>
+<section class="takeaway"><h4>سه لایه‌ای که باید بماند</h4>
+<p><strong>نکته اصلی:</strong> PF: DSG1 → لایه سطحی اپیدرم → آکانتولیز سطحی → تاول ساب‌کورنئال.</p>
+<p><strong>کلید تستی:</strong> DSG1 را دیدی؟ به سطح اپیدرم فکر کن. DSG1 در سؤال‌های این فایل با PF جفت شده است.</p>
+<p><strong>دام نزدیک:</strong> PF: سطحی/ساب‌کورنئال و مخاط معمولاً سالم؛ PV: سوپرابازال و مخاط درگیر.</p>
+</section>
+<section class="transfer"><h4>قانون قابل انتقال</h4><p>هر وقت سؤال درباره «سطح تاول» است، بیماری را از روی «محل پروتئین هدف» بازسازی کن، نه از روی نام بیماری.</p></section>
+</article><article class="question-card" id="q5">
+<div class="q-head"><div><span class="q-label">سؤال ۵</span><h3>DIF؛ یک خط یا تور ماهیگیری؟</h3></div><span class="importance خیلیمهم">خیلی مهم</span></div>
+<div class="source-line">منبع: پاتولوژی پوست و استخوان.md، آزمون بهمن ۱۴۰۰، سؤال ۷</div>
+<section><h4>صورت سؤال</h4><p class="stem-full">کدام بیماری در ایمونوفلورسانس مستقیم (DIF) رسوب خطی آنتی‌بادی‌ها را نشان می‌دهد؟</p><ul class="options"><li><span class="opt-letter">الف)</span> پمفیگوئید تاولی</li><li><span class="opt-letter">ب)</span> پمفیگوس ولگاریس</li><li><span class="opt-letter">ج)</span> پمفیگوس فولیاسه</li></ul></section>
+<div class="answer-box"><span>نتیجه نهایی</span><strong>گزینه الف</strong></div>
+<section><h4>سؤال واقعاً چی می‌پرسد؟</h4><p>سؤال درباره «بیماری تاولی» به‌صورت کلی نیست؛ دقیقاً درباره الگوی رسوب در DIF است. اینجا محل رسوب و شکل رسوب از نام بیماری مهم‌ترند.</p></section>
+<section><h4>خب، از Stem چه چیزهایی را وزن بدهیم؟</h4><ul class="compact"><li>در پمفیگوئید تاولی، IgG و C3 در امتداد غشای پایه به‌شکل خطی رسوب می‌کنند.</li><li>در پمفیگوس‌ها رسوب بین سلول‌های اپیدرم به‌شکل شبکه‌ای/تورماهیگیری است.</li></ul>
+<section><h4>حالا با صدای بلند فکر کنیم</h4><p>اگر فقط اسم پمفیگوس و پمفیگوئید را حفظ کنی، ممکن است در تست سرعت پایین بیاید. اما با شکل رسوب کار کن: «خطی روی BMZ» را با پمفیگوئید جفت کن؛ «fishnet» را با پمفیگوس‌ها.</p></section>
+<section><h4>تحلیل گزینه‌ها</h4><div class="option-analysis">
+<div class="opt-analysis correct"><div class="opt-title">گزینه الف</div><p>پمفیگوئید تاولی: رسوب خطی IgG و C3 در امتداد غشای پایه.</p><div class="why"><strong>جمع‌بندی تستی:</strong> درست.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ب</div><p>پمفیگوس ولگاریس: IgG در فضای بین سلولی اپیدرم با الگوی fishnet.</p><div class="why"><strong>جمع‌بندی تستی:</strong> اشتباه به‌عنوان «خطی»؛ الگوی درست شبکه‌ای است.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ج</div><p>پمفیگوس فولیاسه هم مثل سایر پمفیگوس‌ها رسوب بین‌سلولی شبکه‌ای دارد.</p><div class="why"><strong>جمع‌بندی تستی:</strong> پس از نظر الگو خطی نیست.</div></div>
+</div></section>
+<section class="trap"><h4>دام سؤال</h4><p>دام دوگانه است: ۱) قاطی کردن «خطی» با «شبکه‌ای»، ۲) توجه نکردن به محل رسوب.</p></section>
+<section><h4>نیت احتمالی طراح</h4><p>قطعی؛ سؤال یک association امتحانی بسیار مستقیم می‌سازد.</p></section>
+<section class="takeaway"><h4>سه لایه‌ای که باید بماند</h4>
+<p><strong>نکته اصلی:</strong> BP = linear IgG/C3 at basement membrane؛ pemphigus = fishnet IgG between epidermal cells.</p>
+<p><strong>کلید تستی:</strong> خطی = پمفیگوئید؛ fishnet = پمفیگوس.</p>
+<p><strong>دام نزدیک:</strong> BP: hemidesmosome/BMZ؛ PV/PF: desmosome/intercellular space؛ DH: granular IgA at dermal papillae.</p>
+</section>
+<section class="transfer"><h4>قانون قابل انتقال</h4><p>در DIF، «الگو + محل رسوب» را یک واحد حفظ کن؛ حفظ یکی بدون دیگری شکننده است.</p></section>
+</article><article class="question-card" id="q12">
+<div class="q-head"><div><span class="q-label">سؤال ۱۲</span><h3>پمفیگوس ولگاریس؛ DSG1 + DSG3 یعنی fishnet IgG</h3></div><span class="importance خیلیمهم">خیلی مهم</span></div>
+<div class="source-line">منبع: پاتولوژی پوست و استخوان.md، آزمون بهمن ۱۴۰۰، سؤال ۱۳</div>
+<section><h4>صورت سؤال</h4><p class="stem-full">ویژگی میکروسکوپی بیماری که آنتی‌بادی علیه دسموگلین ۱ و ۳ دارد، چیست؟</p><ul class="options"><li><span class="opt-letter">الف)</span> رسوب خطی IgG در غشای پایه</li><li><span class="opt-letter">ب)</span> رسوب گرانولر IgA در پاپی‌های درم</li><li><span class="opt-letter">ج)</span> رسوب تور ماهیگیری شکل IgG بین سلول‌های اپیدرم</li><li><span class="opt-letter">د)</span> عدم وجود رسوب ایمونوگلوبولین</li></ul></section>
+<div class="answer-box"><span>نتیجه نهایی</span><strong>گزینه ج</strong></div>
+<section><h4>سؤال واقعاً چی می‌پرسد؟</h4><p>این سؤال از یک مولکول شروع می‌کند، اما پاسخ در یک «زنجیره» پیدا می‌شود: DSG1+DSG3 → دسموزوم → آکانتولیز → intercellular IgG → fishnet.</p></section>
+<section><h4>خب، از Stem چه چیزهایی را وزن بدهیم؟</h4><ul class="compact"><li>DSG1 و DSG3 هر دو از پروتئین‌های دسموزومی‌اند.</li><li>DIF در پمفیگوس رسوب IgG بین سلول‌های اپیدرم را با الگوی fishnet نشان می‌دهد.</li><li>در PV، هر دو پوست و مخاط می‌توانند درگیر شوند و تاول سوپرابازال است.</li></ul>
+<section><h4>حالا با صدای بلند فکر کنیم</h4><p>وقتی دو دسموگلین را می‌بینی، دنبال غشای پایه نرو. دسموگلین یعنی اتصال سلول به سلول؛ پس رسوب هم بین سلول‌هاست. شکل این رسوب در منبع «تور ماهیگیری» است.</p></section>
+<section><h4>تحلیل گزینه‌ها</h4><div class="option-analysis">
+<div class="opt-analysis "><div class="opt-title">گزینه الف</div><p>رسوب خطی در BMZ الگوی پمفیگوئید تاولی است، نه پمفیگوس.</p><div class="why"><strong>جمع‌بندی تستی:</strong> wrong compartment/pattern.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ب</div><p>IgA گرانولر در نوک پاپی‌های درم برای DH مطرح است.</p><div class="why"><strong>جمع‌بندی تستی:</strong> بیماری دیگری را نشان می‌دهد.</div></div>
+<div class="opt-analysis correct"><div class="opt-title">گزینه ج</div><p>IgG بین سلول‌های اپیدرم به شکل fishnet، یافته تشخیصی PV است.</p><div class="why"><strong>جمع‌بندی تستی:</strong> کاملاً منطبق.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه د</div><p>منبع صراحتاً رسوب IgG را در پمفیگوس نشان می‌دهد؛ پس نبودن رسوب با سؤال جور نیست.</p><div class="why"><strong>جمع‌بندی تستی:</strong> علیه گزینه.</div></div>
+</div></section>
+<section class="trap"><h4>دام سؤال</h4><p>دام اصلی «IgG = همه بیماری‌های تاولی خودایمن» است. ایزوتیپ کافی نیست؛ محل و الگو تعیین‌کننده‌اند.</p></section>
+<section><h4>نیت احتمالی طراح</h4><p>قطعی؛ سؤال می‌خواهد ارتباط مولکول و pattern را بسنجند.</p></section>
+<section class="takeaway"><h4>سه لایه‌ای که باید بماند</h4>
+<p><strong>نکته اصلی:</strong> PV: DSG1/DSG3 antibodies → acantholysis → suprabasal blister → intercellular fishnet IgG.</p>
+<p><strong>کلید تستی:</strong> Desmoglein = desmosome = بین سلول‌ها.</p>
+<p><strong>دام نزدیک:</strong> PV: fishnet IgG؛ BP: linear IgG/C3 at BMZ؛ DH: granular IgA at dermal papillae.</p>
+</section>
+<section class="transfer"><h4>قانون قابل انتقال</h4><p>در بیماری‌های تاولی، «target antigen» را به «ساختار اتصال» وصل کن؛ الگوی DIF از همان رابطه در می‌آید.</p></section>
+</article><div class="group-box"><h3>الگوی مشترک سؤال‌های این بخش</h3><ul><li>سطح جداشدگی تاول، آنتی‌ژن و DIF به‌صورت یک زنجیره طراحی می‌شوند.</li><li>مقایسه PF/PV/BP/DH در منبع بر پایه محل تاول و نوع رسوب آنتی‌بادی است.</li><li>در این گروه، associationهای شکلی مثل fishnet، linear و granular بسیار امتحانی‌اند.</li></ul><p><strong>مهارت قابل انتقال:</strong> در تست بعدی همین درس، قبل از اینکه سراغ اسم بیماری بروی، از خودت بپرس «این سؤال از من چه تصمیمی می‌خواهد؟» و همان تصمیم را با یک finding یا pattern گره بزن.</p></div></section><section class="section" id="sec3"><h2>تومورهای اپیدرمی و ضایعات آکتینیک</h2><p class="section-intro">در این گروه، طراح ترکیب clinical context و morphology را دوست دارد: سن و نور آفتاب، نوع سلول، وسعت atypia و findingهای signature مثل horn cyst، palisading و clefting.</p><div class="group-box"><h3>بعد از این مجموعه، طراح چه مهارتی را می‌سنجد؟</h3><ul><li>تومورهای اپیدرمی با findingهای signature قابل شکارند: horn cyst در KS و palisading/clefting در BCC.</li><li>برای AK، context آفتاب + solar elastosis + extent of atypia وزن بالایی دارد.</li><li>باید «scientifically true» را از «best answer» جدا کنی، مخصوصاً در افتراق AK و SCC in situ.</li></ul></div><article class="question-card" id="q7">
+<div class="q-head"><div><span class="q-label">سؤال ۷</span><h3>کراتوز سبورئیک؛ سؤال ایراددار را پنهان نکن</h3></div><span class="importance مهم">مهم</span></div>
+<div class="source-line">منبع: پاتولوژی پوست و استخوان.md، آزمون بهمن ۱۳۹۶، سؤال ۳</div>
+<div class="quality-note"><strong>کیفیت متن منبع:</strong> این سؤال در منبع یک ابهام واقعی دارد: خود پاسخ تشریحی می‌گوید هر دو گزینه «الف» و «ب» بخشی از نمای کراتوز سبورئیک را توصیف می‌کنند، اما «کیست‌های شاخی» را یافته برجسته‌تر و کلاسیک‌تر می‌داند. بنابراین سطح اطمینان پاسخ تک‌گزینه‌ای: متوسط.</div>
+<section><h4>صورت سؤال</h4><p class="stem-full">در بررسی ریزبینی بیوپسی از کراتوز سبورئیک کدام یافته زیر را مشاهده می‌کنید؟</p><ul class="options"><li><span class="opt-letter">الف)</span> اپی‌تلیوم اسکواموس ضخیم با کیست‌های شاخی فراوان</li><li><span class="opt-letter">ب)</span> صفحات سلولی کوچک و تیره شبیه لایه بازال اپیدرم</li><li><span class="opt-letter">ج)</span> سلول‌های آتیپیک حاوی پیگمان ملانین</li><li><span class="opt-letter">د)</span> التهاب حاد و مزمن همراه با ایجاد آبسه</li></ul></section>
+<div class="answer-box"><span>نتیجه نهایی</span><strong>گزینه الف</strong></div>
+<section><h4>سؤال واقعاً چی می‌پرسد؟</h4><p>واقعاً سؤال فقط «کدام یافته میکروسکوپی» نمی‌پرسد؛ می‌خواهد بهترین/کلاسیک‌ترین finding را از یک گزینه نسبتاً کلی‌تر جدا کنی.</p></section>
+<section><h4>خب، از Stem چه چیزهایی را وزن بدهیم؟</h4><ul class="compact"><li>کراتوز سبورئیک یک ضایعه اپیدرمی خوش‌خیم با proliferation بازالوئید و horn cyst است.</li><li>پس وجود «atypia» باید خلاف جهت باشد.</li></ul>
+<section><h4>حالا با صدای بلند فکر کنیم</h4><p>اینجا قرار نیست وانمود کنیم سؤال بی‌نقص است. گزینه ب هم بخشی از حقیقت را می‌گوید. اما وقتی تست تک‌جوابی است، گزینه‌ای که یافته کلاسیک‌تر و متمایزکننده‌تر را می‌دهد برنده است: horn cyst.</p></section>
+<section><h4>تحلیل گزینه‌ها</h4><div class="option-analysis">
+<div class="opt-analysis correct"><div class="opt-title">گزینه الف</div><p>اپی‌تلیوم ضخیم همراه با horn cysts نمای بسیار کلاسیک کراتوز سبورئیک است.</p><div class="why"><strong>جمع‌بندی تستی:</strong> بهترین پاسخ عملی در جلسه امتحان.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ب</div><p>صفحات سلولی کوچک بازالوئید هم در کراتوز سبورئیک دیده می‌شوند.</p><div class="why"><strong>جمع‌بندی تستی:</strong> غلط مطلق نیست؛ مشکل این است که از A کم‌تمایزتر و ناقص‌تر است.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ج</div><p>آتیپی سلولی با ضایعه خوش‌خیم کراتوز سبورئیک جور نیست و باید به سمت بدخیمی/ضایعه دیگری فکر کرد.</p><div class="why"><strong>جمع‌بندی تستی:</strong> علیه گزینه.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه د</div><p>آبسه یافته کلاسیک کراتوز سبورئیک نیست.</p><div class="why"><strong>جمع‌بندی تستی:</strong> علیه گزینه.</div></div>
+</div></section>
+<section class="trap"><h4>دام سؤال</h4><p>دام این سؤال، «درست بودن» در برابر «بهترین بودن» است.</p></section>
+<section class="condition"><h4>شرطی که جواب را عوض می‌کند</h4><p>اگر سؤال به‌جای «کدام یافته؟» می‌پرسید «کدام جزء ممکن است در این تومور دیده شود؟»، گزینه B هم می‌توانست قابل قبول باشد.</p></section>
+<section><h4>نیت احتمالی طراح</h4><p>محتمل است طراح قصد داشته باشد horn cyst را به‌عنوان کلید شناخته‌شده KS بسنجد؛ اما کیفیت سؤال از نظر تک‌گزینگی کامل نیست.</p></section>
+<section class="takeaway"><h4>سه لایه‌ای که باید بماند</h4>
+<p><strong>نکته اصلی:</strong> Seborrheic keratosis: proliferation of benign basaloid cells + hyperkeratosis + horn cysts/pseudo-horn cysts.</p>
+<p><strong>کلید تستی:</strong> horn cyst را با کراتوز سبورئیک جفت کن.</p>
+<p><strong>دام نزدیک:</strong> KS: خوش‌خیم/خوش‌مرز/چسبیده به پوست؛ AK: atypia پایین اپیدرم + solar elastosis؛ BCC: palisading + clefting.</p>
+</section>
+<section class="transfer"><h4>قانون قابل انتقال</h4><p>وقتی دو گزینه هر دو از نظر علمی درست‌اند، دنبال «کامل‌ترین و کلاسیک‌ترین finding برای همان Stem» بگرد.</p></section>
+</article><article class="question-card" id="q8">
+<div class="q-head"><div><span class="q-label">سؤال ۸</span><h3>BCC؛ پالیسادینگ و clefting را با هم ببین</h3></div><span class="importance خیلیمهم">خیلی مهم</span></div>
+<div class="source-line">منبع: پاتولوژی پوست و استخوان.md، آزمون بهمن ۱۴۰۰، سؤال ۱۸</div>
+<section><h4>صورت سؤال</h4><p class="stem-full">جداشدگی استرومای اطراف از سلول‌های حاشیه‌ای تومور و نمای Palisade (نردبانی) مشخصه کدام تومور پوستی است؟</p><ul class="options"><li><span class="opt-letter">الف)</span> کارسینوم سلول بازال (BCC)</li><li><span class="opt-letter">ب)</span> کارسینوم سلول سنگفرشی (SCC)</li><li><span class="opt-letter">ج)</span> ملانوم</li><li><span class="opt-letter">د)</span> کراتوز سبورئیک</li></ul></section>
+<div class="answer-box"><span>نتیجه نهایی</span><strong>گزینه الف</strong></div>
+<section><h4>سؤال واقعاً چی می‌پرسد؟</h4><p>این سؤال دنبال «سرطان پوست» به‌طور کلی نیست. دو finding را کنار هم گذاشته تا یک signature بسازد: peripheral palisading + clefting.</p></section>
+<section><h4>خب، از Stem چه چیزهایی را وزن بدهیم؟</h4><ul class="compact"><li>Palisading یک آرایش حاشیه‌ای منظم شبیه نردبان است.</li><li>Clefting یعنی شکاف بین جزایر توموری و استرومای اطراف.</li><li>این ترکیب در جزوه به‌عنوان ویژگی‌های تشخیصی مهم BCC معرفی شده است.</li></ul>
+<section><h4>حالا با صدای بلند فکر کنیم</h4><p>وقتی دو finding با هم آمده‌اند، دیگر لازم نیست بین چهار سرطان کلی رقابت کنی. «پالیسادینگ محیطی + شکاف» تقریباً نام تومور را به تو می‌دهد: BCC.</p></section>
+<section><h4>تحلیل گزینه‌ها</h4><div class="option-analysis">
+<div class="opt-analysis correct"><div class="opt-title">گزینه الف</div><p>BCC از جزایر سلول‌های بازوفیلیک تشکیل می‌شود و در محیط آنها palisading دیده می‌شود؛ clefting نیز همراه آن است.</p><div class="why"><strong>جمع‌بندی تستی:</strong> هر دو کلید در یک گزینه جمع شده‌اند.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ب</div><p>SCC با سلول‌های اسکواموس آتیپیک و تولید کراتین/keratin pearls شناخته می‌شود، نه این ترکیب.</p><div class="why"><strong>جمع‌بندی تستی:</strong> داده‌های اختصاصی Stem را ندارد.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ج</div><p>ملانوم با proliferaton ملانوسیت‌های آتیپیک و الگوهای رنگدانه‌ای/تهاجمی شناخته می‌شود.</p><div class="why"><strong>جمع‌بندی تستی:</strong> به یافته‌های این Stem نمی‌خورد.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه د</div><p>کراتوز سبورئیک با سلول‌های بازالوئید خوش‌خیم و horn cysts مطرح می‌شود.</p><div class="why"><strong>جمع‌بندی تستی:</strong> شباهت بازالوئید بودن ممکن است گول‌زننده باشد، اما palisading + clefting تعیین‌کننده است.</div></div>
+</div></section>
+<section class="trap"><h4>دام سؤال</h4><p>دام «بازالوئید بودن» است؛ BCC و seborrheic keratosis هر دو می‌توانند سلول‌های بازالوئید داشته باشند، ولی pattern معماری متفاوت است.</p></section>
+<section><h4>نیت احتمالی طراح</h4><p>قطعی؛ question writer دو finding امضایی BCC را کنار هم گذاشته است.</p></section>
+<section class="takeaway"><h4>سه لایه‌ای که باید بماند</h4>
+<p><strong>نکته اصلی:</strong> BCC: basaloid nests + peripheral palisading + stromal clefting.</p>
+<p><strong>کلید تستی:</strong> Palisading + clefting = BCC.</p>
+<p><strong>دام نزدیک:</strong> BCC در منبع رشد آهسته و متاستاز نادر دارد؛ SCC آتیپی اسکواموس و keratin pearl دارد؛ melanoma آتیپی ملانوسیتی دارد.</p>
+</section>
+<section class="transfer"><h4>قانون قابل انتقال</h4><p>در پاتولوژی تومورها، دو finding همزمان معمولاً از یک finding منفرد ارزش تشخیصی بیشتری دارند.</p></section>
+</article><article class="question-card" id="q9">
+<div class="q-head"><div><span class="q-label">سؤال ۹</span><h3>کراتوز آکتینیک؛ سن + آفتاب + آتیپی پایین اپیدرم</h3></div><span class="importance خیلیمهم">خیلی مهم</span></div>
+<div class="source-line">منبع: پاتولوژی پوست و استخوان.md، آزمون مهر ۱۳۹۷، سؤال ۳</div>
+<section><h4>صورت سؤال</h4><p class="stem-full">در بررسی آسیب‌شناسی پلاک قهوه‌ای‌رنگ خشن در صورت مرد ۷۰ ساله، لایه شاخی ضخیم و پاراکراتوتیک، هیپرپلازی سلول‌های بازال/آتیپی در لایه‌های پایینی اپیدرم و الاستوز آفتابی در درم با الیاف الاستیک ضخیم و آبی-خاکستری گزارش شده است. محتمل‌ترین تشخیص کدام است؟</p><ul class="options"><li><span class="opt-letter">الف)</span> خال ژانکشنال</li><li><span class="opt-letter">ب)</span> کراتوز سبورئیک</li><li><span class="opt-letter">ج)</span> کراتوز آکتینیک</li><li><span class="opt-letter">د)</span> خال دیسپلاستیک</li></ul></section>
+<div class="answer-box"><span>نتیجه نهایی</span><strong>گزینه ج</strong></div>
+<section><h4>سؤال واقعاً چی می‌پرسد؟</h4><p>واقعاً سؤال از یک «سه‌تایی» استفاده می‌کند: ضایعه در معرض آفتاب + سن بالا + آتیپی/پاراکراتوز در اپیدرم همراه با solar elastosis. این سه را باید یک بسته تشخیصی ببینی.</p></section>
+<section><h4>خب، از Stem چه چیزهایی را وزن بدهیم؟</h4><ul class="compact"><li>پلاک خشن روی صورت یک فرد مسن = زمینه آفتابی مهم.</li><li>Solar elastosis یعنی آسیب مزمن UV در درم.</li><li>Atypia محدود به لایه‌های پایین اپیدرم، به‌جای تمام ضخامت، به سمت AK می‌رود.</li></ul>
+<section><h4>حالا با صدای بلند فکر کنیم</h4><p>اول سن و محل را بگیر، بعد microscopy را روی آن سوار کن. اگر فقط «پلاک قهوه‌ای» را ببینی، KS یا ضایعات ملانوسیتی می‌آیند وسط. اما وقتی solar elastosis و atypia پایین اپیدرم را اضافه می‌کنی، AK جلو می‌افتد.</p></section>
+<section><h4>تحلیل گزینه‌ها</h4><div class="option-analysis">
+<div class="opt-analysis "><div class="opt-title">گزینه الف</div><p>خال ژانکشنال یک ضایعه ملانوسیتی است و Stem درباره atypia سلول‌های بازال/پاراکراتوز صحبت می‌کند.</p><div class="why"><strong>جمع‌بندی تستی:</strong> سیگنال wrong lineage.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ب</div><p>KS یک ضایعه خوش‌خیم بازالوئید با horn cyst است و atypia سلولی مشخصه آن نیست.</p><div class="why"><strong>جمع‌بندی تستی:</strong> از یک part از morphology فریب می‌خورد، ولی آفتاب/آتیپی علیه آن است.</div></div>
+<div class="opt-analysis correct"><div class="opt-title">گزینه ج</div><p>AK یک ضایعه پیش‌بدخیم ناشی از آسیب UV است؛ atypia در لایه‌های پایینی اپیدرم، پاراکراتوز و solar elastosis با آن جور است.</p><div class="why"><strong>جمع‌بندی تستی:</strong> بهترین پاسخ.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه د</div><p>خال دیسپلاستیک هم ملانوسیتی است؛ atypia آن مربوط به melanocytes است، نه basal keratinocytes.</p><div class="why"><strong>جمع‌بندی تستی:</strong> wrong lineage.</div></div>
+</div></section>
+<section class="trap"><h4>دام سؤال</h4><p>دام اصلی «تغییر مسیر سلولی» است: در خال‌ها باید ملانوسیت را دنبال کنی، در AK/SCC باید اپیدرم اسکواموس را.</p></section>
+<section class="condition"><h4>شرطی که جواب را عوض می‌کند</h4><p>اگر atypia تمام ضخامت اپیدرم را درگیر می‌کرد، منبع آن را به‌سمت SCC in situ می‌برد؛ اگر atypia و solar elastosis نبود و horn cyst دیده می‌شد، KS مطرح‌تر می‌شد.</p></section>
+<section><h4>نیت احتمالی طراح</h4><p>بسیار محتمل؛ ترکیب سن و آفتاب و morphology برای ساختن یک الگوی تصمیم‌گیری روشن شده است.</p></section>
+<section class="takeaway"><h4>سه لایه‌ای که باید بماند</h4>
+<p><strong>نکته اصلی:</strong> AK = chronic UV + lower epidermal atypia + hyper/parakeratosis + solar elastosis; premalignant lesion.</p>
+<p><strong>کلید تستی:</strong> Solar elastosis را دیدی، آفتاب را وارد محاسبه کن.</p>
+<p><strong>دام نزدیک:</strong> AK: atypia پایین اپیدرم؛ SCC in situ: تمام ضخامت؛ KS: horn cyst بدون atypia.</p>
+</section>
+<section class="transfer"><h4>قانون قابل انتقال</h4><p>در ضایعات اپیدرمی، «درجه و ضخامت درگیری اپیدرم» می‌تواند بین پیش‌بدخیمی و بدخیمی درجا تفاوت تعیین‌کننده باشد.</p></section>
+</article><article class="question-card" id="q10">
+<div class="q-head"><div><span class="q-label">سؤال ۱۰</span><h3>کراتوز آکتینیک در برابر SCC و KS؛ «مقدار آتیپی» مهم است</h3></div><span class="importance مهم">مهم</span></div>
+<div class="source-line">منبع: پاتولوژی پوست و استخوان.md، سؤال ۱۹</div>
+<section><h4>صورت سؤال</h4><p class="stem-full">در بررسی میکروسکوپی یک ضایعه پوستی، هایپرکراتوز ارتوکراتوتیک و پاراکراتوتیک، دیسپلازی و تماس مزمن با آفتاب همراه با الاستوز آفتابی دیده می‌شود. محتمل‌ترین تشخیص کدام است؟</p><ul class="options"><li><span class="opt-letter">الف)</span> کراتوز سبورئیک</li><li><span class="opt-letter">ب)</span> کراتوز آکتینیک</li><li><span class="opt-letter">ج)</span> خال دیسپلاستیک</li><li><span class="opt-letter">د)</span> کارسینوم سلول سنگفرشی</li></ul></section>
+<div class="answer-box"><span>نتیجه نهایی</span><strong>گزینه ب</strong></div>
+<section><h4>سؤال واقعاً چی می‌پرسد؟</h4><p>این تست نسخه فشرده‌تر سؤال قبلی است و عملاً می‌گوید: «ضایعه آفتابی با atypia دارد؛ این atypia کجاست و چقدر پیش رفته؟»</p></section>
+<section><h4>خب، از Stem چه چیزهایی را وزن بدهیم؟</h4><ul class="compact"><li>chronic sun exposure + solar elastosis یعنی UV burden.</li><li>dysplasia وجود دارد، اما متن سؤال در منبع آن را به‌صورت یک الگوی آکتینیک بیان می‌کند، نه درگیری تمام ضخامت.</li></ul>
+<section><h4>حالا با صدای بلند فکر کنیم</h4><p>بین AK و SCC in situ، یک کلمه کلیدی است: «تمام ضخامت». در این سؤال چنین چیزی نداریم؛ پس در منطق منبع، AK انتخاب امن‌تر است.</p></section>
+<section><h4>تحلیل گزینه‌ها</h4><div class="option-analysis">
+<div class="opt-analysis "><div class="opt-title">گزینه الف</div><p>KS معمولاً benign است و dysplasia ندارد.</p><div class="why"><strong>جمع‌بندی تستی:</strong> علیه گزینه.</div></div>
+<div class="opt-analysis correct"><div class="opt-title">گزینه ب</div><p>AK با UV مزمن، پاراکراتوز، atypia پایین اپیدرم و solar elastosis می‌خواند.</p><div class="why"><strong>جمع‌بندی تستی:</strong> درست.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ج</div><p>خال دیسپلاستیک از lineage ملانوسیتی است، نه اپیدرمی.</p><div class="why"><strong>جمع‌بندی تستی:</strong> علیه گزینه.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه د</div><p>SCC in situ زمانی مطرح می‌شود که atypia تمام ضخامت اپیدرم را درگیر کند؛ در این سؤال چنین شرطی ذکر نشده است.</p><div class="why"><strong>جمع‌بندی تستی:</strong> گزینه علمی نزدیک، اما برای این Stem بهترین نیست.</div></div>
+</div></section>
+<section class="trap"><h4>دام سؤال</h4><p>دام، انتخاب SCC صرفاً با دیدن کلمه dysplasia است.</p></section>
+<section class="condition"><h4>شرطی که جواب را عوض می‌کند</h4><p>این دقیقاً یک سؤال شرطی است: «اگر تمام ضخامت درگیر باشد → SCC in situ». اگر نه و atypia محدود به قسمت‌های پایین باشد → AK در منطق منبع.</p></section>
+<section><h4>نیت احتمالی طراح</h4><p>قطعی؛ این سؤال بهترین پاسخ را با یک شرط پاتولوژیک محدود می‌کند.</p></section>
+<section class="takeaway"><h4>سه لایه‌ای که باید بماند</h4>
+<p><strong>نکته اصلی:</strong> AK و SCC in situ در طیف آفتابی قرار می‌گیرند؛ extent of atypia به افتراق کمک می‌کند.</p>
+<p><strong>کلید تستی:</strong> dysplasia را دیدی، فوراً SCC نگو؛ عمق و وسعت atypia را بخوان.</p>
+<p><strong>دام نزدیک:</strong> AK = lower epidermis atypia؛ SCC in situ = full-thickness atypia.</p>
+</section>
+<section class="transfer"><h4>قانون قابل انتقال</h4><p>در تست‌های پاتولوژی، «شدت» یک یافته به اندازه «وجود آن» مهم است.</p></section>
+</article><div class="group-box"><h3>الگوی مشترک سؤال‌های این بخش</h3><ul><li>تومورهای اپیدرمی با findingهای signature قابل شکارند: horn cyst در KS و palisading/clefting در BCC.</li><li>برای AK، context آفتاب + solar elastosis + extent of atypia وزن بالایی دارد.</li><li>باید «scientifically true» را از «best answer» جدا کنی، مخصوصاً در افتراق AK و SCC in situ.</li></ul><p><strong>مهارت قابل انتقال:</strong> در تست بعدی همین درس، قبل از اینکه سراغ اسم بیماری بروی، از خودت بپرس «این سؤال از من چه تصمیمی می‌خواهد؟» و همان تصمیم را با یک finding یا pattern گره بزن.</p></div></section><section class="section" id="sec4"><h2>عفونت و کهیر</h2><p class="section-intro">این سؤال‌ها از associationهای سریع استفاده می‌کنند، اما هنوز باید بفهمی چرا آن association درست است: stain برای قارچ یا محل ادم در کهیر.</p><div class="group-box"><h3>بعد از این مجموعه، طراح چه مهارتی را می‌سنجد؟</h3><ul><li>برای stainها association کافی نیست؛ کاربرد اختصاصی‌تر را بشناس.</li><li>در کهیر، محل ادم (درم در برابر اپیدرم) مسیر پاسخ را تعیین می‌کند.</li></ul></div><article class="question-card" id="q11">
+<div class="q-head"><div><span class="q-label">سؤال ۱۱</span><h3>قارچ؛ PAS را مستقیم از Stem بگیر</h3></div><span class="importance مهم">مهم</span></div>
+<div class="source-line">منبع: پاتولوژی پوست و استخوان.md، سؤال ۱۲</div>
+<section><h4>صورت سؤال</h4><p class="stem-full">برای قارچ کدام رنگ‌آمیزی بهتر است؟</p><ul class="options"><li><span class="opt-letter">الف)</span> PAS</li><li><span class="opt-letter">ب)</span> تری‌کروم</li><li><span class="opt-letter">ج)</span> زیل-نلسون</li><li><span class="opt-letter">د)</span> هماتوکسیلین-ائوزین (H&amp;E)</li></ul></section>
+<div class="answer-box"><span>نتیجه نهایی</span><strong>گزینه الف</strong></div>
+<section><h4>سؤال واقعاً چی می‌پرسد؟</h4><p>ظاهر سؤال فکت‌محور است، ولی مسیر تستی آن این است: «برای دیدن دیواره/اجزای قارچی در بافت، کدام stain کمک‌کننده‌تر است؟»</p></section>
+<section><h4>خب، از Stem چه چیزهایی را وزن بدهیم؟</h4><ul class="compact"><li>منبع PAS را به‌عنوان رنگ‌آمیزی اختصاصی و مفید برای شناسایی قارچ‌ها معرفی می‌کند.</li><li>پس لازم نیست بین اطلاعات عمومی چند stain را حدس بزنی.</li></ul>
+<section><h4>حالا با صدای بلند فکر کنیم</h4><p>اینجا یکی از تست‌هایی است که باید سریع حل شود. PAS را با قارچ جفت کن؛ بعد اگر گزینه‌های دیگر را نگاه کنی، زیل-نلسون بیشتر برای میکوباکتری‌هاست و H&amp;E رنگ‌آمیزی روتین است.</p></section>
+<section><h4>تحلیل گزینه‌ها</h4><div class="option-analysis">
+<div class="opt-analysis correct"><div class="opt-title">گزینه الف</div><p>PAS برای برجسته کردن پلی‌ساکاریدهای دیواره قارچ و شناسایی عناصر قارچی مفید است.</p><div class="why"><strong>جمع‌بندی تستی:</strong> درست و مستقیم مطابق منبع.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ب</div><p>Trichrome stain بیشتر برای افتراق بافت همبند/عضله و ساختارهای بافتی کاربرد دارد.</p><div class="why"><strong>جمع‌بندی تستی:</strong> جواب این سؤال نیست.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ج</div><p>Ziehl-Neelsen در زمینه میکوباکتری‌ها کاربرد کلاسیک دارد.</p><div class="why"><strong>جمع‌بندی تستی:</strong> گزینه مرتبط با عفونت، اما نه fungus.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه د</div><p>H&amp;E روتین و مفید است ولی اختصاصیت PAS برای قارچ را ندارد.</p><div class="why"><strong>جمع‌بندی تستی:</strong> از نظر علمی کاربرد دارد، اما best answer نیست.</div></div>
+</div></section>
+<section class="trap"><h4>دام سؤال</h4><p>دام «H&amp;E هم قارچ را نشان می‌دهد، پس شاید کافی باشد». درست بودن یک روش با بهترین/اختصاصی‌ترین بودن آن فرق دارد.</p></section>
+<section><h4>نیت احتمالی طراح</h4><p>قطعی؛ تست association کلاسیک است.</p></section>
+<section class="takeaway"><h4>سه لایه‌ای که باید بماند</h4>
+<p><strong>نکته اصلی:</strong> PAS stain برای شناسایی عناصر قارچی در بافت مفید است.</p>
+<p><strong>کلید تستی:</strong> Fungus → PAS.</p>
+<p><strong>دام نزدیک:</strong> PAS برای fungus؛ Ziehl-Neelsen برای mycobacteria در منطق آموزشی این فایل.</p>
+</section>
+<section class="transfer"><h4>قانون قابل انتقال</h4><p>در سؤال stain، به‌جای حفظ یک لیست بلند، «عامل بیماری‌زا → ویژگی بافتی → stain» را به هم وصل کن.</p></section>
+</article><article class="question-card" id="q13">
+<div class="q-head"><div><span class="q-label">سؤال ۱۳</span><h3>کهیر؛ اپیدرم را دست‌نخورده بگذار</h3></div><span class="importance خیلیمهم">خیلی مهم</span></div>
+<div class="source-line">منبع: پاتولوژی پوست و استخوان.md، سؤال ۱۴</div>
+<div class="quality-note"><strong>کیفیت متن منبع:</strong> چیدمان عبارت گزینه ب در OCR به‌هم‌ریخته بود؛ مفهوم آن از پاسخ تشریحی منبع بازسازی شده و به‌صورت «ارتشاح خفیف سلول‌های التهابی اطراف عروق» آمده است.</div>
+<section><h4>صورت سؤال</h4><p class="stem-full">کدام یافته در کهیر (Urticaria) دیده نمی‌شود؟</p><ul class="options"><li><span class="opt-letter">الف)</span> ادم سطحی درم</li><li><span class="opt-letter">ب)</span> ارتشاح خفیف سلول‌های التهابی اطراف عروق</li><li><span class="opt-letter">ج)</span> ادم اپیدرم</li><li><span class="opt-letter">د)</span> دگرانولاسیون ماست‌سل‌ها</li></ul></section>
+<div class="answer-box"><span>نتیجه نهایی</span><strong>گزینه ج</strong></div>
+<section><h4>سؤال واقعاً چی می‌پرسد؟</h4><p>سؤال درباره یک pattern واکنش عروقی است: mast-cell degranulation → vascular permeability → dermal edema. نکته مهم این است که اپیدرم در کهیر معمولاً سالم می‌ماند.</p></section>
+<section><h4>خب، از Stem چه چیزهایی را وزن بدهیم؟</h4><ul class="compact"><li>ادم سطحی درم توضیح‌دهنده wheal است.</li><li>اپیدرم طبیعی بودن یک negative finding بسیار ارزشمند است.</li><li>اسپونژیوز/ادم اپیدرم بیشتر به نفع درماتیت اگزمایی است.</li></ul>
+<section><h4>حالا با صدای بلند فکر کنیم</h4><p>اگر «ادم» را دیدی، باید بپرسی کجاست. در کهیر، مشکل اصلی در درم سطحی و عروق است. پس اگر کسی ادم اپیدرم را جلو گذاشت، باید به الگوی اگزمایی فکر کنی نه کهیر.</p></section>
+<section><h4>تحلیل گزینه‌ها</h4><div class="option-analysis">
+<div class="opt-analysis "><div class="opt-title">گزینه الف</div><p>ادم سطحی درم از یافته‌های میکروسکوپی اصلی کهیر است.</p><div class="why"><strong>جمع‌بندی تستی:</strong> وجود دارد.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه ب</div><p>ارتشاح خفیف اطراف عروق، عمدتاً لنفوسیت‌ها/هیستوسیت‌ها و گاهی ائوزینوفیل‌ها، ممکن است دیده شود.</p><div class="why"><strong>جمع‌بندی تستی:</strong> وجود دارد.</div></div>
+<div class="opt-analysis correct"><div class="opt-title">گزینه ج</div><p>منبع صراحتاً می‌گوید اپیدرم کاملاً سالم و طبیعی است؛ بنابراین epidermal edema یافته معمول کهیر نیست.</p><div class="why"><strong>جمع‌بندی تستی:</strong> جواب سؤال.</div></div>
+<div class="opt-analysis "><div class="opt-title">گزینه د</div><p>دگرانولاسیون ماست‌سل‌ها بخش مهم پاتوژنز کهیر و آزادسازی هیستامین است.</p><div class="why"><strong>جمع‌بندی تستی:</strong> وجود دارد.</div></div>
+</div></section>
+<section class="trap"><h4>دام سؤال</h4><p>دام، واژه «ادم» است. ادم درم و ادم اپیدرم یکی نیستند.</p></section>
+<section><h4>نیت احتمالی طراح</h4><p>قطعی؛ سؤال می‌خواهد «محل تغییر» را بسنجند.</p></section>
+<section class="takeaway"><h4>سه لایه‌ای که باید بماند</h4>
+<p><strong>نکته اصلی:</strong> Urticaria: superficial dermal edema + mast-cell degranulation + intact epidermis.</p>
+<p><strong>کلید تستی:</strong> Urticaria = dermal edema, epidermis normal.</p>
+<p><strong>دام نزدیک:</strong> کهیر: dermal edema؛ اگزما: spongiosis/epidermal intercellular edema.</p>
+</section>
+<section class="transfer"><h4>قانون قابل انتقال</h4><p>در آسیب‌شناسی، محل ادم را بخوان؛ خود کلمه «ادم» به‌تنهایی تشخیصی نیست.</p></section>
+</article><div class="group-box"><h3>الگوی مشترک سؤال‌های این بخش</h3><ul><li>برای stainها association کافی نیست؛ کاربرد اختصاصی‌تر را بشناس.</li><li>در کهیر، محل ادم (درم در برابر اپیدرم) مسیر پاسخ را تعیین می‌کند.</li></ul><p><strong>مهارت قابل انتقال:</strong> در تست بعدی همین درس، قبل از اینکه سراغ اسم بیماری بروی، از خودت بپرس «این سؤال از من چه تصمیمی می‌خواهد؟» و همان تصمیم را با یک finding یا pattern گره بزن.</p></div></section>
+    <section class="section" id="source-map">
+      <h2>نقشه منابع و حدود اطمینان</h2>
+      <p class="section-intro">هیچ منبع خارجی در ساخت این سند وارد نشده است. محتوای علمی و منطق امتحانی از فایل‌های ارسالی استخراج و به قالب آموزش حل سؤال تبدیل شده است.</p>
+      <div class="sources">
+        <div class="source-item"><strong>پرامپت مادر تحلیل تست پزشکی:</strong> چارچوب حل سؤال، اولویت آموزش مسیر فکر، تحلیل گزینه‌ها، دام، بهترین پاسخ در برابر درست‌بودن، شرط‌های تغییر پاسخ و تفکیک اختلاف منابع.</div>
+        <div class="source-item"><strong>پاتولوژی پوست، استاد دکتر طرازجمشیدی، ورودی مهر ۱۴۰۱:</strong> پایه مفهومی morphology و reaction pattern، بیماری‌های تاولی، پاتولوژی تومورهای پوست و عفونت‌های پوستی.</div>
+        <div class="source-item"><strong>پاتولوژی پوست و استخوان.md:</strong> نمونه‌سؤال‌ها، پاسخ‌های تشریحی و درسنامه‌های همراه؛ منبع اصلی انتخاب تست‌های این سند.</div>
+        <div class="source-item"><strong>پاتولوژِی پوست.pdf:</strong> متن و تصاویر جزوه پوست؛ برای تطبیق morphology و terminology استفاده شد. در نسخه این سند، تنها مواردی که نیاز به تصمیم‌گیری تستی داشتند وارد شده‌اند.</div>
+      </div>
+      <div class="quality-note" style="margin-top:16px"><strong>نکته مهم درباره ابهام:</strong> در چند سؤال، متن استخراج‌شده از فایل به‌دلیل OCR ناقص است. هرجا چنین موردی وجود داشته باشد، به‌صراحت نوشته شده «بازسازی خوانا» و سطح اطمینان پایین‌تر نگه داشته شده است؛ تناقض یا ضعف منبع پنهان نشده است.</div>
+    </section>
+
+    <section class="section" id="final-chain">
+      <h2>جمع‌بندی زنجیره‌ای پایان سند</h2>
+      <div class="group-box">
+        <p><strong>پسوریازیس:</strong> psoriasiform pattern → parakeratosis + regular acanthosis → Munro/Kogoj → suprapapillary thinning.</p>
+        <p><strong>Interface:</strong> dermoepidermal junction → basal injury/apoptosis → think interface diseases.</p>
+        <p><strong>PV / PF / BP / DH:</strong> target antigen or structure → level of separation → DIF pattern.</p>
+        <p><strong>KS / AK / BCC:</strong> horn cyst / solar elastosis + atypia / palisading + clefting.</p>
+        <p><strong>Urticaria:</strong> mast-cell degranulation → dermal edema → epidermis remains intact.</p>
+        <p><strong>Fungal pathology:</strong> fungus → PAS.</p>
+      </div>
+    </section>
+
+    <div class="footer">
+      نسخه ساخته‌شده بر اساس فایل‌های ارسالی این مکالمه. هدف سند، آموزش تصمیم‌گیری تستی است، نه جایگزینی کتاب مرجع یا قضاوت بالینی.
+    </div>
+  </div>
+</div>
+</body>
+</html>

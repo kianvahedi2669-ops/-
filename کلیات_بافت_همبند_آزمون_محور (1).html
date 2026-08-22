@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>کلیات و تقسیم‌بندی بیماری‌های بافت همبند — تحلیل آزمون‌محور عمیق</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+:root{--ink:#17202d;--muted:#5d6878;--line:#d9dee7;--paper:#fff;--bg:#f5f7fa;--brand:#234b7a;--brand2:#4c77a5;--soft:#eef4fb;--warn:#fff7e6;--warnline:#e3b653;--good:#e9f7ef;--goodline:#5aa87a;--danger:#fff0ee;--dangerline:#cf6d61;--accent:#7b4ea3;--blueSoft:#edf6ff;--mint:#edf9f5;--mintline:#4d9b7d}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--ink);font-family:"Vazirmatn","Vazir",Tahoma,Arial,sans-serif;line-height:1.95;font-size:15.5px} body,button,input,textarea,select{font-family:"Vazirmatn","Vazir",Tahoma,Arial,sans-serif}
+.page{width:100%;max-width:1450px;margin:0 auto;background:var(--paper);min-height:100vh}
+.container{width:100%;padding:0 30px 60px}
+.cover{background:linear-gradient(135deg,#173a63,#4d79a5);color:#fff;padding:42px 34px;border-radius:0 0 20px 20px}
+.cover h1{margin:0 0 10px;font-size:31px;line-height:1.4}
+.cover p{margin:7px 0;max-width:1150px;color:#eef4fb}
+.badges{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+.badge{border:1px solid rgba(255,255,255,.35);padding:5px 10px;border-radius:999px;font-size:12.5px}
+.lead{font-size:16px;background:#fbfcfe;border-right:5px solid var(--brand2);padding:16px 18px;border-radius:12px;margin:22px 0}
+.toc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0 26px}
+.toc a{text-decoration:none;color:var(--brand);background:var(--soft);border:1px solid #d7e2ef;padding:11px 13px;border-radius:11px;font-weight:700;font-size:13.5px}
+.section{margin-top:30px}
+.section>h2{font-size:24px;margin:0 0 7px;color:var(--brand)}
+.section-intro{color:var(--muted);margin:0 0 16px}
+.cluster-head{margin:34px 0 6px;padding-right:12px;border-right:5px solid var(--accent)}
+.cluster-head h3{margin:0 0 4px;font-size:19px;color:#4a2f63}
+.cluster-head p{margin:0;color:var(--muted);font-size:13.5px}
+.pattern-box{background:#f8fafc;border:1px solid var(--line);padding:14px 16px;border-radius:12px;margin:16px 0}
+.pattern-box h3{margin:0 0 8px;color:#2b4561}
+.pattern-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pattern-cell{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.mini-synth{background:#f6f1fb;border:1px solid #e2d9eb;border-radius:12px;padding:14px 16px;margin:18px 0}
+.mini-synth strong{color:#5d3676;display:block;margin-bottom:6px}
+.question-card{border:1px solid var(--line);border-radius:16px;padding:22px;margin:24px 0;background:#fff;box-shadow:0 4px 15px rgba(28,46,70,.05)}
+.q-head{display:flex;gap:14px;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.q-label{color:var(--brand2);font-weight:800;font-size:13px}
+.q-head h3{margin:2px 0 0;font-size:20px;line-height:1.5}
+.importance{white-space:nowrap;background:#f3f4f6;color:#394150;border:1px solid #d8dde6;padding:4px 9px;border-radius:999px;font-size:12px}
+.source-line{color:#7b8494;font-size:12.5px;margin-bottom:12px}
+.quality-note{background:var(--warn);border-right:4px solid var(--warnline);padding:10px 12px;border-radius:10px;margin:12px 0 16px;font-size:13.5px}
+.label{font-weight:800;color:#2d3d50;margin-top:16px}
+.stem-full{font-weight:700;font-size:16px;background:#fbfcff;border:1px solid #e1e6ee;padding:13px 15px;border-radius:10px;margin:8px 0 10px}
+.options{margin:7px 0 14px;padding-right:24px}
+.options li{margin:4px 0}
+.opt-letter{font-weight:800;color:var(--brand)}
+.answer-box{display:flex;gap:10px;align-items:center;background:var(--good);border-right:5px solid var(--goodline);padding:10px 14px;border-radius:10px;margin:14px 0}
+.answer-box strong{font-size:18px}
+.weight-list{margin:7px 0;padding-right:22px}
+.weight-list li{margin:5px 0}
+.dialogue{background:var(--blueSoft);border-right:5px solid var(--brand2);padding:13px 15px;border-radius:10px}
+.option-analysis{display:grid;gap:10px}
+.opt-analysis{border:1px solid #e0e4ea;border-radius:10px;padding:11px 13px;background:#fcfdff}
+.opt-analysis.correct{background:var(--good);border-color:#b7dec5}
+.opt-title{font-weight:800;margin-bottom:4px}
+.opt-analysis p{margin:0 0 5px}
+.why{font-size:13.5px;color:#465365}
+.trap{background:var(--danger);border-right:5px solid var(--dangerline);padding:12px 14px;border-radius:10px}
+.condition{background:#f6f1fb;border-right:5px solid var(--accent);padding:12px 14px;border-radius:10px}
+.transfer{background:#eef7ff;border-right:5px solid var(--brand2);padding:12px 14px;border-radius:10px}
+.exercise{margin-top:14px;background:#f7f1fd;border-right:5px solid #8a61aa;padding:13px 15px;border-radius:10px}
+.exercise-title{font-weight:800;color:#5d3676;margin-bottom:6px}
+.exercise details{margin-top:6px}
+.exercise summary{cursor:pointer;color:#5d3676;font-weight:700}
+.exercise .answer{margin-top:6px;background:#fff;border:1px solid #e2d9eb;border-radius:8px;padding:8px 10px}
+.readback{margin-top:14px;background:var(--mint);border-right:5px solid var(--mintline);padding:12px 14px;border-radius:10px}
+.whyread{font-size:13px;color:#4c685d}
+.footer{margin-top:40px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:13px}
+.quality-gate{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.gate{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 13px}
+.gate strong{display:block;color:var(--brand);margin-bottom:4px}
+.coverage-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.coverage-table th,.coverage-table td{border:1px solid var(--line);padding:7px 9px;text-align:right}
+.coverage-table th{background:var(--soft);color:var(--brand)}
+.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.93em}
+@media(max-width:950px){.container{padding:0 17px 40px}.cover{padding:30px 20px}.toc,.quality-gate,.pattern-grid{grid-template-columns:1fr 1fr}.q-head{flex-direction:column}}
+@media(max-width:620px){.toc,.quality-gate,.pattern-grid{grid-template-columns:1fr}body{font-size:15px}}
+@media print{body{background:#fff}.page{max-width:none}.container{padding:0 12px 25px}.question-card{break-inside:auto;box-shadow:none}.cover{break-after:avoid}.toc a{color:#000;background:#fff}}
+</style></head><body><div class="page">
+<div class="cover"><h1>کلیات و تقسیم‌بندی بیماری‌های بافت همبند — تحلیل آزمون‌محور و آموزش مسیر فکر کردن</h1>
+<p>این سند با همان استاندارد تمپلیت‌های استخوان/پوست/روماتیسم غیرمفصلی ساخته شده است: هر سؤال فقط جواب داده نمی‌شود؛ نشان داده می‌شود کدام داده‌های Stem وزن بیشتری دارند، چرا یک گزینه وسوسه‌کننده حذف می‌شود، و چه قانون قابل انتقالی باید از تست بیرون کشید. محور محتوایی این بخش، کلیات بافت همبند، ساختار مفصل (سینوویوم/مایع مفصلی) و طبقه‌بندی پنج‌گانه بیماری‌های مفصلی است — مقدمه‌ای که بقیه فصل‌های روماتولوژی (استخوان، پوست، غیرمفصلی) روی آن سوار می‌شوند.</p>
+<div class="badges"><span class="badge">RTL</span><span class="badge">Vazirmatn</span><span class="badge">آزمون‌محور</span><span class="badge">۱۷ تست منتخب — پوشش ۱۰۰٪</span></div></div>
+<div class="container">
+<section class="section"><h2>مدل مطالعه این جزوه</h2>
+<div class="lead">روش مطالعه: اول خود سؤال را بخوان و قبل از دیدن جواب سعی کن «داده تعیین‌کننده» را پیدا کنی. سؤال‌های این بخش عمدتاً از جنس تعریف، association و طبقه‌بندی‌اند (نه سناریوی بالینی طولانی)، بنابراین دقتِ در association، مهم‌ترین مهارتی است که این جزوه روی آن تمرکز دارد. اگر «چرا گزینه‌های دیگر رد می‌شوند» را با خودت جواب ندهی، خواندن پاسخ تنها یک جمله حفظی اضافه می‌کند، نه یک مهارت قابل انتقال.</div>
+</section>
+<section class="section"><h2>فهرست تست‌ها</h2>
+<div class="toc"><a href="#q1">سؤال ۱: ماده زمینه‌ای بافت همبند غلیظ؛ آگریکان را جای درستش نگذار</a><a href="#q2">سؤال ۲: کلاژن تیپ ۲؛ دنبال غضروف هیالن بگرد، نه هر بافت همبندی</a><a href="#q3">سؤال ۳: آگریکان؛ برگشت به همان نکته سؤال ۱ از زاویه معکوس</a><a href="#q4">سؤال ۴: کدام گزاره درباره بافت همبند تعمیم غلط است؟</a><a href="#q5">سؤال ۵: فیبر رتیکولر؛ association آن با کبد را با پوست عوضی نگیر</a><a href="#q6">سؤال ۶: کدام یک جزو بافت همبند نیست؟ مرز تعریف را بشناس</a><a href="#q7">سؤال ۷: غضروف بدون عروق و بدون عصب؛ نورون آنجا معنا ندارد</a><a href="#q8">سؤال ۸: فیبروبلاست؛ کارخانه اصلی ماتریکس خارج‌سلولی</a><a href="#q9">سؤال ۹: مفصل ملتهب؛ چهار پارامتر مایع مفصلی را با هم بچین</a><a href="#q10">سؤال ۱۰: تغییر التهابی مایع مفصلی؛ چرا کاهش ویسکوزیته برنده است</a><a href="#q11">سؤال ۱۱: ویسکوزیته مایع سینوویال کِی افزایش می‌یابد؟ گزینه «هیچ‌کدام» را جدی بگیر</a><a href="#q12">سؤال ۱۲: سینکندروز؛ اتصال استخوان به استخوان با غضروف هیالن</a><a href="#q13">سؤال ۱۳: سینوویوم؛ کاپیلرها کجای این دو لایه‌اند؟</a><a href="#q14">سؤال ۱۴: کدام مسیر سلولی در روماتولوژی نقشی ندارد؟</a><a href="#q15">سؤال ۱۵: نقرس؛ تنها عضو واقعی «بیماری‌های متابولیک مفصل» در این چهارتایی</a><a href="#q16">سؤال ۱۶: درد التهابی در برابر مکانیکال؛ درد هنگام پیاده‌روی را زیاد وزن نده</a><a href="#q17">سؤال ۱۷: درگیری خارج‌مفصلی در برابر داخل‌مفصلی؛ یک سؤال با تناقض در صورت‌سؤال</a></div>
+</section>
+<section class="section"><h2>الگوی مشترک طراح در کل مجموعه</h2>
+<p class="section-intro">چند تست مختلف، در ظاهر درباره موضوعات متفاوت‌اند؛ اما چند مهارت ثابت را در مقیاس کوچک‌تر از فصل‌های تخصصی‌تر (استخوان/پوست) تکرار می‌کنند.</p>
+<div class="pattern-grid">
+<div class="pattern-cell"><strong>۱) association جزء ↔ بافت</strong><br>تیپ کلاژن، نوع فیبر یا نوع پروتئوگلیکان را به بافتی که واقعاً در آن غالب است وصل کن؛ نه به هر بافتی که اسمش نزدیک به نظر می‌رسد.</div>
+<div class="pattern-cell"><strong>۲) مرز تعریف بافتی</strong><br>بافت همبند در برابر بافت عصبی، سلول عمومی (فیبروبلاست) در برابر سلول تخصصی (استئوبلاست)، غضروف avascular/aneural در برابر بافت‌های عروق‌دار.</div>
+<div class="pattern-cell"><strong>۳) جهت تغییر در التهاب</strong><br>WBC/فشار/کدورت بالا می‌روند، ویسکوزیته پایین می‌آید؛ هر پارامتر مایع مفصلی باید به یک بردار مشخص وصل شود.</div>
+<div class="pattern-cell"><strong>۴) except و «هیچ‌کدام»</strong><br>در سؤالات با فعل منفی یا گزینه «هیچ‌کدام»، هر گزینه باید مستقل و واقعاً رد شود؛ حدس زدن بر مبنای شکل ظاهری سؤال کافی نیست.</div>
+<div class="pattern-cell"><strong>۵) طبقه‌بندی پنج‌گانه/دوگانه</strong><br>بیماری مفصلی؟ اول بگو عفونی/التهابی/مکانیکال/نورولوژیک/متابولیک است. ساختار اطراف مفصل؟ اول بگو داخل‌مفصلی است یا خارج‌مفصلی (Juxta-Articular).</div>
+<div class="pattern-cell"><strong>۶) شرح‌حال جای میکروسکوپ را می‌گیرد</strong><br>افتراق درد التهابی از مکانیکال با رابطه درد-فعالیت-استراحت مشخص می‌شود، نه با یک finding آزمایشگاهی به‌تنهایی.</div>
+</div></section>
+<section class="section"><h2>تحلیل ۱۷ نمونه‌سؤال</h2>
+<p class="section-intro">۱۷ سؤال از کلیات_بیماری‌های_بافت_همبند.md، بازچینی‌شده در چهار خوشه موضوعی برای انسجام آموزشی بهتر (ترتیب اصلی سؤالات منبع در جدول پوشش انتهای سند حفظ شده است).</p>
+<div class="cluster-head"><h3>فیبرها و ماتریکس بافت همبند</h3><p>این خوشه، ماتریکس بافت همبند را از زاویه «کدام مولکول/فیبر متعلق به کدام بافت است» می‌سنجد؛ محور مشترک همه سؤالات، association درست میان یک جزء ماتریکسی و محل بافتی آن است.</p></div>
+
+<article class="question-card" id="q1">
+  <div class="q-head"><div><div class="q-label">سؤال ۱ · فیبرها و ماتریکس بافت همبند</div><h3>ماده زمینه‌ای بافت همبند غلیظ؛ آگریکان را جای درستش نگذار</h3></div><div class="importance">اهمیت: خیلی مهم</div></div>
+  <div class="source-line">منبع سؤال/محتوا: کلیات بیماری‌های بافت همبند.md، سؤال ۱ (مهر ۹۸)</div>
+  <div class="quality-note">این سؤال یک کلمه کلیدی دارد که راحت از چشم رد می‌شود: «بافت همبند غلیظ». اگر این قید را نبینی، آگریکان و هیالورونیک اسید را با هم قاطی می‌کنی.</div>
+  <div class="label">خود سؤال</div>
+  <div class="stem-full">کدام‌یک از اجزای ماده زمینه‌ای بافت همبند غلیظ نمی‌باشد؟</div>
+  <ol class="options" type="الف"><li><span class="opt-letter">الف)</span> فیبرونکتین</li><li><span class="opt-letter">ب)</span> آگریکان</li><li><span class="opt-letter">ج)</span> کلاژن</li><li><span class="opt-letter">د)</span> هیالورونیک اسید</li></ol>
+  <div class="label">اول ببین سؤال دقیقاً چی می‌خواهد</div>
+  <p>سؤال نمی‌پرسد «در بدن کجا هست»؛ می‌پرسد در بافت همبند غلیظ (dense connective tissue) چه چیزی جزو ماتریکس نیست. پس باید بین «اجزای عمومی بافت همبند» و «اجزای اختصاصی غضروف» فرق بگذاری.</p>
+  <div class="label">از Stem کدام داده‌ها مهم‌اند و چه وزنی دارند؟</div>
+  <ul class="weight-list"><li>قید «غلیظ» تعیین‌کننده است؛ بدون آن هر چهار گزینه به‌نوعی در بافت همبند دیده می‌شوند.</li><li>آگریکان یک پروتئوگلیکان حجیم است که جای اصلی‌اش غضروف است، نه بافت همبند غلیظ.</li><li>کلاژن (تیپ I عمدتاً) رشته اصلی استحکام‌دهنده بافت همبند غلیظ مثل تاندون‌هاست.</li></ul>
+  <div class="label">حالا مسیر فکر روی همین سؤال</div>
+  <div class="dialogue">ببین، اینجا سه‌تا از گزینه‌ها اجزای واقعی و رایج ماتریکس بافت همبند غلیظ‌اند: فیبرونکتین برای چسبندگی سلولی، کلاژن برای استحکام کششی، هیالورونیک اسید برای گرفتن آب و ویسکوزیته. آگریکان اما یک پروتئوگلیکان بزرگ است که خانه‌اش غضروف است؛ آنجاست که به هیالورونیک اسید متصل می‌شود و شبکه فشاری غضروف را می‌سازد. پس در بافت همبند غلیظ یا اصلاً نیست یا مقدارش ناچیز است.</div>
+  <div class="label">گزینه‌ها را با منطق تستی ببینیم</div>
+  <div class="option-analysis"><div class="opt-analysis"><div class="opt-title">گزینه الف</div><p>گلیکوپروتئینی که به چسبندگی سلول، ترمیم زخم و مهاجرت سلولی کمک می‌کند و از اجزای شناخته‌شده بافت همبند غلیظ است.</p><div class="why">جزو اجزای اصلی؛ رد نمی‌شود.</div></div><div class="opt-analysis correct"><div class="opt-title">گزینه ب</div><p>پروتئوگلیکان بزرگی که عمدتاً در غضروف یافت می‌شود، نه در بافت همبند غلیظ.</p><div class="why">تنها گزینه‌ای که در این بافت جایش نیست.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ج</div><p>پروتئین فیبری اصلی استحکام‌دهنده؛ به‌خصوص در تاندون‌ها (نمونه کلاسیک بافت همبند غلیظ) بسیار فراوان است.</p><div class="why">جزو اجزای اصلی؛ رد نمی‌شود.</div></div><div class="opt-analysis"><div class="opt-title">گزینه د</div><p>گلیکوزآمینوگلیکانی که به ویسکوزیته و جذب آب ماتریکس کمک می‌کند و در بافت همبند غلیظ هم حضور دارد.</p><div class="why">جزو اجزای اصلی؛ رد نمی‌شود.</div></div></div>
+  <div class="label">دام سؤال</div>
+  <div class="trap">دام این‌جاست که چون آگریکان اسمش شبیه سایر گلیکوزآمینوگلیکان‌ها/پروتئوگلیکان‌های ماتریکس است، آن را با هیالورونیک اسید یکی فرض کنی و به سراغ گزینه دیگری بروی.</div>
+  <div class="label">اگر شرایط سؤال عوض شود</div>
+  <div class="condition">اگر سؤال به‌جای «بافت همبند غلیظ» می‌گفت «غضروف»، جواب کاملاً برعکس می‌شد و آگریکان مهم‌ترین گزینه درست از کار درمی‌آمد (خودِ سؤال ۱۲ همین موضوع را دقیقاً از زاویه غضروف می‌پرسد).</div>
+  <div class="answer-box"><span>جواب نهایی:</span><strong>گزینه ب</strong></div>
+  <div class="label">چیزی که باید با خودت ببری</div>
+  <div class="transfer"><strong>محل بافت، نه فقط اسم مولکول، تصمیم را می‌بندد.</strong><br>قانون قابل انتقال: در سؤالات ترکیب ماتریکس، اول بپرس «کدام بافت؟» بعد فهرست اجزا را چک کن؛ آگریکان = غضروف، کلاژن I/فیبرونکتین/هیالورونیک اسید = بافت همبند غلیظ.</div>
+  <div class="exercise"><div class="exercise-title">حالا خودت امتحان کن</div><div>اگر سؤال می‌پرسید «مهم‌ترین پروتئوگلیکان غضروف کدام است؟» جواب چه می‌شد؟</div><details><summary>پاسخ تمرین</summary><div class="answer">آگریکان (همان مولکولی که در بافت همبند غلیظ جایش نبود، در غضروف نقش کلیدی دارد).</div></details></div>
+  <div class="readback"><strong>برگرد و این بخش را بخوان</strong><br>جزوه استاد قمری، بخش «فیبرهای بافت همبند» و توضیح ماتریکس (ابتدای جزوه)<br><span class="whyread">چرا؟ چون این بخش دقیقاً تفاوت اجزای عمومی ماتریکس بافت همبند را با اجزای اختصاصی غضروف (آگریکان، پروتئوگلیکان) کنار هم توضیح داده است.</span></div>
+</article>
+
+
+<article class="question-card" id="q2">
+  <div class="q-head"><div><div class="q-label">سؤال ۲ · فیبرها و ماتریکس بافت همبند</div><h3>کلاژن تیپ ۲؛ دنبال غضروف هیالن بگرد، نه هر بافت همبندی</h3></div><div class="importance">اهمیت: خیلی مهم</div></div>
+  <div class="source-line">منبع سؤال/محتوا: کلیات بیماری‌های بافت همبند.md، سؤال ۳ (مهر ۹۸)</div>
+  <div class="quality-note">این سؤال از جنس association مستقیم «تیپ کلاژن ↔ بافت» است؛ اما گزینه‌ها طوری چیده شده‌اند که هرکدام به یک تیپ کلاژن دیگر وصل‌اند، پس اشتباه در association خیلی راحت اتفاق می‌افتد.</div>
+  <div class="label">خود سؤال</div>
+  <div class="stem-full">تیپ ۲ کلاژن در ساختمان کدام ارگان وجود دارد؟</div>
+  <ol class="options" type="الف"><li><span class="opt-letter">الف)</span> پوست</li><li><span class="opt-letter">ب)</span> جدار شریان‌ها</li><li><span class="opt-letter">ج)</span> لارنکس</li><li><span class="opt-letter">د)</span> تاندون‌ها</li></ol>
+  <div class="label">اول ببین سؤال دقیقاً چی می‌خواهد</div>
+  <p>سؤال association ساده به نظر می‌رسد، اما کار واقعی‌اش این است که چهار association رقیب (کلاژن I در پوست/تاندون، کلاژن III در عروق، کلاژن II در غضروف هیالن) را از هم جدا کنی.</p>
+  <div class="label">از Stem کدام داده‌ها مهم‌اند و چه وزنی دارند؟</div>
+  <ul class="weight-list"><li>کلمه کلیدی «لارنکس» باید بلافاصله ذهن را به سمت غضروف هیالن ببرد.</li><li>پوست و تاندون هر دو association کلاسیک کلاژن I هستند.</li><li>جدار شریان‌ها بیشتر با کلاژن III (و IV در غشای پایه) شناخته می‌شود.</li></ul>
+  <div class="label">حالا مسیر فکر روی همین سؤال</div>
+  <div class="dialogue">اینجا باید چهار association را همزمان در ذهن مرور کنی: کلاژن I → پوست و تاندون (استحکام کششی)، کلاژن III → عروق و بافت رتیکولر، کلاژن II → غضروف هیالن. لارنکس بخشی از اسکلت غضروفی بدن است؛ غضروفش از نوع هیالن است، پس کلاژن II آنجا فراوان است.</div>
+  <div class="label">گزینه‌ها را با منطق تستی ببینیم</div>
+  <div class="option-analysis"><div class="opt-analysis"><div class="opt-title">گزینه الف</div><p>در پوست عمدتاً کلاژن نوع I و III دیده می‌شود، نه نوع II.</p><div class="why">association اشتباه با تیپ کلاژن سؤال.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ب</div><p>در دیواره عروق بیشتر کلاژن نوع III و IV دیده می‌شود.</p><div class="why">association اشتباه.</div></div><div class="opt-analysis correct"><div class="opt-title">گزینه ج</div><p>لارنکس بخشی از ساختارهای غضروفی بدن است؛ کلاژن نوع II که در غضروف هیالن فراوان است، همین‌جا یافت می‌شود.</p><div class="why">تنها association درست با کلاژن II.</div></div><div class="opt-analysis"><div class="opt-title">گزینه د</div><p>تاندون‌ها حاوی کلاژن نوع I هستند که مقاومت کششی بالایی دارد، نه نوع II.</p><div class="why">association اشتباه.</div></div></div>
+  <div class="label">دام سؤال</div>
+  <div class="trap">دام این است که «لارنکس» را به‌عنوان یک ارگان تنفسی/صدا بشناسی و ارتباطش با غضروف هیالن را نبینی؛ در نتیجه به‌سمت گزینه‌های آشناتر مثل پوست یا تاندون کشیده شوی.</div>
+  <div class="label">اگر شرایط سؤال عوض شود</div>
+  <div class="condition">اگر سؤال به‌جای لارنکس، «کبد» یا «دیواره آئورت» می‌آورد، جواب به‌ترتیب کلاژن III (فیبر رتیکولر) و الاستین می‌شد، نه کلاژن II.</div>
+  <div class="answer-box"><span>جواب نهایی:</span><strong>گزینه ج</strong></div>
+  <div class="label">چیزی که باید با خودت ببری</div>
+  <div class="transfer"><strong>هر ارگان را اول به نوع بافتش وصل کن، بعد به تیپ کلاژن.</strong><br>قانون قابل انتقال: association تیپ کلاژن را روی یک زنجیره سه‌حلقه‌ای حفظ کن: «ارگان → نوع بافت غالب (پوست/تاندون=همبند غلیظ، عروق=رتیکولر/عضله صاف، لارنکس/دیسک/غضروف مفصلی=غضروف هیالن) → تیپ کلاژن».</div>
+  <div class="exercise"><div class="exercise-title">حالا خودت امتحان کن</div><div>کلاژن نوع کدام تیپ در فیبر رتیکولر کبد غالب است؟</div><details><summary>پاسخ تمرین</summary><div class="answer">کلاژن نوع III.</div></details></div>
+  <div class="readback"><strong>برگرد و این بخش را بخوان</strong><br>جزوه استاد قمری، بخش «فیبرهای بافت همبند» (کلاژن) و بخش «غضروف»<br><span class="whyread">چرا؟ چون association تیپ‌های کلاژن با بافت‌های مختلف در همین دو بخش پشت‌سرهم توضیح داده شده و تست دقیقاً همین را می‌سنجد.</span></div>
+</article>
+
+
+<article class="question-card" id="q3">
+  <div class="q-head"><div><div class="q-label">سؤال ۳ · فیبرها و ماتریکس بافت همبند</div><h3>آگریکان؛ برگشت به همان نکته سؤال ۱ از زاویه معکوس</h3></div><div class="importance">اهمیت: خیلی مهم</div></div>
+  <div class="source-line">منبع سؤال/محتوا: کلیات بیماری‌های بافت همبند.md، سؤال ۱۲ (مهر و بهمن ۹۴)</div>
+  <div class="quality-note">این سؤال آینه سؤال ۱ است: همان مولکول (آگریکان)، اما این‌بار باید نشان دهی چرا در محل درستش (غضروف) بهترین گزینه است، نه رد آن.</div>
+  <div class="label">خود سؤال</div>
+  <div class="stem-full">مهم‌ترین پروتئوگلیکان غضروف کدام است؟</div>
+  <ol class="options" type="الف"><li><span class="opt-letter">الف)</span> فیبرونکتین</li><li><span class="opt-letter">ب)</span> لوبریسین</li><li><span class="opt-letter">ج)</span> هیالورونیک اسید</li><li><span class="opt-letter">د)</span> آگریکان</li></ol>
+  <div class="label">اول ببین سؤال دقیقاً چی می‌خواهد</div>
+  <p>سؤال از تو می‌خواهد چهار مولکول ماتریکسی را از نظر «طبقه‌بندی شیمیایی» (گلیکوپروتئین/گلیکوزآمینوگلیکان/پروتئوگلیکان) و نقش در غضروف رتبه‌بندی کنی؛ صرفاً پرسیدن «کدام در غضروف هست» کافی نیست.</p>
+  <div class="label">از Stem کدام داده‌ها مهم‌اند و چه وزنی دارند؟</div>
+  <ul class="weight-list"><li>کلمه «پروتئوگلیکان» یک فیلتر شیمیایی سخت است: باید یک هسته پروتئینی به‌همراه GAGهای متصل داشته باشد.</li><li>هیالورونیک اسید خودش GAG آزاد است، نه پروتئوگلیکان؛ این نکته خیلی‌ها را گیج می‌کند.</li><li>آگریکان به‌خاطر تعداد بالای GAG (کندروئیتین‌سولفات، کراتان‌سولفات) نقش اصلی در جذب آب و خاصیت الاستیک غضروف را دارد.</li></ul>
+  <div class="label">حالا مسیر فکر روی همین سؤال</div>
+  <div class="dialogue">اول فیلتر «پروتئوگلیکان بودن» را روی گزینه‌ها بگذار: فیبرونکتین یک گلیکوپروتئین چسبنده است، نه پروتئوگلیکان؛ حذف. هیالورونیک اسید یک GAG آزاد است که اسکلت اتصال آگریکان‌ها را می‌سازد، اما خودش پروتئوگلیکان نیست؛ حذف. لوبریسین بیشتر در روان‌کاری سطح مفصلی نقش دارد، نه به‌عنوان پروتئوگلیکان اصلی ماتریکس غضروف شناخته می‌شود. می‌ماند آگریکان که دقیقاً تعریف پروتئوگلیکان بزرگ غضروفی را دارد.</div>
+  <div class="label">گزینه‌ها را با منطق تستی ببینیم</div>
+  <div class="option-analysis"><div class="opt-analysis"><div class="opt-title">گزینه الف</div><p>گلیکوپروتئینی در ماتریکس خارج‌سلولی با نقش اصلی در چسبندگی سلولی؛ پروتئوگلیکان نیست.</p><div class="why">خارج از طبقه مورد سؤال.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ب</div><p>نامی که در منبع سؤال به‌عنوان یک ماده کمتر شناخته‌شده آمده و association قوی و مستندی به‌عنوان «مهم‌ترین پروتئوگلیکان غضروف» ندارد.</p><div class="why">کاندیدای ضعیف در برابر آگریکان.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ج</div><p>یک گلیکوزآمینوگلیکان آزاد است که نقش اسکلت اصلی برای اتصال مولکول‌های آگریکان در ماتریکس غضروف دارد؛ خودش پروتئوگلیکان نیست.</p><div class="why">طبقه‌بندی شیمیایی اشتباه برای این سؤال.</div></div><div class="opt-analysis correct"><div class="opt-title">گزینه د</div><p>به‌دلیل داشتن تعداد زیادی GAG مثل کندروئیتین‌سولفات و کراتان‌سولفات، مهم‌ترین پروتئوگلیکان غضروف است و نقش اساسی در جذب آب و خاصیت الاستیک غضروف دارد.</p><div class="why">بهترین پاسخ.</div></div></div>
+  <div class="label">دام سؤال</div>
+  <div class="trap">دام اصلی این است که هیالورونیک اسید را چون در متن‌های عمومی «مهم‌ترین ماده غضروف» خوانده‌ای، با پروتئوگلیکان اشتباه بگیری؛ در حالی که از نظر شیمیایی این دو دسته متفاوت‌اند.</div>
+  <div class="label">اگر شرایط سؤال عوض شود</div>
+  <div class="condition">اگر سؤال می‌پرسید «کدام مولکول اسکلت اتصال آگریکان‌ها به هم را می‌سازد؟» جواب می‌شد هیالورونیک اسید، نه آگریکان.</div>
+  <div class="answer-box"><span>جواب نهایی:</span><strong>گزینه د</strong></div>
+  <div class="label">چیزی که باید با خودت ببری</div>
+  <div class="transfer"><strong>اول طبقه شیمیایی مولکول را چک کن، بعد نقشش را.</strong><br>قانون قابل انتقال: در سؤالات ماتریکس، «پروتئوگلیکان» و «گلیکوزآمینوگلیکان آزاد» را جدا نگه دار؛ آگریکان = پروتئوگلیکان بزرگ غضروف، هیالورونیک اسید = GAG آزاد که اسکلت اتصال آن‌هاست.</div>
+  <div class="exercise"><div class="exercise-title">حالا خودت امتحان کن</div><div>چرا هیالورونیک اسید با اینکه در غضروف مهم است، پاسخ این سؤال نیست؟</div><details><summary>پاسخ تمرین</summary><div class="answer">چون سؤال «پروتئوگلیکان» می‌خواهد و هیالورونیک اسید از نظر شیمیایی GAG آزاد است، نه پروتئوگلیکان.</div></details></div>
+  <div class="readback"><strong>برگرد و این بخش را بخوان</strong><br>جزوه استاد قمری، بخش «غضروف» (پروتئوگلیکان/گلوکزآمین/هیالورونیک اسید)<br><span class="whyread">چرا؟ چون دقیقاً همین رابطه سه‌گانه پروتئوگلیکان-GAG-هیالورونیک اسید در غضروف در همین بخش شرح داده شده است.</span></div>
+</article>
+
+
+<article class="question-card" id="q4">
+  <div class="q-head"><div><div class="q-label">سؤال ۴ · فیبرها و ماتریکس بافت همبند</div><h3>کدام گزاره درباره بافت همبند تعمیم غلط است؟</h3></div><div class="importance">اهمیت: مهم</div></div>
+  <div class="source-line">منبع سؤال/محتوا: کلیات بیماری‌های بافت همبند.md، سؤال ۱۴ (مهر ۹۵ و مهر ۹۶)</div>
+  <div class="quality-note">سؤال except-مانند است: سه گزاره درست هستند و یکی یک تعمیم نادرست دارد؛ باید کلمه‌ای که تعمیم را می‌سازد («تا... در جهت‌های مختلف مقاومت کند» با میزان زیاد الاستین) شناسایی شود.</div>
+  <div class="label">خود سؤال</div>
+  <div class="stem-full">کدام جمله در مورد بافت همبند صحیح نیست؟</div>
+  <ol class="options" type="الف"><li><span class="opt-letter">الف)</span> فراوان‌ترین بافت بدن است.</li><li><span class="opt-letter">ب)</span> اجزای آن شامل سلول و ماتریکس است.</li><li><span class="opt-letter">ج)</span> داربستی جهت حفاظت و پشتیبانی از سایر بافت‌ها تشکیل می‌دهد.</li><li><span class="opt-letter">د)</span> در بافت همبند فیبر و میزان زیادی فیبر الاستین وجود دارد تا در برابر کشش در جهت‌های مختلف مقاومت کند.</li></ol>
+  <div class="label">اول ببین سؤال دقیقاً چی می‌خواهد</div>
+  <p>سؤال می‌خواهد بفهمد آیا می‌دانی کدام فیبر واقعاً «غالب» در اکثر بافت‌های همبند است؛ نباید نقش الاستین در نواحی خاص را به کل بافت همبند تعمیم بدهی.</p>
+  <div class="label">از Stem کدام داده‌ها مهم‌اند و چه وزنی دارند؟</div>
+  <ul class="weight-list"><li>الف، ب و ج توصیف‌های عمومی و درستی از بافت همبند‌اند که در هیچ منبعی محل مناقشه نیستند.</li><li>کلمه «میزان زیاد فیبر الاستین» در گزینه د تعمیمی است که با واقعیت غالب بودن کلاژن در نظر نمی‌گیرد.</li><li>الاستین در نواحی خاص (رباط‌های الاستیک، دیواره آئورت، تارهای صوتی) فراوان است، نه در همه بافت همبند.</li></ul>
+  <div class="label">حالا مسیر فکر روی همین سؤال</div>
+  <div class="dialogue">سه گزینه اول را بخوان: همه‌شان تعریف‌های استاندارد و بی‌خطر بافت همبندند. وقتی به گزینه د می‌رسی، چیزی که باید در ذهنت زنگ بزند این است: «فیبر غالب بافت همبند چیست؟» جواب کلاژن است، نه الاستین. الاستین فقط در چند ناحیه خاص (تارهای صوتی، دیواره آئورت، برخی رباط‌ها) واقعاً زیاد است.</div>
+  <div class="label">گزینه‌ها را با منطق تستی ببینیم</div>
+  <div class="option-analysis"><div class="opt-analysis"><div class="opt-title">گزینه الف</div><p>بافت همبند به‌طور گسترده و پراکنده در سراسر بدن یافت می‌شود و از نظر حجم، فراوان‌ترین بافت بدن به‌حساب می‌آید.</p><div class="why">گزاره درست؛ رد نمی‌شود.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ب</div><p>تعریف پایه بافت همبند دقیقاً همین دو جزء اصلی (سلول‌ها و ماتریکس/فیبر+ماده زمینه‌ای) است.</p><div class="why">گزاره درست؛ رد نمی‌شود.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ج</div><p>نقش ساختاری/حمایتی بافت همبند به‌عنوان داربست بین بافت‌ها، تعریف کلاسیک آن است.</p><div class="why">گزاره درست؛ رد نمی‌شود.</div></div><div class="opt-analysis correct"><div class="opt-title">گزینه د</div><p>فیبر غالب در اغلب انواع بافت همبند کلاژن است، نه الاستین. الاستین فقط در نواحی خاصی مثل رباط‌های الاستیک یا دیواره آئورت زیاد است.</p><div class="why">تعمیم اشتباه؛ پاسخ سؤال.</div></div></div>
+  <div class="label">دام سؤال</div>
+  <div class="trap">دام این است که چون الاستین را به‌عنوان فیبر «کشسان و مهم» می‌شناسی، فکر کنی همه‌جای بافت همبند از آن پر است؛ در حالی که غلبه واقعی با کلاژن است.</div>
+  <div class="label">اگر شرایط سؤال عوض شود</div>
+  <div class="condition">اگر گزینه د فقط می‌گفت «در بافت همبند فیبر الاستین هم وجود دارد» (بدون کلمه‌های تعمیم‌دهنده «میزان زیاد... در جهت‌های مختلف»)، آنگاه گزاره‌ای بی‌خطر و درست می‌شد.</div>
+  <div class="answer-box"><span>جواب نهایی:</span><strong>گزینه د</strong></div>
+  <div class="label">چیزی که باید با خودت ببری</div>
+  <div class="transfer"><strong>کلمه‌های تعمیم (زیاد/همیشه/فقط) را زیر ذره‌بین بگذار.</strong><br>قانون قابل انتقال: در گزاره‌های except-مانند درباره بافت‌ها، دنبال کلمه‌ای بگرد که یک ویژگی موضعی (الاستین در آئورت/تارهای صوتی) را به کل جامعه (بافت همبند) تعمیم می‌دهد.</div>
+  <div class="exercise"><div class="exercise-title">حالا خودت امتحان کن</div><div>کجای بدن واقعاً غلظت بالای فیبر الاستین دارد؟</div><details><summary>پاسخ تمرین</summary><div class="answer">تارهای صوتی، دیواره آئورت و برخی رباط‌های الاستیک.</div></details></div>
+  <div class="readback"><strong>برگرد و این بخش را بخوان</strong><br>جزوه استاد قمری، بخش «فیبرهای بافت همبند» (کلاژن/الاستیک/رتیکولار)<br><span class="whyread">چرا؟ چون در همان بخش تصریح شده کلاژن فیبر غالب بافت همبند متراکم است و الاستین association اختصاصی با تارهای صوتی دارد.</span></div>
+</article>
+
+
+<article class="question-card" id="q5">
+  <div class="q-head"><div><div class="q-label">سؤال ۵ · فیبرها و ماتریکس بافت همبند</div><h3>فیبر رتیکولر؛ association آن با کبد را با پوست عوضی نگیر</h3></div><div class="importance">اهمیت: مهم</div></div>
+  <div class="source-line">منبع سؤال/محتوا: کلیات بیماری‌های بافت همبند.md، سؤال ۱۵ (مهر ۹۵ و مهر ۹۶)</div>
+  <div class="quality-note">این سؤال هم از خانواده association تیپ فیبر↔ارگان است، اما این‌بار محور فیبر رتیکولر (کلاژن نوع III نازک و پرشاخه) است، نه فیبر کلاژن ضخیم یا الاستیک.</div>
+  <div class="label">خود سؤال</div>
+  <div class="stem-full">فیبر رتیکولر در ماتریکس بافت همبند چه ارگانی یافت می‌شود؟</div>
+  <ol class="options" type="الف"><li><span class="opt-letter">الف)</span> آئورت</li><li><span class="opt-letter">ب)</span> کبد</li><li><span class="opt-letter">ج)</span> پوست</li><li><span class="opt-letter">د)</span> غضروف</li></ol>
+  <div class="label">اول ببین سؤال دقیقاً چی می‌خواهد</div>
+  <p>باید بین سه association رقیب فیبری تمیز بدهی: الاستیک (آئورت)، کلاژن نوع I (پوست)، کلاژن نوع II (غضروف)، و association درست فیبر رتیکولر که کبد است.</p>
+  <div class="label">از Stem کدام داده‌ها مهم‌اند و چه وزنی دارند؟</div>
+  <ul class="weight-list"><li>فیبر رتیکولر شبکه‌ای ظریف و توری‌مانند از کلاژن نوع III است که سلول‌های پارانشیمی (مثل هپاتوسیت‌ها) را حمایت می‌کند.</li><li>آئورت association کلاسیک فیبر الاستیک است.</li><li>پوست و غضروف به‌ترتیب association کلاژن نوع I و نوع II هستند.</li></ul>
+  <div class="label">حالا مسیر فکر روی همین سؤال</div>
+  <div class="dialogue">یک زنجیره فیبر↔ارگان در ذهنت مرور کن: الاستیک → آئورت/تارهای صوتی. کلاژن I → پوست/تاندون. کلاژن II → غضروف هیالن. رتیکولر (کلاژن III نازک و شبکه‌ای) → ارگان‌های پارانشیمی مثل کبد، طحال، مغز استخوان، غدد لنفاوی. کبد دقیقاً جایی است که این شبکه ظریف، هپاتوسیت‌ها را نگه می‌دارد.</div>
+  <div class="label">گزینه‌ها را با منطق تستی ببینیم</div>
+  <div class="option-analysis"><div class="opt-analysis"><div class="opt-title">گزینه الف</div><p>آئورت سرشار از فیبر الاستیک است، نه رتیکولر؛ این فیبرها خاصیت ارتجاعی بالایی دارند که برای عملکرد آئورت ضروری است.</p><div class="why">association اشتباه.</div></div><div class="opt-analysis correct"><div class="opt-title">گزینه ب</div><p>کبد شبکه‌ای از فیبرهای رتیکولر کلاژن نوع III دارد که ساختار توری‌مانند دارند و از سلول‌های پارانشیمی مثل هپاتوسیت‌ها پشتیبانی می‌کنند.</p><div class="why">association درست.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ج</div><p>بافت همبند پوست بیشتر شامل فیبرهای کلاژن نوع I است؛ فیبر رتیکولر در پوست فراوان نیست.</p><div class="why">association اشتباه.</div></div><div class="opt-analysis"><div class="opt-title">گزینه د</div><p>غضروف بیشتر حاوی فیبرهای کلاژن نوع II است (بسته به نوع غضروف گاهی الاستین)؛ فیبر رتیکولر نقش اصلی در ساختار آن ندارد.</p><div class="why">association اشتباه.</div></div></div>
+  <div class="label">دام سؤال</div>
+  <div class="trap">دام این است که چون پوست هم «بافت همبند دارای فیبر» است، آن را به‌عنوان جواب پیش‌فرض انتخاب کنی؛ در حالی که association اختصاصی پوست کلاژن I است، نه رتیکولر.</div>
+  <div class="label">اگر شرایط سؤال عوض شود</div>
+  <div class="condition">اگر سؤال می‌پرسید association فیبر رتیکولر با کدام ارگان‌های دیگر هم برقرار است، طحال، مغز استخوان و غدد لنفاوی هم در همین گروه (ارگان‌های پارانشیمی با شبکه حمایتی ظریف) قرار می‌گیرند.</div>
+  <div class="answer-box"><span>جواب نهایی:</span><strong>گزینه ب</strong></div>
+  <div class="label">چیزی که باید با خودت ببری</div>
+  <div class="transfer"><strong>فیبر رتیکولر = شبکه حمایتی نرم ارگان‌های پارانشیمی.</strong><br>قانون قابل انتقال: association فیبرها را روی یک جدول ذهنی نگه دار: الاستیک=آئورت/تارصوتی، کلاژن I=پوست/تاندون، کلاژن II=غضروف هیالن، رتیکولر (کلاژن III)=کبد و سایر ارگان‌های پارانشیمی.</div>
+  <div class="exercise"><div class="exercise-title">حالا خودت امتحان کن</div><div>علاوه بر کبد، فیبر رتیکولر معمولاً در کدام ارگان‌های دیگر شبکه حمایتی می‌سازد؟</div><details><summary>پاسخ تمرین</summary><div class="answer">ارگان‌های پارانشیمی مثل طحال، مغز استخوان و غدد لنفاوی.</div></details></div>
+  <div class="readback"><strong>برگرد و این بخش را بخوان</strong><br>جزوه استاد قمری، بخش «فیبرهای بافت همبند» (فیبر رتیکولار)<br><span class="whyread">چرا؟ چون دقیقاً در همین بخش گفته شده فیبر رتیکولر برخلاف کلاژن و الاستیک، اختصاصی یک بافت خاص نیست و بیشتر شبکه حمایتی می‌سازد.</span></div>
+</article>
+
+<div class="mini-synth"><strong>جمع‌بندی میانی این خوشه</strong>پنج سؤال این خوشه (۱ تا ۵) همگی یک مهارت مشترک را به‌شکل‌های مختلف می‌سنجند: association درست میان یک جزء ماتریکسی/فیبری و بافتی که واقعاً در آن غالب است. اگر این association‌ها را روی یک جدول ذهنی بچینی — کلاژن I=پوست/تاندون، کلاژن II=غضروف هیالن (لارنکس، دیسک مفصلی)، کلاژن III (رتیکولر)=ارگان‌های پارانشیمی مثل کبد، الاستین=آئورت/تارصوتی، آگریکان=پروتئوگلیکان اختصاصی غضروف، هیالورونیک اسید=GAG آزاد بافت همبند غلیظ و اسکلت اتصال آگریکان در غضروف — اکثر سؤالات این خانواده با یک نگاه حل می‌شوند.</div>
+<div class="cluster-head"><h3>سلول‌های بافت همبند و مرز تعریف آن</h3><p>این خوشه مرز بافت همبند با سایر بافت‌ها (عصبی) و نقش سلول‌های آن (فیبروبلاست در برابر استئوبلاست) را می‌سنجد.</p></div>
+
+<article class="question-card" id="q6">
+  <div class="q-head"><div><div class="q-label">سؤال ۶ · سلول‌های بافت همبند و مرز تعریف آن</div><h3>کدام یک جزو بافت همبند نیست؟ مرز تعریف را بشناس</h3></div><div class="importance">اهمیت: مهم</div></div>
+  <div class="source-line">منبع سؤال/محتوا: کلیات بیماری‌های بافت همبند.md، سؤال ۵ (مهر ۹۹)</div>
+  <div class="quality-note">پاسخ منبع فقط حرف «ب» را داده و استدلالی نیاورده («چی بگم والا»)؛ طبق قاعده بازسازی استدلال، منطق زیر از محتوای همان جزوه استاد بازسازی شده است، نه نقل مستقیم.</div>
+  <div class="label">خود سؤال</div>
+  <div class="stem-full">کدام یک جزو بافت همبند نیست؟</div>
+  <ol class="options" type="الف"><li><span class="opt-letter">الف)</span> بافت بینابینی</li><li><span class="opt-letter">ب)</span> نورون‌های حسی</li><li><span class="opt-letter">ج)</span> غضروف</li><li><span class="opt-letter">د)</span> استخوان</li></ol>
+  <div class="label">اول ببین سؤال دقیقاً چی می‌خواهد</div>
+  <p>سؤال می‌خواهد مرز دسته‌بندی بافت‌شناسی را چک کند: چهار بافت اصلی بدن (اپیتلیال، همبند، عضلانی، عصبی) از هم جدا هستند؛ نباید بافت عصبی را زیرمجموعه بافت همبند بگذاری.</p>
+  <div class="label">از Stem کدام داده‌ها مهم‌اند و چه وزنی دارند؟</div>
+  <ul class="weight-list"><li>استخوان و غضروف هر دو زیرمجموعه رسمی بافت همبند تخصصی‌اند.</li><li>بافت بینابینی (interstitial) هم نوعی بافت همبند سست عمومی محسوب می‌شود.</li><li>نورون‌های حسی سلول‌های بافت عصبی‌اند؛ بافت عصبی یکی از چهار بافت اصلی و مجزا از بافت همبند است.</li></ul>
+  <div class="label">حالا مسیر فکر روی همین سؤال</div>
+  <div class="dialogue">این‌جا کار سؤال ساده است: باید چهار بافت پایه بدن (اپیتلیال، همبند، عضلانی، عصبی) را در ذهن مرور کنی. استخوان و غضروف زیرمجموعه شناخته‌شده بافت همبند تخصصی‌اند. بافت بینابینی هم نوعی بافت همبند سست است که فضاها را پر می‌کند. اما نورون یک سلول عصبی است؛ بافت عصبی از نظر طبقه‌بندی، رده‌ای کاملاً جدا از بافت همبند دارد.</div>
+  <div class="label">گزینه‌ها را با منطق تستی ببینیم</div>
+  <div class="option-analysis"><div class="opt-analysis"><div class="opt-title">گزینه الف</div><p>بافت بینابینی نوعی بافت همبند سست است که در فضای بین سلول‌ها و ارگان‌ها قرار می‌گیرد.</p><div class="why">جزو بافت همبند؛ رد می‌شود.</div></div><div class="opt-analysis correct"><div class="opt-title">گزینه ب</div><p>نورون‌های حسی سلول‌های تخصصی بافت عصبی‌اند که با انتقال پیام عصبی سروکار دارند، نه با تولید ماتریکس یا نقش ساختاری بافت همبند.</p><div class="why">تنها گزینه‌ای که جزو بافت همبند نیست؛ پاسخ سؤال.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ج</div><p>غضروف یک بافت همبند تخصصی بدون عروق است.</p><div class="why">جزو بافت همبند؛ رد می‌شود.</div></div><div class="opt-analysis"><div class="opt-title">گزینه د</div><p>استخوان بافت همبند تخصصی معدنی‌شده است.</p><div class="why">جزو بافت همبند؛ رد می‌شود.</div></div></div>
+  <div class="label">دام سؤال</div>
+  <div class="trap">دام این‌جا کوچک اما مؤثر است: چون بحث در فضای «روماتولوژی» مطرح می‌شود، ممکن است ذهن به‌سراغ بافت‌های مفصلی برود و فراموش کند سؤال اصلاً دارد طبقه‌بندی چهارگانه بافت‌شناسی را می‌سنجد.</div>
+  <div class="label">اگر شرایط سؤال عوض شود</div>
+  <div class="condition">اگر گزینه «ب» به‌جای نورون‌های حسی، «فیبروبلاست‌های حسی» یا نامی مشابه یک سلول همبندی بود، دیگر پاسخ درست نمی‌بود.</div>
+  <div class="answer-box"><span>جواب نهایی:</span><strong>گزینه ب</strong></div>
+  <div class="label">چیزی که باید با خودت ببری</div>
+  <div class="transfer"><strong>اول بافت اصلی را تشخیص بده، بعد زیرمجموعه‌اش را.</strong><br>قانون قابل انتقال: در سؤالات «کدام‌یک جزو بافت X نیست»، اول چهار بافت پایه بدن را در ذهن مرور کن و ببین گزینه مشکوک به کدام رده اصلی تعلق دارد.</div>
+  <div class="exercise"><div class="exercise-title">حالا خودت امتحان کن</div><div>استخوان، غضروف و بافت بینابینی همگی زیرمجموعه کدام بافت اصلی‌اند؟</div><details><summary>پاسخ تمرین</summary><div class="answer">بافت همبند.</div></details></div>
+  <div class="readback"><strong>برگرد و این بخش را بخوان</strong><br>جزوه استاد قمری، مقدمه «کلیات و تقسیم‌بندی بیماری‌های بافت همبند»<br><span class="whyread">چرا؟ چون در همان ابتدای جزوه، عملکرد و اجزای بافت همبند تعریف شده و مرز آن با سایر بافت‌ها (ازجمله بافت عصبی) روشن است.</span></div>
+</article>
+
+
+<article class="question-card" id="q7">
+  <div class="q-head"><div><div class="q-label">سؤال ۷ · سلول‌های بافت همبند و مرز تعریف آن</div><h3>غضروف بدون عروق و بدون عصب؛ نورون آنجا معنا ندارد</h3></div><div class="importance">اهمیت: مهم</div></div>
+  <div class="source-line">منبع سؤال/محتوا: کلیات بیماری‌های بافت همبند.md، سؤال ۶ (مهر ۹۹)</div>
+  <div class="quality-note">سؤال با سؤال قبل هم‌خانواده است، اما این‌بار سطح تحلیل عمیق‌تر می‌رود: چرا غضروف عروق و عصب ندارد.</div>
+  <div class="label">خود سؤال</div>
+  <div class="stem-full">کدام‌یک در ساختار غضروف وجود ندارد؟</div>
+  <ol class="options" type="الف"><li><span class="opt-letter">الف)</span> کلاژن</li><li><span class="opt-letter">ب)</span> کندروسیت</li><li><span class="opt-letter">ج)</span> آب</li><li><span class="opt-letter">د)</span> نورون</li></ol>
+  <div class="label">اول ببین سؤال دقیقاً چی می‌خواهد</div>
+  <p>سؤال ویژگی آواسکولار و بدون‌عصب بودن غضروف را می‌سنجد؛ باید بدانی این ویژگی چرا اهمیت دارد (تغذیه با انتشار، ترمیم کند).</p>
+  <div class="label">از Stem کدام داده‌ها مهم‌اند و چه وزنی دارند؟</div>
+  <ul class="weight-list"><li>کلاژن (تیپ II) و کندروسیت اجزای بافت‌شناسی پایه غضروف‌اند.</li><li>آب بخش عمده حجم ماتریکس غضروف است (به‌خاطر پروتئوگلیکان‌ها و توان جذب آب).</li><li>غضروف رسماً یک بافت همبند تخصصی بدون عروق و بدون عصب است.</li></ul>
+  <div class="label">حالا مسیر فکر روی همین سؤال</div>
+  <div class="dialogue">غضروف را همیشه با سه‌گانه «کندروسیت + کلاژن II + پروتئوگلیکان/آب فراوان» به‌خاطر بیاور و بلافاصله بعدش یادت بیاید که این بافت avascular و aneural است. همین ویژگی است که باعث می‌شود تغذیه‌اش فقط از راه انتشار مواد از مایع مفصلی/پری‌کندریوم انجام شود و ترمیمش بسیار کند باشد.</div>
+  <div class="label">گزینه‌ها را با منطق تستی ببینیم</div>
+  <div class="option-analysis"><div class="opt-analysis"><div class="opt-title">گزینه الف</div><p>کلاژن (عمدتاً تیپ II) جزء ساختاری اصلی غضروف است.</p><div class="why">جزو ساختار غضروف؛ رد می‌شود.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ب</div><p>کندروسیت سلول اختصاصی غضروف است که ماتریکس آن را می‌سازد و نگه می‌دارد.</p><div class="why">جزو ساختار غضروف؛ رد می‌شود.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ج</div><p>آب بخش زیادی از حجم ماتریکس غضروف را تشکیل می‌دهد و به خاصیت مقاومت فشاری آن کمک می‌کند.</p><div class="why">جزو ساختار غضروف؛ رد می‌شود.</div></div><div class="opt-analysis correct"><div class="opt-title">گزینه د</div><p>غضروف یک بافت همبند تخصصی بدون عروق و بدون اعصاب است؛ بنابراین نورون یا عصب در آن وجود ندارد.</p><div class="why">تنها گزینه غایب از ساختار غضروف؛ پاسخ سؤال.</div></div></div>
+  <div class="label">دام سؤال</div>
+  <div class="trap">دام این‌جا کوچک است: ممکن است چون مفاصل به‌طور کلی عصب‌دهی حسی دارند (کپسول و سینوویوم درد را حس می‌کنند)، فکر کنی خودِ بافت غضروفی هم عصب دارد؛ در حالی که عصب‌دهی مفصل مربوط به کپسول/سینوویوم است، نه به خودِ غضروف.</div>
+  <div class="label">اگر شرایط سؤال عوض شود</div>
+  <div class="condition">اگر سؤال درباره «کپسول مفصلی» یا «سینوویوم» پرسیده می‌شد، وجود پایانه‌های عصبی دیگر رد نمی‌شد؛ چون این ساختارها برخلاف غضروف، عصب‌دهی دارند.</div>
+  <div class="answer-box"><span>جواب نهایی:</span><strong>گزینه د</strong></div>
+  <div class="label">چیزی که باید با خودت ببری</div>
+  <div class="transfer"><strong>غضروف = avascular + aneural؛ همین یک ویژگی، بسیاری از رفتار بالینی آن (ترمیم کند، بدون درد مستقیم) را توضیح می‌دهد.</strong><br>قانون قابل انتقال: هرجا واژه «غضروف» را دیدی، فوراً سه ویژگی avascular / aneural / تغذیه با انتشار را کنار هم بیاور.</div>
+  <div class="exercise"><div class="exercise-title">حالا خودت امتحان کن</div><div>چرا آسیب به غضروف مفصلی معمولاً به‌کندی ترمیم می‌شود؟</div><details><summary>پاسخ تمرین</summary><div class="answer">چون غضروف عروق ندارد و تغذیه‌اش فقط از راه انتشار مواد از مایع مفصلی صورت می‌گیرد.</div></details></div>
+  <div class="readback"><strong>برگرد و این بخش را بخوان</strong><br>جزوه استاد قمری، بخش «غضروف»<br><span class="whyread">چرا؟ چون در همین بخش، کندروسیت، کلاژن نوع ۲ و پروتئوگلیکان به‌عنوان اجزای غضروف معرفی شده‌اند و ویژگی بدون‌عروق/بدون‌عصب بودن آن، پایه فهم این سؤال است.</span></div>
+</article>
+
+
+<article class="question-card" id="q8">
+  <div class="q-head"><div><div class="q-label">سؤال ۸ · سلول‌های بافت همبند و مرز تعریف آن</div><h3>فیبروبلاست؛ کارخانه اصلی ماتریکس خارج‌سلولی</h3></div><div class="importance">اهمیت: مهم</div></div>
+  <div class="source-line">منبع سؤال/محتوا: کلیات بیماری‌های بافت همبند.md، سؤال ۱۱ (مهر و بهمن ۹۴)</div>
+  <div class="quality-note">این سؤال شرح‌حال سلول‌شناسی است: باید سلول resident اصلی مسئول ساخت ماتریکس را از بقیه سلول‌های همبندی (که کار دیگری دارند) جدا کنی.</div>
+  <div class="label">خود سؤال</div>
+  <div class="stem-full">ترشح ماتریکس خارج‌سلولی (اکستراسلولار ماتریکس) بافت همبند توسط کدام سلول صورت می‌گیرد؟</div>
+  <ol class="options" type="الف"><li><span class="opt-letter">الف)</span> استئوبلاست</li><li><span class="opt-letter">ب)</span> آدیپوسیت</li><li><span class="opt-letter">ج)</span> فیبروبلاست</li><li><span class="opt-letter">د)</span> ماست سل</li></ol>
+  <div class="label">اول ببین سؤال دقیقاً چی می‌خواهد</div>
+  <p>سؤال دنبال سلول resident عمومیِ سازنده ماتریکس در بافت همبند است، نه یک سلول تخصصی‌شده (استخوان) یا سلولی با کارکرد کاملاً متفاوت (چربی، ایمنی).</p>
+  <div class="label">از Stem کدام داده‌ها مهم‌اند و چه وزنی دارند؟</div>
+  <ul class="weight-list"><li>فیبروبلاست سلول اصلی و عمومی بافت همبند برای تولید کلاژن، الاستین، فیبرونکتین و پروتئوگلیکان‌هاست.</li><li>استئوبلاست هم ماتریکس می‌سازد اما مختص بافت استخوانی است، نه بافت همبند عمومی.</li><li>آدیپوسیت و ماست‌سل کارکردهای کاملاً متفاوتی دارند (ذخیره چربی، آزادسازی هپارین/هیستامین).</li></ul>
+  <div class="label">حالا مسیر فکر روی همین سؤال</div>
+  <div class="dialogue">اگر بخواهی «سلول اصلی بافت همبند» را در یک کلمه به یاد بیاوری، همان فیبروبلاست است: بزرگ، ستاره‌ای‌شکل، کارش تولید پروتئین و ترشح آن به ماتریکس. استئوبلاست هم شبیه همین کار را می‌کند، اما در بافت استخوانی تخصصی شده؛ پس برای سؤال عمومی «بافت همبند»، فیبروبلاست انتخاب درست‌تری است.</div>
+  <div class="label">گزینه‌ها را با منطق تستی ببینیم</div>
+  <div class="option-analysis"><div class="opt-analysis"><div class="opt-title">گزینه الف</div><p>استئوبلاست ماتریکس استخوانی (استئوئید) می‌سازد، اما این نقش مختص بافت استخوانی تخصصی‌شده است، نه بافت همبند به‌طور عام.</p><div class="why">تخصصی‌تر از چیزی که سؤال می‌خواهد.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ب</div><p>آدیپوسیت سلول ذخیره چربی است و نقش اصلی‌اش تولید ماتریکس نیست.</p><div class="why">کارکرد متفاوت؛ رد می‌شود.</div></div><div class="opt-analysis correct"><div class="opt-title">گزینه ج</div><p>فیبروبلاست‌ها سلول‌های اصلی بافت همبند‌اند که مسئول ساخت و ترشح اجزای ماتریکس خارج‌سلولی مثل کلاژن، الاستین، فیبرونکتین و پروتئوگلیکان‌ها هستند.</p><div class="why">بهترین پاسخ.</div></div><div class="opt-analysis"><div class="opt-title">گزینه د</div><p>ماست‌سل مسئول آزادسازی هپارین و هیستامین است، نه ساخت ماتریکس.</p><div class="why">کارکرد متفاوت؛ رد می‌شود.</div></div></div>
+  <div class="label">دام سؤال</div>
+  <div class="trap">دام این‌جاست که چون استئوبلاست هم واقعاً ماتریکس می‌سازد، به‌عنوان یک «حواس‌پرت‌کننده علمی درست اما نامرتبط» انتخاب شود؛ باید به تفاوت «بافت همبند عمومی» و «بافت استخوانی تخصصی» توجه کرد.</div>
+  <div class="label">اگر شرایط سؤال عوض شود</div>
+  <div class="condition">اگر سؤال دقیقاً می‌پرسید «ماتریکس استخوانی توسط کدام سلول ترشح می‌شود؟» جواب می‌شد استئوبلاست، نه فیبروبلاست.</div>
+  <div class="answer-box"><span>جواب نهایی:</span><strong>گزینه ج</strong></div>
+  <div class="label">چیزی که باید با خودت ببری</div>
+  <div class="transfer"><strong>فیبروبلاست در بافت همبند عمومی، استئوبلاست در بافت استخوانی؛ این دو را با هم عوضی نگیر.</strong><br>قانون قابل انتقال: در سؤالات «کدام سلول ماتریکس می‌سازد؟» اول ببین بافت مورد نظر عمومی است یا تخصصی؛ سلول سازنده به همان نسبت عوض می‌شود.</div>
+  <div class="exercise"><div class="exercise-title">حالا خودت امتحان کن</div><div>در جزوه استاد، سلول‌های resident بافت همبند شامل چه چیزهایی‌اند؟</div><details><summary>پاسخ تمرین</summary><div class="answer">فیبروبلاست‌ها و ماست‌سل‌ها.</div></details></div>
+  <div class="readback"><strong>برگرد و این بخش را بخوان</strong><br>جزوه استاد قمری، بخش «Major cell type های بافت همبند» (Resident cell)<br><span class="whyread">چرا؟ چون فیبروبلاست به‌عنوان سلول اصلی تولیدکننده پروتئین و ماتریکس در همین بخش معرفی شده است.</span></div>
+</article>
+
+<div class="mini-synth"><strong>جمع‌بندی میانی این خوشه</strong>سه سؤال این خوشه (۶ تا ۸) نشان می‌دهند طراح دوست دارد مرزهای تعریف را امتحان کند: مرز بافت همبند با بافت عصبی (نورون بیرون از بافت همبند است)، مرز غضروف با بقیه بافت‌های همبند (avascular و aneural بودن)، و مرز سلول عمومی بافت همبند (فیبروبلاست) با سلول تخصصی‌شده در بافت استخوانی (استئوبلاست).</div>
+<div class="cluster-head"><h3>ساختار مفصل، سینوویوم و مایع مفصلی</h3><p>این خوشه، معماری مفصل (سینوویوم، مایع مفصلی، مفاصل غیرسینوویال) را می‌سنجد؛ محور مشترک، تشخیص جهت تغییرات (بالا/پایین) در التهاب و محل دقیق هر جزء در لایه‌های مختلف است.</p></div>
+
+<article class="question-card" id="q9">
+  <div class="q-head"><div><div class="q-label">سؤال ۹ · ساختار مفصل، سینوویوم و مایع مفصلی</div><h3>مفصل ملتهب؛ چهار پارامتر مایع مفصلی را با هم بچین</h3></div><div class="importance">اهمیت: خیلی مهم</div></div>
+  <div class="source-line">منبع سؤال/محتوا: کلیات بیماری‌های بافت همبند.md، سؤال ۲ (مهر ۹۸)</div>
+  <div class="quality-note">سؤال except-مانند چهار پارامتر مایع/فشار مفصلی را همزمان می‌سنجد؛ سه‌تا جهت درستی دارند و باید تشخیص بدهی کدام یک برعکس التهاب حرکت می‌کند.</div>
+  <div class="label">خود سؤال</div>
+  <div class="stem-full">کدام خصوصیت در مورد مفصل ملتهب درست نیست؟</div>
+  <ol class="options" type="الف"><li><span class="opt-letter">الف)</span> تعداد WBC مایع مفصل بیشتر از ۲۰۰۰ در mm³ است.</li><li><span class="opt-letter">ب)</span> ویسکوزیته مایع مفصل کاهش یافته است.</li><li><span class="opt-letter">ج)</span> رنگ مایع مفصل زرد کدر است.</li><li><span class="opt-letter">د)</span> فشار داخل مفصل ۰-۵ میلی‌متر جیوه است.</li></ol>
+  <div class="label">اول ببین سؤال دقیقاً چی می‌خواهد</div>
+  <p>سؤال یک تصویر کامل از «مفصل ملتهب» می‌سازد (WBC، ویسکوزیته، رنگ، فشار) و از تو می‌خواهد تک‌تک این چهار محور را با جهت واقعی التهاب مقایسه کنی؛ کار سؤال پیدا کردن پارامتری است که در التهاب برعکس تغییر می‌کند یا اصلاً تغییر نمی‌کند.</p>
+  <div class="label">از Stem کدام داده‌ها مهم‌اند و چه وزنی دارند؟</div>
+  <ul class="weight-list"><li>مرز عددی WBC (کمتر از ۲۰۰ تا ۲۰۰۰ = غیرالتهابی، ۲۰۰۰ تا ۵۰۰۰۰ = التهابی، بالای ۵۰۰۰۰ = سپتیک) باید حفظ باشد.</li><li>کاهش ویسکوزیته و کدر شدن رنگ، هر دو نشانه واقعی التهاب‌اند.</li><li>فشار نرمال داخل مفصل ۰-۵ میلی‌متر جیوه است؛ در التهاب به‌دلیل افیوژن، فشار بالا می‌رود، نه اینکه در همان بازه نرمال بماند.</li></ul>
+  <div class="label">حالا مسیر فکر روی همین سؤال</div>
+  <div class="dialogue">بیا چهار گزینه را کنار هم بچینیم، مثل یک جدول ذهنی: WBC در التهاب بالای ۲۰۰۰ می‌رود؛ درست. ویسکوزیته چون هیالورونیک اسید تخریب می‌شود، کم می‌شود؛ درست. رنگ به‌خاطر تجمع سلول و مواد التهابی کدر و مایل به زرد می‌شود؛ درست. اما فشار داخل مفصل نرمال، ۰ تا ۵ میلی‌متر جیوه است؛ وقتی افیوژن التهابی مایع اضافه می‌کند، این فشار افزایش می‌یابد، پس گفتنِ «فشار ۰-۵ است» توصیف حالت نرمال است، نه ملتهب.</div>
+  <div class="label">گزینه‌ها را با منطق تستی ببینیم</div>
+  <div class="option-analysis"><div class="opt-analysis"><div class="opt-title">گزینه الف</div><p>در مایع مفصلی غیرالتهابی سلول‌ها بین ۲۰۰ تا ۲۰۰۰ در میلی‌لیتر است؛ در مایع التهابی این میزان بین ۲۰۰۰ تا ۵۰۰۰۰ است. پس در مفصل ملتهب WBC معمولاً بیشتر از ۲۰۰۰ خواهد بود.</p><div class="why">گزاره درست درباره التهاب؛ رد می‌شود.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ب</div><p>مایع مفصلی نرمال ویسکوزیته بالایی دارد و مثل نخ کشیده می‌شود؛ در بیماری‌های عفونی و التهابی، ویسکوزیته کاهش می‌یابد و مایع قطره‌قطره یا روان می‌شود.</p><div class="why">گزاره درست درباره التهاب؛ رد می‌شود.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ج</div><p>در حالت التهاب به‌دلیل افزایش تعداد سلول‌ها و مواد التهابی، مایع مفصلی کدر می‌شود و ممکن است زرد هم دیده شود.</p><div class="why">گزاره درست درباره التهاب؛ رد می‌شود.</div></div><div class="opt-analysis correct"><div class="opt-title">گزینه د</div><p>فشار داخل مفصل نرمال معمولاً در محدوده ۰-۵ میلی‌متر جیوه است؛ اما در التهاب به‌دلیل تجمع مایع (افیوژن)، این فشار احتمالاً افزایش می‌یابد. پس این خصوصیت به‌احتمال زیاد در مورد مفصل ملتهب درست نیست.</p><div class="why">تنها گزاره‌ای که جهتش با التهاب همخوانی ندارد؛ پاسخ سؤال.</div></div></div>
+  <div class="label">دام سؤال</div>
+  <div class="trap">دام این‌جا ظریف است: عدد «۰-۵ میلی‌متر جیوه» درست و واقعی است، اما این عدد توصیف مفصل نرمال است؛ ذهن ممکن است چون عدد درستی می‌بیند، بدون توجه به اینکه برای کدام حالت (نرمال یا ملتهب) گزارش شده، آن را انتخاب نکند.</div>
+  <div class="label">اگر شرایط سؤال عوض شود</div>
+  <div class="condition">اگر سؤال می‌پرسید «کدام مورد در مفصل نرمال درست است؟» گزینه د تنها گزینه درست از میان این چهار می‌شد.</div>
+  <div class="answer-box"><span>جواب نهایی:</span><strong>گزینه د</strong></div>
+  <div class="label">چیزی که باید با خودت ببری</div>
+  <div class="transfer"><strong>در التهاب مفصل: WBC بالا، ویسکوزیته پایین، مایع کدر، فشار بالا — این چهار با هم حرکت می‌کنند.</strong><br>قانون قابل انتقال: هر پارامتر مایع مفصلی را به یک بردار (بالارونده/پایین‌رونده در التهاب) وصل کن؛ گزینه‌ای که برخلاف بردار مورد انتظار عدد نرمال را تکرار می‌کند، معمولاً پاسخ سؤالات except است.</div>
+  <div class="exercise"><div class="exercise-title">حالا خودت امتحان کن</div><div>فشار نرمال ۰-۵ میلی‌متر جیوه در یک مفصل ملتهب چه تغییری می‌کند؟</div><details><summary>پاسخ تمرین</summary><div class="answer">افزایش می‌یابد؛ چون افیوژن التهابی حجم و فشار مایع داخل مفصل را بالا می‌برد.</div></details></div>
+  <div class="readback"><strong>برگرد و این بخش را بخوان</strong><br>جزوه استاد قمری، بخش «مایع مفصلی» (Fluid Synovial)<br><span class="whyread">چرا؟ چون میزان نرمال سلول، ویسکوزیته، رنگ و حجم مایع مفصلی همگی در همین بخش با دقت شرح داده شده‌اند و این تست دقیقاً همان چهار پارامتر را می‌سنجد.</span></div>
+</article>
+
+
+<article class="question-card" id="q10">
+  <div class="q-head"><div><div class="q-label">سؤال ۱۰ · ساختار مفصل، سینوویوم و مایع مفصلی</div><h3>تغییر التهابی مایع مفصلی؛ چرا کاهش ویسکوزیته برنده است</h3></div><div class="importance">اهمیت: خیلی مهم</div></div>
+  <div class="source-line">منبع سؤال/محتوا: کلیات بیماری‌های بافت همبند.md، سؤال ۱۰ (بهمن ۹۸)</div>
+  <div class="quality-note">این سؤال هم‌خانواده سؤال ۹ (شماره ۲ منبع) است، اما این‌بار فقط یک پارامتر (ویسکوزیته) در برابر دو گزینه غیرمرتبط (گلوکزامین) قرار می‌گیرد.</div>
+  <div class="label">خود سؤال</div>
+  <div class="stem-full">کدام یک به نفع تغییر التهابی در مایع مفصلی است؟</div>
+  <ol class="options" type="الف"><li><span class="opt-letter">الف)</span> کاهش ویسکوزیته</li><li><span class="opt-letter">ب)</span> افزایش ویسکوزیته</li><li><span class="opt-letter">ج)</span> افزایش گلوکزامین</li><li><span class="opt-letter">د)</span> کاهش گلوکزامین</li></ol>
+  <div class="label">اول ببین سؤال دقیقاً چی می‌خواهد</div>
+  <p>سؤال می‌خواهد بین «مکانیسم ویسکوزیته» (که مستقیماً به هیالورونیک اسید و التهاب مربوط است) و «گلوکزامین» (که ربط تشخیصی مستقیمی به التهاب ندارد) تمایز بگذاری.</p>
+  <div class="label">از Stem کدام داده‌ها مهم‌اند و چه وزنی دارند؟</div>
+  <ul class="weight-list"><li>ویسکوزیته بالا وابسته به هیالورونیک اسید سالم است؛ در التهاب این مولکول تخریب می‌شود.</li><li>افزایش ویسکوزیته الگوی نرمال یا حتی دژنراتیو است، نه التهابی.</li><li>گلوکزامین بیشتر به ترمیم/ساخت غضروف مربوط است تا نشانه مستقیم التهاب.</li></ul>
+  <div class="label">حالا مسیر فکر روی همین سؤال</div>
+  <div class="dialogue">مسیر فکر همان چیزی است که در سؤال قبلی دیدیم: در التهاب مفصلی، هیالورونیک اسید مایع سینوویال کاهش پیدا می‌کند و همین باعث افت ویسکوزیته می‌شود. گلوکزامین یک ترکیب سازنده غضروف است، نه یک شاخص مستقیم التهاب؛ نه افزایش و نه کاهشش معیار تشخیصی استانداردی برای التهاب مفصلی محسوب نمی‌شود.</div>
+  <div class="label">گزینه‌ها را با منطق تستی ببینیم</div>
+  <div class="option-analysis"><div class="opt-analysis correct"><div class="opt-title">گزینه الف</div><p>در التهاب مفصلی (مثلاً آرتریت روماتوئید)، هیالورونیک اسید مایع سینوویال کاهش می‌یابد و همین باعث کاهش ویسکوزیته می‌شود.</p><div class="why">نشانه مستقیم و کلاسیک التهاب؛ پاسخ سؤال.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ب</div><p>افزایش ویسکوزیته در مایع مفصلی نرمال یا دژنراتیو دیده می‌شود، نه در حالت التهابی.</p><div class="why">جهت اشتباه برای التهاب.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ج</div><p>گلوکزامین ترکیبی سازنده غضروف است؛ افزایش آن نشانه التهاب نیست، بلکه ممکن است در ترمیم بافت دیده شود.</p><div class="why">ربط تشخیصی مستقیم به التهاب ندارد.</div></div><div class="opt-analysis"><div class="opt-title">گزینه د</div><p>اگرچه کاهش گلوکزامین ممکن است در تخریب غضروف رخ دهد، اما معیار تشخیصی مستقیمی برای التهاب نیست.</p><div class="why">ربط تشخیصی مستقیم به التهاب ندارد.</div></div></div>
+  <div class="label">دام سؤال</div>
+  <div class="trap">دام این‌جا این است که گلوکزامین را چون اسمش با غضروف/مفصل گره خورده، به‌اشتباه به‌عنوان یک شاخص التهابی در نظر بگیری؛ در حالی که تغییر واقعی و مستقیمی که کتاب‌های مرجع برای مایع مفصلی ملتهب گزارش می‌کنند، ویسکوزیته و WBC است.</div>
+  <div class="label">اگر شرایط سؤال عوض شود</div>
+  <div class="condition">اگر سؤال می‌پرسید «کدام مورد به نفع مایع مفصلی نرمال یا دژنراتیو (نه التهابی) است؟» جواب می‌شد افزایش ویسکوزیته.</div>
+  <div class="answer-box"><span>جواب نهایی:</span><strong>گزینه الف</strong></div>
+  <div class="label">چیزی که باید با خودت ببری</div>
+  <div class="transfer"><strong>ویسکوزیته پایین = زنجیره التهاب → تخریب هیالورونیک اسید.</strong><br>قانون قابل انتقال: هر تغییر مایع مفصلی را به مکانیسم زیستی‌اش وصل کن (نه فقط حفظ جهت آن)؛ ویسکوزیته پایین چون به تخریب هیالورونیک اسید در التهاب برمی‌گردد، معیار قوی‌تری نسبت به گزینه‌های بی‌ربط مثل گلوکزامین است.</div>
+  <div class="exercise"><div class="exercise-title">حالا خودت امتحان کن</div><div>چرا هیالورونیک اسید در التهاب کاهش می‌یابد و این روی چه پارامتری اثر می‌گذارد؟</div><details><summary>پاسخ تمرین</summary><div class="answer">به‌دلیل تخریب توسط آنزیم‌ها/فرایند التهابی؛ همین کاهش باعث افت ویسکوزیته مایع مفصلی می‌شود.</div></details></div>
+  <div class="readback"><strong>برگرد و این بخش را بخوان</strong><br>جزوه استاد قمری، بخش «مایع مفصلی» (Fluid Synovial) و توضیح ویسکوزیته<br><span class="whyread">چرا؟ چون علت افت ویسکوزیته در بیماری‌های التهابی/عفونی و ارتباط آن با هیالورونیک اسید در همین بخش آمده است.</span></div>
+</article>
+
+
+<article class="question-card" id="q11">
+  <div class="q-head"><div><div class="q-label">سؤال ۱۱ · ساختار مفصل، سینوویوم و مایع مفصلی</div><h3>ویسکوزیته مایع سینوویال کِی افزایش می‌یابد؟ گزینه «هیچ‌کدام» را جدی بگیر</h3></div><div class="importance">اهمیت: مهم</div></div>
+  <div class="source-line">منبع سؤال/محتوا: کلیات بیماری‌های بافت همبند.md، سؤال ۱۳ (مهر و بهمن ۹۴)</div>
+  <div class="quality-note">این سؤال با دو سؤال قبل خانواده‌ای یکسان دارد، اما این‌بار گزینه چهارم «هیچ‌کدام» است؛ باید سه بیماری/حالت مطرح‌شده را یکی‌یکی رد کنی تا به «هیچ‌کدام» برسی.</div>
+  <div class="label">خود سؤال</div>
+  <div class="stem-full">در کدام مورد ویسکوزیته مایع سینوویال افزایش می‌یابد؟</div>
+  <ol class="options" type="الف"><li><span class="opt-letter">الف)</span> هیپوپروتئیدی</li><li><span class="opt-letter">ب)</span> هیپرپاراتیروئیدی</li><li><span class="opt-letter">ج)</span> آرتریت روماتوئید</li><li><span class="opt-letter">د)</span> هیچ‌کدام</li></ol>
+  <div class="label">اول ببین سؤال دقیقاً چی می‌خواهد</div>
+  <p>سؤال از تو می‌خواهد سه سناریوی بالینی متفاوت را از نظر اثر واقعی‌شان روی ویسکوزیته بسنجی؛ نباید فرض کنی حتماً یکی از سه گزینه اول باید درست باشد.</p>
+  <div class="label">از Stem کدام داده‌ها مهم‌اند و چه وزنی دارند؟</div>
+  <ul class="weight-list"><li>در هیپوپروتئیدی، کاهش پروتئین‌های مایع مفصلی بیشتر به کاهش ویسکوزیته گرایش دارد، نه افزایش.</li><li>هیپرپاراتیروئیدی عمدتاً روی استخوان اثر می‌گذارد؛ اثر مشخصی روی ویسکوزیته مایع مفصلی گزارش نشده است.</li><li>در آرتریت روماتوئید، تخریب هیالورونان باعث کاهش ویسکوزیته می‌شود، نه افزایش.</li></ul>
+  <div class="label">حالا مسیر فکر روی همین سؤال</div>
+  <div class="dialogue">سه گزینه اول را تک‌تک تست کن: هیپوپروتئیدی → کاهش پروتئین‌های مایع مفصلی، جهتش به‌سمت کاهش ویسکوزیته است، نه افزایش. هیپرپاراتیروئیدی → این بیماری اثر شناخته‌شده‌اش بیشتر استخوانی است، ربط مستقیمی به ویسکوزیته سینوویال ندارد. آرتریت روماتوئید → این‌جا هم به‌خاطر تخریب آنزیمی هیالورونان، ویسکوزیته کاهش پیدا می‌کند، نه افزایش. وقتی هر سه رد شدند، تنها گزینه باقی‌مانده منطقی «هیچ‌کدام» است.</div>
+  <div class="label">گزینه‌ها را با منطق تستی ببینیم</div>
+  <div class="option-analysis"><div class="opt-analysis"><div class="opt-title">گزینه الف</div><p>در شرایط هیپوپروتئیدی، ممکن است ویسکوزیته کاهش یابد به‌علت کاهش میزان پروتئین‌های موجود در مایع.</p><div class="why">جهت اشتباه (کاهش، نه افزایش).</div></div><div class="opt-analysis"><div class="opt-title">گزینه ب</div><p>هیپرپاراتیروئیدی بیشتر باعث تغییرات استخوانی می‌شود، اما تأثیر مشخصی بر ویسکوزیته مایع مفصلی ندارد.</p><div class="why">ارتباط مستقیمی با افزایش ویسکوزیته ندارد.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ج</div><p>در آرتریت روماتوئید، به‌علت افزایش آنزیم‌ها و تخریب هیالورونان، ویسکوزیته کاهش می‌یابد، نه افزایش.</p><div class="why">جهت اشتباه (کاهش، نه افزایش).</div></div><div class="opt-analysis correct"><div class="opt-title">گزینه د</div><p>هیچ‌یک از سه حالت بالینی مطرح‌شده در منبع به‌عنوان علت افزایش ویسکوزیته مایع سینوویال شناخته نمی‌شوند.</p><div class="why">تنها گزینه سازگار با بررسی هر سه مورد؛ پاسخ سؤال.</div></div></div>
+  <div class="label">دام سؤال</div>
+  <div class="trap">دام این‌جا این است که چون سؤال «کدام مورد» می‌پرسد، ذهن پیش‌فرض می‌گیرد حتماً یکی از سه گزینه اول باید جواب باشد و گزینه «هیچ‌کدام» را جدی نمی‌گیرد؛ حال آنکه دقیقاً همین نوع سؤال، ابزار خوبی برای سنجیدن رد کردن واقعی سه سناریو است.</div>
+  <div class="label">اگر شرایط سؤال عوض شود</div>
+  <div class="condition">اگر یکی از این سه بیماری واقعاً باعث افزایش تولید یا کاهش تخریب هیالورونیک اسید می‌شد، همان گزینه به‌جای «هیچ‌کدام» پاسخ می‌شد؛ اما در منابع رایج چنین association ای برای این سه گزینه ثبت نشده است.</div>
+  <div class="answer-box"><span>جواب نهایی:</span><strong>گزینه د</strong></div>
+  <div class="label">چیزی که باید با خودت ببری</div>
+  <div class="transfer"><strong>گزینه «هیچ‌کدام» را فقط بعد از رد واقعی همه گزینه‌ها انتخاب کن، نه چون شکل سؤال عجیب است.</strong><br>قانون قابل انتقال: در سؤالات با گزینه «هیچ‌کدام»، هر گزینه را مستقل با مکانیسم واقعی‌اش تست کن؛ اگر همه در یک جهت (کاهش) قرار گرفتند، «هیچ‌کدام باعث افزایش نمی‌شود» نتیجه منطقی است.</div>
+  <div class="exercise"><div class="exercise-title">حالا خودت امتحان کن</div><div>چرا در آرتریت روماتوئید ویسکوزیته مایع مفصلی کاهش پیدا می‌کند، نه افزایش؟</div><details><summary>پاسخ تمرین</summary><div class="answer">چون آنزیم‌های التهابی هیالورونان را تخریب می‌کنند و کاهش هیالورونیک اسید یعنی کاهش ویسکوزیته.</div></details></div>
+  <div class="readback"><strong>برگرد و این بخش را بخوان</strong><br>جزوه استاد قمری، بخش «مایع مفصلی» (ویسکوزیته و ارتباط آن با بیماری‌های عفونی/التهابی)<br><span class="whyread">چرا؟ چون در همین بخش رابطه ویسکوزیته با بیماری‌های التهابی و عفونی توضیح داده شده و نشان می‌دهد جهت غالب تغییرات، کاهشی است.</span></div>
+</article>
+
+
+<article class="question-card" id="q12">
+  <div class="q-head"><div><div class="q-label">سؤال ۱۲ · ساختار مفصل، سینوویوم و مایع مفصلی</div><h3>سینکندروز؛ اتصال استخوان به استخوان با غضروف هیالن</h3></div><div class="importance">اهمیت: مهم</div></div>
+  <div class="source-line">منبع سؤال/محتوا: کلیات بیماری‌های بافت همبند.md، سؤال ۱۶ (مهر ۹۵ و مهر ۹۶)</div>
+  <div class="quality-note">سؤال طبقه‌بندی مفاصل را از زاویه نوع بافت اتصال‌دهنده می‌سنجد؛ باید مثال‌های کلاسیک سینکندروز را بشناسی.</div>
+  <div class="label">خود سؤال</div>
+  <div class="stem-full">مفصل سینکندروز در چه قسمتی از بدن وجود دارد؟</div>
+  <ol class="options" type="الف"><li><span class="opt-letter">الف)</span> استرنومانوبریال</li><li><span class="opt-letter">ب)</span> دیسک بین مهره‌ای</li><li><span class="opt-letter">ج)</span> محل اتصال دیستال تیبیا و فیبولا</li><li><span class="opt-letter">د)</span> جمجمه</li></ol>
+  <div class="label">اول ببین سؤال دقیقاً چی می‌خواهد</div>
+  <p>سؤال دنبال مفصل غضروفی نوع سینکندروز (اتصال با غضروف هیالن) است؛ باید آن را از سینفیز (فیبروکارتیلاژ، مثل دیسک بین مهره‌ای) و سین‌دسموز (بافت فیبری، مثل اتصال دیستال تیبیا-فیبولا) جدا کنی.</p>
+  <div class="label">از Stem کدام داده‌ها مهم‌اند و چه وزنی دارند؟</div>
+  <ul class="weight-list"><li>سینکندروز = اتصال دو استخوان با غضروف هیالن.</li><li>دیسک بین مهره‌ای نمونه سینفیز (فیبروکارتیلاژ) است، نه سینکندروز.</li><li>اتصال دیستال تیبیا و فیبولا نمونه سین‌دسموز (بافت فیبری متراکم) است.</li></ul>
+  <div class="label">حالا مسیر فکر روی همین سؤال</div>
+  <div class="dialogue">اینجا باید سه نوع مفصل غیرسینوویال را از هم جدا کنی: سینکندروز با غضروف هیالن (مثل استرنومانوبریال، صفحات رشد کودکان)، سینفیز با فیبروکارتیلاژ (مثل دیسک بین مهره‌ای، سمفیز پوبیس)، سین‌دسموز با بافت فیبری (مثل اتصال دیستال تیبیا-فیبولا). سؤال دقیقاً سینکندروز را می‌خواهد؛ استرنومانوبریال مثال کلاسیک آن است.</div>
+  <div class="label">گزینه‌ها را با منطق تستی ببینیم</div>
+  <div class="option-analysis"><div class="opt-analysis correct"><div class="opt-title">گزینه الف</div><p>مفصل استرنومانوبریال با غضروف هیالن دو استخوان (منوبریوم و بدنه استرنوم) را به هم متصل می‌کند؛ مثال کلاسیک سینکندروز.</p><div class="why">بهترین پاسخ.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ب</div><p>دیسک بین مهره‌ای از جنس فیبروکارتیلاژ است؛ این نوع اتصال سینفیز نامیده می‌شود، نه سینکندروز.</p><div class="why">نوع مفصل اشتباه برای این سؤال.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ج</div><p>اتصال دیستال تیبیا و فیبولا با بافت فیبری متراکم صورت می‌گیرد؛ این سین‌دسموز است.</p><div class="why">نوع مفصل اشتباه برای این سؤال.</div></div><div class="opt-analysis"><div class="opt-title">گزینه د</div><p>درزهای جمجمه معمولاً از جنس بافت فیبری‌اند (سین‌دسموز/سوچور)، نه غضروف هیالن.</p><div class="why">نوع مفصل اشتباه برای این سؤال.</div></div></div>
+  <div class="label">دام سؤال</div>
+  <div class="trap">دام این‌جا اشتباه گرفتن سه نوع مفصل غیرسینوویال با هم است، چون هر سه در ظاهر «مفصل ثابت بدون حرکت آزاد» به‌نظر می‌رسند؛ تفاوتشان فقط در نوع بافت اتصال‌دهنده (غضروف هیالن/فیبروکارتیلاژ/بافت فیبری) است.</div>
+  <div class="label">اگر شرایط سؤال عوض شود</div>
+  <div class="condition">مثال دیگر سینکندروز، صفحات رشد اپی‌فیزیال استخوان‌های بلند در کودکان است؛ اگر سؤال آن سناریو را می‌آورد، جواب باز هم از همین خانواده (نه دیسک بین مهره‌ای و نه تیبیا-فیبولا) بود.</div>
+  <div class="answer-box"><span>جواب نهایی:</span><strong>گزینه الف</strong></div>
+  <div class="label">چیزی که باید با خودت ببری</div>
+  <div class="transfer"><strong>سه مفصل غیرسینوویال را با نوع بافتشان به‌خاطر بیاور: سینکندروز=غضروف هیالن، سینفیز=فیبروکارتیلاژ، سین‌دسموز=بافت فیبری.</strong><br>قانون قابل انتقال: در سؤالات طبقه‌بندی مفاصل، اول نوع بافت اتصال‌دهنده را شناسایی کن، بعد مثال تشریحی را پیدا کن؛ حفظ کردن فقط اسم‌ها بدون نوع بافت خطرناک است.</div>
+  <div class="exercise"><div class="exercise-title">حالا خودت امتحان کن</div><div>سمفیز پوبیس و دیسک بین مهره‌ای هر دو در کدام دسته مفصل غیرسینوویال قرار می‌گیرند؟</div><details><summary>پاسخ تمرین</summary><div class="answer">سینفیز (اتصال با فیبروکارتیلاژ).</div></details></div>
+  <div class="readback"><strong>برگرد و این بخش را بخوان</strong><br>ارجاع تکمیلی در منبع موجود نیست؛ این طبقه‌بندی سه‌گانه مفاصل غیرسینوویال در جزوه استاد قمری به‌این شکل مستقیم نیامده و صرفاً برای تکمیل پاسخ سؤال آورده شده است.<br><span class="whyread">چرا؟ خارج از منبع / دانش تکمیلی.</span></div>
+</article>
+
+
+<article class="question-card" id="q13">
+  <div class="q-head"><div><div class="q-label">سؤال ۱۳ · ساختار مفصل، سینوویوم و مایع مفصلی</div><h3>سینوویوم؛ کاپیلرها کجای این دو لایه‌اند؟</h3></div><div class="importance">اهمیت: خیلی مهم</div></div>
+  <div class="source-line">منبع سؤال/محتوا: کلیات بیماری‌های بافت همبند.md، سؤال ۱۷ (مهر ۹۵ و مهر ۹۶)</div>
+  <div class="quality-note">این سؤال دقیق‌ترین سؤال معماری سینوویوم در این مجموعه است؛ چهار گزاره، چهار جزء متفاوت سینوویوم را نشانه می‌گیرند و فقط یکی از نظر لایه و محل درست است.</div>
+  <div class="label">خود سؤال</div>
+  <div class="stem-full">کدام جمله در مورد سینوویوم صحیح است؟</div>
+  <ol class="options" type="الف"><li><span class="opt-letter">الف)</span> یک بافت همبند شامل انتیما و غشای پایه است.</li><li><span class="opt-letter">ب)</span> سلول‌های ماکروفاژ لایک در سینوویوم مسئول تولید هیالورونیک اسید هستند.</li><li><span class="opt-letter">ج)</span> کاپیلرها و آرتریول‌ها در سینوویوم زیر انتیما قرار گرفته‌اند.</li><li><span class="opt-letter">د)</span> سینوویوم سطح غضروف مفصلی را می‌پوشاند.</li></ol>
+  <div class="label">اول ببین سؤال دقیقاً چی می‌خواهد</div>
+  <p>سؤال معماری دو‌لایه‌ای سینوویوم (سطحی=intima، عمقی=subintima) و توزیع صحیح سلول‌ها/عروق در هرکدام را می‌سنجد؛ باید بدانی کدام جزء در کدام لایه است.</p>
+  <div class="label">از Stem کدام داده‌ها مهم‌اند و چه وزنی دارند؟</div>
+  <ul class="weight-list"><li>سینوویوم دو لایه دارد: intima (سطحی) و subintima (عمقی)؛ برخلاف اپی‌تلیوم‌های معمول، غشای پایه واقعی در آن معمول نیست.</li><li>تولید هیالورونیک اسید کار سلول‌های فیبروبلاست‌لایک در لایه intima است، نه ماکروفاژلایک.</li><li>کاپیلرها، آرتریول‌ها و ونول‌ها در لایه subintima (زیر انتیما) قرار دارند و نقش تغذیه/تبادل مواد دارند.</li></ul>
+  <div class="label">حالا مسیر فکر روی همین سؤال</div>
+  <div class="dialogue">بیا سینوویوم را لایه‌به‌لایه باز کنیم. لایه سطحی (intima) از سه نوع سلول تشکیل شده: ماکروفاژلایک (A)، فیبروبلاست‌لایک (B) و سلول‌های بینابینی. تولید هیالورونیک اسید کار سلول‌های فیبروبلاست‌لایک است، نه ماکروفاژلایک. برخلاف اپی‌تلیوم‌های استاندارد، این لایه غشای پایه معمول ندارد. لایه عمقی (subintima) را فیبروبلاست‌ها با کلاژن نوع III و الاستین می‌سازند و همین‌جاست که عروق (کاپیلر، آرتریول، ونول) و پایانه‌های عصبی قرار می‌گیرند. سینوویوم دور فضای مفصلی را می‌پوشاند، نه سطح غضروف مفصلی را.</div>
+  <div class="label">گزینه‌ها را با منطق تستی ببینیم</div>
+  <div class="option-analysis"><div class="opt-analysis"><div class="opt-title">گزینه الف</div><p>سینوویوم شامل دو لایه اصلی است: لایه سطحی (intima) و لایه زیرین (subintima)؛ اما غشای پایه به‌صورت معمول در بافت سینوویال مانند سایر اپی‌تلیوم‌ها وجود ندارد.</p><div class="why">گزاره نادرست؛ رد می‌شود.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ب</div><p>تولید اسید هیالورونیک توسط سلول‌های فیبروبلاست‌مانند در intima انجام می‌شود، نه سلول‌های ماکروفاژمانند.</p><div class="why">گزاره نادرست؛ رد می‌شود.</div></div><div class="opt-analysis correct"><div class="opt-title">گزینه ج</div><p>در ساختار سینوویوم، کاپیلرها، آرتریول‌ها و ونول‌ها در لایه subintima حضور دارند و نقش تغذیه و تبادل مواد را دارند.</p><div class="why">گزاره درست؛ پاسخ سؤال.</div></div><div class="opt-analysis"><div class="opt-title">گزینه د</div><p>سینوویوم سطح غضروف مفصلی را نمی‌پوشاند، بلکه در اطراف فضای مفصلی حضور دارد و مایع سینوویال را تولید می‌کند.</p><div class="why">گزاره نادرست؛ رد می‌شود.</div></div></div>
+  <div class="label">دام سؤال</div>
+  <div class="trap">دام اصلی گزینه ب است: چون ماکروفاژلایک‌ها هم در همان لایه سطحی حضور دارند، ذهن ممکن است تولید هیالورونیک اسید را به آن‌ها نسبت بدهد، در حالی که این کار مشخصاً وظیفه سلول‌های فیبروبلاست‌لایک است.</div>
+  <div class="label">اگر شرایط سؤال عوض شود</div>
+  <div class="condition">اگر گزینه الف به‌جای «غشای پایه» می‌گفت «intima و subintima»، بدون ذکر غشای پایه، آنگاه آن گزینه هم درست می‌شد.</div>
+  <div class="answer-box"><span>جواب نهایی:</span><strong>گزینه ج</strong></div>
+  <div class="label">چیزی که باید با خودت ببری</div>
+  <div class="transfer"><strong>intima سطحی (سه نوع سلول، بدون غشای پایه معمول) در برابر subintima عمقی (فیبروبلاست، کلاژن III، عروق و عصب).</strong><br>قانون قابل انتقال: هر گزاره درباره سینوویوم را اول به یکی از دو لایه (intima/subintima) وصل کن؛ عروق و اعصاب همیشه در subintima‌اند، تولید هیالورونیک اسید همیشه کار فیبروبلاست‌لایک‌های intima است.</div>
+  <div class="exercise"><div class="exercise-title">حالا خودت امتحان کن</div><div>کدام دسته سلولی سینوویوم مسئول تولید هیالورونیک اسید است و در کدام لایه قرار دارد؟</div><details><summary>پاسخ تمرین</summary><div class="answer">سلول‌های فیبروبلاست‌لایک (تیپ B)، در لایه سطحی intima.</div></details></div>
+  <div class="readback"><strong>برگرد و این بخش را بخوان</strong><br>جزوه استاد قمری، بخش «غشای سینوویال» (Membrane Synovial)<br><span class="whyread">چرا؟ چون در همین بخش، سه نوع سلول لایه سطحی، ترکیب لایه عمقی و محل قرارگیری عروق و اعصاب دقیقاً همین‌طور شرح داده شده است.</span></div>
+</article>
+
+<div class="mini-synth"><strong>جمع‌بندی میانی این خوشه</strong>پنج سؤال این خوشه (۹ تا ۱۳) دوبار مستقیماً و یک‌بار غیرمستقیم حول محور مایع مفصلی می‌چرخند: WBC، ویسکوزیته، رنگ و فشار همه در التهاب هم‌جهت (افزایشی) حرکت می‌کنند، به‌جز ویسکوزیته که کاهش می‌یابد؛ و «هیچ‌کدام» می‌تواند پاسخ درستی باشد وقتی هیچ سناریوی مطرح‌شده، مکانیسم واقعی افزایش ویسکوزیته را ندارد. دو سؤال دیگر همین خوشه (سینکندروز و سینوویوم) نشان می‌دهند طراح، معماری بافتی مفصل را لایه‌به‌لایه و مفصل‌به‌مفصل امتحان می‌کند.</div>
+<div class="cluster-head"><h3>طبقه‌بندی بیماری‌های مفصلی و افتراق بالینی</h3><p>این خوشه، طبقه‌بندی پنج‌گانه بیماری‌های مفصلی و افتراق بالینی درد التهابی از مکانیکال و داخل‌مفصلی از خارج‌مفصلی را می‌سنجد؛ این‌جا شرح‌حال جای میکروسکوپ را می‌گیرد.</p></div>
+
+<article class="question-card" id="q14">
+  <div class="q-head"><div><div class="q-label">سؤال ۱۴ · طبقه‌بندی بیماری‌های مفصلی و افتراق بالینی</div><h3>کدام مسیر سلولی در روماتولوژی نقشی ندارد؟</h3></div><div class="importance">اهمیت: مهم</div></div>
+  <div class="source-line">منبع سؤال/محتوا: کلیات بیماری‌های بافت همبند.md، سؤال ۴ (مهر ۹۹)</div>
+  <div class="quality-note">سؤال except با سه مسیر ایمونولوژیک واقعی (کمپلمان، ایمنی ذاتی، ایمنی اکتسابی) در برابر یک مسیر متابولیک بی‌ربط (کربوهیدرات) طراحی شده است.</div>
+  <div class="label">خود سؤال</div>
+  <div class="stem-full">کدام مسیر سلولی در ایجاد التهاب و بیماری‌های روماتولوژی نقش ندارد؟</div>
+  <ol class="options" type="الف"><li><span class="opt-letter">الف)</span> فعال شدن کمپلمان</li><li><span class="opt-letter">ب)</span> متابولیسم کربوهیدرات</li><li><span class="opt-letter">ج)</span> ایمنی ذاتی</li><li><span class="opt-letter">د)</span> ایمنی اکتسابی</li></ol>
+  <div class="label">اول ببین سؤال دقیقاً چی می‌خواهد</div>
+  <p>سؤال از تو می‌خواهد پاتوژنز بیماری‌های روماتولوژیک (خصوصاً اتوایمیون مثل لوپوس) را به سه بازوی ایمونولوژیک وصل کنی و مسیری را که اصلاً جزو این خانواده نیست (متابولیسم انرژی) شناسایی کنی.</p>
+  <div class="label">از Stem کدام داده‌ها مهم‌اند و چه وزنی دارند؟</div>
+  <ul class="weight-list"><li>کمپلمان در تخریب بافت و تشدید پاسخ التهابی (مثلاً در لوپوس) نقش کلیدی دارد.</li><li>ایمنی ذاتی (ماکروفاژ، نوتروفیل) با سایتوکاین و التهاب مستقیم درگیر است.</li><li>ایمنی اکتسابی (لنفوسیت T و B) پایه بیماری‌های اتوایمیون است.</li><li>متابولیسم کربوهیدرات مسیر تنظیم انرژی سلولی است و ارتباط پاتوژنتیک مستقیمی با بیماری‌های روماتولوژیک ندارد.</li></ul>
+  <div class="label">حالا مسیر فکر روی همین سؤال</div>
+  <div class="dialogue">این‌جا کافی است سه ضلع ایمونولوژیک پاتوژنز بیماری‌های روماتیسمی را کنار هم بگذاری: کمپلمان، ایمنی ذاتی، ایمنی اکتسابی؛ هرسه مستقیماً در التهاب و بیماری‌های اتوایمیون مثل لوپوس نقش دارند. متابولیسم کربوهیدرات از این خانواده بیرون است؛ نقشش تنظیم انرژی سلولی است، نه فعال‌سازی/تنظیم پاسخ ایمنی.</div>
+  <div class="label">گزینه‌ها را با منطق تستی ببینیم</div>
+  <div class="option-analysis"><div class="opt-analysis"><div class="opt-title">گزینه الف</div><p>فعال‌سازی سیستم کمپلمان یکی از عوامل مهم در تخریب بافت و تشدید پاسخ التهابی در بیماری‌هایی مانند لوپوس است.</p><div class="why">جزو مسیرهای دخیل؛ رد می‌شود.</div></div><div class="opt-analysis correct"><div class="opt-title">گزینه ب</div><p>این مسیر بیشتر در تنظیم انرژی سلولی نقش دارد و ربط مستقیمی به پاتوژنز بیماری‌های روماتولوژیک و التهاب ندارد.</p><div class="why">تنها مسیر بی‌ربط؛ پاسخ سؤال.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ج</div><p>سلول‌های ایمنی ذاتی مثل ماکروفاژها و نوتروفیل‌ها با آزادسازی سایتوکاین‌ها و فعال‌سازی مسیرهای التهابی، در پاتوفیزیولوژی بیماری‌هایی مثل آرتریت روماتوئید دخیل‌اند.</p><div class="why">جزو مسیرهای دخیل؛ رد می‌شود.</div></div><div class="opt-analysis"><div class="opt-title">گزینه د</div><p>اختلال در عملکرد لنفوسیت‌های T و B از عوامل کلیدی در ایجاد بیماری‌های اتوایمیون مثل لوپوس و اسکلرودرمی است.</p><div class="why">جزو مسیرهای دخیل؛ رد می‌شود.</div></div></div>
+  <div class="label">دام سؤال</div>
+  <div class="trap">دام این‌جا این است که چون «متابولیک» بودن یک مسیر با پسوند بیماری‌های «متابولیک مفصلی» (مثل نقرس) در ذهن قاطی می‌شود، فکر کنی این مسیر هم به‌نوعی روماتولوژیک است؛ در حالی که متابولیسم کربوهیدرات مسیر انرژی سلولی است، نه مسیر ایمونولوژیک.</div>
+  <div class="label">اگر شرایط سؤال عوض شود</div>
+  <div class="condition">اگر گزینه به‌جای «متابولیسم کربوهیدرات» چیزی مثل «متابولیسم اسید اوریک» بود، آنگاه آن مسیر هم در خانواده بیماری‌های روماتولوژیک (نقرس) قرار می‌گرفت و دیگر پاسخ except نمی‌شد.</div>
+  <div class="answer-box"><span>جواب نهایی:</span><strong>گزینه ب</strong></div>
+  <div class="label">چیزی که باید با خودت ببری</div>
+  <div class="transfer"><strong>سه بازوی پاتوژنز ایمونولوژیک روماتولوژی: کمپلمان + ایمنی ذاتی + ایمنی اکتسابی.</strong><br>قانون قابل انتقال: در سؤالات except پاتوژنز، مسیرهای ایمونولوژیک واقعی را از مسیرهای متابولیسم پایه سلولی (که نقش تنظیمی عمومی دارند نه اختصاصی ایمنی) جدا کن.</div>
+  <div class="exercise"><div class="exercise-title">حالا خودت امتحان کن</div><div>کدام رده سلولی با آزادسازی سایتوکاین مستقیماً در التهاب آرتریت روماتوئید نقش دارد؟</div><details><summary>پاسخ تمرین</summary><div class="answer">سلول‌های ایمنی ذاتی مثل ماکروفاژها و نوتروفیل‌ها.</div></details></div>
+  <div class="readback"><strong>برگرد و این بخش را بخوان</strong><br>ارجاع دقیق قابل تعیین نیست؛ این نکته مستقیماً در جزوه استاد قمری با این عبارت نیامده و پاسخ از منبع سؤال بازسازی شده است.<br><span class="whyread">چرا؟ محدودیت منبع باید صریح اعلام شود.</span></div>
+</article>
+
+
+<article class="question-card" id="q15">
+  <div class="q-head"><div><div class="q-label">سؤال ۱۵ · طبقه‌بندی بیماری‌های مفصلی و افتراق بالینی</div><h3>نقرس؛ تنها عضو واقعی «بیماری‌های متابولیک مفصل» در این چهارتایی</h3></div><div class="importance">اهمیت: خیلی مهم</div></div>
+  <div class="source-line">منبع سؤال/محتوا: کلیات بیماری‌های بافت همبند.md، سؤال ۷ (مهر ۹۹)</div>
+  <div class="quality-note">سؤال طبقه‌بندی پنج‌گانه بیماری‌های مفصلی (عفونی/التهابی/مکانیکال/نورولوژیک/متابولیک) را می‌سنجد و سه بیماری التهابی/عفونی را به‌عنوان حواس‌پرت‌کن کنار نقرس گذاشته است.</div>
+  <div class="label">خود سؤال</div>
+  <div class="stem-full">کدام‌یک جزو بیماری‌های متابولیک مفصل است؟</div>
+  <ol class="options" type="الف"><li><span class="opt-letter">الف)</span> تب روماتیسمی</li><li><span class="opt-letter">ب)</span> نقرس</li><li><span class="opt-letter">ج)</span> آرتریت روماتوئید</li><li><span class="opt-letter">د)</span> اسپوندیلیت آنکیلوزان</li></ol>
+  <div class="label">اول ببین سؤال دقیقاً چی می‌خواهد</div>
+  <p>سؤال از تو می‌خواهد چهار بیماری را به دسته صحیح‌شان در طبقه‌بندی پنج‌گانه بیماری‌های مفصلی (عفونی، التهابی، مکانیکال، نورولوژیک، متابولیک) وصل کنی؛ کار سؤال association با یک دسته مشخص است، نه شناخت کلی بیماری.</p>
+  <div class="label">از Stem کدام داده‌ها مهم‌اند و چه وزنی دارند؟</div>
+  <ul class="weight-list"><li>نقرس با اختلال متابولیسم پورین و افزایش اسید اوریک، عضو کلاسیک دسته متابولیک است.</li><li>تب روماتیسمی منشأ ایمنی/التهابی دارد (پس از عفونت استرپتوکوکی).</li><li>آرتریت روماتوئید بیماری التهابی با منشأ ایمنی (Minor CTD) است.</li><li>اسپوندیلیت آنکیلوزان بیماری التهابی مزمن از دسته اسپوندیلوآرتروپاتی‌هاست.</li></ul>
+  <div class="label">حالا مسیر فکر روی همین سؤال</div>
+  <div class="dialogue">این‌جا کافی است طبقه‌بندی پنج‌گانه جزوه استاد را مرور کنی: عفونی، التهابی، مکانیکال، نورولوژیک، متابولیک. تب روماتیسمی و آرتریت روماتوئید و اسپوندیلیت آنکیلوزان هر سه در دسته التهابی جای می‌گیرند (هرچند از زیرگروه‌های متفاوت: ماژور/مینور CTD در برابر اسپوندیلوآرتروپاتی). نقرس تنها بیماری این لیست است که مکانیسمش اختلال متابولیک (تجمع اسید اوریک) است.</div>
+  <div class="label">گزینه‌ها را با منطق تستی ببینیم</div>
+  <div class="option-analysis"><div class="opt-analysis"><div class="opt-title">گزینه الف</div><p>تب روماتیسمی یک بیماری با منشأ ایمنی و التهابی (بعد از عفونت استرپتوکوکی) است و در دسته بیماری‌های متابولیک مفصل قرار نمی‌گیرد.</p><div class="why">دسته اشتباه برای این سؤال.</div></div><div class="opt-analysis correct"><div class="opt-title">گزینه ب</div><p>نقرس به‌وضوح یک بیماری متابولیک مفصل است که ناشی از اختلال در متابولیسم پورین و افزایش اسید اوریک می‌باشد.</p><div class="why">بهترین پاسخ.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ج</div><p>آرتریت روماتوئید یک بیماری التهابی با منشأ ایمنی است و جزو بیماری‌های متابولیک مفصل محسوب نمی‌شود.</p><div class="why">دسته اشتباه برای این سؤال.</div></div><div class="opt-analysis"><div class="opt-title">گزینه د</div><p>اسپوندیلیت آنکیلوزان یک بیماری التهابی مزمن است که به ستون فقرات حمله می‌کند، ولی متابولیک نیست.</p><div class="why">دسته اشتباه برای این سؤال.</div></div></div>
+  <div class="label">دام سؤال</div>
+  <div class="trap">دام این‌جا این است که چون تب روماتیسمی «متابولیسم» را در نامش ندارد ولی هم‌ردیف سؤالات متابولیک مطرح می‌شود یا برعکس، آرتریت روماتوئید و AS را به‌خاطر شدت و مزمن‌بودنشان با «متابولیک مزمن» اشتباه بگیری؛ در حالی که مکانیسم پایه آن‌ها ایمونولوژیک/التهابی است، نه متابولیک.</div>
+  <div class="label">اگر شرایط سؤال عوض شود</div>
+  <div class="condition">اگر گزینه‌ها به‌جای این چهار بیماری شامل کندروکلسینوز، آلکاپتونوری یا هموکروماتوز بود، همه آن‌ها هم در همان دسته متابولیک نقرس قرار می‌گرفتند.</div>
+  <div class="answer-box"><span>جواب نهایی:</span><strong>گزینه ب</strong></div>
+  <div class="label">چیزی که باید با خودت ببری</div>
+  <div class="transfer"><strong>نقرس سردسته بیماری‌های متابولیک مفصلی است و شایع‌ترین آن‌ها.</strong><br>قانون قابل انتقال: طبقه‌بندی پنج‌گانه بیماری‌های مفصلی را حفظ کن (عفونی، التهابی، مکانیکال، نورولوژیک، متابولیک) و هر بیماری جدید را اول در یکی از این پنج خانه بگذار.</div>
+  <div class="exercise"><div class="exercise-title">حالا خودت امتحان کن</div><div>علاوه بر نقرس، دو بیماری دیگر خانواده متابولیک مفصل که در جزوه استاد آمده‌اند کدام‌اند؟</div><details><summary>پاسخ تمرین</summary><div class="answer">کندروکلسینوز (نقرس کاذب) و هموکروماتوز (و نیز آلکاپتونوری).</div></details></div>
+  <div class="readback"><strong>برگرد و این بخش را بخوان</strong><br>جزوه استاد قمری، بخش «بیماری‌های مفصلی disease joint» و «بیماری‌های مفصلی متابولیک»<br><span class="whyread">چرا؟ چون در همین بخش دسته‌بندی پنج‌گانه بیماری‌های مفصلی و اعضای هر دسته با جزئیات بیشتری آمده است.</span></div>
+</article>
+
+
+<article class="question-card" id="q16">
+  <div class="q-head"><div><div class="q-label">سؤال ۱۶ · طبقه‌بندی بیماری‌های مفصلی و افتراق بالینی</div><h3>درد التهابی در برابر مکانیکال؛ درد هنگام پیاده‌روی را زیاد وزن نده</h3></div><div class="importance">اهمیت: خیلی مهم</div></div>
+  <div class="source-line">منبع سؤال/محتوا: کلیات بیماری‌های بافت همبند.md، سؤال ۸ (بهمن ۹۸)</div>
+  <div class="quality-note">این سؤال درست همان مهارتی را می‌سنجد که خودِ جزوه استاد به‌عنوان یک نکته بالینی کلیدی معرفی کرده: افتراق درد التهابی از مکانیکال با شرح‌حال، نه با معاینه تنها.</div>
+  <div class="label">خود سؤال</div>
+  <div class="stem-full">در بیماری با درد زانو، کدام مورد به نفع درد التهابی مفصل نمی‌باشد؟</div>
+  <ol class="options" type="الف"><li><span class="opt-letter">الف)</span> خشکی مفصل صبح‌ها</li><li><span class="opt-letter">ب)</span> تورم مفصل</li><li><span class="opt-letter">ج)</span> درد هنگام پیاده‌روی</li><li><span class="opt-letter">د)</span> گرمی مفصل</li></ol>
+  <div class="label">اول ببین سؤال دقیقاً چی می‌خواهد</div>
+  <p>سؤال یک الگوی چهار-علامتی درد التهابی می‌سازد و از تو می‌خواهد تشخیص بدهی کدام علامت در واقع الگوی درد مکانیکال (نه التهابی) را بهتر توصیف می‌کند.</p>
+  <div class="label">از Stem کدام داده‌ها مهم‌اند و چه وزنی دارند؟</div>
+  <ul class="weight-list"><li>خشکی صبحگاهی طولانی (>۳۰ دقیقه)، تورم و گرمی مفصل، سه‌گانه کلاسیک درد التهابی‌اند.</li><li>درد التهابی می‌تواند حتی در استراحت هم وجود داشته باشد و با فعالیت طولانی بدتر شود، اما شروعش مشخصاً با پیاده‌روی نیست.</li><li>دردی که مشخصاً با پیاده‌روی/فعالیت شروع می‌شود و با استراحت بهتر می‌شود، الگوی کلاسیک درد مکانیکال (مثل استئوآرتریت) است.</li></ul>
+  <div class="label">حالا مسیر فکر روی همین سؤال</div>
+  <div class="dialogue">جزوه استاد همین‌جا یک قاعده طلایی می‌دهد: اگر درد با حرکت بهتر شد، به‌نفع التهابی است؛ اگر با فعالیت بدتر شد، به‌نفع مکانیکال است. حالا چهار گزینه را با این قاعده بسنج: خشکی صبحگاهی طولانی، تورم و گرمی، هرسه علائم کلاسیک التهاب سینوویومی‌اند. اما «درد هنگام پیاده‌روی» دقیقاً همان الگویی است که با فعالیت بدتر و با استراحت بهتر می‌شود؛ این توصیف درد مکانیکال (استئوآرتریت) است، نه التهابی.</div>
+  <div class="label">گزینه‌ها را با منطق تستی ببینیم</div>
+  <div class="option-analysis"><div class="opt-analysis"><div class="opt-title">گزینه الف</div><p>خشکی مفصل به‌خصوص صبح‌ها و به‌مدت طولانی (معمولاً بیش از ۳۰ دقیقه) یکی از علائم کلیدی درد التهابی مفصل است؛ در بیماری‌های التهابی مانند آرتریت روماتوئید، مواد التهابی در طول شب در مفصل تجمع می‌کنند و باعث خشکی می‌شوند.</p><div class="why">علامت التهابی؛ رد می‌شود.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ب</div><p>تورم مفصل ناشی از تجمع مایع و سلول‌های التهابی در فضای مفصلی و بافت‌های اطراف آن است و یکی از نشانه‌های اصلی التهاب مفصل محسوب می‌شود.</p><div class="why">علامت التهابی؛ رد می‌شود.</div></div><div class="opt-analysis correct"><div class="opt-title">گزینه ج</div><p>درد در هنگام فعالیت می‌تواند در هر دو نوع درد التهابی و مکانیکال وجود داشته باشد؛ اما دردی که به‌طور خاص و عمدتاً هنگام پیاده‌روی رخ می‌دهد و با استراحت تسکین می‌یابد، بیشتر به‌نفع درد مکانیکال مانند استئوآرتریت است. در درد التهابی، درد ممکن است حتی در حالت استراحت هم وجود داشته باشد و با فعالیت طولانی‌مدت تشدید شود، اما شروع مشخص درد با شروع پیاده‌روی، به‌اندازه درد مکانیکال شایع نیست.</p><div class="why">تنها گزینه‌ای که الگوی مکانیکال را توصیف می‌کند؛ پاسخ سؤال.</div></div><div class="opt-analysis"><div class="opt-title">گزینه د</div><p>گرمی مفصل یکی دیگر از علائم کلاسیک التهاب است که ناشی از افزایش جریان خون به ناحیه ملتهب می‌باشد.</p><div class="why">علامت التهابی؛ رد می‌شود.</div></div></div>
+  <div class="label">دام سؤال</div>
+  <div class="trap">دام این‌جا این است که چون «درد هنگام پیاده‌روی» هم یک نوع «درد با فعالیت» است، آن را با علائم التهابی که «با فعالیت هم بدتر می‌شوند» قاطی کنی؛ تفاوت ظریف در این است که در التهاب، درد شروع مستقلی از استراحت دارد و با فعالیت طولانی بدتر می‌شود، در حالی که در مکانیکال، خودِ شروع حرکت (نه طول‌مدت آن) درد را تحریک می‌کند.</div>
+  <div class="label">اگر شرایط سؤال عوض شود</div>
+  <div class="condition">اگر گزینه به‌جای «درد هنگام پیاده‌روی» می‌گفت «دردی که با استراحت بهتر نمی‌شود و در طول شب هم ادامه دارد»، آن‌گاه به‌نفع التهابی می‌شد.</div>
+  <div class="answer-box"><span>جواب نهایی:</span><strong>گزینه ج</strong></div>
+  <div class="label">چیزی که باید با خودت ببری</div>
+  <div class="transfer"><strong>قاعده طلایی: درد بهتر با حرکت = التهابی؛ درد بدتر با فعالیت = مکانیکال.</strong><br>قانون قابل انتقال: در هر سؤال افتراق درد مفصلی، اول رابطه درد با فعالیت و استراحت را استخراج کن؛ این رابطه معمولاً از خودِ معاینه (تورم/گرمی) هم قدرت افتراقی بیشتری دارد.</div>
+  <div class="exercise"><div class="exercise-title">حالا خودت امتحان کن</div><div>اگر بیمار می‌گفت درد صبح با حرکت بهتر می‌شود ولی بعد از نیم‌ساعت پیاده‌روی دوباره بدتر می‌شود، این الگو به‌نفع کدام نوع درد است؟</div><details><summary>پاسخ تمرین</summary><div class="answer">التهابی؛ چون بهبود اولیه با حرکت و تشدید با فعالیت طولانی، هر دو الگوی کلاسیک درد التهابی‌اند.</div></details></div>
+  <div class="readback"><strong>برگرد و این بخش را بخوان</strong><br>جزوه استاد قمری، بخش «بیماری‌های مفصلی disease joint» (تشخیص افتراقی التهابی/مکانیکال از شرح‌حال)<br><span class="whyread">چرا؟ چون قاعده «بهتر شدن با حرکت = التهابی، بدتر شدن با فعالیت = مکانیکال» عیناً در همین بخش جزوه استاد آمده است.</span></div>
+</article>
+
+
+<article class="question-card" id="q17">
+  <div class="q-head"><div><div class="q-label">سؤال ۱۷ · طبقه‌بندی بیماری‌های مفصلی و افتراق بالینی</div><h3>درگیری خارج‌مفصلی در برابر داخل‌مفصلی؛ یک سؤال با تناقض در صورت‌سؤال</h3></div><div class="importance">اهمیت: مهم</div></div>
+  <div class="source-line">منبع سؤال/محتوا: کلیات بیماری‌های بافت همبند.md، سؤال ۹ (بهمن ۹۸)</div>
+  <div class="quality-note">این سؤال طبق تحلیل خودِ منبع، در متنِ صورت‌سؤال احتمالاً یک فعل جا افتاده است («است» به‌جای «نیست»)؛ این ابهام باید صریح گزارش شود، نه پنهان.</div>
+  <div class="label">خود سؤال</div>
+  <div class="stem-full">کدام مورد بیانگر درگیری خارج‌مفصلی است؟ (توجه: بر اساس تحلیل منبع، به‌احتمال زیاد صورت اصلی سؤال باید «کدام مورد بیانگر درگیری خارج‌مفصلی نیست؟» باشد؛ فعل منفی از قلم افتاده است.)</div>
+  <ol class="options" type="الف"><li><span class="opt-letter">الف)</span> تاندینیت</li><li><span class="opt-letter">ب)</span> تنوسینوویت</li><li><span class="opt-letter">ج)</span> بورسیت</li><li><span class="opt-letter">د)</span> سینوویت</li></ol>
+  <div class="label">اول ببین سؤال دقیقاً چی می‌خواهد</div>
+  <p>اگر سؤال را عیناً «کدام‌یک خارج‌مفصلی است» بخوانیم، سه گزینه هم‌زمان درست می‌شوند که از نظر طراحی تست چندجوابی و ناقص است؛ اما اگر فرض کنیم فعل باید منفی («نیست») باشد، سؤال به یک تست تک‌جوابی و منطقی درباره افتراق «خارج‌مفصلی در برابر داخل‌مفصلی» تبدیل می‌شود.</p>
+  <div class="label">از Stem کدام داده‌ها مهم‌اند و چه وزنی دارند؟</div>
+  <ul class="weight-list"><li>تاندینیت، تنوسینوویت و بورسیت هر سه التهاب ساختارهای اطراف مفصل‌اند (juxta-articular)، نه خودِ فضای مفصلی.</li><li>سینوویت التهاب لایه سینوویال است که پوشش داخلی مفصل را می‌سازد؛ بنابراین درگیری داخل‌مفصلی محسوب می‌شود.</li><li>این تمایز مستقیماً با دسته‌بندی «Extra-Articular / Juxta-Articular» در جزوه استاد هم‌خوانی دارد.</li></ul>
+  <div class="label">حالا مسیر فکر روی همین سؤال</div>
+  <div class="dialogue">ببین، اول باید تناقض متن را حل کنیم: اگر سؤال عیناً «کدام‌یک خارج‌مفصلی است» بپرسد، سه گزینه (تاندینیت، تنوسینوویت، بورسیت) همزمان درست‌اند و این برای یک تست چهارگزینه‌ای منطقی نیست. اما اگر بپذیریم که فعل باید منفی باشد -یعنی «کدام‌یک خارج‌مفصلی نیست»- آنگاه سؤال یک پاسخ روشن پیدا می‌کند: سینوویت، چون سینوویوم لایه داخلی خودِ مفصل را می‌پوشاند، پس التهابش درگیری داخل‌مفصلی است، نه خارج‌مفصلی.</div>
+  <div class="label">گزینه‌ها را با منطق تستی ببینیم</div>
+  <div class="option-analysis"><div class="opt-analysis"><div class="opt-title">گزینه الف</div><p>التهاب تاندون است و درگیری خارج‌مفصلی محسوب می‌شود.</p><div class="why">خارج‌مفصلی؛ در تفسیر «نیست»، این گزینه رد می‌شود.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ب</div><p>التهاب غلاف تاندون است؛ آن هم خارج‌مفصلی است.</p><div class="why">خارج‌مفصلی؛ در تفسیر «نیست»، این گزینه رد می‌شود.</div></div><div class="opt-analysis"><div class="opt-title">گزینه ج</div><p>التهاب بورسا (کیسه‌های اطراف مفصل) است و کاملاً خارج‌مفصلی محسوب می‌شود.</p><div class="why">خارج‌مفصلی؛ در تفسیر «نیست»، این گزینه رد می‌شود.</div></div><div class="opt-analysis correct"><div class="opt-title">گزینه د</div><p>سینوویوم لایه داخلی مفصل را می‌پوشاند؛ التهاب آن (سینوویت) درگیری داخل‌مفصلی محسوب می‌شود.</p><div class="why">تنها گزینه‌ای که خارج‌مفصلی نیست؛ در تفسیر اصلاح‌شده سؤال، پاسخ صحیح.</div></div></div>
+  <div class="label">دام سؤال</div>
+  <div class="trap">دام این‌جا خودِ متن سؤال است، نه فقط محتوای علمی؛ اگر بدون توجه به تناقض احتمالی صرفاً دنبال «یک گزینه خارج‌مفصلی» بگردی، ممکن است هر سه گزینه اول را به‌اشتباه به‌عنوان کاندیدای درست نگه‌داری و در انتخاب نهایی گیر کنی.</div>
+  <div class="label">اگر شرایط سؤال عوض شود</div>
+  <div class="condition">اگر صورت سؤال واقعاً «است» باشد (بدون غلط تایپی)، سؤال چندجوابی محسوب می‌شود و در عمل باید هر سه گزینه تاندینیت/تنوسینوویت/بورسیت را به‌عنوان پاسخ‌های درست پذیرفت؛ اما برای انتخاب تک‌گزینه در برگه پاسخ، تفسیر «نیست» تنها راهی است که یک پاسخ واحد و منطقی می‌دهد.</div>
+  <div class="answer-box"><span>جواب نهایی:</span><strong>گزینه د</strong></div>
+  <div class="label">چیزی که باید با خودت ببری</div>
+  <div class="transfer"><strong>Juxta-articular (تاندون، غلاف تاندون، بورس) در برابر Intra-articular (سینوویوم).</strong><br>قانون قابل انتقال: هر ساختار اطراف مفصل را اول در یکی از دو دسته «داخل کپسول مفصلی» یا «بیرون از کپسول، اطراف مفصل» بگذار؛ اگر صورت سؤال با پاسخ منبع تناقض داشت، تناقض را با استدلال علمی حل کن و آن را صریح گزارش بده، نه اینکه نادیده بگیری.</div>
+  <div class="exercise"><div class="exercise-title">حالا خودت امتحان کن</div><div>سینوویال سیست (Synovial Cyst) در کدام دسته (Juxta-articular یا Intra-articular) قرار می‌گیرد؟</div><details><summary>پاسخ تمرین</summary><div class="answer">بر اساس دسته‌بندی جزوه استاد، سینوویال سیست هم مانند تاندینیت، تنوسینوویت و بورسیت در گروه Juxta-Articular قرار دارد.</div></details></div>
+  <div class="readback"><strong>برگرد و این بخش را بخوان</strong><br>جزوه استاد قمری، بخش «بیماری‌های Articular-Extra» (Juxta-Articular)<br><span class="whyread">چرا؟ چون در همین بخش، تاندینیت، تنوسینوویت، بورسیت و سینوویال سیست هر چهار زیر عنوان Juxta-Articular دسته‌بندی شده‌اند و این دقیقاً مرز داخل/خارج‌مفصلی این سؤال را روشن می‌کند.</span></div>
+</article>
+
+<div class="mini-synth"><strong>جمع‌بندی میانی این خوشه</strong>چهار سؤال این خوشه (۱۴ تا ۱۷) یک اسکلت مشترک دارند: اول بیماری/علامت را در یکی از پنج دسته اصلی (عفونی، التهابی، مکانیکال، نورولوژیک، متابولیک) یا دو دسته داخل/خارج‌مفصلی جای بده، بعد تصمیم بگیر. حتی سؤال دارای تناقض متنی (سؤال ۱۷) با همین منطق طبقه‌بندی قابل حل است.</div>
+</section>
+<section class="section"><h2>قواعدی که از ۱۷ تست یاد گرفتیم</h2>
+<div class="pattern-box"><strong>۱.</strong> هر جزء ماتریکسی/فیبری را روی یک جدول association ثابت نگه دار: کلاژن I=پوست/تاندون، کلاژن II=غضروف هیالن، کلاژن III (رتیکولر)=ارگان‌های پارانشیمی مثل کبد، الاستین=آئورت/تارصوتی، آگریکان=پروتئوگلیکان غضروف، هیالورونیک اسید=GAG آزاد.</div>
+<div class="pattern-box"><strong>۲.</strong> غضروف را همیشه با سه ویژگی کندروسیت+کلاژن II+avascular/aneural به‌خاطر بیاور؛ فیبروبلاست را سلول عمومی بافت همبند بدان، در برابر استئوبلاست که مختص بافت استخوانی است.</div>
+<div class="pattern-box"><strong>۳.</strong> در تغییرات مایع مفصلی، جهت التهاب را حفظ کن: WBC بالا (>۲۰۰۰)، ویسکوزیته پایین، رنگ کدر، فشار بالا؛ هر گزینه‌ای که برخلاف این چهار بردار حرکت کند، مشکوک است.</div>
+<div class="pattern-box"><strong>۴.</strong> سینوویوم را در دو لایه ببین: intima سطحی (بدون غشای پایه معمول، سه نوع سلول، تولید هیالورونیک اسید توسط فیبروبلاست‌لایک) و subintima عمقی (فیبروبلاست، کلاژن III، عروق و اعصاب).</div>
+<div class="pattern-box"><strong>۵.</strong> پیش از تحلیل هر بیماری مفصلی، اول دسته‌اش را در طبقه‌بندی پنج‌گانه (عفونی/التهابی/مکانیکال/نورولوژیک/متابولیک) یا در تمایز داخل/خارج‌مفصلی مشخص کن؛ افتراق درد التهابی از مکانیکال را از رابطه درد با فعالیت/استراحت بخوان، نه صرفاً از وجود درد.</div>
+<div class="pattern-box"><strong>۶.</strong> اگر متن یک سؤال با پاسخ منبع در تناقض بود (مثل سؤال ۱۷)، تناقض را صریح گزارش بده و استدلال علمی برای تفسیر محتمل‌تر بیاور؛ هرگز آن را نادیده نگیر یا پنهان نکن.</div>
+</section>
+<section class="section"><h2>سه Quality Gate قبل از تحویل</h2>
+<div class="quality-gate">
+<div class="gate"><strong>Gate 1 — Coverage</strong>هر ۱۷ سؤال منبع (کلیات_بیماری‌های_بافت_همبند.md) با صورت کامل، چهار گزینه و پاسخ تشریحی منبع پوشش داده شده‌اند؛ جدول پوشش زیر تناظر شماره منبع ↔ جایگاه در این سند را نشان می‌دهد.</div>
+<div class="gate"><strong>Gate 2 — Source Integrity</strong>تحلیل علمی/مکانیسمی از جزوه استاد قمری (و در یک مورد از پاورپوینت انگلیسی ایشان) گرفته شده؛ متن و کلید سؤال از فایل پاسخ تشریحی. مواردی که پاسخ منبع فقط یک حرف بدون استدلال بود (سؤال ۵) یا صورت سؤال با کلید ناسازگار به‌نظر می‌رسید (سؤال ۹)، صریحاً برچسب خورده‌اند.</div>
+<div class="gate"><strong>Gate 3 — Transfer</strong>هر سؤال حداقل یک قانون اجرایی («چیزی که باید با خودت ببری»)، یک تمرین فعال و یک ارجاع هدفمند به جزوه استاد دارد.</div>
+</div>
+<h3 style="margin-top:22px;color:#2b4561;font-size:16px">جدول پوشش (شماره در این سند ↔ شماره در منبع)</h3>
+<table class="coverage-table"><tr><th>شماره در این سند</th><th>شماره در منبع (کلیات_بیماری‌های_بافت‌همبند.md)</th><th>خوشه موضوعی</th><th>پاسخ</th></tr><tr><td>۱</td><td>۱</td><td>فیبرها و ماتریکس بافت همبند</td><td>ب</td></tr><tr><td>۲</td><td>۳</td><td>فیبرها و ماتریکس بافت همبند</td><td>ج</td></tr><tr><td>۳</td><td>۱۲</td><td>فیبرها و ماتریکس بافت همبند</td><td>د</td></tr><tr><td>۴</td><td>۱۴</td><td>فیبرها و ماتریکس بافت همبند</td><td>د</td></tr><tr><td>۵</td><td>۱۵</td><td>فیبرها و ماتریکس بافت همبند</td><td>ب</td></tr><tr><td>۶</td><td>۵</td><td>سلول‌های بافت همبند و مرز تعریف آن</td><td>ب</td></tr><tr><td>۷</td><td>۶</td><td>سلول‌های بافت همبند و مرز تعریف آن</td><td>د</td></tr><tr><td>۸</td><td>۱۱</td><td>سلول‌های بافت همبند و مرز تعریف آن</td><td>ج</td></tr><tr><td>۹</td><td>۲</td><td>ساختار مفصل، سینوویوم و مایع مفصلی</td><td>د</td></tr><tr><td>۱۰</td><td>۱۰</td><td>ساختار مفصل، سینوویوم و مایع مفصلی</td><td>الف</td></tr><tr><td>۱۱</td><td>۱۳</td><td>ساختار مفصل، سینوویوم و مایع مفصلی</td><td>د</td></tr><tr><td>۱۲</td><td>۱۶</td><td>ساختار مفصل، سینوویوم و مایع مفصلی</td><td>الف</td></tr><tr><td>۱۳</td><td>۱۷</td><td>ساختار مفصل، سینوویوم و مایع مفصلی</td><td>ج</td></tr><tr><td>۱۴</td><td>۴</td><td>طبقه‌بندی بیماری‌های مفصلی و افتراق بالینی</td><td>ب</td></tr><tr><td>۱۵</td><td>۷</td><td>طبقه‌بندی بیماری‌های مفصلی و افتراق بالینی</td><td>ب</td></tr><tr><td>۱۶</td><td>۸</td><td>طبقه‌بندی بیماری‌های مفصلی و افتراق بالینی</td><td>ج</td></tr><tr><td>۱۷</td><td>۹</td><td>طبقه‌بندی بیماری‌های مفصلی و افتراق بالینی</td><td>د</td></tr></table>
+<p class="whyread" style="margin-top:8px">کنترل داخلی: تعداد سؤال‌های منبع = ۱۷، تعداد سؤال‌های تحلیل‌شده در این سند = ۱۷. هیچ سؤالی حذف، ادغام یا خلاصه نشده است؛ ترتیب فقط برای انسجام آموزشی از عددی به موضوعی تغییر کرده و در همین جدول قابل ردیابی است.</p>
+</section>
+<div class="footer"><p>منابع مبنا: «کلیات_بیماری‌های_بافت_همبند.md» (سؤالات + پاسخ تشریحی)، «کلیات_و_تقسیم‌بندی_بیماری‌های_بافت‌همبند_دکتر_قمری_مهر_۱۴۰۱.md» (جزوه استاد، منبع اصلی تحلیل علمی)، پاورپوینت «Introduction to Rheumatology» استاد (برای تکمیل جزئیاتی مثل Charcot/Syringomyelia و طبقه‌بندی رسمی روماتیسم)، و «پرامپت مادر نهایی استاندارد استخوان و تحلیل عمیق.docx» به‌عنوان معیار کیفیت و معماری. تمپلیت‌های استخوان، پوست و روماتیسم غیرمفصلی به‌عنوان الگوی ظاهری و ساختاری اجرا شده‌اند. جایی که پاسخ منبع بدون استدلال بود یا متن سؤال با کلید ناسازگار به‌نظر می‌رسید، این موضوع صریحاً در همان سؤال گزارش شده است.</p></div>
+</div></div></body></html>
