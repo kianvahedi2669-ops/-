@@ -1,0 +1,118 @@
+FIGURE 373-3: Diagnostic Algorithm for Sjögren’s disease
+
+Dry eyes and/or dry mouth¹
+And/or
+Major salivary gland enlargement, fatigue, Raynaud’s phenomenon, arthralgias/arthritis (particularly small hand joints), palpable purpura/urticarial lesions, renal tubular acidosis/membranoproliferative glomerulonephritis, ILD/small airways disease, autoimmune cholangitis, peripheral neuropathy, MS-like lesions
+
+↓
+Unstimulated whole saliva flow rate ≤0.1 mL/min
+↓
+Schirmer’s test ≤5 mm/5 min on at least one eye
+↓
+Ocular staining score ≥5 (or van Bijsterveld’s score ≥4) on at least one eye²
+↓
++ Serum antibodies against Ro antigen
+↓
++ Minor salivary gland biopsy³
+↓
+Exclude:
+- History of head and neck radiation treatment
+- Active hepatitis C infection
+- Acquired immunodeficiency syndrome
+- Sarcoidosis
+- Amyloidosis
+- Graft-versus-host disease
+- IgG4-related disease
+
+If any of those present → NOT Sjögren’s disease
+If none of those present → Sjögren’s disease
+
+Footnotes:
+¹Defined as a positive response to at least one of the following questions:
+(a) Have you had daily, persistent, troublesome dry eyes for more than 3 months?
+(b) Do you have a recurrent sensation of sand or gravel in the eyes?
+(c) Do you use tear substitutes more than three times a day?
+(d) Have you had a daily feeling of dry mouth for more than 3 months?
+(e) Do you frequently drink liquids to aid in swallowing dry food?
+²Ocular staining score described in Whitcher et al. van Bijsterveld score described in van Bijsterveld et al.
+³Focus score count ≥1 (based on the number of foci per 4 mm² of salivary gland tissue) following a protocol described in Daniels et al.
+ILD, interstitial lung disease; MS, multiple sclerosis.
+
+
+TABLE 373-1: Prevalence of Extraglandular Manifestations in Primary Sjögren’s disease
+
+| CLINICAL MANIFESTATION        | PERCENT | REMARKS                                                      |
+|-------------------------------|---------|--------------------------------------------------------------|
+| Nonspecific                   |         |                                                              |
+| Fatigability/myalgias         | 25      | Fibromyalgia                                                 |
+| Arthralgias/arthritis         | 60      | Usually nonerosive, leading to Jaccoud’s arthropathy         |
+| Raynaud’s phenomenon          | 37      | In one-third of patients, precedes sicca manifestations      |
+| Periepithelial                |         |                                                              |
+| Lung involvement              | 14      | Small airway disease/lymphocyte interstitial pneumonitis     |
+| Kidney involvement            | 9       | Interstitial kidney disease is usually asymptomatic          |
+| Liver involvement             | 6       | Primary biliary cirrhosis stage I                            |
+| Immune complex–mediated       |         |                                                              |
+| Small vessel vasculitis       | 9       | Purpura, urticarial lesions                                  |
+| Peripheral neuropathy         | 2       | Polyneuropathy, either sensory or sensorimotor               |
+| Glomerulonephritis            | 2       | Membranoproliferative                                         |
+| Lymphoma                      |         |                                                              |
+| Lymphoma                      | 6       | Glandular MALT lymphoma is most common                       |
+
+
+TABLE 373-2: Differential Diagnosis of Sicca Symptoms
+
+| XEROSTOMIA                       | DRY EYE                              | BILATERAL PAROTID GLAND ENLARGEMENT |
+|----------------------------------|--------------------------------------|-------------------------------------|
+| Viral infections (HCV, HIV)      | Inflammation                         | Viral infections                    |
+| Drugs                            | Stevens-Johnson syndrome             | Mumps                               |
+|   Psychotherapeutic              | Pemphigoid                           | Influenza                           |
+|   Parasympatholytic              | Chronic conjunctivitis               | Epstein-Barr virus                  |
+|   Antihypertensive               | Chronic blepharitis                  | Coxsackievirus A                    |
+| Psychogenic origin               | Sjögren’s Disease                    | Cytomegalovirus                     |
+| Irradiation                      | Toxicity                             | HIV, HCV                            |
+| Diabetes mellitus                | Burns                                | Sarcoidosis, tuberculosis           |
+| Trauma                           | Drugs                                | IgG4-related disease                |
+| Sjögren’s disease                | Neurologic conditions                | Sjögren’s disease                   |
+| Amyloidosis                      | Impaired lacrimal gland function     | Metabolic disorders                 |
+| Autoimmune thyroid disease       | Impaired eyelid function             |   Diabetes mellitus                 |
+|                                  |                                      |   Hyperlipoproteinemias (types IV and V) |
+|                                  |                                      |   Chronic pancreatitis              |
+|                                  |                                      |   Hepatic cirrhosis                 |
+|                                  | Miscellaneous                        | Endocrine                           |
+|                                  |   Trauma                             |   Acromegaly                        |
+|                                  |   Hypovitaminosis A                  |   Gonadal hypofunction              |
+|                                  |   Blink abnormality                  | Eosinophilic sialodochitis          |
+|                                  |   Anesthetic cornea                  | Lymphoma                            |
+|                                  |   Lid scarring                       |                                     |
+|                                  |   Epithelial irregularity            |                                     |
+|                                  | Autoimmune thyroid disease           |                                     |
+
+
+TABLE 373-3: Differential Diagnosis of Sjögren’s disease
+
+| HIV INFECTION AND SICCA SYNDROME  | SJÖGREN’S DISEASE                  | SARCOIDOSIS                         |
+|-----------------------------------|-------------------------------------|-------------------------------------|
+| Predominant in young males        | Predominant in middle-aged women    | No age or sex preference            |
+| Lack of autoantibodies to Ro and/or La | Presence of autoantibodies      | Lack of autoantibodies to Ro and/or La |
+| Lymphoid infiltrates of salivary glands by CD8+ T lymphocytes | Lymphoid infiltrates of salivary glands by CD4+ T lymphocytes | Granulomas in salivary glands |
+| Association with HLA-DR5          | Association with HLA-DR3 and DRw52  | Unknown                             |
+| Positive serologic tests for HIV  | Negative serologic tests for HIV    | Negative serologic tests for HIV    |
+
+
+Risk factors for lymphoma development in Sjögren’s disease (based on the diagram provided):
+
+Hematologic/Serologic:
+- Leukopenia
+- Autoantibodies (Rheumatoid factor, against Ro/SSA and La/SSB autoantigens)
+- Low C4 complement levels
+- Monoclonal gammopathy
+- Cryoglobulin
+
+Clinical:
+- Parotid gland enlargement
+- Severe tongue atrophy
+- Palpable purpura
+
+Histopathologic (salivary gland tissues):
+- Germinal center formation
+- Heavy focal lymphocytic infiltrates

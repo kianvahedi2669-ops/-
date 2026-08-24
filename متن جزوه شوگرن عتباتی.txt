@@ -1,0 +1,94 @@
+Sjögren’s disease
+Elham Atabati, MD
+Associated Professor of Rheumatology.
+Department of Rheumatology Of Mashhad University of Medical Sciences.
+Rheumatology Research Center.
+Mashhad, Iran
+Email:AtabatiE@mums.ac.ir
+
+DEFINITION, INCIDENCE, AND PREVALENCE
+Sjögren’s disease is a prototype autoimmune disease characterized by lymphocytic infiltration of the exocrine glands resulting in xerostomia, dry eyes (keratoconjunctivitis sicca), and profound B-cell hyperactivity.
+The disease has unique features since it presents with a wide clinical spectrum from organ-specific to systemic disease; can occur alone or in association with other systemic rheumatic diseases, more commonly rheumatoid arthritis, limited scleroderma, and systemic lupus erythematosus; and displays high probability of the development of lymphoma.
+Because of all these characteristics, it is an ideal model to study not only autoimmunity but also lymphoid malignancy.
+Middle-aged women (female-to-male ratio 10–20:1) are primarily affected, although Sjögren’s disease may occur at any age, including childhood.
+Patients with earlier disease onset express a more aggressive disease phenotype manifested by a high occurrence of systemic manifestations and serum autoantibodies.
+The prevalence of Sjögren’s disease is ~0.5–1%, while 5–20% of patients with other autoimmune diseases can express sicca manifestations.
+
+PATHOGENESIS
+The autoimmune phenomena observed in Sjögren’s disease include lymphocytic infiltration of the exocrine glands (primarily salivary and lachrymal glands) and B lymphocyte hyperreactivity.
+The latter is mainly manifested by hypergammaglobulinemia and the presence of serum autoantibodies toward non-organ-specific antigens such as immunoglobulins (rheumatoid factors) and extractable cellular antigens (Ro52, Ro60, and La).
+The major infiltrating cells in the affected exocrine glands are activated T lymphocytes.
+In labial minor salivary gland tissues with extensive lymphocytic infiltrations, B-cell populations prevail.
+Other cellular subsets detected in the labial minor salivary gland histopathologic lesion of Sjogren’s disease include follicular, myeloid, and plasmacytoid dendritic cells, as well as macrophages.
+The latter along with inflammasome activation have been shown to be associated with increased risk for lymphoma development.
+The interplay of endogenous (intracellular stress, inappropriate overexpression of endogenous nucleic acids) and exogenous triggers (viruses, hormonal triggers, stressful life events) in a background of a genetically determined hyperactive immune response seems to be crucial for the initiation and perpetuation of the disease. Ductal and acinar epithelial cells appear to play significant role in the initiation and perpetuation of autoimmune injury.
+These cells
+(1) express inappropriately costimulatory molecules and the intracellular autoantigens Ro and La on their cell surfaces, acquiring the capacity to provide signals essential for lymphocytic activation
+(2) produce proinflammatory cytokines and lymphocyte-attracting chemokines necessary for sustaining the autoimmune lesion and allowing the formation of ectopic germinal centers
+(3) express functional receptors of innate immunity, particularly Toll-like receptors (TLRs) 3, 7, and 9 molecules, which may account for the initiation of the autoimmune reactivity
+(4) display immunoregulatory molecules such as ICAM and CD40.
+Glandular epithelial cells also seem to have an active role in the production of B cell–activating factor (BAFF), which is induced after stimulation with type I and II interferons.
+Circulating BAFF has been found to be elevated also in the serum of Sjögren’s disease patients, especially those with hypergammaglobulinemia and serum autoantibodies, and probably accounts for the antiapoptotic effect on B lymphocytes.
+In contrast to B and T lymphocytes, glandular epithelial cells display increased rates of apoptotic death.
+Established risk genetic loci implicated in Sjögren’s disease include the human leukocyte antigen DQA1*0501 allele, variations involved in the interferon/BAFF axis (IRF5, STAT4, BAFF) and B-cell function (EBF1, BLK), as well as combined genetic deficiencies in the classical complement pathway
+
+CLINICAL MANIFESTATIONS
+Most patients with Sjögren’s disease have symptoms related to impaired exocrine gland, particularly lacrimal and salivary gland, function.
+The disease evolution is slow and, in the majority of patients, runs a benign course. Studies have shown that prior to disease onset, patients with Sjögren’s disease experience major stressful life events with which they cannot cope adequately.
+The principal oral symptom of Sjögren’s disease is dryness (xerostomia).
+Patients report difficulty in swallowing dry food, a burning mouth sensation, an increase in dental caries, and problems in wearing complete dentures.
+Physical examination shows a dry, erythematous sticky oral mucosa. In patients with severe oral dryness, the filiform papillae on the tongue dorsum are atrophic, and the tongue is deeply fissured.
+Furthermore, saliva from the major glands is either not expressible or cloudy.
+Intermittent or persistent enlargement of the parotid or other major salivary glands occurs in two-thirds of patients with Sjögren’s disease.
+Diagnostic tests include sialometry and several imaging techniques, including ultrasound, magnetic resonance imaging (MRI), and magnetic resonance sialography of the major salivary glands.
+In particular, salivary gland ultrasound is an emerging tool of both diagnostic and prognostic utility.
+Biopsy of the labial minor salivary gland allows histopathologic confirmation of focal lymphocytic infiltrates. Ocular involvement is the other major manifestation of Sjögren’s disease.
+Patients usually report a sandy or gritty feeling under the eyelids.
+Other ocular symptoms include burning, accumulation of secretions in thick strands at the inner canthi, decreased tearing, redness, itching, eye fatigue, and increased photosensitivity.
+These symptoms are attributed to the destruction of corneal and bulbar conjunctival epithelium, a pathology termed keratoconjunctivitis sicca.
+Diagnostic evaluation of keratoconjunctivitis sicca includes measurement of tear flow by Schirmer’s I test, determination of tear composition by tear breakup time or tear lysozyme content, and slit-lamp examination of the cornea and conjunctiva after lissamine green or Rose Bengal staining that reveals punctuate corneal and bulbar conjunctival ulcerations and attached filaments.
+Involvement of other exocrine glands, which occurs less frequently, includes a decrease in mucous gland secretions of the upper and lower respiratory tree, resulting in dry nose, throat, and trachea (xerotrachea).
+In addition, diminished secretion of the exocrine glands of the gastrointestinal tract leads to esophageal mucosal dysmotility and atrophic gastritis.
+Dyspareunia, in premenopausal women, due to dryness of the external genitalia and dry skin also may occur.
+Extraglandular (systemic) manifestations are seen in one-third of patients with Sjögren’s disease and can be classified as follows: nonspecific, periepithelial (surrounding of epithelial tissues by lymphocytes), immune complex–mediated, and lymphoma.
+Nonspecific manifestations include fatigability, low-grade fever, Raynaud’s phenomenon, myalgias, arthralgias, and arthritis.
+Arthritis in patients with primary Sjögren’s disease is nonerosive.
+Periepithelial pathology due to periepithelial accumulation of lymphocytes results from the involvement of parenchymal organs such as the lungs, kidneys, and liver.
+On the basis of this observation, this disease autoimmune epithelitis.
+Lung involvement is usually manifested with dry cough and rarely with dyspnea.
+The underlying lung pathology includes peribronchial infiltrates (bronchitis sicca) and interstitial pneumonitis.
+Renal involvement includes interstitial nephritis, clinically manifested by hyposthenuria and renal tubular dysfunction with or without acidosis.
+Untreated acidosis may lead to nephrocalcinosis.
+Immune complex–mediated disease is expressed with vasculitis affecting primarily small-sized vessels, mainly manifested with purpura and rarely with urticarial rash, skin ulcerations, mononeuritis multiplex, and membranoproliferative glomerulonephritis associated with mixed type II or III cryoglobulinemia.
+Central nervous system involvement is rarely recognized.
+A few cases of myelitis associated with antibodies to aquaporin 4 have been described.
+Sjögren’s disease is characterized by the highest risk for lymphoma development among all autoimmune diseases with clinical, laboratory, and histopathologic features being designated as risk factors.
+Despite that the pathogenesis of lymphoma in the setting of Sjögren’s disease remains to be elucidated, genetic alterations involved in chronic inflammatory, B-cell activation, and the type I and II interferon pathways, as well as epigenetic abnormalities, have been shown to be significant contributors.
+B cells producing cryoglobulins were shown to harbor mutations in genes recurrently mutated in B-cell malignancies.
+Most lymphomas are extranodal, low-grade, marginal zone B-cell lymphomas and are usually detected incidentally during evaluation of the labial minor salivary gland biopsy.
+The affected lymph nodes are usually peripheral.
+Survival rates are decreased in patients with B symptoms, lymph node mass >7 cm in diameter, and high or intermediate histologic grade. Fluorodeoxyglucose positron emission tomography (FDG-PET)/computed tomography (CT) can be a useful tool to exclude lymphoma when suspected.
+In line with observations in rheumatoid arthritis and systemic lupus erythematosus, patients with Sjögren’s disease also display an increased risk of cardiovascular disease.
+Routine laboratory tests in Sjögren’s disease can reveal leukopenia and infrequently lymphopenia.
+In two-thirds of patients, elevated erythrocyte sedimentation rate, hypergammaglobulinemia, antinuclear antibodies, rheumatoid factors, and antibodies against Ro52/Ro60 and La autoantigens are detected.
+Anticentromere autoantibodies are present in Sjögren’s patients with a clinical picture similar to that of limited scleroderma, while the presence of antimitochondrial antibodies may connote liver involvement in the form of autoimmune cholangitis.
+Autoantibodies to 21-hydroxylase are found in patients with a blunted adrenal response, while autoantibodies to citrullinated peptides are seen in Sjögren’s patients with2878PART 11 Immune-Mediated, Inflammatory, and Rheumatologic Disorders arthritis.
+Anticalponin-3 antibodies have been recently associated with the occurrence of peripheral neuropathies.
+
+DIAGNOSIS AND DIFFERENTIAL DIAGNOSIS
+Sjögren’s disease should be suspected if a patient presents with eye and/or mouth dryness, major salivary gland enlargement, or systemic manifestations such as Raynaud’s phenomenon, palpable purpura, or symptomatology of renal tubular acidosis.
+A careful history of medications causing dryness should be obtained. Recently, cases of Sjögren’s disease were triggered by PD-1/PD-L1 checkpoint inhibitors.
+The workup should include eye tests that might reveal keratoconjunctivitis sicca, salivary flow tests or ultrasonography, and serum evaluation for specific autoantibodies.
+Testing for chronic viral infections (hepatitis C virus, HIV), chest x-ray to rule out sarcoidosis, protein electrophoresis, IgG4 serum levels, and autoantibodies to thyroid antigens can be also offered.
+Labial biopsy is valuable to rule out conditions that may cause dry mouth, dry eyes, or parotid gland enlargement.
+
+TREATMENT Sjögren’s Disease
+Treatment of Sjögren’s disease aims to relieve symptoms and limit the damage from chronic xerostomia and keratoconjunctivitis sicca through substitution or stimulation of impaired secretions.
+To replace deficient tears, several ophthalmic preparations are readily available (hydroxypropyl methylcellulose; polyvinyl alcohol; 0.5% methylcellulose; Hypo Tears). If corneal ulcerations are present, eye patching and boric acid ointments are recommended, as well as cyclosporine eye drops.
+Certain drugs that may decrease lacrimal and salivary secretions, such as diuretics, antihypertensive drugs, anticholinergics, and antidepressants, should be avoided.
+For xerostomia, the best replacement is water. Propionic acid gels may be used to treat vaginal dryness. To stimulate secretions, orally administered pilocarpine (5 mg thrice daily) or cevimeline (30 mg thrice daily) appears to improve sicca manifestations, and both are well tolerated. Hydroxychloroquine (200 to 400 mg daily) and/or methotrexate (0.2–0.3 mg/kg body weight/weekly) are helpful for arthralgias and mild arthritis.
+Patients with renal tubular acidosis should receive sodium bicarbonate by mouth (0.5–2 mmol/kg in four divided doses).
+Glucocorticoids and monoclonal antibody to CD20 (rituximab) appear to be effective in patients with systemic disease, particularly in those with purpura and persistent arthritis.
+Novel monoclonal antibodies targeting the CD40L/CD40 costimulatory pathway or the BAFF receptor or sequential treatment of belimumab and rituximab seem to be promising therapeutic strategies.
+Data for a beneficial role of other conventional immunosuppressants are limited. Treatment of lymphoma in the setting of Sjögren’s disease follows the general guidelines for lymphoma management in the general population.
+Detailed recommendations on Sjögren’s disease management have been issued by EULAR and British Society of Rheumatology.
