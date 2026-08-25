@@ -1,0 +1,48 @@
+name: _extract_rheum
+on:
+  push:
+    paths:
+      - '.github/workflows/_extract_rheum.yml'
+permissions:
+  contents: write
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract PDFs
+        shell: bash
+        run: |
+          set -e
+          mkdir -p .github/rheum_text
+          files=(
+            'واسکولیت نمونه سوال.pdf'
+            'واسکولیت ۲ نمونه سوال.pdf'
+            'استئوآرتریت نمونه سوال.pdf'
+            'اسپوندیلوآرتریت نمونه سوال.pdf'
+            'بیماری_های_متابولیک_مفصل_نمونه_سوال.pdf'
+            'تست_های_آزمایشگاهی_و_مایع_سینوویال_نمونه_سوال.pdf'
+            'روماتوئید نمونه سوال.pdf'
+            'روماتیسم غیر مفصلی نمونه سوال.pdf'
+            'سندرم شوگرن نمونه سوال.pdf'
+            'سوالات PSS.pdf'
+            'سوالات بافت همبند.pdf'
+            'سوالات لوپوس و انتی فسفولیپید.pdf'
+            'سوالات معاینات روماتولوژی.pdf'
+            'نمونه سوالات میوزیت.pdf'
+            'سوالات متاابولیک استخوان.pdf'
+          )
+          : > .github/rheum_text/all.txt
+          for f in "${files[@]}"; do
+            echo "===== FILE: $f =====" >> .github/rheum_text/all.txt
+            pdftotext -layout "$f" - >> .github/rheum_text/all.txt || true
+            echo >> .github/rheum_text/all.txt
+          done
+      - name: Commit extracted text
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/rheum_text/all.txt
+          git commit -m 'Extract rheumatology sample question PDFs' || true
+          git push
